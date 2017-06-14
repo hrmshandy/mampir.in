@@ -1,0 +1,35 @@
+.p-search {
+  &__listings {
+    width: 66%;
+    padding: 0 30px;
+  }
+  &__map {
+    width: 34%;
+    position: fixed;
+    left: auto;
+  }
+
+  &.has-no-map {
+    .p-search__listings {
+      width: 100%;
+    }
+    .p-search__map {
+      display: none;
+    }
+    .c-venue-cell {
+      flex-basis: (100%/5);
+      width: (100%/5);
+    }
+  }
+}
+
+.c-round {
+  border: 1px solid #aaa;
+  width: 35px;
+  height: 35px;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+}

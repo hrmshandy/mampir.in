@@ -1,5 +1,5 @@
-<!doctype html>
-<html lang="{{ config('app.locale') }}">
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -91,5 +91,55 @@
                 </div>
             </div>
         </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script>
+            var teamArray = [
+                { id: 1231312, nama: "Jayadi" },
+                { id: 33312412, nama: "Perkasa" },
+                { id: 435345345, nama: "Sutisan" }
+            ];
+
+            function objectToFormData(obj, form, namespace) {
+
+                var fd = form || new FormData();
+                var formKey;
+
+                for(var property in obj) {
+                    if(obj.hasOwnProperty(property)) {
+
+                        if(namespace) {
+                            formKey = namespace + '[' + property + ']';
+                        } else {
+                            formKey = property;
+                        }
+
+                        // if the property is an object, but not a File,
+                        // use recursivity.
+                        if(typeof obj[property] === 'object' && !(obj[property] instanceof File)) {
+                            objectToFormData(obj[property], fd, formKey);
+                        } else {
+                            // if it's a string or a File object
+                            fd.append(formKey, obj[property]);
+                        }
+
+                    }
+                }
+
+                return fd;
+            }
+            var data = { "teams": teamArray };
+            var formData = objectToFormData(data);
+            $.ajax({
+                url: '/test',
+                data: formData,
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    console.log(response);
+                }
+            });
+        </script>
     </body>
 </html>

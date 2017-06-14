@@ -1,9 +1,31 @@
+// Vendor
+// @import "bourbon";
+@import "~flickity/css/flickity";
 
-// Fonts
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 
-// Variables
-@import "variables";
+// Common
+@import "common/variables";
+@import "common/fonts";
+@import "common/icons";
 
-// Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+// Mixins
+@import "mixins/index";
+
+// Core
+@import "bootstrap";
+@import "skeleton";
+
+// Components
+@import "components/index";
+@import "components/rating-review";
+
+// Object
+@import "objects/bar";
+@import "objects/rating";
+@import "objects/star";
+@import "objects/categories";
+
+// Components
+@import "pages/home";
+@import "pages/search";
+@import "pages/detail";

@@ -1,0 +1,50 @@
+%format-font {
+	color: $color-primary;
+	font-family: $font-family-secondary;
+}
+.hero {
+	background: url('../img/hero-bg.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	display: flex;
+	align-items: center;
+	@media (max-width: 570px) {
+		height: auto !important;
+		padding-top: 85px;
+	}
+
+	&__col {
+		padding-left: 30px;
+		padding-right: 30px;
+	}
+
+	&__img {
+		max-height: calc(100vh - 60px);
+		display: block;
+		margin: 30px auto;
+	}
+
+	&__title {
+		@extend %format-font;
+		font-size: 3.6rem;
+		font-weight: bold;
+		margin-bottom: 2rem;
+		margin-top: 1rem;
+		@media (max-width: 570px) {
+			font-size: 2.3rem;
+			margin-top: 1.5rem;
+			margin-bottom: 1rem;
+			text-align: center;
+		}
+	}
+
+	&__subtitle {
+		@extend %format-font;
+		font-size: 2rem;
+		margin-bottom: 2.5rem;
+		@media (max-width: 570px) {
+			font-size: 2rem;
+			text-align: center;
+		}
+	}
+}

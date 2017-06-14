@@ -1,0 +1,23 @@
+.c-ratings {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+.c-rating {
+    padding: 0 1px;
+    > svg {
+        width: 1em;
+        height: 1em;
+        > polygon, path {
+            fill: #fff;
+            stroke: $color-secondary;
+            stroke-width: 2px;
+        }
+    }
+    &.is-rated, &.is-hovered {
+        > svg > polygon, > svg > path {
+            fill: $color-secondary;
+        }
+    }
+}

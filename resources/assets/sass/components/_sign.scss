@@ -1,0 +1,131 @@
+.sign-modal {
+    .o-modal__dialog {
+        max-width: 400px;
+    }
+}
+.divider {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    &:before, &:after {
+        content: '';
+        width: 50%;
+        height: 1px;
+        background: #e4e4e4;
+    }
+    &:before {
+        margin-right: 15px;
+    }
+    &:after {
+        margin-left: 15px;
+    }
+}
+
+// =====================
+// Buttons
+// =====================
+%button {
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background: #fff;
+    border: 2px solid #000;
+    &:not(.is-link) {
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6px 12px;
+        width: 100%;
+    }
+    &.is-link {
+        background: transparent !important;
+        display: inline-block;
+        color: $color-secondary !important;
+        border: 0 !important;
+        > .sign-icon {
+            display: none;
+        }
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    &:focus {
+        outline: none;
+    }
+}
+.sign-button--facebook {
+    @extend %button;
+    margin-bottom: 10px;
+    background: #4568b2;
+    border-color: #4568b2;
+    color: #fff;
+}
+.sign-button--google {
+    @extend %button;
+    border-color: #767676;
+}
+
+.sign-button--email {
+    @extend %button;
+    background: $color-primary;
+    border-color: $color-primary;
+    color: #fff;
+}
+
+.sign-icon {
+    margin-right: 12px;
+}
+
+.sign-body {
+    &[disabled] {
+        cursor: wait;
+        position: relative;
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: rgba(#fff, .6);
+            z-index: 9;
+        }
+    }
+}
+
+
+// =================
+// Form
+// =================
+
+.sign-form {
+    .input-group {
+        position: relative;
+        .form-control {
+            border-radius: 0.25rem !important;
+            padding-right: 40px;
+        }
+    }
+    .input-group-addon {
+        background: transparent;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        border: 0;
+        margin: auto;
+        z-index: 9;
+    }
+
+    .remember {
+        margin-bottom: 0;
+    }
+
+    .forgot-password {
+        font-size: 14px;
+    }
+}
