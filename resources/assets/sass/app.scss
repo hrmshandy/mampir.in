@@ -3,29 +3,95 @@
 @import "~flickity/css/flickity";
 
 
-// Common
-@import "common/variables";
-@import "common/fonts";
-@import "common/icons";
+@import 'settings/core';
+@import 'settings/baseline';
+@import 'settings/colors';
+@import 'settings/type';
 
-// Mixins
-@import "mixins/index";
+@import 'tools/core';
+@import 'tools/breakpoint';
+@import 'tools/elevation';
+@import 'tools/control';
+@import 'tools/functions';
+@import 'tools/mixins';
+@import 'tools/type';
 
-// Core
-@import "bootstrap";
-@import "skeleton";
+@import 'base/initialize';
+@import 'base/type';
 
-// Components
-@import "components/index";
+@import 'utilities/align';
+@import 'utilities/color';
+@import 'utilities/display';
+@import 'utilities/margin';
+@import 'utilities/opacity';
+@import 'utilities/size';
+@import 'utilities/text';
+@import 'utilities/transform';
+@import 'utilities/pull';
+@import 'utilities/weight';
+
+@import 'objects/container';
+@import 'objects/grid';
+@import 'objects/button';
+@import 'objects/form-input';
+@import 'objects/form-checkbox';
+@import 'objects/form-radio';
+@import 'objects/form-select';
+@import 'objects/form-textarea';
+@import 'objects/list';
+@import 'objects/logo';
+@import 'objects/progress-bar';
+@import 'objects/star';
+@import 'objects/type';
+@import 'objects/category';
+@import 'objects/section';
+@import 'objects/social-icons';
+@import 'objects/user-block';
+@import 'objects/rating';
+
+@import 'components/form';
+@import 'components/navbar';
+@import 'components/search';
+@import 'components/card';
+@import 'components/modal';
+@import 'components/sign';
+@import 'components/hero-unit';
+@import 'components/categories';
+
+@import 'layouts/header';
+@import 'layouts/body';
+@import 'layouts/footer';
+@import 'layouts/auth';
+
+//@import 'components/link';
+//@import 'components/page-header';
+//@import 'components/social';
+//@import 'components/project';
+//@import 'components/page-section';
+
+
+//// Common
+//@import "common/variables";
+//@import "common/fonts";
+//@import "common/icons";
+//
+//// Mixins
+//@import "mixins/index";
+//
+//// Core
+//@import "skeleton";
+//
+//// Components
+@import "components/venue";
 @import "components/rating-review";
-
-// Object
-@import "objects/bar";
-@import "objects/rating";
-@import "objects/star";
-@import "objects/categories";
-
-// Components
-@import "pages/home";
+//
+//// Object
+//@import "objects/bar";
+//@import "objects/rating";
+//@import "objects/star";
+//@import "objects/categories";
+//
+//// Components
+//@import "pages/home";
 @import "pages/search";
 @import "pages/detail";

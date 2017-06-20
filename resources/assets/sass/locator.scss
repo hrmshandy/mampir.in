@@ -1,0 +1,96 @@
+//// Common
+//@import "common/variables";
+//@import "common/fonts";
+//@import "common/icons";
+//
+//// Mixins
+//@import "mixins/index";
+//
+//.locator-wrapper {
+//  max-width: 800px;
+//  margin: 50px auto 0;
+//  padding: 0 15px;
+//}
+//
+//.locator-no-result {
+//  margin: 2rem auto;
+//  > p {
+//    font-size: 50px;
+//    text-align: center;
+//    color: #aaa;
+//  }
+//}
+//
+//.locator-result {
+//  margin-top: 30px;
+//  &__bar {
+//    margin-bottom: 1rem;
+//  }
+//}
+//
+//.location {
+//  margin-bottom: 1rem;
+//  padding: 10px;
+//  background: #fff;
+//  border-radius: 5px;
+//  box-shadow: 0 0 3px rgba(#000, .15);
+//  &__btn {
+//    margin-bottom: 10px;
+//  }
+//  &__body {
+//    display: flex;
+//    flex: 0 1 auto;
+//    flex-wrap: wrap;
+//  }
+//  &__logo {
+//    background: #ddd;
+//    border-radius: 5px;
+//    width: 120px;
+//    height: 120px;
+//    overflow: hidden;
+//    margin-right: 2rem;
+//    > img {
+//      max-width: 100px;
+//      max-height: 100px;
+//      margin: auto;
+//    }
+//  }
+//  &__info {
+//    width: calc(100% - 120px - 2rem);
+//    flex-basis: calc(100% - 120px - 2rem);
+//  }
+//  &__name {
+//    margin-bottom: .5rem;
+//  }
+//
+//  &.has-no-logo {
+//    .location__logo {
+//      display: none;
+//    }
+//    .location__info {
+//      width: 100%;
+//      flex-basis: 100%;
+//    }
+//  }
+//  &__photos {
+//    display: flex;
+//    flex: 0 1 auto;
+//    flex-wrap: wrap;
+//    margin-top: 1rem;
+//    width: 100%;
+//  }
+//  &__photo-item {
+//    width: 20%;
+//    flex-basis: 20%;
+//    height: 100px;
+//    background: #ddd;
+//    border: 1px solid #fff;
+//    display: flex;
+//    align-items: center;
+//    justify-content: center;
+//    > img {
+//      max-width: 100%;
+//      max-height: 100px;
+//    }
+//  }
+//}

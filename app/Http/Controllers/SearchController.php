@@ -10,7 +10,7 @@ class SearchController extends Controller
     public function __invoke(Request $request)
     {
         $venues = Venue::with('categories');
-        if(request()->has('location') && !empty(request('location'))) {
+        if(request()->has('location') && !empty(request('location')) && (request('location') != 'null')) {
 
             if(str_contains(request('location'), ',')) {
                 $location = explode(',', request('location'));
@@ -23,11 +23,11 @@ class SearchController extends Controller
 
         }
 
-        if(request()->has('keyword') && !empty(request('keyword'))) {
+        if(request()->has('keyword') && !empty(request('keyword')) && (request('keyword') != 'null')) {
             $venues = $venues->where('name', 'like', '%'.request('keyword').'%');
         }
 
-        if(request()->has('categories')) {
+        if(request()->has('categories') && !empty(request('categories')) && (request('categories') != 'null')) {
             $venues = $venues->whereHas('categories', function($query){
                 $query->where('slug', request('categories'));
             });

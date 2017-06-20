@@ -1,0 +1,11 @@
+.o-progress-bar {
+  width: 400px;
+  max-width: 100%;
+  background: #ddd;
+  height: 7px;
+  border-radius: 2px;
+  &__value {
+    background: $color-secondary;
+    height: 7px;
+  }
+}

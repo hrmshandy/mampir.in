@@ -7,7 +7,6 @@
 	align-items: center;
 }
 .review-card {
-	@extend .card;
 	@extend %transparent-noborder;
 	margin-bottom: 0;
 
@@ -75,7 +74,6 @@
 .venue-block {
 	@extend %display-flex;
 	&__pic {
-		@extend .rounded-circle;
 	}
 	&__name {
 		margin-left: 10px;
@@ -85,27 +83,7 @@
 	}
 }
 
-.user-block {
-	@extend %display-flex;
-	&__pic {
-		@extend .rounded-circle;
-	}
-	&__info {
-		margin-left: 10px;
-	}
-	&__name {
-		display: block;
-		color: #666;
-		font-weight: bold;
-	}
-	&__status {
-		font-size: 13px;
-	}
 
-	> img {
-		width: 50px;
-	}
-}
 
 
 .write-a-review {

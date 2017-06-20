@@ -1,0 +1,58 @@
+
+@mixin from($device) {
+  @media screen and (min-width: $device) {
+    @content
+  }
+}
+
+@mixin until($device) {
+  @media screen and (max-width: $device - 1px) {
+    @content
+  }
+}
+
+@mixin mobile {
+  @include iota-breakpoint(xs) {
+    @content
+  }
+}
+
+@mixin tablet {
+  @include iota-breakpoint(sm) {
+    @content
+  }
+}
+
+@mixin tablet-only {
+  @media screen
+  and (min-width: #{map_get($breakpoints-boundary, mobile)})
+  and (max-width: #{map_get($breakpoints-boundary, desktop) - 1px}) {
+    @content
+  }
+}
+
+@mixin touch {
+  @media screen and (max-width: #{map_get($breakpoints-boundary, desktop) - 1px}) {
+    @content
+  }
+}
+
+@mixin desktop {
+  @include iota-breakpoint(lg) {
+    @content
+  }
+}
+
+@mixin desktop-only {
+  @media screen and (min-width: #{map_get($breakpoints-boundary, desktop)}) and (max-width: #{map_get($breakpoints-boundary, widescreen) - 1px}) {
+    @content
+  }
+}
+
+@mixin widescreen {
+  @include iota-breakpoint(xl) {
+    @content
+  }
+}
+
+@import '~iotacss/tools/breakpoint';

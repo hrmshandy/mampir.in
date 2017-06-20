@@ -9,6 +9,7 @@
         "doctrine/dbal": "^2.5",
         "elasticsearch/elasticsearch": "^5.2",
         "filp/whoops": "^2.1",
+        "garygreen/pretty-routes": "^0.0.8",
         "guzzlehttp/guzzle": "^6.2",
         "intervention/image": "^2.3",
         "intervention/imagecache": "^2.3",

@@ -1,5 +1,5 @@
 <template>
-	<div class="main">
+	<section class="o-section">
 		<div class="p-search has-no-map">
 			<div class="p-search__listings">
 				<template v-if="!isEmpty">
@@ -14,7 +14,7 @@
 									</div>
 									<div class="c-venue-card__info">
 										<router-link :to="'/detail/'+venue.slug">
-											<h5 class="c-venue-card__name">{{ venue.name }}</h5>
+											<h5 class="c-venue-card__name o-type-18">{{ venue.name }}</h5>
 											<template v-for="(c, index) in venue.categories">
 												<small class="text-muted">
 													{{ c.name }}
@@ -40,9 +40,9 @@
 							</div>
 						</template>
 					</div>
-					<div class="text-center vanue-pagination">
-						<pagination :current-page="currentPage" :per-page="perPage" :records="totalRecords" @change="onPageChange"></pagination>
-					</div>
+					<!--<div class="text-center vanue-pagination">-->
+						<!--<pagination :current-page="currentPage" :per-page="perPage" :records="totalRecords" @change="onPageChange"></pagination>-->
+					<!--</div>-->
 				</template>
 				<template v-else>
 					<p class="text-center">Not Found.</p>
@@ -52,7 +52,7 @@
 				<!--<map-view></map-view>-->
 			</div>
 		</div>
-	</div>
+	</section>
 </template>
 
 <script>
@@ -98,7 +98,7 @@ export default {
 	      	this.error = this.listings = null
 	      	this.loading = true
 
-	      	let Q = $.param(query);
+	      	let Q = this.serialize(query);
 
 	      	axios.get('/api/search?'+Q).then(({data}) => {
 	      		this.loading = false
@@ -116,7 +116,19 @@ export default {
 	    },
 	    onPageChange(page, query){
 	    	this.fetchData(query);
-	    }
+	    },
+        serialize(obj, prefix) {
+            var str = [], p;
+            for(p in obj) {
+                if (obj.hasOwnProperty(p)) {
+                    var k = prefix ? prefix + "[" + p + "]" : p, v = obj[p];
+                    str.push((v !== null && typeof v === "object") ?
+                        serialize(v, k) :
+                        encodeURIComponent(k) + "=" + encodeURIComponent(v));
+                }
+            }
+            return str.join("&");
+        }
 	}
 }
 </script>

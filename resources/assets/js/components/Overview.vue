@@ -1,9 +1,9 @@
 <template>
-    <div class="container-fluid">
+    <div class="o-container--fluid">
         <div :class="['p-venue-detail__overview', {'has-no-logo': !logo}]">
             <div class="p-venue-detail__logo"></div>
             <div class="p-venue-detail__info">
-                <h1 class="p-venue-detail__title">{{ name }}</h1>
+                <h1 class="p-venue-detail__title o-type-35 u-mb-x2">{{ name }}</h1>
                 <small class="text-muted p-venue-detail__categories">{{ formatedCategories }}</small>
                 <p class="p-venue-detail__address">
                     <i class="fa fa-map-marker"></i>
@@ -13,14 +13,14 @@
                 <hr>
             </div>
             <div class="p-venue-detail__rating">
-                <h5>Review of {{ name }}</h5>
+                <h5 class="o-type-20 u-mb-x2">Review of {{ name }}</h5>
                 <div class="c-rating-review">
                     <ul class="c-rating-review-list">
                         <li v-for="i in 5">
                             <div>{{ getRating(i-1) }} <o-star></o-star></div>
                             <div>
-                                <div class="o-rating-bar">
-                                    <div class="o-rating-bar__value" :style="{ width: getRetingBarWidth(i-1) }"></div>
+                                <div class="o-progress-bar">
+                                    <div class="o-progress-bar__value" :style="{ width: getRetingBarWidth(i-1) }"></div>
                                 </div>
                             </div>
                             <div>{{ getReviews(i-1) }}</div>

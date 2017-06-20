@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Events\VenueSaved;
+use App\Events\VenueSaving;
+
 class Venue extends Model
 {
     use Concerns\HasPhotos,
@@ -20,5 +23,15 @@ class Venue extends Model
      */
     protected $appends = [
         'rating', 'ratings', 'cover', 'photos', 'total_reviews'
+    ];
+
+    /**
+     * The event map for the model.
+     *
+     * @var array
+     */
+    protected $events = [
+        'saving' => VenueSaving::class,
+        'saved' => VenueSaved::class,
     ];
 }

@@ -12,12 +12,17 @@ let mix = require('laravel-mix').mix;
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
-   .extract(['vue', 'jquery', 'lodash', 'axios'])
+   .js('resources/assets/js/locator.js', 'public/js')
+   .extract([
+       'axios', 'flickity', 'js-cookie', 'masonry-layout',
+       'moment', 'lodash'
+   ])
    .sass('resources/assets/sass/app.scss', 'public/css')
+   .sass('resources/assets/sass/locator.scss', 'public/css')
    .version();
 
 mix.options({
-    processCssUrls: false
+    //processCssUrls: false
   //purifyCss: true,
 });
 

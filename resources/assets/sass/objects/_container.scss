@@ -1,0 +1,22 @@
+$iota-objs-container-gutter-default : 15px;
+$iota-objs-container-size-default   : (
+  xs  : 100%,
+  sm  : 750px,
+  md  : 970px,
+  lg  : 1030px,
+);
+
+$iota-objs-container-size-extra: (
+  small   : 510px,
+  large   : 1000px,
+  wide    : 1200px
+);
+
+.o-container--fluid {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@import '~iotacss/objects/container';

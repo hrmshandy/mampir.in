@@ -1,21 +1,23 @@
 <template>
-	<div class="masonry-grid">
-		<div class="grid-sizer"></div>
+	<div class="o-grid o-grid--masonry">
+		<div class="o-grid__sizer u-1/5@lg"></div>
 		<slot></slot>
 	</div>
 </template>
 
 <script>
+import Masonry from 'masonry-layout'
+
 export default {
 	mounted() {
 		setTimeout(() => {
-			const elem = document.querySelector('.masonry-grid');
+			const elem = document.querySelector('.o-grid--masonry');
 			const msnry = new Masonry( elem, {
-			  	columnWidth: '.grid-sizer',
-				itemSelector: '.col',
+			  	columnWidth: '.o-grid__sizer',
+				itemSelector: '.o-grid__col',
 				percentPosition: true
 			});
-		}, 300);
+		}, 1000);
 	}
 }
 </script>

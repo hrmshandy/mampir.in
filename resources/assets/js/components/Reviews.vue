@@ -1,69 +1,67 @@
 <template>
     <div>
-        <div class="row align-items-center">
-            <div class="col"><h3 class="review-header-title">Review ({{ reviews.length }})</h3></div>
-            <div class="col text-right">
-                <button class="btn btn-primary" @click="writeReview">Write a Review</button>
+        <div class="o-grid o-grid--middle">
+            <div class="o-grid__col u-6/12"><h3 class="review-header-title o-type-26 u-color-primary">Review ({{ reviews.length }})</h3></div>
+            <div class="o-grid__col u-6/12 u-text-right">
+                <button class="o-button o-button--primary" @click="writeReview">Write a Review</button>
             </div>
         </div>
         <hr>
         <div v-show="writingReview" class="card write-a-review">
             <div class="card-header">
-                <div class="row align-items-center">
-                    <div class="col">Write a Review</div>
-                    <div class="col text-right"><a href="#" @click.prevent="cancelWriteReview">Cancel</a></div>
+                <div class="o-grid o-grid--middle">
+                    <div class="o-grid__col u-6/12">Write a Review</div>
+                    <div class="o-grid__col u-6/12 u-text-right"><a href="#" @click.prevent="cancelWriteReview">Cancel</a></div>
                 </div>
             </div>
             <div class="card-block">
-
-                <div class="row">
-                    <div class="col-2">
-                        <img :src="user.avatar" alt="" class="rounded-circle">
-                    </div>
-                    <div class="col-10">
-                        <div class="form-group">
-                            <small><strong>Your Rating</strong></small></br>
-                            <rating v-model="form.rating" :venue-id="venueId" method="post"></rating>
+                <div class="card-body">
+                    <div class="o-grid">
+                        <div class="o-grid__col u-2/12">
+                            <img :src="user.avatar" alt="" class="rounded-circle">
                         </div>
-                        <div class="form-group">
-                            <textarea v-model="form.content" rows="4" class="form-control" placeholder="Tell about your experience or leave a tip for others"></textarea>
-                        </div>
-                        <div class="form-group text-right">
-                            <button class="btn btn-primary write-a-review__button" @click="submitReview">Submit your Review</button>
+                        <div class="o-grid__col u-10/12">
+                            <div class="form-group">
+                                <small><strong>Your Rating</strong></small></br>
+                                <rating v-model="form.rating" :venue-id="venueId" method="post"></rating>
+                            </div>
+                            <div class="form-group">
+                                <textarea v-model="form.content" rows="4" class="form-control" placeholder="Tell about your experience or leave a tip for others"></textarea>
+                            </div>
+                            <div class="form-group text-right">
+                                <button class="btn btn-primary write-a-review__button" @click="submitReview">Submit your Review</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="c-review-grid">
-            <div v-for="review in reviews" class="c-review-cell">
-                <div class="review-card">
-                    <div class="card-header">
-                        <div class="row">
-                            <div class="col">
-                                <rating v-model="review.rating" :venue-id="venueId" method="get"></rating>
-                            </div>
-                            <!--<div class="col text-right">-->
-                            <!--<button class="btn btn-outline-primary btn-sm"><i class="fa fa-thumbs-up"></i> Helpful | {{ review.likes }}</button>-->
-                            <!--</div>-->
+        <div style="position: relative;">
+            <masonry>
+                <div v-for="review in reviews" class="o-grid__col u-1/5@lg">
+                    <div class="c-card c-card--dialog">
+                        <div class="c-card__header">
+                            <rating v-model="review.rating" :venue-id="venueId" method="get"></rating>
                         </div>
-                    </div>
-                    <div class="card-block">
-                        <p>
-                            {{ review.content }}
-                        </p>
-                    </div>
-                    <div class="card-footer text-muted">
-                        <div class="user-block">
-                            <img :src="review.user.avatar" alt="" class="user-block__pic">
-                            <div class="user-block__info">
-                                <span class="user-block__name">{{ review.user.name }}</span>
-                                <span class="user-block__status">{{ formatedDate(review.created_at) }}</span>
+                        <div class="c-card__body">
+                            <p>
+                                {{ review.content }}
+                            </p>
+                        </div>
+                        <div class="c-card__footer">
+                            <div class="o-user-block">
+                                <div class="o-user-block__pic">
+                                    <img :src="review.user.avatar" alt="">
+                                </div>
+                                <div class="o-user-block__info">
+                                    <span class="o-user-block__name">{{ review.user.name }}</span>
+                                    <span class="o-user-block__status">{{ formatedDate(review.created_at) }}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </masonry>
         </div>
     </div>
 </template>

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Events\PhotoSaving;
+
 class Photo extends Model
 {
     /**
@@ -11,4 +13,13 @@ class Photo extends Model
     {
         return $this->morphTo();
     }
+
+    /**
+     * The event map for the model.
+     *
+     * @var array
+     */
+    protected $events = [
+        'saving' => PhotoSaving::class
+    ];
 }

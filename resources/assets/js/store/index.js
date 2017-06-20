@@ -10,6 +10,8 @@ import map from './modules/map'
 
 const debug = process.env.NODE_ENV !== 'production'
 
+Vue.use(Vuex);
+
 const store = new Vuex.Store({
   	state,
  	getters,
@@ -17,6 +19,7 @@ const store = new Vuex.Store({
   	mutations,
   	modules: {
     	auth,
+		map,
 		search
   	},
   	strict: debug,

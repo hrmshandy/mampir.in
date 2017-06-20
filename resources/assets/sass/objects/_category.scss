@@ -1,0 +1,50 @@
+.o-category {
+  &--card {
+    width: 100%;
+    padding-bottom: 120%;
+    border-radius: 5px;
+    background-size: cover;
+    background-color: $color-primary;
+    margin-bottom: 30px;
+    position: relative;
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    @include mobile {
+      margin-bottom: 15px;
+    }
+    &:hover {
+      text-decoration: none;
+      color: #fff;
+    }
+    .o-category__body {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .o-category__icon {
+      width: 150px;
+      height: auto;
+      max-width: 70%;
+      margin: 0 auto 25px;
+    }
+    .o-category__name {
+      @include iota-type(
+        (
+          xs : 18px,
+          sm : 22px,
+          md : 24px
+        )
+      );
+      padding: 0 0.5em;
+    }
+  }
+
+}

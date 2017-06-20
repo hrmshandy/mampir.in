@@ -2,7 +2,7 @@
 	<div class="main">
 		<!--<map-view class="map&#45;&#45;detail"></map-view>-->
 
-		<section class="section">
+		<section class="o-section">
 			<overview
 				:venue-id="venueId"
 				:name="name"
@@ -15,22 +15,16 @@
 				:ratings="ratings">
 			</overview>
 		</section>
-		<section class="section">
-			<galleries :photos="photos"></galleries>
+		<section class="o-section">
+			<div class="o-container--fluid">
+				<galleries :photos="photos"></galleries>
+			</div>
 		</section>
-		<section class="section">
-			<reviews :venue-id="venueId" v-model="reviews"></reviews>
+		<section class="o-section o-section--grey">
+			<div class="o-container--fluid">
+				<reviews :venue-id="venueId" v-model="reviews"></reviews>
+			</div>
 		</section>
-		<footer>
-	        <div class="footer-center">
-	            <img src="/img/logo-footer.png" alt="">
-	            <p>&copy; Copyright 2017 Mampir.in. All Right Reserved</p>
-	            <ul class="social-icons">
-	                <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
-	                <li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
-	            </ul>
-	        </div>
-	    </footer>
 	</div>
 </template>
 

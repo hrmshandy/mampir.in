@@ -32,13 +32,13 @@ const actions = {
     },
     logout ({ commit }) {
         return new Promise((resolve, reject) => {
-            axios.post('/logout').then((response) => {
+            //axios.post('/logout').then((response) => {
                 localStorage.removeItem('access_token');
                 commit('SET_UTHENTICATED', false);
-                resolve(response);
-            }).catch((error) => {
-                reject(error);
-            });
+                resolve();
+            //}).catch((error) => {
+            //    reject(error);
+            //});
         });
     },
     register({ dispatch, commit }, form) {

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Events\ReviewSaving;
+
 class Review extends Model
 {
     use Concerns\HasPhotos,
@@ -15,5 +17,14 @@ class Review extends Model
      */
     protected $hidden = [
         'user_id', 'venue_id', 'status'
+    ];
+
+    /**
+     * The event map for the model.
+     *
+     * @var array
+     */
+    protected $events = [
+        'saving' => ReviewSaving::class
     ];
 }

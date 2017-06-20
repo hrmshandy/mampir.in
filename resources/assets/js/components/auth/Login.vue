@@ -1,53 +1,47 @@
 <template>
     <div>
-        <a href="#" @click.prevent="openModal" class="btn btn-outline-primary btn-sm">Login</a>
+        <a href="#" @click.prevent="openModal" class="o-button o-button--primary-outlined o-button--small">Login</a>
         <modal v-model="showModal" class="sign-modal sign-in">
             <sign>
                 <facebook></facebook>
                 <google></google>
                 <span class="divider">or</span>
                 <form class="sign-form" method="POST">
-                    <div :class="['form-group', {'has-danger' : form.errors.has('email')}]">
-                        <div class="input-group">
-                            <input type="email" name="email" v-model="form.email" class="form-control" placeholder="Email Adress">
-                            <span class="input-group-addon"><icon name="envelope"></icon></span>
-                        </div>
+                    <div :class="['c-form-group', {'has-danger' : form.errors.has('email')}]">
+                        <input type="email" name="email" v-model="form.email" class="o-input" placeholder="Email Adress">
                         <span class="form-control-feedback" v-if="form.errors.has('email')" v-text="form.errors.get('email')"></span>
                     </div>
-                    <div :class="['form-group', {'has-danger' : form.errors.has('password')}]">
-                        <div class="input-group">
-                            <input type="password" name="password" v-model="form.password" class="form-control" placeholder="Password">
-                            <span class="input-group-addon"><icon name="lock"></icon></span>
-                        </div>
+                    <div :class="['c-form-group', {'has-danger' : form.errors.has('password')}]">
+                        <input type="password" name="password" v-model="form.password" class="o-input" placeholder="Password">
                         <span class="form-control-feedback" v-if="form.errors.has('password')" v-text="form.errors.get('password')"></span>
                     </div>
-                    <div class="form-group">
-                        <div class="row align-items-center">
-                            <div class="col-6">
+                    <div class="c-form-group">
+                        <div class="o-grid o-grid--middle">
+                            <div class="o-grid__col u-6/12">
                                 <label class="custom-control custom-checkbox remember">
                                     <input type="checkbox" name="remember" class="custom-control-input" value="1">
                                     <span class="custom-control-indicator"></span>
                                     <span class="custom-control-description">Remember Me</span>
                                 </label>
                             </div>
-                            <div class="col-6 text-right">
+                            <div class="o-grid__col u-6/12 u-text-right">
                                 <a href="#" class="forgot-password">Forgot password?</a>
                             </div>
                         </div>
                     </div>
 
-                    <button type="button" class="btn btn-primary btn-block" @click.prevent="handleLogin" :disabled="loading">
+                    <button type="button" class="o-button o-button--primary o-button--block" @click.prevent="handleLogin" :disabled="loading">
                         <span v-if="loading">Loading...</span>
                         <span v-else>Log in</span>
                     </button>
                 </form>
                 <hr>
-                <div class="row align-items-center">
-                    <div class="col-8">
+                <div class="o-grid o-grid--middle">
+                    <div class="o-grid__col u-8/12">
                         <span>Don’t have an account?</span>
                     </div>
-                    <div class="col-4 text-right">
-                        <a href="#" class="btn btn-outline-primary btn-sm" @click.prevent="openRegisterModal">Register</a>
+                    <div class="o-grid__col u-4/12 u-text-right">
+                        <a href="#" class="o-button o-button--primary-outlined o-button--small" @click.prevent="openRegisterModal">Register</a>
                     </div>
                 </div>
             </sign>

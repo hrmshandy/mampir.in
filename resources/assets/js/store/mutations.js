@@ -9,3 +9,7 @@ export const SET_KEYWORD = (state, value) => {
 export const SET_LOCATION = (state, value) => {
 	state.query.location = value;
 }
+
+export const SET_FOOTER = (state, value) => {
+    state.footer = value;
+}

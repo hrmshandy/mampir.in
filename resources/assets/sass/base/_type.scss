@@ -1,0 +1,28 @@
+
+@font-face {
+  font-family: 'Hanken';
+  src: url('../../fonts/Hanken-Light.woff2') format('woff2'),
+  url('../../fonts/Hanken-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Hanken';
+  src: url('../../fonts/Hanken-Book.woff2') format('woff2'),
+  url('../../fonts/Hanken-Book.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "Hanken", sans-serif;
+  @include iota-type($type-16);
+  color: $color-grey;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-font-feature-settings: "kern" 1;
+  -moz-font-feature-settings: "kern" 1;
+}
