@@ -64,7 +64,7 @@ export default {
 	},
 	methods: {
 		submit() {
-			router.push({ path: 'search', query: this.query })
+			router.push({ path: '/search', query: this.query })
 			location.reload()
 		},
 		getCurrentPosition(position) {
