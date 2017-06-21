@@ -8,7 +8,7 @@
 		</button>
 		<div class="c-search__form">
 			<div class="c-form-group">
-				<input type="text" :class="['o-input', inputSize]" placeholder="Lagi Dimana?" v-model="location">
+				<input type="text" :class="['o-input', inputSize]" placeholder="Lagi Dimana?" v-model="location" id="location">
 			</div>
 			<div class="c-form-group">
 				<input type="text" :class="['o-input', inputSize]" placeholder="Nyari Apa?" v-model="keyword">
@@ -77,9 +77,10 @@ export default {
                 if (geocoder) {
                     geocoder.geocode({ 'latLng': latLng}, (results, status) => {
                         if (status == google.maps.GeocoderStatus.OK) {
-                            let address = results[0].formatted_address.split(',');
-                            	address =address.slice(Math.max(address.length - 4, 1));
-                            this.location = address.join(', ');
+                            let result = results.filter(function(item){
+                                return item.types == 'locality,political';
+							});
+                            this.location = result[0].address_components[0].long_name;
                         }
                         else {
                             console.log("Geocoding failed: " + status);
@@ -89,9 +90,9 @@ export default {
 			}
 		},
 		getCurrentCity() {
-		    axios.get('/api/city').then(({data}) => {
-		        this.location = data.cityName;
-			});
+//		    axios.get('/api/city').then(({data}) => {
+//		        this.location = data.cityName;
+//			});
 		}
 	},
 	mounted() {

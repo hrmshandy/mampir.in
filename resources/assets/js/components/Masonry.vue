@@ -9,15 +9,31 @@
 import Masonry from 'masonry-layout'
 
 export default {
+    data() {
+        return {
+            masonry: null
+        }
+    },
+    watch: {
+        '$route': () => {
+            this.init();
+            this.masonry.layout();
+        }
+	},
 	mounted() {
-		setTimeout(() => {
-			const elem = document.querySelector('.o-grid--masonry');
-			const msnry = new Masonry( elem, {
-			  	columnWidth: '.o-grid__sizer',
-				itemSelector: '.o-grid__col',
-				percentPosition: true
-			});
-		}, 1000);
-	}
+		this.init();
+	},
+    methods: {
+        init() {
+            setTimeout(() => {
+                const elem = document.querySelector('.o-grid--masonry');
+                this.masonry = new Masonry( elem, {
+                    columnWidth: '.o-grid__sizer',
+                    itemSelector: '.o-grid__col',
+                    percentPosition: true
+                });
+            }, 1000);
+        }
+    }
 }
 </script>

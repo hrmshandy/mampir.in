@@ -60,9 +60,9 @@ export default {
 	watch: {
 	    // call again the method if the route changes
 	    '$route': 'fetchData',
-	    location(value) {
-	    	Event.fire('load-map', value);
-	    }
+//	    location(value) {
+//	    	Event.fire('load-map', value);
+//	    }
 	},
 	methods: {
 		fetchData() {
@@ -81,6 +81,8 @@ export default {
 				this.rating = data.rating;
 				this.ratings = data.ratings;
 				this.reviews = data.reviews;
+
+				window.document.title = data.name+' - Mampir.in';
 	      	});
 		},
 

@@ -1,12 +1,12 @@
 <template>
 	<section class="o-section">
-		<div class="p-search has-no-map">
+		<div class="p-search">
 			<div class="p-search__listings">
 				<template v-if="!isEmpty">
 					<div class="c-venue-grid">
 						<template v-for="venue in listings">
 							<div class="c-venue-cell">
-								<div class="c-venue-card">
+								<div :id="'venue-card-'+venue.id" class="c-venue-card">
 									<div class="c-venue-card__photo">
 										<router-link :to="'/detail/'+venue.slug">
 											<img :src="venue.cover" alt="">
@@ -49,6 +49,7 @@
 				</template>
 			</div>
 			<div class="p-search__map">
+				<div id="map" class="o-map"></div>
 				<!--<map-view></map-view>-->
 			</div>
 		</div>
@@ -57,6 +58,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import Map from '../api/map'
 //import MapView from '../components/Map.vue'
 import Rating from '../components/Rating.vue'
 import Pagination from '../components/Pagination.vue'
@@ -81,17 +83,25 @@ export default {
 		])
 	},
 	created() {
-        console.log(this.$route.query);
-
+        //window.document.title = "Search"
 	},
 	mounted() {
-	    var query = Object.assign({}, this.query, this.$route.query)
+	    this.$store.commit('SET_FOOTER', false);
+	    var loc = { location: document.getElementById('location').value };
+	    var query = Object.assign({}, this.query, this.$route.query, loc);
         this.fetchData(query)
 	},
 	watch: {
-//	    listings(value) {
-//	    	Event.fire("updated_results", value);
-//	    }
+	    listings(value) {
+            let M = new Map;
+
+            if(M.map === undefined){
+                M.init();
+            }
+            setTimeout(() => {
+                M.loadMarker(value);
+            }, 1000);
+	    }
 	},
 	methods: {
 	    fetchData (query) {
@@ -110,9 +120,6 @@ export default {
 	      			this.isEmpty = true;
 	      		}
 	      	})
-	    },
-	    getCover(photos) {
-	    	return !_.isEmpty(photos) ? photos[0].filename : 'default.jpg'
 	    },
 	    onPageChange(page, query){
 	    	this.fetchData(query);

@@ -1,7 +1,7 @@
 import Map from '../../api/map'
 
 const state = {
-    url: '/api/geo',
+    url: '/api/search',
     mapIsLoading: true,
     mapIsEmpty: false
 }
@@ -12,23 +12,18 @@ const getters = {
 }
 
 const actions = {
-    loadMap ({ commit }, cb) {
-        let M = new Map;
+    loadMap ({ commit }, data) {
+        return new Promise((resolve, reject) => {
+            let M = new Map;
 
-        if(M.map === undefined){
-            M.init();
-        }
+            if(M.map === undefined){
+                M.init();
+            }
+            setTimeout(() => {
+                M.loadMarker(data);
+            }, 1000);
 
-        let url = '/api'+store.state.url+'/map';
-        let params = store.state.query;
-
-        commit('SET_MAP_LOADING')
-        commit('SET_MAP_NOT_EMPTY')
-
-        Vue.http.get(url, {params}).then(response => {
-            commit('LOAD_MAP', { map: M, data: response.data })
         });
-
     }
 }
 

@@ -2,8 +2,8 @@
 /public/hot
 .vscode
 /public/storage
-/public/css/*
-/public/js/*
+/public/css/*.css
+/public/js/*.js
 /public/mix-manifest.json
 /storage/app/public/*
 /storage/*.key

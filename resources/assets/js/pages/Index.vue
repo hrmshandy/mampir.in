@@ -42,14 +42,14 @@
 					<div v-for="review in reviews" class="o-grid__col u-1/5@lg">
 						<div class="c-card c-card--dialog u-mb-x4">
 							<div class="c-card__header">
-								<div class="o-user-block">
+								<router-link :to="'/detail/'+review.venue.slug" class="o-user-block">
 									<div class="o-user-block__pic o-user-block__pic--small"
 										 :style="{ backgroundImage: 'url('+review.venue.cover+')'}">
 									</div>
 									<div class="o-user-block__info">
 										<small class="o-user-block__name">{{ review.venue.name }}</small>
 									</div>
-								</div>
+								</router-link>
 							</div>
 							<div class="c-card__body">
 								<p>
@@ -137,6 +137,9 @@ export default {
 	           this.reviews = data;
 			});
 		}
+	},
+	created() {
+        window.document.title = "Bahagia Itu Dekat - Mampir.in"
 	},
 	mounted() {
 	    this.fetchReviews();
