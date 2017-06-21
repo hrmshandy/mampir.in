@@ -3,7 +3,7 @@
         width: 66%;
         padding: 0 30px;
         @include until(641px) {
-            padding: 0 10px;
+            padding: 0;
             width: 100%;
         }
     }
@@ -16,7 +16,18 @@
         height: calc(100vh - 60px);
         z-index: 99;
         @include until(641px) {
+            position: relative;
             width: 100%;
+            top: unset;
+        }
+        #map {
+            @include until(641px) {
+                width: 100%;
+                height: 100%;
+                position: absolute!important;
+                left: 0;
+                right: 0;
+            }
         }
         > .o-map {
             width: 100%;
@@ -56,4 +67,45 @@
     align-items: center;
     justify-content: center;
     color: #aaa;
+}
+
+.filter--wrapper {
+    display: flex;
+    padding: 0;
+    width: 100%;
+    justify-content: space-between;
+    /* position: absolute; */
+    border-bottom: 1px solid #dcdcdc;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+@media (min-width: 641px) {
+    .filter--wrapper {
+        display: none;
+    }
+}
+
+.button--icon {
+    border-color: transparent!important;
+    height: 3em;
+    width: 3em;
+    font-size: 1.3rem;
+    color: #854f28;
+    &:active {
+        border-color: transparent!important;
+        color: #fff;
+    }
+    &:hover {
+        border-color: transparent!important;
+        color: #fff;
+    }
+    &:focus {
+        border-color: transparent!important;
+        color: #fff;
+    }
+    &:visited {
+        border-color: transparent!important;
+        color: #fff;
+    }
 }

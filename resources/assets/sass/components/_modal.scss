@@ -23,7 +23,8 @@
         margin-bottom: 20px;
         border: 0;
         cursor: pointer;
-        &:active, &:focus {
+        &:active,
+        &:focus {
             outline: none;
         }
     }
@@ -42,4 +43,23 @@
 
 .o-modal-is-shown {
     overflow: hidden;
+}
+
+@media (max-width:641px) {
+    .sign-modal {
+        .o-modal {
+            padding: 0;
+            &__body {
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            &__dialog {
+                height: 100vh;
+                max-width: 100%!important;
+                max-height: 100%;
+            }
+        }
+    }
 }
