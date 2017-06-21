@@ -1,11 +1,19 @@
 <template>
-	<section class="o-section">
+	<section class="o-section o-section--grey">
 		<div class="p-search">
+			<div class="button--wrapper">
+				<button class="o-button o-button--small pull-right">
+					<svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+					    <path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z" />
+					    <path d="M0 0h24v24H0z" fill="none" />
+					</svg>
+				</button>
+			</div>
 			<div class="p-search__listings">
 				<template v-if="!isEmpty">
 					<div class="o-grid">
 						<template v-for="venue in listings">
-							<div class="o-grid__col u-6/12@sm u-12/12@xs">
+							<div class="o-grid__col u-4/12@lg u-6/12@sm u-12/12@xs">
 								<div :id="'venue-card-'+venue.id" class="c-venue-card">
 									<div class="c-venue-card__photo">
 										<router-link :to="'/detail/'+venue.slug">
