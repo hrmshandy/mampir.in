@@ -10,17 +10,35 @@
         width: 34%;
         position: fixed;
         left: auto;
+        right: 0;
+        top: 60px;
+        height: calc(100vh - 60px);
+        z-index: 99;
+        > .o-map {
+            width: 100%;
+            height: 100%;
+        }
     }
     &.has-no-map {
         .p-search__listings {
             width: 100%;
         }
-        .p-search__map {
-            display: none;
+        &__map {
+            width: 34%;
+            position: fixed;
+            left: auto;
         }
-        .c-venue-cell {
-            flex-basis: (100%/5);
-            width: (100%/5);
+        &.has-no-map {
+            .p-search__listings {
+                width: 100%;
+            }
+            .p-search__map {
+                display: none;
+            }
+            .c-venue-cell {
+                flex-basis: (100%/5);
+                width: (100%/5);
+            }
         }
     }
 }

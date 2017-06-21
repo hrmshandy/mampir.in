@@ -1,5 +1,6 @@
 import { load, loaded } from './loader'
 import Styles from './styles'
+import Icon from './map-pin-empty'
 
 load('AIzaSyAW3SWKqAKSuPP780RpZKbMGjd2HnWt1m4')
 
@@ -9,13 +10,14 @@ class Map
 		loaded.then(() => {
 			this.map = new google.maps.Map(document.getElementById('map'), {
 	          	center: {lat: -0.789275, lng: 113.92132700000002},
-	          	zoom: 5,
-	          	minZoom: 5,
-	          	maxZoom: 15,
+				zoom: 4,
 	          	scrollwheel: false,
 	          	streetViewControl: false,
 	          	mapTypeControl: false,
-	          	styles: Styles
+                zoomControlOptions: {
+                    position: google.maps.ControlPosition.LEFT_TOP
+                },
+	          	//styles: Styles
 	        });
 		});
 
@@ -26,34 +28,31 @@ class Map
 		this.map.remove();
 	}
 
-	loadMarker(addressPoints, type = 'kota') {
+	loadMarker(addressPoints) {
 		const self = this;
 		self.activeInfowindow = null;
 
 		loaded.then(() => {
+            var bounds = new google.maps.LatLngBounds();
 			for (var i = 0; i < addressPoints.length; i++) {
-	        	let latLng = new google.maps.LatLng(addressPoints[i].geocoder.lat, addressPoints[i].geocoder.lng);
+	        	let latLng = new google.maps.LatLng(addressPoints[i].lat, addressPoints[i].lng);
 
 	        	let marker = new google.maps.Marker({
 		            position: latLng,
 		            map: self.map,
 		            icon: {
-		            	path: google.maps.SymbolPath.CIRCLE,
-						fillColor: '#e18f2c',
-						fillOpacity: .6,
-						scale: 20,
-						strokeColor: '#ae6928',
-						strokeWeight: .5
+		            	url: Icon
 		            },
-		            label: {
-		            	text: addressPoints[i].counter.toString()
-		            }
+		            // label: {
+		            // 	text: addressPoints[i].counter.toString()
+		            // }
 		        });
 
+                bounds.extend(marker.getPosition());
+
 		        let contentString = `
-					<div class="map-info">
-						<label for="" class="map-info__title">${addressPoints[i][type]}</label>
-						<a href="#" class="map-info__filter">Filter <i class="fa fa-angle-right"></i></a>
+					<div class="c-info-box">
+						${document.getElementById('venue-card-'+addressPoints[i].id).outerHTML}
 					</div>
 		        `;
 
@@ -61,29 +60,38 @@ class Map
 					content: contentString
 				});
 
-				google.maps.event.addListener(infowindow, 'domready', function() {
-				    document.querySelector(".map-info__filter").addEventListener("click", function(e) {
-				        e.preventDefault();
+		        // customize info window style on DOM ready
+                google.maps.event.addListener(infowindow, 'domready', function() {
 
-				        let query = store.state.query;
-				        query[type] = addressPoints[i][type];
+                    // Reference to the DIV which receives the contents of the infowindow
+                    const iwOuter = document.querySelector('.gm-style-iw');
 
-				        let textFiled = document.querySelector('input[name="kota"]');
+                    // add class for reset height of infowindow
+                    iwOuter.children[0].classList.add('gm-style-iw__body');
 
-				        textFiled.value = addressPoints[i][type];
+                    // reposition of infowindow
+                    iwOuter.parentNode.parentNode.style.top = '40px';
+                    iwOuter.parentNode.parentNode.style.left = '18px';
 
-				        let anchor = $('#anchor');
+                    // Remove the background shadow & white background DIV
+                    const iwBackground = iwOuter.previousElementSibling;
 
-				        setTimeout(() => {
-				        	$('html, body').animate({
-						        scrollTop: anchor.offset().top
-						    }, 1000);
-				        }, 1000)
+                    iwBackground.children[0].style.display = 'none';
+                    iwBackground.children[1].style.display = 'none';
+                    iwBackground.children[2].style.display = 'none';
+                    iwBackground.children[3].style.display = 'none';
 
-            			store.dispatch('filterAll', query)
-				    });
+                    // hide close button
+                    const iwCloseBtn = iwOuter.nextElementSibling;
+					iwCloseBtn.style.display = 'none';
+                });
+
+                // close infowindow when map clicked
+                google.maps.event.addListener(this.map, "click", function(event) {
+                	infowindow.close();
 				});
 
+                // open infowindow when marker clicked
 				marker.addListener('click', function() {
 					if(self.activeInfowindow) {
 						self.activeInfowindow.close();
@@ -92,11 +100,9 @@ class Map
 				    infowindow.open(self.map, marker);
 				    self.activeInfowindow = infowindow;
 				});
-
-				marker.addListener('dblclick', function() {
-					self.map.panTo(latLng);
-				});
 	        }
+
+            this.map.fitBounds(bounds);
 		});
 	}
 }

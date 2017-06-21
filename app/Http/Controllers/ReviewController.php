@@ -10,7 +10,12 @@ class ReviewController extends Controller
 
     public function index()
     {
-        $review = Review::with('venue', 'user')->orderBy('created_at', 'desc')->take(10)->get()->toArray();
+        $review = Review::with('venue', 'user')
+                        ->whereHas('venue', function($query){
+                            $query->groupBy('name');
+                        })
+                        ->orderBy('created_at', 'desc')
+                        ->take(10)->get()->toArray();
         return response()->json($review);
     }
 

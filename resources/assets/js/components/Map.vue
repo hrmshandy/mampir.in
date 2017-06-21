@@ -1,13 +1,13 @@
 <template>
-	<!--<div id="map" class="map"></div>-->
+	<div id="map" class="o-map"></div>
 </template>
 
 <script>
-//import Map from '../api/map'
-//
-//export default {
-//	mounted() {
-//		new Map(this.$el).init();
-//	}
-//}
+import { mapGetters } from 'vuex'
+
+export default {
+    mounted() {
+        this.$store.dispatch('loadMap')
+    }
+}
 </script>

@@ -14,7 +14,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-	<title>Mampir.in</title>
+	<title>Bahagia Itu Dekat - Mampir.in</title>
 
 	 <!-- Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
