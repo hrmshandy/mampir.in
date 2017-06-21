@@ -1,6 +1,6 @@
 <template>
     <div>
-        <modal v-model="showModal" class="sign-modal sign-in">
+        <modal v-model="showModal" class="sign-modal sign-in select-city-modal">
             <h1 class="o-type-22 u-color-primary">Pilih Kota</h1>
             <input type="text" placeholder="Cari Kota" class="o-input u-mt-x2" @input="searchCity">
             <ul class="o-cites u-mt-x2">

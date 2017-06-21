@@ -1,6 +1,6 @@
 <template>
 	<div class="main">
-		<!--<map-view class="map&#45;&#45;detail"></map-view>-->
+		<!--<div class="o-map o-map&#45;&#45;detail" ref="map"></div>-->
 
 		<section class="o-section">
 			<overview
@@ -34,6 +34,9 @@ import Overview from '../components/Overview.vue'
 import Galleries from '../components/Galleries.vue'
 import Reviews from '../components/Reviews.vue'
 
+import { loaded } from '../api/map/loader'
+import Icon from '../api/map/map-pin-empty'
+
 export default {
 	components: { Overview, Galleries, Reviews },
 	data() {
@@ -60,9 +63,13 @@ export default {
 	watch: {
 	    // call again the method if the route changes
 	    '$route': 'fetchData',
-//	    location(value) {
-//	    	Event.fire('load-map', value);
-//	    }
+	    location(value) {
+            loaded.then(() => {
+                setTimeout(() => {
+                    //this.loadMap(value)
+				}, 300)
+            });
+	    }
 	},
 	methods: {
 		fetchData() {
@@ -85,7 +92,57 @@ export default {
 				window.document.title = data.name+' - Mampir.in';
 	      	});
 		},
+		loadMap(destination) {
+            const currentLocation = {lat: 41.85, lng: -87.65};
 
+            console.log("map");
+
+            const map = new google.maps.Map(this.$refs.map, {
+                center: currentLocation,
+                scrollwheel: false,
+                zoom: 4,
+                streetViewControl: false,
+                mapTypeControl: false,
+                zoomControlOptions: {
+                    position: google.maps.ControlPosition.LEFT_TOP
+                }
+            });
+
+            const directionsDisplay = new google.maps.DirectionsRenderer({
+                map: map
+            });
+
+            // Set destination, origin and travel mode.
+            const request = {
+                destination: {lat: 39.79, lng: -86.14},
+                origin: currentLocation,
+                travelMode: 'DRIVING'
+            };
+
+            // Pass the directions request to the directions service.
+            const directionsService = new google.maps.DirectionsService({suppressMarkers: true});
+            directionsService.route(request, function(response, status) {
+                if (status == 'OK') {
+                    // Display the route on the map.
+                    directionsDisplay.setDirections(response);
+                    let leg = response.routes[ 0 ].legs[ 0 ];
+                    new google.maps.Marker({
+                        position: leg.start_location,
+                        map: map,
+                        icon: {
+                            url: Icon
+                        },
+                    });
+                    new google.maps.Marker({
+                        position: leg.end_location,
+                        map: map,
+                        icon: {
+                            url: Icon
+                        },
+                    });
+                }
+            });
+		}
 	}
 }
 </script>

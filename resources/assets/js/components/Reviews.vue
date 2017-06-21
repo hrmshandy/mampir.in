@@ -26,10 +26,10 @@
                                 <rating v-model="form.rating" :venue-id="venueId" method="post"></rating>
                             </div>
                             <div class="form-group">
-                                <textarea v-model="form.content" rows="4" class="form-control" placeholder="Tell about your experience or leave a tip for others"></textarea>
+                                <textarea v-model="form.content" rows="4" class="o-textarea" placeholder="Tell about your experience or leave a tip for others"></textarea>
                             </div>
                             <div class="form-group text-right">
-                                <button class="btn btn-primary write-a-review__button" @click="submitReview">Submit your Review</button>
+                                <button class="o-button o-button--primary write-a-review__button" @click="submitReview">Submit your Review</button>
                             </div>
                         </div>
                     </div>

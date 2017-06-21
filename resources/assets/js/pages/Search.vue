@@ -125,8 +125,8 @@ export default {
 	      	let Q = this.serialize(query);
 
 	      	axios.get('/api/search?'+Q).then(({data}) => {
-	      		this.loading = false
-	      		this.listings = data.data;
+	      		this.loading = false;
+	      		this.listings = _.shuffle(data.data);
 	      		this.currentPage = data.current_page;
 	      		this.perPage = data.per_page;
 	      		this.totalRecords = data.total;

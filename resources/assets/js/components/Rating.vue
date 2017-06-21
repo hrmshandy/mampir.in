@@ -10,6 +10,7 @@
             <span v-if="rating == 2">Poor</span>
             <span v-if="rating == 3">Average</span>
             <span v-if="rating == 4">Very Good</span>
+            <span v-if="rating == 5">Excellent</span>
         </div>
     </div>
 </template>
