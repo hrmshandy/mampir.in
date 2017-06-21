@@ -1,9 +1,13 @@
 .o-logo {
-  display: flex;
-  margin-right: 30px;
-  line-height: 1;
-  > svg {
-    width: auto;
-    height: 30px;
-  }
+    display: flex;
+    margin-right: 30px;
+    line-height: 1;
+    @include until(641px) {
+        margin-right: auto;
+        width: 100px;
+    }
+    > svg {
+        width: auto;
+        height: 30px;
+    }
 }

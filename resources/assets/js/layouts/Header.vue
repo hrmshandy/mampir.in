@@ -5,7 +5,7 @@
                 <mobile-menu></mobile-menu>
                 <router-link to="/" class="o-logo"><logo></logo></router-link>
                 <search></search>
-                <div class="u-pull-right u-hidden@xs">
+                <div class="u-pull-right login--wrapper">
                     <template v-if="authenticated">
                         <user></user>
                     </template>
