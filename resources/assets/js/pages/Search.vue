@@ -3,9 +3,9 @@
 		<div class="p-search has-no-map">
 			<div class="p-search__listings">
 				<template v-if="!isEmpty">
-					<div class="c-venue-grid">
+					<div class="o-grid">
 						<template v-for="venue in listings">
-							<div class="c-venue-cell">
+							<div class="o-grid__col u-6/12@sm u-12/12@xs">
 								<div class="c-venue-card">
 									<div class="c-venue-card__photo">
 										<router-link :to="'/detail/'+venue.slug">

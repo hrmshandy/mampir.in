@@ -5,6 +5,11 @@
             <div class="p-venue-detail__info">
                 <h1 class="p-venue-detail__title o-type-35 u-mb-x2">{{ name }}</h1>
                 <small class="text-muted p-venue-detail__categories">{{ formatedCategories }}</small>
+                <div class="c-rating-review-display c-rating-review-display__mobile">
+                    <!-- <span class="c-rating-review-display__number">{{ rating }}</span> -->
+                    <rating v-model="rating" :venue-id="venueId" method="get"></rating>
+                    <!-- <p class="c-rating-review-display__text">{{ totalReviews }} Reviews</p> -->
+                </div>
                 <p class="p-venue-detail__address">
                     <i class="fa fa-map-marker"></i>
                     {{ address }}

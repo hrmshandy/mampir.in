@@ -1,19 +1,13 @@
 .o-section {
-  padding: 3rem 1rem;
-  &__title {
-    color: $color-primary;
-    @include iota-type(
-      (
-        xs : (25px, 1.5),
-        lg : (35px, 1.5)
-      )
-    );
-    font-weight: bold;
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-
-  &--grey {
-    background: $color-grey-lighter;
-  }
+    padding: 3rem 1rem;
+    &__title {
+        color: $color-primary;
+        @include iota-type( ( xs: (25px, 1.5), lg: (35px, 1.5)));
+        font-weight: bold;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+    &--grey {
+        background: $background-gray;
+    }
 }

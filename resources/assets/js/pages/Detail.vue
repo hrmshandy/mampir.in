@@ -15,11 +15,11 @@
 				:ratings="ratings">
 			</overview>
 		</section>
-		<section class="o-section">
-			<div class="o-container--fluid">
+		<!-- <section class="o-section"> -->
+			<!-- <div class="o-container--fluid"> -->
 				<galleries :photos="photos"></galleries>
-			</div>
-		</section>
+			<!-- </div> -->
+		<!-- </section> -->
 		<section class="o-section o-section--grey">
 			<div class="o-container--fluid">
 				<reviews :venue-id="venueId" v-model="reviews"></reviews>

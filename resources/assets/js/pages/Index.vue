@@ -17,7 +17,7 @@
 		<div class="c-categories c-categories--widget">
 			<div class="o-container">
 				<div class="o-grid">
-					<div v-for="category in categories" class="o-grid__col u-6/12@xs u-3/12@sm">
+					<div v-for="category in categories" class="o-category__wrapper o-grid__col u-6/12@xs u-3/12@sm">
 						<router-link class="o-category o-category--card" :to="'/search?categories='+category" :style="{ backgroundImage: 'url(/images/categories/'+category+'.png)' }">
 							<div class="o-category__body">
 								<img :src="'/images/categories/'+category+'-icon.png'" alt="" class="o-category__icon">
@@ -25,7 +25,7 @@
 							</div>
 						</router-link>
 					</div>
-					<div class="o-grid__col u-6/12@xs u-3/12@sm">
+					<div class="o-grid__col u-6/12@xs u-3/12@sm o-category__wrapper">
 						<router-link class="o-category o-category--card" to="#">
 							<div class="o-category__body">
 								<span class="o-category__name">Lainnya</span>
@@ -39,7 +39,7 @@
 			<div class="o-container--fluid">
 				<h1 class="o-section__title">Apa Yang Terjadi ?</h1>
 				<masonry>
-					<div v-for="review in reviews" class="o-grid__col u-1/5@lg">
+					<div v-for="review in reviews" class="o-grid__col u-1/5@lg u-6/12@sm c-card__wrapper">
 						<div class="c-card c-card--dialog u-mb-x4">
 							<div class="c-card__header">
 								<div class="o-user-block">
@@ -77,17 +77,17 @@
 				<h1 class="o-section__title">Kenapa Harus Mampir.in</h1>
 				<!-- <p class="section__subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pretium est at metus rutrum, at tincidunt sem maximus. Donec iaculis commodo ligula ut laoreet.</p> -->
 				<div class="o-grid u-text-center">
-					<div class="o-grid__col u-4/12@sm u-mb-x3@xs">
+					<div class="o-grid__col u-4/12@sm u-mb-x3@xs c-why-circle">
 						<img src="../../img/icon-01.png" alt="">
 						<h3 class="u-color-primary u-mb-x2 u-mt-x3">Otak Jiwa Dan Raga</h3>
 						<span>Butuh yang namanya refreshing</span>
 					</div>
-					<div class="o-grid__col u-4/12@sm u-mb-x3@xs">
+					<div class="o-grid__col u-4/12@sm u-mb-x3@xs c-why-circle">
 						<img src="../../img/icon-02.png" alt="">
 						<h3 class="u-color-primary u-mb-x2 u-mt-x3">Jodoh Tak Kunjung Mampir</h3>
 						<span>Makanya kamu yang harus Mampir.in</span>
 					</div>
-					<div class="o-grid__col u-4/12@sm u-mb-x3@xs">
+					<div class="o-grid__col u-4/12@sm u-mb-x3@xs c-why-circle">
 						<img src="../../img/icon-03.png" alt="">
 						<h3 class="u-color-primary u-mb-x2 u-mt-x3">Silaturahmi</h3>
 						<span>Biar rejekinya lancar. Amin</span>
