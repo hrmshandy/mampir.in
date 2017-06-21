@@ -2,12 +2,12 @@
 	<section class="o-section o-section--grey section--search">
 		<div class="p-search">
 			<div class="p-search__listings" v-show="viewListing">
-				<div class="filter--wrapper">
+				<!-- <div class="filter--wrapper">
 					<div></div>
 					<button class="o-button o-button--primary-outlined button--icon  pull-right" @click="clickViewMaps">
 						<i class="fa fa-map-o"></i>
 					</button>
-				</div>
+				</div> -->
 				<template v-if="!isEmpty">
 					<div class="o-grid">
 						<template v-for="venue in listings">
@@ -88,7 +88,7 @@ export default {
 	      	map: null,
 	      	isEmpty: false,
 	      	viewListing: true,
-	      	viewMaps: false
+	      	viewMaps: true
 	    }
 	},
 	computed: {
