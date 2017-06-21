@@ -1,15 +1,13 @@
 <template>
-	<section class="o-section o-section--grey">
+	<section class="o-section o-section--grey section--search">
 		<div class="p-search">
-			<div class="button--wrapper">
-				<button class="o-button o-button--small pull-right">
-					<svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-					    <path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z" />
-					    <path d="M0 0h24v24H0z" fill="none" />
-					</svg>
-				</button>
-			</div>
-			<div class="p-search__listings">
+			<div class="p-search__listings" v-show="viewListing">
+				<div class="filter--wrapper">
+					<div></div>
+					<button class="o-button o-button--primary-outlined button--icon  pull-right" @click="clickViewMaps">
+						<i class="fa fa-map-o"></i>
+					</button>
+				</div>
 				<template v-if="!isEmpty">
 					<div class="o-grid">
 						<template v-for="venue in listings">
@@ -56,7 +54,13 @@
 					<p class="text-center">Not Found.</p>
 				</template>
 			</div>
-			<div class="p-search__map">
+			<div class="p-search__map" v-show="viewMaps">
+				<div class="filter--wrapper filter--wrapper__maps">
+					<div></div>
+					<button class="o-button o-button--primary-outlined button--icon  pull-right" @click="clickViewListing">
+						<i class="fa fa-list" aria-hidden="true"></i>
+					</button>
+				</div>
 				<div id="map" class="o-map"></div>
 				<!--<map-view></map-view>-->
 			</div>
@@ -82,7 +86,9 @@ export default {
 	      	totalRecords: 18,
 	      	error: null,
 	      	map: null,
-	      	isEmpty: false
+	      	isEmpty: false,
+	      	viewListing: true,
+	      	viewMaps: false
 	    }
 	},
 	computed: {
@@ -128,6 +134,14 @@ export default {
 	      			this.isEmpty = true;
 	      		}
 	      	})
+	    },
+	    clickViewMaps () {
+	    	this.viewMaps = true;
+	    	this.viewListing = false;
+	    },
+	    clickViewListing () {
+	    	this.viewMaps = false;
+	    	this.viewListing = true;
 	    },
 	    onPageChange(page, query){
 	    	this.fetchData(query);
