@@ -16,9 +16,7 @@
         height: calc(100vh - 60px);
         z-index: 99;
         @include until(641px) {
-            position: relative;
             width: 100%;
-            top: unset;
         }
         #map {
             @include until(641px) {
@@ -78,6 +76,18 @@
     border-bottom: 1px solid #dcdcdc;
     margin-bottom: 10px;
     padding-bottom: 10px;
+    &__maps {
+        position: fixed;
+        top: 60px;
+        z-index: 99999;
+        left: 0;
+        .o-button {
+            background: #fff;
+            height: 2.25em;
+            width: 2.25em;
+            margin: 10px;
+        }
+    }
 }
 
 @media (min-width: 641px) {
@@ -86,26 +96,29 @@
     }
 }
 
-.button--icon {
-    border-color: transparent!important;
-    height: 3em;
-    width: 3em;
-    font-size: 1.3rem;
-    color: #854f28;
-    &:active {
+@media(max-width: 641px) {
+    .button--icon {
         border-color: transparent!important;
-        color: #fff;
+        font-size: 1.3rem;
+        color: #854f28;
+        &:active {
+            border-color: transparent!important;
+            color: #fff;
+        }
+        &:hover {
+            border-color: transparent!important;
+            color: #fff;
+        }
+        &:focus {
+            border-color: transparent!important;
+            color: #fff;
+        }
+        &:visited {
+            border-color: transparent!important;
+            color: #fff;
+        }
     }
-    &:hover {
-        border-color: transparent!important;
-        color: #fff;
-    }
-    &:focus {
-        border-color: transparent!important;
-        color: #fff;
-    }
-    &:visited {
-        border-color: transparent!important;
-        color: #fff;
+    .section--search {
+        padding-top: 20px;
     }
 }

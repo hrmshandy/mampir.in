@@ -1,5 +1,5 @@
 <template>
-	<section class="o-section o-section--grey">
+	<section class="o-section o-section--grey section--search">
 		<div class="p-search">
 			<div class="p-search__listings" v-show="viewListing">
 				<div class="filter--wrapper">
@@ -55,10 +55,10 @@
 				</template>
 			</div>
 			<div class="p-search__map" v-show="viewMaps">
-				<div class="filter--wrapper">
+				<div class="filter--wrapper filter--wrapper__maps">
 					<div></div>
 					<button class="o-button o-button--primary-outlined button--icon  pull-right" @click="clickViewListing">
-						<i class="fa fa-map-o"></i>
+						<i class="fa fa-list" aria-hidden="true"></i>
 					</button>
 				</div>
 				<div id="map" class="o-map"></div>
