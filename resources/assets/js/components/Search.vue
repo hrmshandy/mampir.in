@@ -20,11 +20,11 @@
 			</div>
 		</div>
 	</div>
-
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import { loaded } from '../api/map/loader'
 
 export default {
 	props: {
@@ -68,7 +68,7 @@ export default {
 			location.reload()
 		},
 		getCurrentPosition(position) {
-		    if(typeof google !== 'undefined'){
+            loaded.then(() => {
                 location.latitude = position.coords.latitude;
                 location.longitude = position.coords.longitude;
                 var geocoder = new google.maps.Geocoder();
@@ -87,12 +87,14 @@ export default {
                         }
                     });
                 }
-			}
+			});
 		},
 		getCurrentCity() {
-//		    axios.get('/api/city').then(({data}) => {
-//		        this.location = data.cityName;
-//			});
+		    if(typeof Cookies.get('user-city') === 'undefined') {
+                Event.fire('show-cities-modal');
+            } else {
+                this.$store.commit('SET_LOCATION', Cookies.get('user-city'));
+            }
 		}
 	},
 	mounted() {

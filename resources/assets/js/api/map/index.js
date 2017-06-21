@@ -2,7 +2,7 @@ import { load, loaded } from './loader'
 import Styles from './styles'
 import Icon from './map-pin-empty'
 
-load('AIzaSyAW3SWKqAKSuPP780RpZKbMGjd2HnWt1m4')
+load('AIzaSyDxu7mv5mlPM9Aj2CiYKFWY9b6adizdC4c');
 
 class Map
 {

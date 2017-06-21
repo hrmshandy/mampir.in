@@ -35,9 +35,9 @@
 				</div>
 			</div>
 		</div>
-		<section class="o-section o-section--grey">
+		<section v-if="reviews.length" class="o-section o-section--grey">
 			<div class="o-container--fluid">
-				<h1 class="o-section__title">Apa Yang Terjadi ?</h1>
+				<h1 class="o-section__title">Yang Happening di {{ city }}</h1>
 				<masonry>
 					<div v-for="review in reviews" class="o-grid__col u-1/5@lg u-6/12@sm c-card__wrapper">
 						<div class="c-card c-card--dialog u-mb-x4">
@@ -107,16 +107,28 @@ export default {
 	components: { Masonry, SearchForm },
 	data() {
 		return {
-			query: {
-				keyword: null,
-				location: null
-			},
 			categories: [
 			    'kuliner', 'relaksasi', 'rekreasi', 'hiburan', 'kecantikan', 'barbershop', 'olahraga'
 			],
-			reviews: []
+			reviews: [],
 		}
 	},
+	computed: {
+        ...mapGetters([
+            'query'
+        ]),
+        city() {
+            return this.query.location;
+        }
+	},
+    watch: {
+	    '$route': function() {
+            this.fetchReviews(document.getElementById('location').value);
+        },
+        'query.location': function(value) {
+            this.fetchReviews(value);
+        }
+    },
 	methods: {
 	    fitHeroUnitHeight() {
             const hero = document.querySelector('.c-hero');
@@ -132,8 +144,8 @@ export default {
                 setFitHeight();
             });
 		},
-		fetchReviews() {
-	        axios.get('/api/reviews').then(({ data }) => {
+		fetchReviews(city) {
+	        axios.get('/api/reviews?location='+city).then(({ data }) => {
 	           this.reviews = data;
 			});
 		}
@@ -142,7 +154,7 @@ export default {
         window.document.title = "Bahagia Itu Dekat - Mampir.in"
 	},
 	mounted() {
-	    this.fetchReviews();
+	    this.fetchReviews(document.getElementById('location').value);
 		//this.fitHeroUnitHeight();
 	}
 }
