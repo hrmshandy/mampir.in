@@ -8,14 +8,15 @@ use Illuminate\Http\Request;
 class ReviewController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $review = Review::with('venue', 'user')
-                        ->whereHas('venue', function($query){
-                            $query->groupBy('name');
-                        })
-                        ->orderBy('created_at', 'desc')
-                        ->take(10)->get()->toArray();
+        $review = Review::with('venue', 'user');
+        if($request->has('location') and !empty($request->location) and $request->location != 'null') {
+            $review = $review->whereHas('venue', function($query) use($request) {
+                $query->where('address', 'like', '%'.$request->location.'%');
+            });
+        }
+        $review = $review->orderBy('created_at', 'desc')->take(10)->get()->toArray();
         return response()->json($review);
     }
 
