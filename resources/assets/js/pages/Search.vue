@@ -1,5 +1,5 @@
 <template>
-	<section class="o-section o-section--grey section--search">
+	<section class="o-section o-section--white section--search">
 		<div class="p-search">
 			<div class="p-search__listings" v-show="viewListing">
 				<!-- <div class="filter--wrapper">
@@ -21,12 +21,14 @@
 									<div class="c-venue-card__info">
 										<router-link :to="'/detail/'+venue.slug">
 											<h5 class="c-venue-card__name o-type-18">{{ venue.name }}</h5>
-											<template v-for="(c, index) in venue.categories">
-												<small class="text-muted">
-													{{ c.name }}
-													<span v-if="(index + 1) != venue.categories.length">, </span>
-												</small>
-											</template>
+											<div class="c-venue-card__category">
+												<template v-for="(c, index) in venue.categories">
+													<small class="text-muted">
+														{{ c.name }}
+														<span v-if="(index + 1) != venue.categories.length">, </span>
+													</small>
+												</template>
+											</div>
 											<div>
 												<span class="c-round"><i class="fa fa-cutlery"></i></span>
 											</div>
@@ -50,6 +52,7 @@
 						<!--<pagination :current-page="currentPage" :per-page="perPage" :records="totalRecords" @change="onPageChange"></pagination>-->
 					<!--</div>-->
 				</template>
+
 				<template v-else>
 					<p class="text-center">Not Found.</p>
 				</template>
