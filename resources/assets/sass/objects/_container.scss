@@ -20,3 +20,8 @@ $iota-objs-container-size-extra: (
 }
 
 @import '~iotacss/objects/container';
+
+.o-container--wide {
+    max-width: none;
+    padding: 0 30px;
+}
