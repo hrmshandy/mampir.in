@@ -14,6 +14,7 @@
 						<template v-for="venue in 9">
 							<div class="o-grid__col u-4/12@lg u-6/12@sm u-12/12@xs">
 								<div :id="'venue-card-'+venue.id" class="c-venue-card c-venue-card__placeholder">
+									<div class="animated-background"></div>
 									<div class="c-venue-card__photo">
 										<router-link :to="'/detail/'+venue.slug">
 											<img :src="venue.cover" alt="">
@@ -137,7 +138,7 @@ export default {
 	      	map: null,
 	      	isEmpty: false,
 	      	viewListing: true,
-	      	viewMaps: false
+	      	viewMaps: true
 	    }
 	},
 	computed: {

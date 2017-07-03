@@ -17,6 +17,7 @@
         z-index: 99;
         @include until(641px) {
             width: 100%;
+            display: none;
         }
         #map {
             @include until(641px) {
