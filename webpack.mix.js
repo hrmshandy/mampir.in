@@ -1,4 +1,4 @@
-let mix = require('laravel-mix').mix;
+let mix = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -20,10 +20,10 @@ mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css')
    .sass('resources/assets/sass/locator.scss', 'public/css')
    .version();
-
-mix.options({
-    //processCssUrls: false
-  //purifyCss: true,
-});
-
+//
+// mix.options({
+//     //processCssUrls: false
+//   //purifyCss: true,
+// });
+//
 mix.sourceMaps();
