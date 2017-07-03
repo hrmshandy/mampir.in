@@ -60,7 +60,7 @@
         > a {
             @extend %anchor;
             @include until(641px) {
-                padding-bottom: 15px;
+                padding-bottom: 0px;
             }
             padding: 0;
             > div {
@@ -121,16 +121,17 @@
             font-size: 0;
             height: 15px;
         }
-        .c-venue-card__photo > a {
-            position: relative;
-            &:before {
-                content: '';
-                display: block;
-                width: 100%;
-                background: #eee;
-                height: 100%;
-                position: absolute;
-                border-radius: 5px;
+        .c-venue-card__photo {
+            > a {
+                &:before {
+                    content: '';
+                    display: block;
+                    width: 100%;
+                    background: #eee;
+                    height: 100%;
+                    position: absolute;
+                    border-radius: 5px;
+                }
             }
         }
     }
