@@ -1,29 +1,41 @@
 .c-rating-review {
-  display: flex;
+    display: flex;
+    @include until(641px) {
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: space-between;
+    }
 }
 
 .c-rating-review-list {
-  padding-left:0;
-  list-style: none;
-  > li {
-    display: flex;
-    align-items: center;
-    > div {
-      padding: 0 .5rem;
+    padding-left: 0;
+    list-style: none;
+    > li {
+        display: flex;
+        align-items: center;
+        > div {
+            padding: 0 .5rem;
+        }
     }
-  }
 }
 
 .c-rating-review-display {
-  margin-left: 30px;
-  text-align: center;
-  &__number {
-    font-size: 5rem;
-    color: $color-primary;
-    display: block;
-    line-height: 5rem;
-  }
-  &__text {
-    color: #aaa;
-  }
+    margin-left: 30px;
+    text-align: center;
+    &__number {
+        font-size: 5rem;
+        color: $color-primary;
+        display: block;
+        line-height: 5rem;
+    }
+    &__text {
+        color: #aaa;
+    }
+    @include until(641px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-left: 0;
+    }
 }

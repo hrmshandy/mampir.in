@@ -10,4 +10,14 @@
         width: auto;
         height: 30px;
     }
+    &__desktop {
+        @include until(900px) {
+            display: none;
+        }
+    }
+    &__mobile {
+        @include from(900px) {
+            display: none;
+        }
+    }
 }

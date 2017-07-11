@@ -25,7 +25,7 @@
     &__categories {
         @include until(641px) {
             display: block;
-            text-align: center;
+            text-align: left;
         }
     }
     &__info {
@@ -39,11 +39,11 @@
     &__rating {
         flex-basis: 38%;
         width: 38%;
-        @include until(641px) {
-            display: none;
-        }
         > h5 {
             @extend %title-style;
+        }
+        @include until(641px) {
+            margin-top: 20px;
         }
     }
     &__overview.has-no-logo {
@@ -61,20 +61,41 @@
     }
     &__map-direction {
         margin-left: 1rem;
-        @include until(641px) {
-            display: none;
-        }
+        text-decoration: underline;
+        // @include until(641px) {
+        //     display: none;
+        // }
     }
     &__title {
         @extend %title-style;
         @include until(641px) {
-            text-align: center;
+            text-align: left;
+        }
+    }
+    &__list {
+        display: flex;
+        flex-direction: row;
+        border-bottom: 1px solid #ccc;
+        padding: 5px 0;
+        .p-venue-detail__address__icon {
+            flex-basis: 10%;
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 5px;
+        }
+        .p-venue-detail__address {
+            flex-basis: 90%;
+            margin-top: 0;
+        }
+        &:last-child {
+            border-bottom: 1px solid transparent;
         }
     }
     &__address {
         margin-top: 15px;
         @include until(641px) {
-            text-align: center;
+            text-align: left;
+            &__icon {}
         }
     }
 }
@@ -125,9 +146,8 @@
     }
     .p-venue-detail__info .c-rating-review-display {
         margin: 10px auto;
-    }
-    .p-venue-detail__rating {
-        display: none;
+        text-align: left!important;
+        align-items: flex-start;
     }
 }
 

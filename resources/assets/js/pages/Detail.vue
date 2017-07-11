@@ -2,7 +2,10 @@
 	<div class="main">
 		<!--<div class="o-map o-map&#45;&#45;detail" ref="map"></div>-->
 
+		<galleries :photos="photos"></galleries>
+
 		<section class="o-section">
+		
 			<overview
 				:venue-id="venueId"
 				:name="name"
@@ -14,10 +17,10 @@
 				:rating="rating"
 				:ratings="ratings">
 			</overview>
+
 		</section>
 		<!-- <section class="o-section"> -->
 			<!-- <div class="o-container--fluid"> -->
-				<galleries :photos="photos"></galleries>
 			<!-- </div> -->
 		<!-- </section> -->
 		<section class="o-section o-section--grey">
@@ -41,6 +44,7 @@ export default {
 	components: { Overview, Galleries, Reviews },
 	data() {
 		return {
+	      	loading: false,
 			venueId: 0,
 			name: null,
 			address: null,
