@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="16px" height="14px" viewBox="0 0 16 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.0.1 (7597) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-wordFile</title>
+    <description>Created with Sketch.</description>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="icon-files" sketch:type="MSArtboardGroup" transform="translate(-29.000000, -173.000000)" fill="#386FDF">
+            <path d="M40.427575,175.511453 L41.6138035,175.511453 L40.245228,181.697641 L38.4659524,173 L35.6076168,173 L33.5390941,181.697641 L31.9882386,173 L29,173 L32.0335739,187 L34.9532061,187 L37,178.720889 L38.8309148,187 L41.5225964,187 L45,173 L40.427575,173 L40.427575,175.511453 Z" id="icon-wordFile" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

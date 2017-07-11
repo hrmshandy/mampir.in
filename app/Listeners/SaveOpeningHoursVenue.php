@@ -6,6 +6,7 @@ use App\Events\VenueSaved;
 use App\Models\OpeningHour;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Collection;
 
 class SaveOpeningHoursVenue
 {
@@ -30,9 +31,12 @@ class SaveOpeningHoursVenue
         $venue = $event->venue;
         $key = $event->key.'_opening-hours';
         if(!empty(session($key))) {
-            $opening_hours = collect(session($key))->map(function($item){
-                return new OpeningHour($item);
-            });
+            $opening_hours = session($key);
+            if(!($opening_hours instanceof Collection)) {
+                $opening_hours = collect(session($key))->map(function($item){
+                    return new OpeningHour($item);
+                });
+            }
             $venue->opening_hours()->saveMany($opening_hours);
             session()->forget($key);
         }

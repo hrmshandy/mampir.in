@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="12px" height="16px" viewBox="0 0 12 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.0.1 (7597) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-powerpointFile</title>
+    <description>Created with Sketch.</description>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="icon-files" sketch:type="MSArtboardGroup" transform="translate(-219.000000, -125.000000)" fill="#FC5F26">
+            <path d="M223.941991,141 L223.941991,135.675273 C223.941991,135.675273 230.954472,136.624023 231,130.11326 C230.960557,124.998244 225.933046,125 225.933046,125 L219,125 L219.008348,127.724167 L220.700776,127.724304 L220.700776,141 L223.941991,141 Z M227.999537,130.66891 C228.031523,127.678981 224,128.010962 224,128.010962 L224,132.960029 C224,132.960029 228.049766,133.492705 227.999537,130.66891 Z" id="icon-powerpointFile" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

@@ -32,12 +32,16 @@ class SaveCategoriesVenue
         if(!empty(session($key))) {
             $categories = [];
             foreach (session($key) as $slug) {
-                $category = Category::where('slug', $slug)->first();
-                if(count($category) > 0) {
-                    $categories[] = $category->id;
+                if(is_numeric($slug)) {
+                    $categories[] = $slug;
+                } else {
+                    $category = Category::where('slug', $slug)->first();
+                    if(count($category) > 0) {
+                        $categories[] = $category->id;
+                    }
                 }
             }
-            $venue->categories()->attach($categories);
+            $venue->categories()->sync($categories);
             session()->forget($key);
         }
     }

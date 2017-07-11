@@ -4,13 +4,16 @@ namespace App\Models;
 
 use App\Events\VenueSaved;
 use App\Events\VenueSaving;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Venue extends Model
 {
     use Concerns\HasPhotos,
         Concerns\HasCategories,
         Getters\VenueGetters,
-        Relations\VenueRelations;
+        Relations\VenueRelations,
+        HasSlug;
 
     protected $hidden = [
         'featured', 'deleted_at'
@@ -34,4 +37,15 @@ class Venue extends Model
         'saving' => VenueSaving::class,
         'saved' => VenueSaved::class,
     ];
+
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
+    }
+
 }

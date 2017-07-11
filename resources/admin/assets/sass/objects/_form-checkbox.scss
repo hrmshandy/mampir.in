@@ -1,0 +1,24 @@
+.o-checkbox {
+  &__label {
+    padding-left: 1.25rem;
+    margin-bottom: 0;
+    cursor: pointer;
+  }
+  &__input {
+    position: absolute;
+    margin-top: 0.25rem;
+    margin-left: -1.25rem;
+    margin-right: 0.5rem;
+    &:only-child {
+      position: static;
+    }
+  }
+
+  // Modifier
+  &--inline {
+    display: inline-block;
+    .o-checkbox__label {
+      vertical-align: middle;
+    }
+  }
+}

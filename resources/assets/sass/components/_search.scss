@@ -13,11 +13,21 @@
             outline: none;
         }
         display: none;
+        svg {
+            width: 1em !important;
+            height: 1em !important;
+            path {
+                fill: currentColor !important;
+                stroke: currentColor !important;
+            }
+        }
     }
     &__form {}
     &--inline {
         .c-search__button {
-            display: block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             @include desktop {
                 display: none;
             }
@@ -38,6 +48,18 @@
                     }
                 }
             }
+        }
+    }
+
+    &.is-shown {
+        .c-search__form {
+            display: block;
+            width: 100%;
+            position: absolute;
+            left: 0;
+            background: #fff;
+            padding: 30px 15px 15px;
+            box-shadow: 0 2px 3px rgba(0,0,0, .15);
         }
     }
 }

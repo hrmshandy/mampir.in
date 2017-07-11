@@ -11,87 +11,42 @@
 
 				<template v-if="loading">
 					<div class="o-grid">
-						<template v-for="venue in 9">
+						<template v-for="i in 9">
 							<div class="o-grid__col u-4/12@lg u-6/12@sm u-12/12@xs">
-								<div :id="'venue-card-'+venue.id" class="c-venue-card c-venue-card__placeholder">
-									<div class="animated-background"></div>
-									<div class="c-venue-card__photo">
-										<router-link :to="'/detail/'+venue.slug">
-											<img :src="venue.cover" alt="">
-										</router-link>
-									</div>
+								<div class="c-venue-card c-venue-card__placeholder">
+									<div class="c-venue-card__photo"></div>
 									<div class="c-venue-card__info">
-										<router-link :to="'/detail/'+venue.slug">
-											<h5 class="c-venue-card__name o-type-18">{{ venue.name }}</h5>
-											<div class="c-venue-card__category">
-												<template v-for="(c, index) in venue.categories">
-													<small class="text-muted">
-														{{ c.name }}
-														<span v-if="(index + 1) != venue.categories.length">, </span>
-													</small>
-												</template>
-											</div>
-											<div>
-												<span class="c-round"><i class="fa fa-cutlery"></i></span>
-											</div>
-										</router-link>
+										<h5 class="c-venue-card__name"></h5>
+										<div class="c-venue-card__categories"></div>
 									</div>
-									<div class="c-venue-card__footer">
-										<router-link :to="'/detail/'+venue.slug">
-											<div class="c-venue-card__rating">
-												<rating :venue-id="venue.id" :value="venue.rating" method="get"></rating>
-												<small class="text-muted">{{ venue.total_reviews }} Reviews</small>
-											</div>
-											<div class="c-venue-card__price">
-											</div>
-										</router-link>
+									<div class="c-venue-card__footer u-mt-x2">
+										<div class="c-venue-card__rating"></div>
 									</div>
 								</div>
 							</div>
 						</template>
 					</div>
-					<!--<div class="text-center vanue-pagination">-->
-						<!--<pagination :current-page="currentPage" :per-page="perPage" :records="totalRecords" @change="onPageChange"></pagination>-->
-					<!--</div>-->
 				</template>
 
 				<template v-if="!isEmpty">
 					<div class="o-grid">
 						<template v-for="venue in listings">
 							<div class="o-grid__col u-4/12@lg u-6/12@sm u-12/12@xs">
-								<div :id="'venue-card-'+venue.id" class="c-venue-card">
-									<div class="c-venue-card__photo">
-										<router-link :to="'/detail/'+venue.slug">
-											<img :src="venue.cover" alt="">
-										</router-link>
-									</div>
+								<router-link :to="'/detail/'+venue.slug" :id="'venue-card-'+venue.id" class="c-venue-card">
+									<div class="c-venue-card__photo" :style="{ backgroundImage: `url(${venue.cover})`}"></div>
 									<div class="c-venue-card__info">
-										<router-link :to="'/detail/'+venue.slug">
-											<h5 class="c-venue-card__name o-type-18">{{ venue.name }}</h5>
-											<div class="c-venue-card__category">
-												<template v-for="(c, index) in venue.categories">
-													<small class="text-muted">
-														{{ c.name }}
-														<span v-if="(index + 1) != venue.categories.length">, </span>
-													</small>
-												</template>
-											</div>
-											<div>
-												<span class="c-round"><i class="fa fa-cutlery"></i></span>
-											</div>
-										</router-link>
+										<h5 class="c-venue-card__name o-type-18">{{ venue.name }}</h5>
+										<div class="c-venue-card__categories">
+											{{ venue.categories | joinBy }}
+										</div>
 									</div>
 									<div class="c-venue-card__footer">
-										<router-link :to="'/detail/'+venue.slug">
-											<div class="c-venue-card__rating">
-												<rating :venue-id="venue.id" :value="venue.rating" method="get"></rating>
-												<small class="text-muted">{{ venue.total_reviews }} Reviews</small>
-											</div>
-											<div class="c-venue-card__price">
-											</div>
-										</router-link>
+										<div class="c-venue-card__rating">
+											<rating :venue-id="venue.id" :value="venue.rating" method="get"></rating>
+											<small class="text-muted">{{ venue.total_reviews }} Reviews</small>
+										</div>
 									</div>
-								</div>
+								</router-link>
 							</div>
 						</template>
 					</div>

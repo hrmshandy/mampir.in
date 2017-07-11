@@ -1,0 +1,28 @@
+html {
+  height: 100%;
+}
+
+svg {
+  fill: currentColor !important;
+  width: 1em;
+  height: 1em;
+}
+
+a {
+  text-decoration: none;
+  color: $color-primary;
+}
+
+hr {
+  margin-top: 15px !important;
+  margin-bottom: 15px !important;
+  border-top: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+label {
+  display: inline-block;
+  margin-bottom: .5rem;
+}
+
+@import '~iotacss/base/initialize';

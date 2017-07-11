@@ -1,0 +1,68 @@
+$control-radius: 0.25rem !default;
+$control-radius-small: 0.20rem !default;
+
+$control-padding-vertical: 0.5em !default;
+$control-padding-horizontal: 0.7em !default;
+
+$size-extra-small: 0.625rem;
+$size-small: 0.75rem;
+$size-normal: 0.9rem;
+$size-medium: 1rem;
+$size-large: 1.125rem;
+
+@mixin control {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  border: 1px solid transparent;
+  border-radius: $control-radius;
+  box-shadow: none;
+  font-size: $size-normal;
+  line-height: 1.25;
+  padding: $control-padding-vertical $control-padding-horizontal;
+  position: relative;
+  font-family: inherit;
+  // States
+  &:focus,
+  &.is-focused,
+  &:active,
+  &.is-active {
+    outline: none;
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+  }
+
+  // Sizes
+  &--extra-small {
+    @include control-small;
+  }
+  &--small {
+    @include control-small;
+  }
+  &--medium {
+    @include control-medium;
+  }
+  &--large {
+    @include control-large;
+  }
+}
+
+// The controls sizes use mixins so they can be used at different breakpoints
+@mixin control-extra-small {
+  border-radius: $control-radius-small;
+  font-size: $size-small;
+}
+
+@mixin control-small {
+  border-radius: $control-radius-small;
+  font-size: $size-small;
+}
+
+@mixin control-medium {
+  font-size: $size-medium;
+}
+
+@mixin control-large {
+  font-size: $size-large;
+}

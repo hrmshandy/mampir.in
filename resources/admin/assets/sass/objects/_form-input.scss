@@ -1,0 +1,57 @@
+$input-color: $color-grey-darker;
+$input-border: $color-grey-lighter;
+$input-background: $color-white;
+
+$input-hover: $color-grey-darker;
+$input-hover-border: $color-grey-light;
+
+$input-focus: $color-grey-darker;
+$input-focus-border: $color-primary;
+
+$input-disabled: $color-grey;
+$input-disabled-background: $color-white-ter;
+$input-disabled-border: $color-white-ter;
+
+@mixin input {
+  @include control;
+  background-color: $input-background;
+  border-color: $input-border;
+  color: $input-color;
+  &:hover,
+  &.is-hovered {
+    border-color: $input-hover-border;
+  }
+  &:focus,
+  &.is-focused,
+  &:active,
+  &.is-active {
+    border-color: $input-focus-border;
+  }
+  &[disabled] {
+    background-color: $input-disabled-background;
+    border-color: $input-disabled-border;
+    box-shadow: none;
+    color: $input-disabled;
+  }
+  @include placeholder {
+    color: rgba($input-color, 0.3);
+  }
+}
+
+.o-input, .o-textarea {
+  @include input;
+  width: 100%;
+  max-width: 100%;
+
+  &--small {
+    @include control-small;
+  }
+
+  &--medium {
+    @include control-medium;
+  }
+
+  &--large {
+    @include control-large;
+  }
+}
