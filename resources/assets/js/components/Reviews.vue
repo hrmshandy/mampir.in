@@ -39,7 +39,7 @@
         <div style="position: relative;">
             <masonry>
                 <div v-for="review in reviews" class="o-grid__col u-1/5@lg">
-                    <div class="c-card c-card--dialog">
+                    <div class="c-card c-card--dialog c-card--dialog__placeholder">
                         <div class="c-card__header">
                             <rating v-model="review.rating" :venue-id="venueId" method="get"></rating>
                         </div>
