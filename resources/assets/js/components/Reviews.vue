@@ -2,18 +2,20 @@
     <div>
         <div class="o-grid o-grid--middle">
             <div class="o-grid__col u-6/12"><h3 class="review-header-title o-type-26 u-color-primary">Review ({{ reviews.length }})</h3></div>
-            <div class="o-grid__col u-6/12 u-text-right">
+            <!-- <div class="o-grid__col u-6/12 u-text-right">
                 <button class="o-button o-button--primary" @click="writeReview">Write a Review</button>
-            </div>
+            </div> -->
         </div>
         <hr>
-        <div v-show="writingReview" class="card write-a-review">
+
+        <!-- <div v-show="writingReview" class="card write-a-review">
             <div class="card-header">
                 <div class="o-grid o-grid--middle">
                     <div class="o-grid__col u-6/12">Write a Review</div>
                     <div class="o-grid__col u-6/12 u-text-right"><a href="#" @click.prevent="cancelWriteReview">Cancel</a></div>
                 </div>
             </div>
+
             <div class="card-block">
                 <div class="card-body">
                     <div class="o-grid">
@@ -35,9 +37,60 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
+
         <div style="position: relative;">
             <masonry>
+                <div class="o-grid__col u-2/5@lg" v-show="writingReview">
+                    <div class="c-card c-card--dialog c-card--dialog__placeholder c-card--dialog__review">
+                        <div class="c-card__header">
+                            <rating v-model="form.rating" :venue-id="venueId" method="post"></rating>
+                        </div>
+                        <div class="c-card__body">
+                            <textarea v-model="form.content" rows="4" class="o-textarea" placeholder="Ceritakan pengalamanmu ..."></textarea>
+                        </div>
+                        <div class="c-card__footer">
+                            <div class="o-user-block">
+                                <div class="o-user-block__pic">
+                                    <img :src="user.avatar" alt="">
+                                </div>
+                                <div class="o-user-block__info">
+                                    <span class="o-user-block__name">{{ user.name }}</span>
+                                    <!-- <span class="o-user-block__status">{{ formatedDate(review.created_at) }}</span> -->
+                                    <button class="o-button o-button--primary write-a-review__button" @click="submitReview">Kirim Review</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="o-grid__col u-2/5@lg">
+                    <div class="c-card c-card--dialog c-card--dialog__placeholder c-card--dialog__dummy">
+                      <!--   <div class="c-card__header">
+                            <rating v-model="form.rating" :venue-id="venueId" method="post"></rating>
+                        </div> -->
+                        <div class="c-card__body">
+                            <h2 class="c-card--dialog__dummy__title">
+                                Tulis Review Kamu Sekarang
+                            </h2>
+                            <button class="o-button o-button--primary" @click="writeReview">
+                                Tulis Review
+                            </button>
+                        </div>
+                        <div class="c-card__footer">
+                            <div class="o-user-block">
+                                <div class="o-user-block__pic">
+                                    <img :src="user.avatar" alt="">
+                                </div>
+                                <div class="o-user-block__info">
+                                    <span class="o-user-block__name">{{ user.name }}</span>
+                                    <span class="o-user-block__name">{{ user.name }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div v-for="review in reviews" class="o-grid__col u-1/5@lg">
                     <div class="c-card c-card--dialog c-card--dialog__placeholder">
                         <div class="c-card__header">

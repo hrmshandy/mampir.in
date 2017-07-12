@@ -88,8 +88,40 @@
             padding-top: 20px;
             padding-bottom: 30px;
         }
-        &__placeholder {
-            
+        .o-textarea {
+            border: 0;
+            min-height: 100px;
+        }
+        &__review {
+            .c-card__footer {
+                .o-user-block {
+                    display: flex;
+                    justify-content: space-between;
+                }
+            }
+        }
+        &__placeholder {}
+        &__dummy {
+            .c-card__body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                min-height: 180px;
+            }
+            .o-user-block__name {
+                width: 120px;
+                height: 10px;
+                margin-left: 10px;
+                background: #ddd;
+                margin-bottom: 10px;
+            }
+            &__title {
+                text-align: center;
+                margin-bottom: 20px;
+                color: #888888;
+                font-size: 1.2rem;
+            }
         }
     }
 }

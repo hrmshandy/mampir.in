@@ -41,3 +41,9 @@
         }
     }
 }
+
+@media (max-width: 640px) {
+    .c-search.is-shown .c-search__form {
+        min-height: 100vh;
+    }
+}

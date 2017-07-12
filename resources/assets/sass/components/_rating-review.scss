@@ -1,7 +1,7 @@
 .c-rating-review {
     display: flex;
+    flex-direction: row-reverse;
     @include until(641px) {
-        flex-direction: row-reverse;
         align-items: center;
         justify-content: space-between;
     }

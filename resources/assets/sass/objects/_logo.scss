@@ -19,5 +19,11 @@
         @include from(900px) {
             display: none;
         }
+        &--chevron {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 5px;
+        }
     }
 }
