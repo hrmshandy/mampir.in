@@ -1,0 +1,18 @@
+$breakpoints-boundary : (
+  mobile: 600px,
+  tablet: 800px,
+  desktop: 1024px,
+  widescreen: 1200px,
+  fullhd: 1800px
+);
+
+$iota-global-flex         : true;
+$iota-global-breakpoints  : (
+  xs  : "screen and ( max-width: #{map_get($breakpoints-boundary, mobile) - 1px} )",
+  sm  : "screen and ( min-width: #{map_get($breakpoints-boundary, mobile)} )",
+  md  : "screen and ( min-width: #{map_get($breakpoints-boundary, tablet)} )",
+  lg  : "screen and ( min-width: #{map_get($breakpoints-boundary, desktop)} )",
+  xl  : "screen and ( min-width: #{map_get($breakpoints-boundary, widescreen)} )"
+);
+
+@import '~iotacss/settings/core';

@@ -1,0 +1,14 @@
+.c-venue {
+  display: flex;
+  align-items: flex-start;
+  &__image {
+    width: 150px;
+    height: 100px;
+    border-radius: 4px;
+    margin-right: 20px;
+    background-size: cover;
+  }
+  &__body {
+    flex: 1 1 0%;
+  }
+}

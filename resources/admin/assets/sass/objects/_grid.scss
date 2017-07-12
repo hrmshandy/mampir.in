@@ -1,0 +1,9 @@
+$iota-objs-grid-aligned       : true;
+$iota-objs-grid-rev           : true;
+$iota-objs-grid-gutter-default: (
+  xs : 15px,
+  lg : 30px
+);
+$iota-objs-grid-equal-height  : true;
+
+@import '~iotacss/objects/grid';

@@ -1,4 +1,4 @@
-$input-color: $color-grey-darker;
+$input-color: $color-black-ter;
 $input-border: $color-grey-lighter;
 $input-background: $color-white;
 
@@ -13,10 +13,14 @@ $input-disabled-background: $color-white-ter;
 $input-disabled-border: $color-white-ter;
 
 @mixin input {
+  width: 100%;
   @include control;
-  background-color: $input-background;
-  border-color: $input-border;
   color: $input-color;
+  border-color: $input-border;
+  background-color: $input-background;
+  background-clip: padding-box;
+  background-image: none;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   &:hover,
   &.is-hovered {
     border-color: $input-hover-border;

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="14px" height="15px" viewBox="0 0 14 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.0.1 (7597) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-excelFile</title>
+    <description>Created with Sketch.</description>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="icon-files" sketch:type="MSArtboardGroup" transform="translate(-171.000000, -125.000000)" fill="#1B984D">
+            <path d="M184.421569,125 L180.661,125 L178.000035,129.131672 L175.338792,125 L171.578501,125 L176.085805,132.103459 L171,140 L178.289111,140 L178.289111,137.317233 L176.605865,137.317233 L178.000035,135.120144 L181.096352,140 L185,140 L179.913987,132.103459 L184.421569,125 Z" id="icon-excelFile" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

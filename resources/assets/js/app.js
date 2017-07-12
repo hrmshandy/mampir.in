@@ -9,6 +9,9 @@ window.Vue = require('vue');
 import Event from './event';
 window.Event = new Event;
 
+import Iconim from './utils/icon-animation';
+window.iconim = new Iconim();
+
 /**
  * Vue application instance
  */

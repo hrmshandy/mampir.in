@@ -166,6 +166,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Hrmshandy\Finder\FinderServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
         Laravel\Scout\ScoutServiceProvider::class,
@@ -174,6 +175,7 @@ return [
         PrettyRoutes\ServiceProvider::class,
         TeamTNT\Scout\TNTSearchScoutServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+        TalvBansal\MediaManager\Providers\MediaManagerServiceProvider::class,
 
         /*
          * Application Service Providers...

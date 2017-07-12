@@ -11,6 +11,8 @@
 |
 */
 
+\TalvBansal\MediaManager\Routes\MediaRoutes::get();
+
 Route::get('/', 'IndexController');
 
 Route::get('test', function(){

@@ -1,0 +1,23 @@
+export const FILE_TYPES = {
+	jpg: 'icon-imageFile.svg',
+	jpeg: 'icon-imageFile.svg',
+	png: 'icon-imageFile.svg',
+	gif: 'icon-imageFile.svg',
+	bmp: 'icon-imageFile.svg',
+	pdf: 'icon-acrobatFile.svg',
+	doc: 'icon-wordFile.svg',
+	docx: 'icon-wordFile.svg',
+	xls: 'icon-excelFile.svg',
+	xlsx: 'icon-excelFile.svg',
+	csv: 'icon-excelFile.svg',
+	ppt: 'icon-powerpointFile.svg',
+	pptx: 'icon-powerpointFile.svg',
+	txt: 'icon-textFile.svg',
+	rtf: 'icon-textFile.svg',
+	zip: 'icon-zipeFile.svg',
+	rar: 'icon-zipeFile.svg',
+	mp4: 'icon-videoFile.svg',
+	mkv: 'icon-videoFile.svg',
+	mp3: 'icon-soundFile.svg',
+};
+

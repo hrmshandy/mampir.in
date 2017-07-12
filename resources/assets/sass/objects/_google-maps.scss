@@ -1,10 +1,18 @@
-.gm-style-iw__body .c-venue-card__info,
-.gm-style-iw__body .c-venue-card__footer {
-    padding: 0 10px;
+.gm-style .gm-style-iw {
+    font-family: "Hanken", sans-serif;
 }
-
-.gm-style-iw__body .c-venue-card__photo > a {
-    border-radius: 0;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+.gm-style-iw__body {
+    .c-venue-card {
+        border-radius: 5px;
+        overflow: hidden;
+        &__info, &__footer {
+            padding: 0 10px;
+        }
+        &__footer {
+            padding-bottom: 20px;
+        }
+        &__photo {
+            border-radius: 0;
+        }
+    }
 }

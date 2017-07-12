@@ -7,3 +7,11 @@ Vue.filter('capitalize', (value) => {
 Vue.filter('dateFromNow', (value) => {
     return moment(value).fromNow();
 });
+
+Vue.filter('join', (value, sparator = ', ') => {
+    return value.join(sparator);
+});
+
+Vue.filter('joinBy', (value, field = 'name', sparator = ', ') => {
+    return value.map(item => item[field]).join(sparator);
+});

@@ -1,5 +1,7 @@
 import './bootstrap'
 
+window.Vue = require('vue');
+
 const app = new Vue({
     el: '#app',
     data() {
@@ -24,7 +26,7 @@ const app = new Vue({
     methods: {
         search() {
             this.searching = true;
-            axios.post('/admin/locator/search', this.form).then(({ data }) => {
+            axios.post('/_admin/locator/search', this.form).then(({ data }) => {
                 this.searching = false;
                 this.hasResult = true;
                 this.results = data.map(item => {
@@ -40,7 +42,7 @@ const app = new Vue({
         },
         saveAll() {
             this.saving = true;
-            axios.post('/admin/locator/all', {'venues': this.results}).then(({ data }) => {
+            axios.post('/_admin/locator/all', {'venues': this.results}).then(({ data }) => {
                 this.results = [];
                 this.saving = false;
                 this.hasResult = false;
@@ -54,7 +56,7 @@ const app = new Vue({
         save(index) {
             let data = this.results[index];
             data.saving = true;
-            axios.post('/admin/locator', data).then(() => {
+            axios.post('/_admin/locator', data).then(() => {
                 data.saving = false;
                 this.results.splice(index, 1);
                 if(!this.results.length) {
