@@ -1,5 +1,6 @@
 .o-section {
-    padding: 3rem 1rem;
+    // padding: 3rem 1rem;
+    padding: 3rem 5px;
     &__title {
         color: $color-primary;
         @include iota-type( ( xs: (25px, 1.5), lg: (35px, 1.5)));

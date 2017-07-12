@@ -21,6 +21,7 @@
 
 	<!-- Styles -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
     {{--<link rel="stylesheet" href="{{ asset('css/leaflet.css') }}">--}}
     {{--<link rel="stylesheet" href="{{ asset('css/MarkerCluster.css') }}">--}}
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
