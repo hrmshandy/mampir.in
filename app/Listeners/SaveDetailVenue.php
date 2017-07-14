@@ -30,7 +30,17 @@ class SaveDetailVenue
         $venue = $event->venue;
         $key = $event->key.'_details';
         if(!empty(session($key))) {
-            $venue->details()->save(new VenueDetail(session($key)));
+            $details = session($key);
+
+            if(request()->method() == 'PUT') {
+                $venue->details()->update($details);
+            } else {
+                if(!($details instanceof VenueDetail)) {
+                    $details = new VenueDetail(session($key));
+                }
+                $venue->details()->save($details);
+            }
+
             session()->forget($key);
         }
     }

@@ -13,22 +13,42 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="{{ mix('css/locator.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 </head>
 <body>
     <div id="app">
         <div class="locator-wrapper">
             <div class="locator">
                 <div class="row">
-                    <div class="col-sm-5">
-                        <select name="category" class="form-control" v-model="form.category" :disabled="searching">
-                            <option value="">-- Select Category --</option>
-                            @foreach($categories as $key => $value)
-                                <option value="{{ $key }}">{{ $value }}</option>
-                            @endforeach
-                        </select>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <select2 class="form-control" v-model="form.city_id" :disabled="searching">
+                                <option disabled value="0">Select City</option>
+                                @foreach($cities as $key => $value)
+                                    <option value="{{ $key }}">{{ $value }}</option>
+                                @endforeach
+                            </select2>
+                        </div>
                     </div>
-                    <div class="col-sm-5">
-                        <input type="text" name="query" class="form-control" v-model="form.query" placeholder="Query" :disabled="searching">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Area" v-model="form.area">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <select2 class="form-control" v-model="form.categories" :disabled="searching" multiple>
+                                <option disabled value="">-- Select Categories --</option>
+                                @foreach($categories as $key => $value)
+                                    <option value="{{ $key }}">{{ $value }}</option>
+                                @endforeach
+                            </select2>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <input type="text" name="query" class="form-control" v-model="form.query" placeholder="Query" :disabled="searching">
+                        </div>
                     </div>
                     <div class="col-sm-2">
                         <button type="button" class="btn btn-primary btn-block" @click="search" :disabled="searching">
@@ -75,7 +95,15 @@
         </div>
     </div>
 
+    <script type="text/x-template" id="select2-template">
+        <select>
+            <slot></slot>
+        </select>
+    </script>
+
     <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
     <script src="{{ mix('js/manifest.js') }}"></script>
     <script src="{{ mix('js/vendor.js') }}"></script>
     <script src="{{ mix('js/locator.js') }}"></script>

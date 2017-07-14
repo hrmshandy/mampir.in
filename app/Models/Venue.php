@@ -9,11 +9,12 @@ use Spatie\Sluggable\SlugOptions;
 
 class Venue extends Model
 {
-    use Concerns\HasPhotos,
+    use HasSlug,
+        Concerns\HasPhotos,
         Concerns\HasCategories,
         Getters\VenueGetters,
         Relations\VenueRelations,
-        HasSlug;
+        Setters\VenueSetters;
 
     protected $hidden = [
         'featured', 'deleted_at'

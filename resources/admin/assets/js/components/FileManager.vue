@@ -18,13 +18,11 @@
                         </ol>
                     </div>
                     <div class="fm-nav__bottom">
-                        <file-upload class="fm-input" name="file" id="fm-input" action="/finder/file"
-                                     :headers="xhrHeaders" :form-data="formData" :accept="accept" multiple
-                                     on-file-change="onFileChange"
-                                     on-file-progress="onFileProgress"
-                                     on-file-error="onFileError"
-                                     on-file-upload="onFileUpload"
-                                     on-all-files-uploaded="onAllFilesUploaded">
+                        <file-upload class="fm-input" id="fm-input" action="/finder"
+                                     @upload="onUpload"
+                                     @progress="onUploadProgress"
+                                     @complete="onUploadComplete"
+                                     @error="onUploadError">
                             <svg class="fm-input__icon" viewBox="0 0 92 92" enable-background="new 0 0 92 92">
                                 <path d="M89,58.8V86c0,2.8-2.2,5-5,5H8c-2.8,0-5-2.2-5-5V58.8c0-2.8,2.2-5,5-5s5,2.2,5,5V81h66V58.8
 									c0-2.8,2.2-5,5-5S89,56,89,58.8z M29.6,29.9L41,18.2v43.3c0,2.8,2.2,5,5,5s5-2.2,5-5V18.3l11.4,11.6c1,1,2.3,1.5,3.6,1.5
@@ -47,7 +45,7 @@
             <div v-if="empty" class="fm-empty">
                 Folder <em>{{ folderName }}</em> is empty.
             </div>
-            <div v-else>
+            <div v-else class="fm-body">
                 <div class="folders">
                     <div v-for="folder in subfolders" class="folder" :style="thumbStyle">
                         <a href="#" :class="['folder__body', { 'folder--selected' : folder.id == selected.id }]"
@@ -66,26 +64,28 @@
                 </div>
 
                 <div class="files">
-                    <div v-for="(file, index) in files" class="file" :style="thumbStyle" :data-index="index">
+                    <div v-for="(file, index) in filesOrdered" class="file" :style="thumbStyle" :data-index="index">
                         <a href="#"
                            :class="['file__body', { 'file--selected' : hasSelected(file) }]"
-                           @click.ctrl.prevent="multipleSelect(file, $event)"
                            @click.prevent="select(file, $event)">
-                            <input type="checkbox" v-model="selecteds" :value="file">
-                            <div v-if="hasImage(file)" class="file__image">
+                            <div class="file__image">
                                 <img :src="baseUrl+'/finder/images'+file.fullPath+'?w=200&h=150&fit=crop'"
                                      :alt="file.name">
                             </div>
-                            <div v-else class="file__icon">
-                                <img :src="baseUrl+'/vendor/finder/img/icons/'+getFileType(file.extension)">
-                            </div>
-                            <div class="file__meta">
-                                <div class="file__name">
-                                    <img :src="baseUrl+'/vendor/finder/img/icons/'+getFileType(file.extension)">
-                                    <span>{{ file.name }}</span>
-                                </div>
-                                <span class="file__size">{{ file.size }}</span>
-                            </div>
+                            <!--<div v-if="hasImage(file)" class="file__image">-->
+                                <!--<img :src="baseUrl+'/finder/images'+file.fullPath+'?w=200&h=150&fit=crop'"-->
+                                     <!--:alt="file.name">-->
+                            <!--</div>-->
+                            <!--<div v-else class="file__icon">-->
+                                <!--<img :src="baseUrl+'/vendor/finder/img/icons/'+getFileType(file.extension)">-->
+                            <!--</div>-->
+                            <!--<div class="file__meta">-->
+                                <!--<div class="file__name">-->
+                                    <!--<img :src="baseUrl+'/vendor/finder/img/icons/'+getFileType(file.extension)">-->
+                                    <!--<span>{{ file.name }}</span>-->
+                                <!--</div>-->
+                                <!--<span class="file__size">{{ file.size }}</span>-->
+                            <!--</div>-->
                         </a>
                     </div>
                 </div>
@@ -165,7 +165,8 @@
             FileUpload
         },
         props: {
-            accept: String
+            accept: String,
+            multiple: { type: Boolean, default: false }
         },
         data() {
             return {
@@ -206,15 +207,23 @@
             },
             baseUrl() {
                 return window.Laravel.baseUrl;
+            },
+            filesOrdered() {
+                return _.orderBy(this.files, [ o => o.modified.date ], ['desc']);
             }
         },
         mounted(){
             this
                 .setupLayout()
-                .fetchData();
+                .fetchData()
+                .events();
+
         },
         watch: {
             selecteds(value) {
+                this.$emit('input', value);
+            },
+            selected(value) {
                 this.$emit('input', value);
             }
         },
@@ -266,21 +275,25 @@
             },
             select(item, e) {
                 e.stopPropagation();
-                if (!e.ctrlKey) {
-                    if (item.id === this.selected.id) {
-                        this.selected = {id: null};
-                        this.selecteds = [];
-                    } else {
-                        this.selected = item;
-                        if (item.type !== 'folder') {
-                            this.selecteds = [item];
-                        }
-                    }
+
+                if(this.multiple) {
+                    this.multipleSelect(item);
+                } else {
+                    this.singleSelect(item);
                 }
+
                 //this.$broadcast('toggleMenuOff');
             },
-            multipleSelect(item, e) {
-                e.stopPropagation();
+            singleSelect(item) {
+                if (item.type !== 'folder') {
+                    if (item.id === this.selected.id) {
+                        this.selected = {id: null};
+                    } else {
+                        this.selected = item;
+                    }
+                }
+            },
+            multipleSelect(item) {
                 if (item.type !== 'folder') {
                     const index = this.selecteds.indexOf(item);
                     if (index !== -1) {
@@ -303,73 +316,20 @@
             },
             hasSelected(file) {
                 return (this.selecteds.indexOf(file) !== -1) || (file.id === this.selected.id);
-            }
-        },
-
-        events: {
-            onContextMenu(item){
-                var index = item.dataset.index,
-                    file = this.files[index];
-                this.selected = file.id;
-
-
             },
-            download(item){
-                var index = item.dataset.index,
-                    file = this.files[index].fullPath,
-                    url = this.baseUrl + '/finder/file' + file;
 
-                window.location = url;
-            },
-            delete(item){
-                var index = item.dataset.index,
-                    file = this.files[index];
-
-                this.$http.delete(this.baseUrl + '/finder/file' + file.fullPath).then((response) => {
-                    this.files.$remove(file);
-
-                    var notification = new Notification({
-                        wrapper: this.$refs.notification,
-                        message: '<p>delete was successful!</p>',
-                        ttl: 9000,
-                        type: 'success'
-                    });
-
-                    notification.show();
-                });
-            },
-            onFileChange(file) {
-                // here is where we update our view
+            // upload events
+            onUpload() {
                 this.fileProgress = 0;
                 this.allFilesUploaded = false;
             },
-            onFileProgress(e) {
-                this.progressEl.draw(e.percent / 100);
+            onUploadProgress(percent) {
+                this.progressEl.draw(percent / 100);
             },
-            onFileError(file, err) {
-                var notification = new Notification({
-                    wrapper: this.$refs.notification,
-                    message: err.message,
-                    ttl: 9000,
-                    type: 'error'
-                });
+            onUploadComplete(id, name, response) {
+                this.files.unshift(response);
 
-                notification.show();
-
-                this.progressEl.draw(0);
-            },
-            onFileUpload(file, res) {
-                // update our list
-                this.uploadedFiles.push(file);
-            },
-            onAllFilesUploaded(response) {
-                var files = response;
-
-                files.forEach(file => {
-                    this.files.unshift(file);
-                });
-
-                var notification = new Notification({
+                const notification = new Notification({
                     wrapper: this.$refs.notification,
                     message: '<p>upload was successful!</p>',
                     ttl: 9000,
@@ -382,7 +342,63 @@
 
                 // everything is done!
                 this.allFilesUploaded = true;
+            },
+            onUploadError(err) {
+                const notification = new Notification({
+                    wrapper: this.$refs.notification,
+                    message: err,
+                    ttl: 9000,
+                    type: 'error'
+                });
+
+                notification.show();
+
+                this.progressEl.draw(0);
+            },
+            events() {
+                Event.listen('clear-finder-selected', () => {
+
+                   if(this.multiple) {
+                       this.selecteds = [];
+                   } else {
+                       this.selected = { id: null };
+                   }
+                });
             }
-        }
+        },
+
+//        events: {
+//            onContextMenu(item){
+//                var index = item.dataset.index,
+//                    file = this.files[index];
+//                this.selected = file.id;
+//
+//
+//            },
+//            download(item){
+//                var index = item.dataset.index,
+//                    file = this.files[index].fullPath,
+//                    url = this.baseUrl + '/finder/file' + file;
+//
+//                window.location = url;
+//            },
+//            delete(item){
+//                var index = item.dataset.index,
+//                    file = this.files[index];
+//
+//                this.$http.delete(this.baseUrl + '/finder/file' + file.fullPath).then((response) => {
+//                    this.files.$remove(file);
+//
+//                    var notification = new Notification({
+//                        wrapper: this.$refs.notification,
+//                        message: '<p>delete was successful!</p>',
+//                        ttl: 9000,
+//                        type: 'success'
+//                    });
+//
+//                    notification.show();
+//                });
+//            }
+//        }
     }
 </script>

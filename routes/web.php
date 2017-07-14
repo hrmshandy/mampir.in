@@ -16,7 +16,8 @@
 Route::get('/', 'IndexController');
 
 Route::get('test', function(){
-    App\Services\GoogleMapExtractor::get('hiburan', 'tempat hiburan di jakarta');
+    return join(DIRECTORY_SEPARATOR, array('uuid', 'name'));
+    //App\Services\GoogleMapExtractor::get('hiburan', 'tempat hiburan di jakarta');
 });
 
 Auth::routes();

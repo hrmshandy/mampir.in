@@ -166,6 +166,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Hrmsh\Finder\FinderServiceProvider::class,
         Hrmshandy\Finder\FinderServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,

@@ -30,18 +30,16 @@ class SaveCategoriesVenue
         $venue = $event->venue;
         $key = $event->key.'_categories';
         if(!empty(session($key))) {
-            $categories = [];
-            foreach (session($key) as $slug) {
-                if(is_numeric($slug)) {
-                    $categories[] = $slug;
-                } else {
-                    $category = Category::where('slug', $slug)->first();
-                    if(count($category) > 0) {
-                        $categories[] = $category->id;
-                    }
-                }
+            $categories = collect(session($key))->map(function($item){
+                return ($item instanceof Category) ? $item->id : intval($item);
+            })->filter(function($item){
+                return !empty($item);
+            })->all();
+            if(request()->method() == 'PUT') {
+                $venue->categories()->sync($categories);
+            } else {
+                $venue->categories()->attach($categories);
             }
-            $venue->categories()->sync($categories);
             session()->forget($key);
         }
     }

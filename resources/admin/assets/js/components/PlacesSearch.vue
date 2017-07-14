@@ -66,13 +66,15 @@
         },
         methods: {
             initMap(center) {
+                if( (typeof center.lat !== 'number') && (typeof center.lng !== 'number') ) {
+                    center = {lat: -33.8688, lng: 151.2195}
+                }
                 this.map = new google.maps.Map(this.$refs.map, {
-                    center: {lat: -33.8688, lng: 151.2195},
+                    center: center,
                     zoom: 13,
                     mapTypeId: 'roadmap',
                     streetViewControl: false,
-                    mapTypeControl: false,
-                    center: center
+                    mapTypeControl: false
                 });
             },
             createMarker(title, position) {

@@ -8,6 +8,6 @@ trait HasCategories
 {
     public function categories()
     {
-        return $this->morphToMany(Category::class, 'categorizable')->select('name', 'slug');
+        return $this->morphToMany(Category::class, 'categorizable')->select('id', 'name', 'slug');
     }
 }
