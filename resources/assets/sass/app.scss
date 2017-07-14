@@ -1,7 +1,7 @@
 // Vendor
 // @import "bourbon";
 @import "~flickity/css/flickity";
-
+// @import '~vue-animate/dist/vue-animate.min';
 
 @import 'settings/core';
 @import 'settings/baseline';
@@ -65,6 +65,7 @@
 @import 'components/categories';
 @import 'components/info-box';
 @import 'components/why-circle';
+@import 'components/preloader';
 
 @import 'layouts/header';
 @import 'layouts/body';

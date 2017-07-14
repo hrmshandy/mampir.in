@@ -6,6 +6,9 @@
                 <router-link to="/" class="o-logo">
                     <logo class="o-logo__desktop"></logo>
                     <logo-mobile class="o-logo__mobile"></logo-mobile>
+                    <div class="o-logo__mobile o-logo__mobile--chevron">
+                        <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                    </div>
                 </router-link>
                 <search></search>
                 <div class="u-pull-right login--wrapper">
