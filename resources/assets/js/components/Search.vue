@@ -92,7 +92,7 @@ export default {
 		},
 		getCurrentCity() {
 		    if(typeof Cookies.get('user-city') === 'undefined') {
-                Event.fire('show-cities-modal');
+                //Event.fire('show-cities-modal');
             } else {
                 this.$store.commit('SET_LOCATION', Cookies.get('user-city'));
             }

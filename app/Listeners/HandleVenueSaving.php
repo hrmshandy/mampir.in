@@ -31,7 +31,7 @@ class HandleVenueSaving
         session([$key.'_opening-hours' => $event->venue->opening_hours]);
         session([$key.'_photos' => $event->venue->place_photos]);
         session([$key.'_reviews' => $event->venue->place_reviews]);
-        session([$key.'_categories' => [$event->venue->category]]);
-        $event->venue->unset(['details', 'opening_hours', 'place_photos', 'place_reviews', 'category']);
+        session([$key.'_categories' => $event->venue->categories]);
+        $event->venue->unset(['details', 'opening_hours', 'place_photos', 'place_reviews', 'categories']);
     }
 }

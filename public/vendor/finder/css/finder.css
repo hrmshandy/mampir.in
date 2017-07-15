@@ -35,9 +35,7 @@ SVG Icons - svgicons.sparkk.fr
   margin: auto;
   min-height: 100%;
   position: relative;
-  background: #eff3f6;
-  padding: 30px 15px;
-  padding-top: 95px; }
+  background: #eff3f6; }
 
 .fm-loader {
   position: relative;
@@ -105,7 +103,7 @@ SVG Icons - svgicons.sparkk.fr
   color: #354052; }
 
 .fm-nav {
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
@@ -148,7 +146,16 @@ SVG Icons - svgicons.sparkk.fr
     outline: none;
     text-decoration: none;
     color: #47acf9; }
+.fm-body {
+  height: calc(100vh - 85px - 120px);
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 30px;
+}
 
+.finder-is-opened {
+  overflow: hidden;
+}
 /* Button container */
 .fm-input {
   position: relative;
@@ -299,9 +306,9 @@ SVG Icons - svgicons.sparkk.fr
   flex-wrap: wrap; }
 
 .file, .folder {
-  -ms-flex-preferred-size: 25%;
-  flex-basis: 25%;
-  max-width: 25%;
+  -ms-flex-preferred-size: 20%;
+  flex-basis: 20%;
+  max-width: 20%;
   padding: 10px;
   font-family: 'Lato', sans-serif; }
 
@@ -686,8 +693,8 @@ SVG Icons - svgicons.sparkk.fr
 
 .finder-modal__main {
   background: #EFF3F6;
-  top: 5%;
-  bottom: 5%;
+  top: 30px;
+  bottom: 30px;
   z-index: 99991;
   overflow: hidden; }
   .finder-modal__main iframe {

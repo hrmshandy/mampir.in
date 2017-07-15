@@ -31,13 +31,9 @@ trait VenueGetters
 
     public function getPhotosAttribute()
     {
-        $photos = [];
-        if(count($this->photos()->get()) > 0) {
-            foreach($this->photos()->get() as $photo) {
-                $photos[] = url('img/cache/original/'.$photo->filename);
-            }
-        }
-        return $photos;
+        return $this->photos()->get()->map(function($item){
+            return $item->filename;
+        });
     }
 
     public function getTotalReviewsAttribute()

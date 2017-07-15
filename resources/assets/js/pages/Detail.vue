@@ -62,7 +62,7 @@ export default {
 		this.fetchData();
 	},
 	mounted() {
-
+        this.$store.commit('SET_FOOTER', true);
 	},
 	watch: {
 	    // call again the method if the route changes

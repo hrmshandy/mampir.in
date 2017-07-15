@@ -22,4 +22,11 @@ class Photo extends Model
     protected $events = [
         'saving' => PhotoSaving::class
     ];
+
+    /**
+     * The attributes that should be visible in arrays.
+     *
+     * @var array
+     */
+    protected $visible = ['id', 'filename'];
 }

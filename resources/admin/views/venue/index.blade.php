@@ -7,7 +7,7 @@
                 <div class="o-grid__col u-8/12 u-push-2/12">
                     <div class="u-mb-x4">
                         <a href="{{ adm_url('venue/create') }}" class="o-button o-button--success">Add New</a>
-                        <a href="{{ adm_url('venue/create') }}" class="o-button o-button--success">Add by google locator</a>
+                        <a href="{{ adm_url('locator') }}" class="o-button o-button--success">Add by google locator</a>
                     </div>
 
                     @if(count($venues) > 0)
@@ -16,7 +16,7 @@
                                 <div class="card-block">
                                     <div class="c-venue">
                                         @if(count($venue->photos) > 0)
-                                            <div class="c-venue__image" style="background-image: url({{ $venue->photos[0] }})"></div>
+                                            <div class="c-venue__image" style="background-image: url({{ '/img/cache/small/'.$venue->photos[0] }})"></div>
                                         @else
                                             <div class="c-venue__image holderjs" data-background-src="?holder.js/150x100?theme=vine&text=No Image"></div>
                                         @endif

@@ -18,7 +18,10 @@
                                     <div class="o-grid__col u-3/12">
                                         <div class="o-form-group{{ $errors->has('logo') ? ' has-error' : '' }}">
                                             <label for="">Logo</label>
-                                            <dropify name="logo" text="Select an image" default-file="{{ $venue->logo }}"></dropify>
+                                            <finder name="logo"
+                                                    button-text="Select an image"
+                                                    existing-image="{{ $venue->logo }}">
+                                            </finder>
                                             @if($errors->has('logo'))
                                                 <div class="o-form-feedback">{{ $errors->first('logo') }}</div>
                                             @endif
@@ -28,16 +31,20 @@
                                     <div class="o-grid__col u-9/12">
                                         <div class="o-form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                             <label for="">Venue Name</label>
-                                            <input type="text" class="o-input" name="name" placeholder="Venue Name" value="{{ $venue->exists ? $venue->name : null }}">
+                                            <input type="text" class="o-input" name="name" placeholder="Venue Name" value="{{ $venue->name }}">
                                             @if($errors->has('name'))
                                                 <div class="o-form-feedback">{{ $errors->first('name') }}</div>
                                             @endif
                                         </div>
                                         <div class="o-form-group{{ $errors->has('categories') ? ' has-error' : '' }}">
                                             <label for="">Categories</label>
-                                            <select name="category[]" id="categories" placeholder="Type to search..." multiple>
+                                            @php $current_categories = $venue->exists ? $venue->categories()->pluck('id')->all() : []; @endphp
+                                            <select name="categories[]" class="choice" placeholder="Type to search..." multiple>
                                                 @foreach($categories as $category)
-                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                    <option value="{{ $category->id }}"
+                                                            @if(in_array($category->id, $current_categories)) selected @endif>
+                                                        {{ $category->name }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                             @if($errors->has('categories'))
@@ -53,6 +60,27 @@
                                 Location
                             </div>
                             <div class="card-block">
+                                <div class="o-form-group{{ $errors->has('city_id') ? ' has-error' : '' }}">
+                                    <label for="">City</label>
+                                    <select name="city_id" class="choice" placeholder="Select City">
+                                        @foreach($cities as $city)
+                                            <option value="{{ $city->id }}"
+                                                    @if($city->id == $venue->city_id) selected @endif>
+                                                {{ $city->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @if($errors->has('city_id'))
+                                        <div class="o-form-feedback">{{ $errors->first('city_id') }}</div>
+                                    @endif
+                                </div>
+                                <div class="o-form-group{{ $errors->has('area') ? ' has-error' : '' }}">
+                                    <label for="">Area</label>
+                                    <input type="text" class="o-input" name="area" placeholder="Area" value="{{ $venue->area }}">
+                                    @if($errors->has('area'))
+                                        <div class="o-form-feedback">{{ $errors->first('area') }}</div>
+                                    @endif
+                                </div>
                                 <div class="o-form-group{{ $errors->has('address') ? ' has-error' : '' }}">
                                     <label for="">Address</label>
                                     <small class="text-muted">( Type to Search or drag the marker )</small>
@@ -67,19 +95,14 @@
                         </div>
                         <div class="card u-mb-x2">
                             <div class="card-header">
-                                <div class="o-grid o-grid--middle">
-                                    <div class="o-grid__col u-6/12">
-                                        Gallery
-                                    </div>
-                                    <div class="o-grid__col u-6/12 u-text-right">
-                                        <finder>Add Image</finder>
-                                    </div>
-                                </div>
+                                Gallery
                             </div>
                             <div class="card-block">
-                                @if(count($venue->photos))
-                                    <gallery :images="{{ json_encode($venue->photos) }}"></gallery>
-                                @endif
+                                <finder name="place_photos"
+                                        button-text="Add an image"
+                                        mode="gallery"
+                                        :existing-images="{{ $venue->exists ? json_encode($venue->photos) : json_encode([]) }}">
+                                </finder>
                             </div>
                         </div>
                         <div class="card u-mb-x2">
@@ -125,12 +148,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card u-mb-x2">
-                            <div class="card-header">
-                                Facilities
-                            </div>
-                            <div class="card-block"></div>
-                        </div>
+                        {{--<div class="card u-mb-x2">--}}
+                            {{--<div class="card-header">--}}
+                                {{--Facilities--}}
+                            {{--</div>--}}
+                            {{--<div class="card-block"></div>--}}
+                        {{--</div>--}}
                         {{--<div class="card u-mb-x2">--}}
                             {{--<div class="card-header">--}}
                                 {{--Opening Hours--}}
@@ -159,7 +182,7 @@
 
 @section('scripts')
     <script>
-        var categories = new Choices('#categories', {
+        var categories = new Choices('.choice', {
             paste: false,
             duplicateItems: false,
         });

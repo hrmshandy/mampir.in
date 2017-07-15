@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
+use App\Models\City;
 use App\Models\Venue;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -28,8 +29,9 @@ class VenueController extends Controller
      */
     public function create(Venue $venue)
     {
+        $cities = City::all();
         $categories = Category::all();
-        return view('admin::venue.form', compact('venue', 'categories'));
+        return view('admin::venue.form', compact('venue', 'cities', 'categories'));
     }
 
     /**
@@ -45,16 +47,7 @@ class VenueController extends Controller
             'address' => 'required'
         ]);
 
-        $data = $request->all();
-        if($request->status == 'Publish') {
-            $data['status'] = 1;
-        } else {
-            $data['status'] = 0;
-        }
-
-        $venue = Venue::create($data);
-
-        $venue->categories()->attach($request->category);
+        $venue = Venue::create($request->except('qqfile'));
 
         return redirect('_admin/venue');
     }
@@ -79,8 +72,9 @@ class VenueController extends Controller
      */
     public function edit(Venue $venue)
     {
+        $cities = City::all();
         $categories = Category::all();
-        return view('admin::venue.form', compact('venue', 'categories'));
+        return view('admin::venue.form', compact('venue', 'cities', 'categories'));
     }
 
     /**
@@ -97,18 +91,9 @@ class VenueController extends Controller
             'address' => 'required'
         ]);
 
-        $data = $request->all();
-        if($request->status == 'Publish') {
-            $data['status'] = 1;
-        } else {
-            $data['status'] = 0;
-        }
+        $venue->update($request->except('qqfile'));
 
-        $venue->update($data);
-
-        $venue->categories()->sync($request->category);
-
-        return redirect('_admin/venue');
+        return redirect('_admin/venue/'.$venue->id.'/edit');
     }
 
     /**
