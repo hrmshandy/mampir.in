@@ -12,6 +12,7 @@
 						<search-form size="large" :inline="false"></search-form>
 					</div>
 				</div>
+				<category :categories="categories"></category>
 			</div>
 		</section>
 		<div class="c-categories c-categories--widget">
@@ -102,9 +103,10 @@
 import { mapGetters } from 'vuex'
 import Masonry from '../components/Masonry.vue'
 import SearchForm from '../components/Search.vue'
+import Category from '../components/Categories.vue'
 
 export default {
-	components: { Masonry, SearchForm },
+	components: { Masonry, SearchForm, Category },
 	data() {
 		return {
 			categories: [

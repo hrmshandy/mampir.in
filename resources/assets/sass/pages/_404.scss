@@ -1,0 +1,77 @@
+.not-found {
+    background: url('../../img/404/bg.jpg');
+    background-size: cover;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    min-height: 100vh;
+    @include until(641px) {
+        flex-direction: column;
+        padding-top: 0;
+    }
+    &__section {
+        flex-basis: 50%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .o-heading-404 {
+        font-weight: 400;
+        color: #854f28;
+        font-size: 3rem;
+        margin-bottom: 30px;
+        @include until(641px) {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+    }
+    .o-description {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+        @include until(641px) {
+            font-size: 13px;
+            text-align: center;
+        }
+    }
+    .o-404-grid {
+        display: flex;
+        @include until(641) {
+            flex-direction: column-reverse;
+        }
+    }
+    .c-search__form {
+        width: 70%;
+        @include until(641px) {
+            width: 100%;
+            .o-input--large,
+            .o-textarea--large {
+                text-align: center;
+                font-size: 1rem;
+            }
+            .c-form-group {
+                margin-bottom: .5rem;
+            }
+        }
+        .o-button {
+            span,
+            strong {
+                display: none;
+            }
+            .text-cari-lagi {
+                display: block!important;
+                @include until(641px) {
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+    .o-image-robots {
+        max-width: 100%;
+        display: block;
+        width: 300px;
+        margin: 30px auto;
+        @include until(641px) {
+            width: 150px;
+        }
+    }
+}

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="o-grid o-grid--middle">
-            <div class="o-grid__col u-6/12"><h3 class="review-header-title o-type-26 u-color-primary">Review ({{ reviews.length }})</h3></div>
+            <div class="o-grid__col u-6/12"><h3 class="review-header-title o-type-26 u-color-primary">Review</h3></div>
             <!-- <div class="o-grid__col u-6/12 u-text-right">
                 <button class="o-button o-button--primary" @click="writeReview">Write a Review</button>
             </div> -->

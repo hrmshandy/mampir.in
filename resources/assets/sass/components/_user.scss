@@ -8,7 +8,8 @@
         position: relative;
         z-index: 9;
         height: 35px;
-        &:hover, &:focus {
+        &:hover,
+        &:focus {
             text-decoration: none;
         }
     }
@@ -34,14 +35,19 @@
             height: 10px;
             background: #ddd;
         }
+        @include until(641px) {
+            display: none;
+        }
     }
 }
+
 %item {
     padding: 8px 16px;
     color: $color-primary;
     display: block;
     font-size: 14px;
 }
+
 .user-menu {
     list-style: none;
     position: absolute;
@@ -78,7 +84,8 @@
         transition: all .3s ease;
         display: flex;
         align-items: center;
-        &:hover, &:focus {
+        &:hover,
+        &:focus {
             text-decoration: none;
         }
         > .svg-icon:first-child {
@@ -96,6 +103,7 @@
         }
     }
 }
+
 .user-info {
     list-style: none;
     padding-bottom: 12px;
@@ -121,6 +129,7 @@
         }
     }
 }
+
 .user-menu-is-shown {
     //.user__name {
     //    color: #fff;

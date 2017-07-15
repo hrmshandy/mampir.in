@@ -5,10 +5,11 @@
     @include until(641px) {
         margin-right: auto;
         width: 100px;
+        display: none;
     }
     > svg {
         width: auto;
-        height: 40px;
+        height: 30px;
     }
     &__desktop {
         @include until(900px) {
@@ -16,14 +17,20 @@
         }
     }
     &__mobile {
+        svg {
+            height: 40px;
+        }
         @include from(900px) {
             display: none;
         }
         &--chevron {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             margin-left: 5px;
+            width: 200px;
+            z-index: 10;
+            position: relative;
         }
     }
 }

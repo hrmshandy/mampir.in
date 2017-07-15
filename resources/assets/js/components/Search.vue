@@ -6,11 +6,16 @@
 				<input type="text" :class="['o-input', inputSize]" placeholder="Lagi Dimana?" v-model="location" id="location">
 			</div>
 			<div class="c-form-group">
+				<input type="text" :class="['o-input', inputSize]" placeholder="Area" v-model="area">
+			</div>
+			<div class="c-form-group">
 				<input type="text" :class="['o-input', inputSize]" placeholder="Nyari Apa?" v-model="keyword">
 			</div>
 			<div class="c-form-group">
 				<button :class="['o-button', 'o-button--primary', 'o-button--block', btnSize]" @click="submit" type="button">
-					<span v-if="!inline">Yuk,&nbsp;</span><strong>Cari<span v-if="!inline">!</span></strong>
+					<span v-if="!inline">Yuk,&nbsp;</span>
+					<strong>Cari<span v-if="!inline">!</span></strong>
+					<span class="text-cari-lagi" style="display: none;">Cari Lagi</span>
 				</button>
 			</div>
 		</div>

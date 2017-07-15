@@ -2,14 +2,10 @@
     <header :class="['l-header', { 'is-sticky': isSticky }]">
         <div class="o-container o-container--wide">
             <div class="l-header__body">
-                <mobile-menu></mobile-menu>
                 <router-link to="/" class="o-logo">
                     <logo class="o-logo__desktop"></logo>
-                    <logo-mobile class="o-logo__mobile"></logo-mobile>
-                    <div class="o-logo__mobile o-logo__mobile--chevron">
-                        <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                    </div>
                 </router-link>
+                <mobile-menu></mobile-menu>
                 <search></search>
                 <div class="u-pull-right login--wrapper">
                     <template v-if="authenticated">
@@ -34,10 +30,9 @@ import MobileMenu from '../components/MobileMenu.vue'
 import Register from '../components/auth/Register.vue'
 import Search from '../components/Search.vue'
 import User from '../components/User.vue'
-import LogoMobile from '../components/LogoMobile.vue'
 
 export default {
-    components: { Login, Logo, LogoMobile, MobileMenu, Register, Search, User },
+    components: { Login, Logo, MobileMenu, Register, Search, User },
     data() {
         return {
             offsetTop: 0,

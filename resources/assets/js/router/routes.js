@@ -5,5 +5,6 @@
 export default [
   	{ path: '/', component: require('../pages/Index.vue') },
   	{ path: '/search', component: require('../pages/Search.vue') },
-  	{ path: '/detail/:slug', component: require('../pages/Detail.vue') }
+  	{ path: '/detail/:slug', component: require('../pages/Detail.vue') },
+  	{ path: '/404', component: require('../pages/404.vue') }
 ]
