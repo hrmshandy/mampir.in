@@ -12,6 +12,19 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
+
+    if (to.matched.some(record => record.meta.hideFooter)) {
+        store.commit('SHOW_FOOTER', false);
+	} else {
+        store.commit('SHOW_FOOTER', true);
+    }
+
+    if (to.matched.some(record => record.meta.hideTopSearch)) {
+        store.commit('SHOW_TOP_SEARCH', false);
+    } else {
+        store.commit('SHOW_TOP_SEARCH', true);
+    }
+
     store.dispatch('authCheck');
 
     next()

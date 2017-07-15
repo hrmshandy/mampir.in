@@ -10,6 +10,10 @@ export const SET_LOCATION = (state, value) => {
 	state.query.location = value;
 }
 
-export const SET_FOOTER = (state, value) => {
+export const SHOW_FOOTER = (state, value) => {
     state.footer = value;
+}
+
+export const SHOW_TOP_SEARCH = (state, value) => {
+    state.topSearch = value;
 }

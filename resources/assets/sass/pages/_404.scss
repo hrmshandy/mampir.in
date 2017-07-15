@@ -3,7 +3,7 @@
     background-size: cover;
     padding-top: 100px;
     padding-bottom: 100px;
-    min-height: 100vh;
+    min-height: calc(100vh - 60px);
     @include until(641px) {
         flex-direction: column;
         padding-top: 0;

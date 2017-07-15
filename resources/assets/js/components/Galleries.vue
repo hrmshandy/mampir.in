@@ -22,7 +22,7 @@ export default {
                     cell.classList.add('carousel-cell');
                 var img = document.createElement('div');
                     img.classList.add('carousel-image');
-                    img.style.backgroundImage = 'url('+item+')';
+                    img.style.backgroundImage = 'url(/img/cache/original/'+item+')';
 
                 cell.append(img);
                 flkty.insert( cell, index )

@@ -1,25 +1,25 @@
 <template>
-	<div :class="['c-search', {'c-search--inline': inline, 'is-shown': showSearchForm}]">
+	<form :class="['c-search', {'c-search--inline': inline, 'is-shown': showSearchForm}]" @submit.prevent="submit">
 		<button class="c-search__button iconim iconim-search-close" @click="toggleSearch"></button>
 		<div class="c-search__form">
 			<div class="c-form-group">
 				<input type="text" :class="['o-input', inputSize]" placeholder="Lagi Dimana?" v-model="location" id="location">
 			</div>
 			<div class="c-form-group">
-				<input type="text" :class="['o-input', inputSize]" placeholder="Area" v-model="area">
+				<input type="text" :class="['o-input', inputSize]" placeholder="Area">
 			</div>
 			<div class="c-form-group">
 				<input type="text" :class="['o-input', inputSize]" placeholder="Nyari Apa?" v-model="keyword">
 			</div>
 			<div class="c-form-group">
-				<button :class="['o-button', 'o-button--primary', 'o-button--block', btnSize]" @click="submit" type="button">
+				<button :class="['o-button', 'o-button--primary', 'o-button--block', btnSize]" type="submit">
 					<span v-if="!inline">Yuk,&nbsp;</span>
 					<strong>Cari<span v-if="!inline">!</span></strong>
 					<span class="text-cari-lagi" style="display: none;">Cari Lagi</span>
 				</button>
 			</div>
 		</div>
-	</div>
+	</form>
 </template>
 
 <script>

@@ -157,7 +157,6 @@ export default {
 	},
 	mounted() {
 	    this.fetchReviews(document.getElementById('location').value);
-        this.$store.commit('SET_FOOTER', true);
 		//this.fitHeroUnitHeight();
 	}
 }

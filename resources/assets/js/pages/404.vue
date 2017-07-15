@@ -24,13 +24,7 @@
 import SearchForm from '../components/Search.vue'
 
 export default {
-	components: { SearchForm },
-	mounted() {
-	    this.$store.commit('SET_FOOTER', false);
-	    var loc = { location: document.getElementById('location').value };
-	    var query = Object.assign({}, this.query, this.$route.query, loc);
-        this.fetchData(query)
-	},
+	components: { SearchForm }
 }	
 	
 </script>

@@ -105,7 +105,6 @@ export default {
         //window.document.title = "Search"
 	},
 	mounted() {
-	    this.$store.commit('SET_FOOTER', false);
 	    var loc = { location: document.getElementById('location').value };
 	    var query = Object.assign({}, this.query, this.$route.query, loc);
         this.fetchData(query)
@@ -138,7 +137,7 @@ export default {
 		      		this.perPage = data.per_page;
 		      		this.totalRecords = data.total;
 		      		if(data.data.length <= 0) {
-		      			this.isEmpty = true;
+		      			router.push('404');
 		      		}
 	            }, 1000);
 	      		

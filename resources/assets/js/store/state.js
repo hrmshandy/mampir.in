@@ -3,5 +3,6 @@ export default {
 		keyword: null,
 		location: null
 	},
-	footer: true
+	footer: true,
+	topSearch: true
 }

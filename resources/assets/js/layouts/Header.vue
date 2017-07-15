@@ -6,7 +6,7 @@
                     <logo class="o-logo__desktop"></logo>
                 </router-link>
                 <mobile-menu></mobile-menu>
-                <search></search>
+                <search v-show="topSearch"></search>
                 <div class="u-pull-right login--wrapper">
                     <template v-if="authenticated">
                         <user></user>
@@ -57,7 +57,8 @@ export default {
             return this.$route.path;
         },
         ...mapGetters([
-            'authenticated'
+            'authenticated',
+            'topSearch'
         ])
     },
     watch: {
