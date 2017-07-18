@@ -173,6 +173,7 @@ return [
         Laravel\Scout\ScoutServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,
+        ScoutEngines\Elasticsearch\ElasticsearchProvider::class,
         PrettyRoutes\ServiceProvider::class,
         TeamTNT\Scout\TNTSearchScoutServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,

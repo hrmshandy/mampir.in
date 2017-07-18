@@ -2,6 +2,7 @@
 
 namespace App\Models\Relations;
 
+use App\Models\City;
 use App\Models\Photo;
 use App\Models\Review;
 use App\Models\Facility;
@@ -11,6 +12,12 @@ use App\Models\VenueDetail;
 
 trait VenueRelations
 {
+
+    public function city()
+    {
+        return $this->belongsTo(City::class)->select('id', 'name', 'province_id');
+    }
+
     public function details()
     {
         return $this->hasOne(VenueDetail::class);

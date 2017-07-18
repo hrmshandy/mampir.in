@@ -4,12 +4,14 @@ namespace App\Models;
 
 use App\Events\VenueSaved;
 use App\Events\VenueSaving;
+use Laravel\Scout\Searchable;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
 class Venue extends Model
 {
     use HasSlug,
+        Searchable,
         Concerns\HasPhotos,
         Concerns\HasCategories,
         Getters\VenueGetters,
@@ -17,7 +19,7 @@ class Venue extends Model
         Setters\VenueSetters;
 
     protected $hidden = [
-        'featured', 'deleted_at'
+        'featured', 'deleted_at', 'owner_id', 'city_id'
     ];
 
     /**
@@ -40,6 +42,13 @@ class Venue extends Model
     ];
 
     /**
+     * The relations to eager load on every query.
+     *
+     * @var array
+     */
+    protected $with = ['categories', 'city', 'city.province'];
+
+    /**
      * Get the options for generating the slug.
      */
     public function getSlugOptions() : SlugOptions
@@ -47,6 +56,26 @@ class Venue extends Model
         return SlugOptions::create()
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
+    }
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+
+        $array['province'] = $array['city']['province']['name'];
+        $array['city'] = $array['city']['name'];
+        $array['categories'] = collect($array['categories'])->pluck('name')->all();
+
+        unset($array['reviews']);
+
+        dd($array);
+
+        return $array;
     }
 
 }
