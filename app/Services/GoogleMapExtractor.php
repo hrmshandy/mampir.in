@@ -79,7 +79,7 @@ class GoogleMapExtractor
 		if(isset($detail['photos'])){
 			return collect($detail['photos'])->map(function($photo){
 				return self::getPhotoURL($photo);
-			});
+			})->take(5)->all();
 		}
 		return [];
 	}

@@ -175,9 +175,7 @@ return [
         Laravel\Tinker\TinkerServiceProvider::class,
         ScoutEngines\Elasticsearch\ElasticsearchProvider::class,
         PrettyRoutes\ServiceProvider::class,
-        TeamTNT\Scout\TNTSearchScoutServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
-        TalvBansal\MediaManager\Providers\MediaManagerServiceProvider::class,
 
         /*
          * Application Service Providers...

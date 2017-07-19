@@ -32,7 +32,8 @@ class SearchController extends Controller
         if($request->has('categories')) {
 
             $venue = $venue->whereHas('categories', function($query) use($request){
-                $query->where('name', 'like', '%'.$request->keyword.'%');
+                $query->where('name', 'like', '%'.$request->keyword.'%')
+                      ->orWhere('alias', 'like', '%'.$request->keyword.'%');
             });
 
         }
