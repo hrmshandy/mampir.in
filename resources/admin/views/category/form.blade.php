@@ -6,8 +6,9 @@
             <div class="o-grid">
                 <div class="o-grid__col u-6/12 u-push-3/12">
                     <form class="card"
-                          method="{{ $category->exists ? 'PUT' : 'POST' }}"
+                          method="POST"
                           action="{{ $category->exists ? url('_admin/category/'.$category->id) : url('_admin/category') }}">
+                        {{ $category->exists ? method_field('PUT') : null }}
                         {{ csrf_field() }}
                         <div class="card-header">
                             <h6>{{ $category->exists ? 'Update' : 'Create' }} Category</h6>

@@ -1,7 +1,8 @@
 export default {
 	query: {
 		keyword: null,
-		location: null
+		location: null,
+		area: null
 	},
 	footer: true,
 	topSearch: true

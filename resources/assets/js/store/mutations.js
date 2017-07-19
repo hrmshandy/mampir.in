@@ -10,6 +10,10 @@ export const SET_LOCATION = (state, value) => {
 	state.query.location = value;
 }
 
+export const SET_AREA = (state, value) => {
+    state.query.area = value;
+}
+
 export const SHOW_FOOTER = (state, value) => {
     state.footer = value;
 }

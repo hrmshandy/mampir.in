@@ -19,7 +19,7 @@
 			<div class="o-container">
 				<div class="o-grid">
 					<div v-for="category in categories" class="o-category__wrapper o-grid__col u-6/12@xs u-3/12@sm">
-						<router-link class="o-category o-category--card" :to="'/search?categories='+category" :style="{ backgroundImage: 'url(/images/categories/'+category+'.png)' }">
+						<router-link class="o-category o-category--card" :to="'/search?location='+city+'&categories='+category" :style="{ backgroundImage: 'url(/images/categories/'+category+'.png)' }">
 							<div class="o-category__body">
 								<img :src="'/images/categories/'+category+'-icon.png'" alt="" class="o-category__icon">
 								<span class="o-category__name">{{ category | capitalize }}</span>
@@ -125,7 +125,9 @@ export default {
 	},
     watch: {
 	    '$route': function() {
-            this.fetchReviews(document.getElementById('location').value);
+            if(document.getElementById('location')) {
+                this.fetchReviews(document.getElementById('location').value);
+            }
         },
         'query.location': function(value) {
             this.fetchReviews(value);

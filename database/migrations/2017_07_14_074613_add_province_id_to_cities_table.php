@@ -14,7 +14,7 @@ class AddProvinceIdToCitiesTable extends Migration
     public function up()
     {
         Schema::table('cities', function (Blueprint $table) {
-            $table->integer('province_id')->unsigned()->index()->after('id');
+            $table->integer('province_id')->unsigned()->index()->nullable()->after('id');
             $table->foreign('province_id')
                 ->references('id')
                 ->on('provinces')

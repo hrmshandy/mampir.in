@@ -1,4 +1,7 @@
 .c-preloader {
+    @include desktop {
+        display: none;
+    }
     @include until(641px) {
         display: flex;
         min-height: 100vh;

@@ -9,37 +9,34 @@ class SearchController extends Controller
 {
     public function __invoke(Request $request)
     {
-        $venues = Venue::with('categories');
-        $query = '';
-        if($this->exists($request, 'location')) {
+        $venue = Venue::with('categories', 'city');
 
-            $query .= '(city:'.$request->location.' OR province:'.$request->location.')';
+        if($request->has('location')) {
+            $venue = $venue->whereHas('city', function($query) use($request){
+                $query->where('name', $request);
+            });
+        }
+
+        if($request->has('area')) {
+            $venue = $venue->where('area', 'like', '%'.$request->area.'%');
+        }
+
+        if($request->has('keyword')) {
+            $venue = $venue->where('name', 'like', '%'.$request->keyword.'%')
+                            ->orWhereHas('categories', function($query) use($request){
+                                $query->where('name', 'like', '%'.$request->keyword.'%')
+                                      ->orWhere('alias', 'like', '%'.$request->keyword.'%');
+                            });
+        }
+
+        if($request->has('categories')) {
+
+            $venue = $venue->whereHas('categories', function($query) use($request){
+                $query->where('name', 'like', '%'.$request->keyword.'%');
+            });
 
         }
 
-        if($this->exists($request, 'area')) {
-
-            $query .= ' AND area:'.$request->location;
-
-        }
-
-        if($this->exists($request, 'keyword')) {
-
-            $query .= ' AND '.$request->keyword;
-
-        }
-
-        if($this->exists($request, 'categories')) {
-
-            $query .= ' AND categories:'.$request->categories;
-
-        }
-
-        return $venues->search($query)->paginate(20);
-    }
-
-    protected function exists(Request $request, $field)
-    {
-        return $request->has($field) && !empty($request->input($field)) && ($field->input($field) != 'null');
+        return $venue->paginate(20);
     }
 }

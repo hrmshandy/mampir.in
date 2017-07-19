@@ -11,7 +11,7 @@ use Spatie\Sluggable\SlugOptions;
 class Venue extends Model
 {
     use HasSlug,
-        Searchable,
+        //Searchable,
         Concerns\HasPhotos,
         Concerns\HasCategories,
         Getters\VenueGetters,
@@ -63,19 +63,19 @@ class Venue extends Model
      *
      * @return array
      */
-    public function toSearchableArray()
-    {
-        $array = $this->toArray();
-
-        $array['province'] = $array['city']['province']['name'];
-        $array['city'] = $array['city']['name'];
-        $array['categories'] = collect($array['categories'])->pluck('name')->all();
-
-        unset($array['reviews']);
-
-        dd($array);
-
-        return $array;
-    }
+//    public function toSearchableArray()
+//    {
+//        $array = $this->toArray();
+//
+//        $array['province'] = $array['city']['province']['name'];
+//        $array['city'] = $array['city']['name'];
+//        $array['categories'] = collect($array['categories'])->map(function($item){
+//            $arr = [$item['name']];
+//            if(isset($item['alias'])) $arr[] = $item['alias'];
+//            return $arr;
+//        })->all();
+//
+//        return $array;
+//    }
 
 }
