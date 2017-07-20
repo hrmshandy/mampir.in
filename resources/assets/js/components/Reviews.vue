@@ -41,13 +41,26 @@
 
         <div style="position: relative;">
             <masonry>
-                <div class="o-grid__col u-2/5@lg" v-show="writingReview">
+                <div class="o-grid__col u-2/5@lg" v-show="(writingReview && !reviewed)">
                     <div class="c-card c-card--dialog c-card--dialog__placeholder c-card--dialog__review">
                         <div class="c-card__header">
                             <rating v-model="form.rating" :venue-id="venueId" method="post"></rating>
                         </div>
                         <div class="c-card__body">
                             <textarea v-model="form.content" rows="4" class="o-textarea" placeholder="Ceritakan pengalamanmu ..."></textarea>
+                            <button class="o-button o-button--primary" @click="activeUpload" v-show="!activedUpload">
+                                Upload Image
+                            </button>
+                            <input v-for="photo in uploadedPhotos"  type="hidden" v-model="photo.filename"/>
+                            <dropzone v-show="activedUpload"
+                                    id="myVueDropzone"
+                                    ref="reviewUpload"
+                                    url="/api/review/upload"
+                                    v-on:vdropzone-success="showSuccess"
+                                    v-bind:preview-template="template">
+                                <!-- Optional parameters if any! -->
+                                <input type="hidden" name="token" value="xxx">
+                            </dropzone>
                         </div>
                         <div class="c-card__footer">
                             <div class="o-user-block">
@@ -56,7 +69,6 @@
                                 </div>
                                 <div class="o-user-block__info">
                                     <span class="o-user-block__name">{{ user.name }}</span>
-                                    <!-- <span class="o-user-block__status">{{ formatedDate(review.created_at) }}</span> -->
                                     <button class="o-button o-button--primary write-a-review__button" @click="submitReview">Kirim Review</button>
                                 </div>
                             </div>
@@ -64,15 +76,15 @@
                     </div>
                 </div>
 
-                <div class="o-grid__col u-2/5@lg">
+                <div class="o-grid__col u-2/5@lg" v-show="(!writingReview && !reviewed)">
                     <div class="c-card c-card--dialog c-card--dialog__placeholder c-card--dialog__dummy">
-                      <!--   <div class="c-card__header">
-                            <rating v-model="form.rating" :venue-id="venueId" method="post"></rating>
-                        </div> -->
+                        <!--   <div class="c-card__header">
+                              <rating v-model="form.rating" :venue-id="venueId" method="post"></rating>
+                          </div> -->
                         <div class="c-card__body">
                             <h2 class="c-card--dialog__dummy__title">
                                 Tulis Review Kamu Sekarang
-                            </h2>
+                             </h2>
                             <button class="o-button o-button--primary" @click="writeReview">
                                 Tulis Review
                             </button>
@@ -84,7 +96,30 @@
                                 </div>
                                 <div class="o-user-block__info">
                                     <span class="o-user-block__name">{{ user.name }}</span>
-                                    <span class="o-user-block__name">{{ user.name }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div v-if="reviewed" class="o-grid__col u-1/5@lg">
+                    <div class="c-card c-card--dialog c-card--dialog__placeholder">
+                        <div class="c-card__header">
+                            <rating v-model="myReview.rating" :venue-id="venueId" method="get"></rating>
+                        </div>
+                        <div class="c-card__body">
+                            <p>
+                                {{ myReview.content }}
+                            </p>
+                        </div>
+                        <div class="c-card__footer">
+                            <div class="o-user-block">
+                                <div class="o-user-block__pic">
+                                    <img :src="myReview.user.avatar" alt="">
+                                </div>
+                                <div class="o-user-block__info">
+                                    <span class="o-user-block__name">{{ myReview.user.name }}</span>
+                                    <span class="o-user-block__status">{{ formatedDate(myReview.created_at) }}</span>
                                 </div>
                             </div>
                         </div>
@@ -124,15 +159,17 @@ import { mapGetters } from 'vuex'
 
 import Form from '../utils/form.js'
 import Rating from './Rating.vue'
+import Dropzone from 'vue2-dropzone'
 
 export default {
-    components: { Rating },
+    components: { Rating, Dropzone },
     model: {
         prop: 'reviews',
         event: 'reviews'
     },
     props: {
         venueId: { type: Number, required: true },
+        myReview: { type: Object, required: false },
         reviews: { type: Array, required: true }
     },
     computed: {
@@ -144,6 +181,9 @@ export default {
     watch: {
         venueId(value) {
             this.form.venue_id = value;
+        },myReview(value) {
+            if(value)
+                this.reviewed = true;
         },
         'user.id': function(value) {
             this.form.user_id = value;
@@ -152,13 +192,16 @@ export default {
     data() {
         return {
             writingReview: false,
+            reviewed:false,
+            activedUpload: false,
             form: new Form({
                 user_id: 0,
                 venue_id: 0,
                 rating: 0,
                 content: null,
-                //photos: []
-            })
+                imageCollection: []
+            }),
+            uploadedPhotos:[]
         }
     },
     created() {
@@ -176,15 +219,42 @@ export default {
             this.writingReview = false;
         },
         submitReview() {
+            this.form.imageCollection = this.uploadedPhotos;
             this.form.submit('post', '/api/review').then((response) => {
-                this.reviews.unshift(response);
-                this.writingReview = false;
+                if(response){
+                    this.myReview = response;
+                    this.writingReview = false;
+                    this.reviewed = true;
+                }
             }).catch((errors) => {
                 console.log(errors);
             });
         },
         formatedDate(date){
             return moment(date).fromNow();
+        },
+        activeUpload(e) {
+            this.activedUpload = true;
+        },
+        showSuccess(file, response) {
+            if(response)
+                this.uploadedPhotos.push(response);
+        },
+        template() {
+            return `
+                  <div class="dz-preview dz-file-preview">
+                      <div class="dz-image" style="width: 100px;height: 100px">
+                          <img data-dz-thumbnail /></div>
+                      <div class="dz-details">
+                        <div class="dz-size"><span data-dz-size></span></div>
+                        <div class="dz-filename"><span data-dz-name></span></div>
+                      </div>
+                      <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                      <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                      <div class="dz-success-mark"><i class="fa fa-check"></i></div>
+                      <div class="dz-error-mark"><i class="fa fa-close"></i></div>
+                  </div>
+              `;
         }
     }
 }

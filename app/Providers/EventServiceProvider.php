@@ -29,6 +29,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\ReviewSaving' => [
             'App\Listeners\CreateUserIfNotExist',
         ],
+        'App\Events\ReviewSaved' => [
+            'App\Listeners\SavePhotosReview',
+        ],
     ];
 
     /**

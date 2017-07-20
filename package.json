@@ -39,5 +39,7 @@
         "vuex": "^2.3.1",
         "vuex-router-sync": "^4.1.2"
     },
-    "dependencies": {}
+    "dependencies": {
+        "vue2-dropzone": "^2.3.5"
+    }
 }

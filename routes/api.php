@@ -21,6 +21,7 @@ Route::get('/search', 'SearchController');
 Route::get('venue/{slug}', 'VenueController');
 Route::get('reviews', 'ReviewController@index');
 Route::post('review', 'ReviewController@store');
+Route::post('review/upload', 'ReviewController@upload');
 
 Route::get('city', function(Request $request){
     $api_key = '02586f6e74107d6db523cdad625742e3a2e5c88f7d9c340e6b7753087abc580b';
