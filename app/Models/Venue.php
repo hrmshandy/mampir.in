@@ -36,10 +36,10 @@ class Venue extends Model
      *
      * @var array
      */
-    protected $events = [
-        'saving' => VenueSaving::class,
-        'saved' => VenueSaved::class,
-    ];
+//    protected $events = [
+//        'saving' => VenueSaving::class,
+//        'saved' => VenueSaved::class,
+//    ];
 
     /**
      * The relations to eager load on every query.

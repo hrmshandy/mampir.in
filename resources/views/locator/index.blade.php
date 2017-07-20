@@ -71,19 +71,27 @@
                             </button>
                         </div>
                         <div v-for="(result, index) in results" class="location has-no-logo">
-                            <button class="btn btn-success btn-sm location__btn" type="button" @click="save(index)" :disabled="result.saving">
-                                <span v-if="!result.saving">Save</span>
-                                <span v-else>Loading...</span>
-                            </button>
-                            <button class="btn btn-danger btn-sm location__btn" type="button" @click="ignore(index)">Ignore</button>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <button class="btn btn-success btn-sm location__btn" type="button" @click="save(index)" :disabled="result.saving">
+                                        <span v-if="!result.saving">Save</span>
+                                        <span v-else>Loading...</span>
+                                    </button>
+                                    <button class="btn btn-danger btn-sm location__btn" type="button" @click="ignore(index)">Ignore</button>
+
+                                </div>
+                                <div class="col-sm-6 text-right text-warning">
+                                    <span v-if="result.exists">Already imported</span>
+                                </div>
+                            </div>
                             <div class="location__body">
                                 <div class="location__logo"></div>
                                 <div class="location__info">
                                     <input type="text" class="form-control location__name" placeholder="Name" v-model="result.name">
                                     <textarea rows="2" class="form-control location__address" placeholder="Address" v-model="result.address"></textarea>
                                 </div>
-                                <div v-if="result.place_photos.length > 0" class="location__photos">
-                                    <div v-for="photo in result.place_photos" class="location__photo-item">
+                                <div v-if="result.photos.length > 0" class="location__photos">
+                                    <div v-for="photo in result.photos" class="location__photo-item">
                                         <img :src="photo" alt="">
                                     </div>
                                 </div>

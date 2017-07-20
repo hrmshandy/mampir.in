@@ -73,7 +73,6 @@ const app = new Vue({
                     item.saving = false;
                     return item;
                 });
-                console.log(data);
             }).catch((error) => {
                 this.searching = false;
                 console.log(error);
@@ -85,7 +84,6 @@ const app = new Vue({
                 this.results = [];
                 this.saving = false;
                 this.hasResult = false;
-                console.log(data);
             }).catch((error) => {
                 this.saving = false;
                 this.hasResult = false;

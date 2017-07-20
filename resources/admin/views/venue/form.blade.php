@@ -98,7 +98,7 @@
                                 Gallery
                             </div>
                             <div class="card-block">
-                                <finder name="place_photos"
+                                <finder name="photos"
                                         button-text="Add an image"
                                         mode="gallery"
                                         :existing-images="{{ $venue->exists ? json_encode($venue->photos) : json_encode([]) }}">
@@ -110,38 +110,38 @@
                                 Details
                             </div>
                             <div class="card-block">
-                                <div class="o-form-group{{ $errors->has('details.desc') ? ' has-error' : '' }}">
+                                <div class="o-form-group{{ $errors->has('detail.desc') ? ' has-error' : '' }}">
                                     <label for="">Description</label>
-                                    <textarea class="o-textarea" name="details[desc]" placeholder="Description" rows="4">{{ $venue->exists ? $venue->details->desc : null }}</textarea>
-                                    @if($errors->has('details.desc'))
-                                        <div class="o-form-feedback">{{ $errors->first('details.desc') }}</div>
+                                    <textarea class="o-textarea" name="detail[desc]" placeholder="Description" rows="4">{{ $venue->exists ? $venue->detail->desc : null }}</textarea>
+                                    @if($errors->has('detail.desc'))
+                                        <div class="o-form-feedback">{{ $errors->first('detail.desc') }}</div>
                                     @endif
                                 </div>
                                 <div class="o-grid">
                                     <div class="o-grid__col u-4/12">
-                                        <div class="o-form-group{{ $errors->has('details.phone_number') ? ' has-error' : '' }}">
+                                        <div class="o-form-group{{ $errors->has('detail.phone_number') ? ' has-error' : '' }}">
                                             <label for="">Phone Number</label>
-                                            <input type="text" class="o-input" name="details[phone_number]" placeholder="Phone Number" value="{{ $venue->exists ? $venue->details->phone_number : null }}">
-                                            @if($errors->has('details.phone_number'))
-                                                <div class="o-form-feedback">{{ $errors->first('details.phone_number') }}</div>
+                                            <input type="text" class="o-input" name="detail[phone_number]" placeholder="Phone Number" value="{{ $venue->exists ? $venue->detail->phone_number : null }}">
+                                            @if($errors->has('detail.phone_number'))
+                                                <div class="o-form-feedback">{{ $errors->first('detail.phone_number') }}</div>
                                             @endif
                                         </div>
                                     </div>
                                     <div class="o-grid__col u-4/12">
-                                        <div class="o-form-group{{ $errors->has('details.website') ? ' has-error' : '' }}">
+                                        <div class="o-form-group{{ $errors->has('detail.website') ? ' has-error' : '' }}">
                                             <label for="">Website</label>
-                                            <input type="text" class="o-input" name="details[website]" placeholder="Website" value="{{ $venue->exists ? $venue->details->website : null }}">
-                                            @if($errors->has('details.website'))
-                                                <div class="o-form-feedback">{{ $errors->first('details.website') }}</div>
+                                            <input type="text" class="o-input" name="detail[website]" placeholder="Website" value="{{ $venue->exists ? $venue->detail->website : null }}">
+                                            @if($errors->has('detail.website'))
+                                                <div class="o-form-feedback">{{ $errors->first('detail.website') }}</div>
                                             @endif
                                         </div>
                                     </div>
                                     <div class="o-grid__col u-4/12">
-                                        <div class="o-form-group{{ $errors->has('details.email') ? ' has-error' : '' }}">
+                                        <div class="o-form-group{{ $errors->has('detail.email') ? ' has-error' : '' }}">
                                             <label for="">E-Mail</label>
-                                            <input type="text" class="o-input" name="details[email]" placeholder="E-Mail" value="{{ $venue->exists ? $venue->details->email : null }}">
-                                            @if($errors->has('details.email'))
-                                                <div class="o-form-feedback">{{ $errors->first('details.email') }}</div>
+                                            <input type="text" class="o-input" name="detail[email]" placeholder="E-Mail" value="{{ $venue->exists ? $venue->detail->email : null }}">
+                                            @if($errors->has('detail.email'))
+                                                <div class="o-form-feedback">{{ $errors->first('detail.email') }}</div>
                                             @endif
                                         </div>
                                     </div>
