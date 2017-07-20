@@ -21,19 +21,27 @@
                                             <div class="c-venue__image holderjs" data-background-src="?holder.js/150x100?theme=vine&text=No Image"></div>
                                         @endif
                                         <div class="c-venue__body">
-                                            <h5 class="u-mt-x0 u-mb-x2">{{ $venue->name }}</h5>
+                                            <h5 class="u-mt-x0 u-mb-x2">
+                                                {{ $venue->name }}
+                                                <small>
+                                                    @if($venue->status == 1)
+                                                        <span class="badge badge-success">Published</span>
+                                                    @else
+                                                        <span class="badge badge-warning">Unpublished</span>
+                                                    @endif
+                                                </small>
+                                            </h5>
                                             {{ $venue->address }} <br/>
-                                            @if($venue->status == 1)
-                                                <span class="badge badge-success">Published</span>
-                                            @else
-                                                <span class="badge badge-warning">Unpublished</span>
-                                            @endif
-                                            @if(count($venue->categories))
-                                                <span>|</span>
-                                                @foreach($venue->categories as $category)
-                                                    <span class="badge badge-primary">{{ $category->name }}</span>
-                                                @endforeach
-                                            @endif
+                                            <div class="u-mt-x1">
+                                                <label for="categories">Categories:</label>
+                                                @if(count($venue->categories))
+                                                    @foreach($venue->categories as $category)
+                                                        <span class="badge badge-primary">{{ $category->name }}</span>
+                                                    @endforeach
+                                                @endif
+                                            </div>
+
+
                                             <hr>
                                             <div class="c-venue__actions">
                                                 <a href="{{ adm_url('venue/'.$venue->id.'/edit') }}" class="btn btn-link btn-sm u-color-primary"><i class="material-icons">mode_edit</i> Edit</a>

@@ -18,7 +18,7 @@ trait VenueRelations
         return $this->belongsTo(City::class)->select('id', 'name', 'province_id');
     }
 
-    public function details()
+    public function detail()
     {
         return $this->hasOne(VenueDetail::class);
     }

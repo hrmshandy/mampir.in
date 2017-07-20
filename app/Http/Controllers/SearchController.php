@@ -13,7 +13,7 @@ class SearchController extends Controller
 
         if($request->has('location')) {
             $venue = $venue->whereHas('city', function($query) use($request){
-                $query->where('name', $request);
+                $query->where('name', $request->location);
             });
         }
 
@@ -23,17 +23,17 @@ class SearchController extends Controller
 
         if($request->has('keyword')) {
             $venue = $venue->where('name', 'like', '%'.$request->keyword.'%')
-                            ->orWhereHas('categories', function($query) use($request){
-                                $query->where('name', 'like', '%'.$request->keyword.'%')
-                                      ->orWhere('alias', 'like', '%'.$request->keyword.'%');
-                            });
+                        ->orWhereHas('categories', function($query) use($request){
+                            $query->where('name', 'like', '%'.$request->keyword.'%')
+                                ->orWhere('alias', 'like', '%'.$request->keyword.'%');
+                        });
         }
 
         if($request->has('categories')) {
 
             $venue = $venue->whereHas('categories', function($query) use($request){
-                $query->where('name', 'like', '%'.$request->keyword.'%')
-                      ->orWhere('alias', 'like', '%'.$request->keyword.'%');
+                $query->where('name', 'like', '%'.$request->categories.'%')
+                      ->orWhere('alias', 'like', '%'.$request->categories.'%');
             });
 
         }

@@ -7,6 +7,7 @@ use App\Models\City;
 use App\Models\Venue;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests;
 
 class VenueController extends Controller
 {
@@ -17,7 +18,10 @@ class VenueController extends Controller
      */
     public function index()
     {
-        $venues = Venue::with('details', 'facilities', 'opening_hours', 'photos')->orderBy('created_at', 'desc')->paginate(5);
+        $venues = Venue::with('detail', 'facilities', 'opening_hours', 'photos')
+                        ->orderBy('created_at', 'desc')
+                        ->paginate(5);
+
         return view('admin::venue.index', compact('venues'));
     }
 
@@ -37,17 +41,13 @@ class VenueController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Requests\VenueForm $form
      * @return \Illuminate\Http\Response
+     * @internal param Request $request
      */
-    public function store(Request $request)
+    public function store(Requests\VenueForm $form)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'address' => 'required'
-        ]);
-
-        $venue = Venue::create($request->except('qqfile'));
+        $form->store();
 
         return redirect('_admin/venue');
     }
@@ -80,18 +80,15 @@ class VenueController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param Requests\VenueForm $form
+     * @param Venue $venue
      * @return \Illuminate\Http\Response
+     * @internal param Request $request
+     * @internal param int $id
      */
-    public function update(Request $request, Venue $venue)
+    public function update(Requests\VenueForm $form, Venue $venue)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'address' => 'required'
-        ]);
-
-        $venue->update($request->except('qqfile'));
+        $venue = $form->update($venue);
 
         return redirect('_admin/venue/'.$venue->id.'/edit');
     }
@@ -99,11 +96,14 @@ class VenueController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Venue $venue
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function destroy($id)
+    public function destroy(Venue $venue)
     {
-        //
+        $venue->delete();
+
+        return back();
     }
 }
