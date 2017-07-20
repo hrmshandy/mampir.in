@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Photo;
 use App\Models\Review;
+use App\Libraries\TemporaryFile;
 use Illuminate\Http\Request;
+
 
 class ReviewController extends Controller
 {
@@ -21,8 +24,16 @@ class ReviewController extends Controller
     }
 
     public function store(Request $request) {
-        $review = Review::create($request->all());
+        $review = new Review($request->all());
+        $review->imageCollection = $request->get('imageCollection');
+        $review->save();
+
         return Review::with('user')->find($review->id);
+    }
+
+    public function upload(Request $request) {
+        $temp = TemporaryFile::saveImage($request->file);
+        return response()->json($temp);
     }
 
 }

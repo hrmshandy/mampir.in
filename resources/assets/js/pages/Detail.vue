@@ -25,7 +25,7 @@
 		<!-- </section> -->
 		<section class="o-section o-section--grey">
 			<div class="o-container--fluid">
-				<reviews :venue-id="venueId" v-model="reviews"></reviews>
+				<reviews :venue-id="venueId" :my-review="myReview" v-model="reviews"></reviews>
 			</div>
 		</section>
 	</div>
@@ -55,7 +55,8 @@ export default {
 			location: {},
 			rating: 0,
 			ratings: [],
-			reviews: []
+			reviews: [],
+			myReview: {}
 		}
 	},
 	created() {
@@ -92,6 +93,7 @@ export default {
 				this.rating = data.rating;
 				this.ratings = data.ratings;
 				this.reviews = data.reviews;
+				this.myReview = data.myReview;
 
 				window.document.title = data.name+' - Mampir.in';
 	      	});
