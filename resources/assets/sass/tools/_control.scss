@@ -10,8 +10,8 @@ $size-medium: 18px;
 $size-large: 20px;
 
 @mixin control {
-  -moz-appearance: none;
-  -webkit-appearance: none;
+  //-moz-appearance: none;
+  //-webkit-appearance: none;
   align-items: center;
   border: 1px solid transparent;
   border-radius: $control-radius;

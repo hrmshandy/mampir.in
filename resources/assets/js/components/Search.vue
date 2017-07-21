@@ -3,7 +3,15 @@
         <button type="button" class="c-search__button iconim iconim-search-close" @click="toggleSearch"></button>
         <div class="c-search__form">
             <div class="c-form-group">
-                <input type="text" :class="['o-input', inputSize]" placeholder="Kota" v-model="location" id="location">
+                <select :class="['o-input', inputSize]" v-model="location" id="location">
+                    <option value="">Kota</option>
+                    <option value="Bandung">Bandung</option>
+                    <option value="Jakarta Barat">Jakarta Barat</option>
+                    <option value="Jakarta Pusat">Jakarta Pusat</option>
+                    <option value="Jakarta Selatan">Jakarta Selatan</option>
+                    <option value="Jakarta Timur">Jakarta Timur</option>
+                    <option value="Jakarta Utara">Jakarta Utara</option>
+                </select>
             </div>
             <div class="c-form-group">
                 <input type="text" :class="['o-input', inputSize]" placeholder="Area" v-model="area">
@@ -94,10 +102,10 @@
                         geocoder.geocode({'latLng': latLng}, (results, status) => {
                             if (status == google.maps.GeocoderStatus.OK) {
                                 let result = results.filter(function (item) {
-                                    return item.types == 'locality,political';
+                                    return item.types[0] == 'locality';
                                 });
                                 if (_.isEmpty(this.location)) {
-                                    this.location = result[0].address_components[0].long_name;
+                                    this.location = !_.isEmpty(result) ? result[0].address_components[0].long_name : '';
                                 }
                             }
                             else {

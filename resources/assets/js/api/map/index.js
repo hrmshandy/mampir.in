@@ -1,6 +1,7 @@
 import { load, loaded } from './loader'
 import Styles from './styles'
 import Icon from './map-pin-empty'
+import MarkerClusterer from './markerclusterer'
 
 load('AIzaSyDxu7mv5mlPM9Aj2CiYKFWY9b6adizdC4c');
 
@@ -33,8 +34,10 @@ class Map
 		self.activeInfowindow = null;
 
 		loaded.then(() => {
-            var bounds = new google.maps.LatLngBounds();
-			for (var i = 0; i < addressPoints.length; i++) {
+            let bounds = new google.maps.LatLngBounds();
+
+            let markers = [];
+			for (let i = 0; i < addressPoints.length; i++) {
 	        	let latLng = new google.maps.LatLng(addressPoints[i].lat, addressPoints[i].lng);
 
 	        	let marker = new google.maps.Marker({
@@ -100,10 +103,18 @@ class Map
 				    infowindow.open(self.map, marker);
 				    self.activeInfowindow = infowindow;
 				});
+
+                markers.push(marker);
 	        }
 
             this.map.fitBounds(bounds);
+
+            const markerCluster = new MarkerClusterer(this.map, markers,
+                {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
 		});
+
+
+
 	}
 }
 export default Map;
