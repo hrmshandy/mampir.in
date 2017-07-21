@@ -182,9 +182,15 @@
 
 @section('scripts')
     <script>
-        var categories = new Choices('.choice', {
-            paste: false,
-            duplicateItems: false,
+        var choices = document.querySelectorAll('.choice');
+
+        choices.forEach(function(el){
+            new Choices(el, {
+                paste: false,
+                duplicateItems: false,
+                delimiter: ',',
+                removeItemButton: true
+            });
         });
     </script>
 @endsection

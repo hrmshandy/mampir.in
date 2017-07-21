@@ -16,13 +16,41 @@ class VenueController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $venues = Venue::with('detail', 'facilities', 'opening_hours', 'photos')
-                        ->orderBy('created_at', 'desc')
-                        ->paginate(5);
+        $venues = Venue::with('detail', 'facilities', 'opening_hours', 'photos', 'categories');
 
-        return view('admin::venue.index', compact('venues'));
+        if($request->has('keyword') and !empty($request->keyword)) {
+            $venues = $venues->where('name', 'like', '%'.$request->keyword.'%');
+        }
+
+        if($request->has('city_id') and !empty($request->city_id)) {
+            $venues = $venues->where('city_id', $request->city_id);
+        }
+
+        if($request->has('categories') and !empty($request->categories)) {
+            $venues = $venues->whereHas('categories', function($query) use($request){
+                $query->whereIn('id', $request->categories);
+            });
+        }
+
+        $order_field = 'created_at';
+        $order_direction = 'desc';
+
+        if($request->has('sort_field') and !empty($request->sort_field)) {
+            $order_field = $request->sort_field;
+        }
+
+        if($request->has('sort_direction') and !empty($request->sort_direction)) {
+            $order_direction = $request->sort_direction;
+        }
+
+        $venues = $venues->orderBy($order_field, $order_direction)->paginate(5);
+
+        $cities = City::all();
+        $categories = Category::all();
+
+        return view('admin::venue.index', compact('venues', 'cities', 'categories'));
     }
 
     /**

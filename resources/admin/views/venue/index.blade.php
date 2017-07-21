@@ -1,6 +1,7 @@
 @extends('admin::layouts.master')
 
 @section('content')
+
     <div class="bg-faded u-pt-x3" style="min-height: calc(100vh - 75px);">
         <div class="container">
             <div class="o-grid">
@@ -9,6 +10,109 @@
                         <a href="{{ adm_url('venue/create') }}" class="o-button o-button--success">Add New</a>
                         <a href="{{ adm_url('locator') }}" class="o-button o-button--success">Add by google locator</a>
                     </div>
+
+                    @php
+                        $hasFilter = request()->has('city_id') || request()->has('categories');
+                        $hasSort = request()->has('sort_field') || request()->has('sort_direction');
+                    @endphp
+
+                    <div class="o-grid o-grid--middle u-mb-x3">
+                        <div class="o-grid__col u-8/12">
+                            <form>
+                                <input type="hidden" name="sort_field" value="{{ request('sort_field') }}">
+                                <input type="hidden" name="sort_direction" value="{{ request('sort_direction') }}">
+                                <input type="hidden" name="city_id" value="{{ request('city_id') }}">
+                                @if(request()->has('categories'))
+                                    @foreach(request('categories') as $category)
+                                        <input type="hidden" name="categories[]" value="{{ request('city_id') }}">
+                                    @endforeach
+                                @endif
+                                <div class="input-group">
+                                    <input type="text" name="keyword" class="form-control" placeholder="Search for..." value="{{ request('keyword') }}">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-secondary" type="submit"><i class="material-icons">search</i></button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="o-grid__col u-4/12 u-text-right">
+                            <a href="#" data-trigger="filter" class="o-button o-button--link @if($hasFilter) o-button--primary @endif">Filter</a>
+                            <a href="#" data-trigger="sort" class="o-button o-button--link @if($hasSort) o-button--primary @endif">Sort</a>
+                            <a href="{{ request()->url() }}" class="o-button o-button--link">Clear All</a>
+                        </div>
+                    </div>
+
+                    <div id="filter"
+                         @if($hasFilter)
+                            class="has-opened u-mb-x2"
+                         @else
+                             class="u-mb-x2"
+                             style="display: none;"
+                         @endif>
+                        <form class="o-grid o-grid--middle">
+                            <input type="hidden" name="sort_field" value="{{ request('sort_field') }}">
+                            <input type="hidden" name="sort_direction" value="{{ request('sort_direction') }}">
+                            <input type="hidden" name="keyword" value="{{ request('keyword') }}">
+                            <div class="o-grid__col u-4/12">
+                                <select name="city_id" class="choice" placeholder="Select City">
+                                    @foreach($cities as $city)
+                                        <option value="{{ $city->id }}"
+                                                @if($city->id == request('city_id')) selected @endif>
+                                            {{ $city->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="o-grid__col u-6/12">
+                                <select name="categories[]" class="choice" placeholder="Select Category" multiple>
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}"
+                                                @if(request()->has('categories')
+                                                    and in_array($category->id, request('categories'))) selected @endif>
+                                            {{ $category->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="o-grid__col u-2/12">
+                                <button class="o-button o-button--primary" type="submit">Filter</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="sort"
+                         @if($hasSort)
+                             class="has-opened u-mb-x2"
+                         @else
+                             class="u-mb-x2"
+                             style="display: none;"
+                         @endif>
+                        <form class="o-grid o-grid--middle">
+                            <input type="hidden" name="keyword" value="{{ request('keyword') }}">
+                            <input type="hidden" name="city_id" value="{{ request('city_id') }}">
+                            @if(request()->has('categories'))
+                                @foreach(request('categories') as $category)
+                                    <input type="hidden" name="categories[]" value="{{ request('city_id') }}">
+                                @endforeach
+                            @endif
+                            <div class="o-grid__col u-4/12">
+                                <select name="sort_field" class="form-control">
+                                    <option value="created_at" @if(request('sort_field') == 'created_at') selected @endif>Date Creation</option>
+                                    <option value="name" @if(request('sort_field') == 'name') selected @endif>Name</option>
+                                </select>
+                            </div>
+                            <div class="o-grid__col u-4/12">
+                                <select name="sort_direction" class="form-control">
+                                    <option value="desc" @if(request('sort_direction') == 'desc') selected @endif>Descending</option>
+                                    <option value="asc" @if(request('sort_direction') == 'asc') selected @endif>Ascending</option>
+                                </select>
+                            </div>
+                            <div class="o-grid__col u-4/12">
+                                <button class="o-button o-button--primary" type="submit">Sort</button>
+                            </div>
+                        </form>
+                    </div>
+
 
                     @if(count($venues) > 0)
                         @foreach($venues as $venue)
@@ -74,5 +178,46 @@
 
 @section('scripts')
     <script>
+
+        function toggle(el) {
+            var container = document.getElementById(el.dataset.trigger);
+
+            if(container.classList.contains('has-opened')) {
+                el.classList.remove('o-button--primary');
+                container.classList.remove('has-opened');
+                container.style.display = 'none';
+            } else {
+                el.classList.add('o-button--primary');
+                container.classList.add('has-opened');
+                container.style.display = 'block';
+            }
+        }
+
+        // sort
+        var sortBtn = document.querySelector('[data-trigger="sort"]');
+        sortBtn.addEventListener('click', function(e){
+            e.preventDefault();
+
+            toggle(this);
+        });
+
+        // filter
+        var filterBtn = document.querySelector('[data-trigger="filter"]');
+        filterBtn.addEventListener('click', function(e){
+            e.preventDefault();
+
+            toggle(this);
+        });
+        var choices = document.querySelectorAll('.choice');
+
+        choices.forEach(function(el){
+            new Choices(el, {
+                paste: false,
+                duplicateItems: false,
+                delimiter: ',',
+                removeItemButton: true
+            });
+        });
+
     </script>
 @endsection

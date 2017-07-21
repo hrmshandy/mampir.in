@@ -1,6 +1,6 @@
 require('./bootstrap');
 
-window.Choices = require('choices.js');
+window.Choices = require('choices.js/assets/scripts/dist/choices');
 window.Vue = require('vue');
 
 /**
