@@ -83,7 +83,22 @@ class GoogleMapExtractor
 
 	protected static function reviews($detail) {
 		if(isset($detail['reviews'])) {
-			return $detail['reviews'];
+		    return collect($detail['reviews'])->map(function($item){
+		        if(!empty($item['text'])) {
+                    return [
+                        'rating' => $item['rating'],
+                        'content' => $item['text'],
+                        'status' => 2,
+                        'user' => [
+                            'name' => $item['author_name'],
+                            'email' => str_random(10).'@mail.com',
+                            'password' => 'secret',
+                            'fake' => 1
+                        ]
+                    ];
+                }
+
+            })->all();
 		}
 		return [];
 	}

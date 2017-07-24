@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
-    public function __invoke(Request $request)
+    public function search(Request $request)
     {
         $venue = Venue::with('categories', 'city');
 
@@ -42,6 +42,60 @@ class SearchController extends Controller
 
         return $venue->paginate(20);
     }
+
+    public function suggest(Request $request)
+    {
+        $venue = Venue::with('city')->select('id', 'name', 'slug');
+
+        if($request->has('location')) {
+            $venue = $venue->whereHas('city', function($query) use($request){
+                $query->where('name', $request->location);
+            });
+        }
+
+        if($request->has('area')) {
+            $venue = $venue->where('area', 'like', '%'.$request->area.'%');
+        }
+
+        if($request->has('keyword')) {
+            $venue = $venue->where(function($query) use($request) {
+                $query->where('name', 'like', '%'.$request->keyword.'%')
+                    ->orWhereHas('categories', function($query) use($request){
+                        $this->filterCategories($query, $request, $request->keyword);
+                    });
+            });
+
+            return $venue
+                ->take(10)
+                ->get();
+        }
+
+        return [];
+    }
+
+    public function suggestArea(Request $request)
+    {
+        $venue = Venue::with('city')->select('area');
+
+        if($request->has('location')) {
+            $venue = $venue->whereHas('city', function($query) use($request){
+                $query->where('name', $request->location);
+            });
+        }
+
+        if($request->has('area')) {
+            $venue = $venue->where(function($query) use($request) {
+                $query->where('area', 'like', '%'.$request->area.'%');
+            });
+
+            return $venue->groupBy('area')
+                ->take(10)
+                ->get();
+        }
+
+        return [];
+    }
+
 
     protected function filterCategories($query, Request $request, $keyword)
     {

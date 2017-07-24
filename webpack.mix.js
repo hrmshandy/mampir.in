@@ -41,7 +41,6 @@ function site(mix) {
 
 mix.sourceMaps();
 mix.version();
-mix.copy('resources/assets/talvbansal/media-manager/fonts/', 'public/fonts/');
 
 if(process.argv.includes('--env.admin')) {
     mix.setPublicPath(path.join('public', 'admin'));

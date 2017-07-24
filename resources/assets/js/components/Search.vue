@@ -13,11 +13,30 @@
                     <option value="Jakarta Utara">Jakarta Utara</option>
                 </select>
             </div>
-            <div class="c-form-group">
-                <input type="text" :class="['o-input', inputSize]" placeholder="Area" v-model="area">
+            <div class="c-form-group has-suggestions">
+                <input type="text"
+                       :class="['o-input', inputSize]"
+                       placeholder="Area"
+                       v-model="area"
+                       @input="fetchAreaSuggestions">
+                <div v-if="showSearchAreaSuggestions && !isEmptyAreaSuggestions" class="c-search-suggestions">
+                    <template v-for="suggest in areaSuggestions">
+                        <a href="#" class="c-search-suggestions__item" @click.prevent="setAsValue($event, suggest)">{{ suggest.text }}</a>
+                    </template>
+                </div>
             </div>
-            <div class="c-form-group">
-                <input type="text" :class="['o-input', inputSize]" placeholder="Nyari Apa?" v-model="keyword">
+            <div class="c-form-group has-suggestions" ref="searchSuggestions">
+                <input type="text"
+                       :class="['o-input', inputSize]"
+                       placeholder="Nyari Apa?"
+                       v-model="keyword"
+                       @focus="onInputFocus"
+                       @input="fetchSuggestions">
+                <div v-if="showSearchSuggestions && !isEmptySuggestions" class="c-search-suggestions">
+                    <template v-for="suggest in suggestions">
+                        <a href="#" class="c-search-suggestions__item" @click.prevent="goToSearch($event, suggest)">{{ suggest.text }}</a>
+                    </template>
+                </div>
             </div>
             <div class="c-form-group">
                 <button :class="['o-button', 'o-button--primary', 'o-button--block', btnSize]" type="submit">
@@ -41,7 +60,16 @@
         },
         data() {
             return {
-                showSearchForm: false
+                showSearchForm: false,
+                showSearchAreaSuggestions: false,
+                showSearchSuggestions: false,
+                suggestions: [],
+                areaSuggestions: [],
+
+                // search query
+                location: '',
+                area: '',
+                keyword: ''
             }
         },
         computed: {
@@ -54,29 +82,22 @@
             btnSize() {
                 return !_.isEmpty(this.size) ? 'o-button--' + this.size : null;
             },
-            keyword: {
-                get () {
-                    return this.query.keyword
-                },
-                set (value) {
-                    this.$store.commit('SET_KEYWORD', value)
-                }
+            isEmptySuggestions() {
+                return this.suggestions.length <= 0;
             },
-            area: {
-                get () {
-                    return this.query.area
-                },
-                set (value) {
-                    this.$store.commit('SET_AREA', value)
-                }
+            isEmptyAreaSuggestions() {
+                return this.areaSuggestions.length <= 0;
+            }
+        },
+        watch: {
+            location(value) {
+                this.$store.commit('SET_LOCATION', value);
             },
-            location: {
-                get () {
-                    return this.query.location
-                },
-                set (value) {
-                    this.$store.commit('SET_LOCATION', value)
-                }
+            area(value) {
+                this.$store.commit('SET_AREA', value);
+            },
+            keyword(value) {
+                this.$store.commit('SET_KEYWORD', value);
             }
         },
         methods: {
@@ -116,7 +137,7 @@
                 });
             },
             forceAllowLocation() {
-                router.push('alert-location');
+                //router.push('alert-location');
             },
             getCurrentCity() {
                 if (typeof Cookies.get('user-city') === 'undefined') {
@@ -133,9 +154,135 @@
                     this.showSearchForm = true;
                     iconim.on('search-close');
                 }
+            },
+            onInputFocus(e) {
+                e.stopPropagation();
+
+                if(this.showSearchSuggestions) {
+                    this.closeSuggestions();
+                }
+
+                if(this.showSearchAreaSuggestions) {
+                    this.closeAreaSuggestions();
+                }
+
+                this.showSuggestions();
+
+            },
+            showSuggestions() {
+                this.showSearchSuggestions = true;
+
+                if(_.isEmpty(this.keyword)) {
+                    this.setDefaultSearchSuggestions();
+                }
+
+                this.$refs.searchSuggestions.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                });
+
+                document.addEventListener('click', (e) => {
+                    this.closeSuggestions();
+                });
+            },
+            showAreaSuggestions() {
+                this.showSearchAreaSuggestions = true;
+
+                this.$refs.searchSuggestions.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                });
+
+                document.addEventListener('click', (e) => {
+                    this.closeAreaSuggestions();
+                });
+            },
+            closeSuggestions() {
+                this.showSearchSuggestions = false;
+                //this.clearSuggestions();
+            },
+            closeAreaSuggestions() {
+                this.showSearchAreaSuggestions = false;
+                this.clearAreaSuggestions();
+            },
+            setDefaultSearchSuggestions() {
+                this.suggestions = [
+                    { text: "Kuliner", type: "categories" },
+                    { text: "Kecantikan", type: "categories" },
+                    { text: "Relaksasi", type: "categories" },
+                    { text: "Rekreasi", type: "categories" },
+                    { text: "Olahraga", type: "categories" },
+                    { text: "Shopping", type: "categories" },
+                    { text: "Barbershop", type: "categories" },
+                    { text: "Komunitas", type: "categories" }
+                ];
+            },
+            clearSuggestions() {
+                this.suggestions = [];
+            },
+            clearAreaSuggestions() {
+                this.areaSuggestions = [];
+            },
+            fetchSuggestions(e) {
+                const query = { location: this.location, area: this.area, keyword: this.keyword };
+                const queryString = serialize(clean(query));
+                axios.get('/api/search/suggest?'+queryString)
+                     .then(({data}) => {
+                        if(data.length <= 0) {
+                            this.closeSuggestions();
+                        } else {
+                            if(!this.showSearchSuggestions) {
+                                this.showSuggestions();
+                            }
+                            let results = data.map(item =>{
+                                return { id: item.id, text: item.name, slug: item.slug };
+                            });
+                            this.suggestions = results;
+                        }
+                     });
+            },
+            fetchAreaSuggestions(e) {
+                const query = { location: this.location, area: this.area, keyword: this.keyword };
+                const queryString = serialize(clean(query));
+
+                axios.get('/api/search/suggest-area?'+queryString)
+                    .then(({data}) => {
+                        if(data.length <= 0) {
+                            this.closeAreaSuggestions();
+                        } else {
+                            if(!this.showSearchAreaSuggestions) {
+                                this.showAreaSuggestions();
+                            }
+                            let results = data.map(item =>{
+                                return { text: item.area };
+                            });
+                            this.areaSuggestions = clean(results);
+                        }
+                    });
+            },
+            goToSearch(e, suggest) {
+                e.stopPropagation();
+                if(suggest.type === 'categories') {
+                    let query = Object.assign({}, this.query, { categories: suggest.text });
+                    query = serialize(clean(query));
+                    window.location = '/search?'+query;
+                } else {
+                    window.location = '/detail/'+suggest.slug;
+                }
+            },
+            setAsValue(e, suggest) {
+                e.stopPropagation();
+
+                this.$store.commit('SET_AREA', suggest.text);
+
+                this.closeAreaSuggestions();
             }
         },
         mounted() {
+            const query = this.$route.query;
+
+            this.location = query.location;
+            this.area = query.area;
+            this.keyword = query.keyword;
+
             this.geolocation();
         }
     }

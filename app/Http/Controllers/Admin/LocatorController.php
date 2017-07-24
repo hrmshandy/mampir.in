@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\Review;
+use App\Models\User;
 use App\Models\Venue;
 use App\Services\GoogleMapExtractor;
 use Illuminate\Http\Request;
@@ -38,7 +39,7 @@ class LocatorController extends Controller
 
         $venue = $form->store();
 
-        //$this->reviews($form, $venue);
+        $this->reviews($form, $venue);
 
         return response()->json(['status' => 'success']);
     }
@@ -62,9 +63,8 @@ class LocatorController extends Controller
 
         $venue = $form->update($venue);
 
-//        $venue->reviews()->delete();
-//
-//        $this->reviews($form, $venue);
+        $venue->reviews()->delete();
+        $this->reviews($form, $venue);
 
         return response()->json(['status' => 'success']);
     }
@@ -73,6 +73,12 @@ class LocatorController extends Controller
     {
         if($request->has('reviews') and !empty($request->reviews)) {
             $reviews = collect($request->reviews)->map(function($review){
+                $user = User::where('name', $review['user']['name'])->first();
+                if(count($user) <= 0) {
+                    $user = User::create($review['user']);
+                }
+                unset($review['user']);
+                $review['user_id'] = $user->id;
                 return new Review($review);
             });
 

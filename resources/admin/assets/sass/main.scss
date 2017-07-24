@@ -1,14 +1,16 @@
 // Vendor
 //
 @import '~choices.js/assets/styles/scss/choices';
-@import "../../../assets/talvbansal/media-manager/css/media-manager.css";
 
+// All Variables
 @import 'settings/core';
 @import 'settings/baseline';
 @import 'settings/colors';
 @import 'settings/type';
 
+// Mixins & Functions
 @import 'tools/core';
+@import 'tools/colors';
 @import 'tools/breakpoint';
 @import 'tools/elevation';
 @import 'tools/control';

@@ -1,6 +1,7 @@
 import { load, loaded } from './loader'
 import Styles from './styles'
 import Icon from './map-pin-empty'
+import ClusterIcon from './cluster-icon'
 import MarkerClusterer from './markerclusterer'
 
 load('AIzaSyDxu7mv5mlPM9Aj2CiYKFWY9b6adizdC4c');
@@ -12,6 +13,7 @@ class Map
 			this.map = new google.maps.Map(document.getElementById('map'), {
 	          	center: {lat: -0.789275, lng: 113.92132700000002},
 				zoom: 4,
+                minZoom: 4,
 	          	scrollwheel: false,
 	          	streetViewControl: false,
 	          	mapTypeControl: false,
@@ -109,8 +111,37 @@ class Map
 
             this.map.fitBounds(bounds);
 
-            const markerCluster = new MarkerClusterer(this.map, markers,
-                {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+			const clusterStyles = [
+                {
+                    textColor: 'white',
+                    fontFamily: "Hanken, Arial, sans-serif",
+                    textSize: 20,
+                    url: ClusterIcon,
+                    width: 50,
+					height: 60,
+                    anchorIcon: [50, 25]
+                },
+                {
+                    textColor: 'white',
+                    fontFamily: "Hanken, Arial, sans-serif",
+                    textSize: 20,
+                    url: ClusterIcon,
+                    width: 50,
+                    height: 60,
+                    anchorIcon: [50, 25]
+                },
+                {
+                    textColor: 'white',
+                    fontFamily: "Hanken, Arial, sans-serif",
+                    textSize: 20,
+                    url: ClusterIcon,
+                    width: 50,
+                    height: 60,
+                    anchorIcon: [50, 25]
+                }
+			];
+
+            const markerCluster = new MarkerClusterer(this.map, markers, { styles: clusterStyles });
 		});
 
 

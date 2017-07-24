@@ -1,71 +1,100 @@
 .c-search {
-    &__button {
-        @include unselectable;
-        background: transparent;
-        border: 0;
-        border-radius: 0;
-        color: $color-primary;
-        padding: 0;
-        width: 35px;
-        height: 35px;
-        font-size: 25px;
-        &:focus {
-            outline: none;
-        }
+  &__button {
+    @include unselectable;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    color: $color-primary;
+    padding: 0;
+    width: 35px;
+    height: 35px;
+    font-size: 25px;
+    &:focus {
+      outline: none;
+    }
+    display: none;
+    svg {
+      width: 1em !important;
+      height: 1em !important;
+      path {
+        fill: currentColor !important;
+        stroke: currentColor !important;
+      }
+    }
+  }
+  &__form {
+  }
+  &--inline {
+    .c-search__button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @include desktop {
         display: none;
-        svg {
-            width: 1em !important;
-            height: 1em !important;
-            path {
-                fill: currentColor !important;
-                stroke: currentColor !important;
-            }
-        }
+      }
     }
-    &__form {}
-    &--inline {
-        .c-search__button {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            @include desktop {
-                display: none;
-            }
+    .c-search__form {
+      display: none;
+      @include desktop {
+        display: flex;
+        > .c-form-group {
+          margin-left: 10px;
+          margin-bottom: 0;
+          &:first-child,
+          &:nth-child(2) {
+            width: 250px;
+          }
+          &:last-child {
+            width: 100px;
+          }
         }
-        .c-search__form {
-            display: none;
-            @include desktop {
-                display: flex;
-                > .c-form-group {
-                    margin-left: 10px;
-                    margin-bottom: 0;
-                    &:first-child,
-                    &:nth-child(2) {
-                        width: 250px;
-                    }
-                    &:last-child {
-                        width: 100px;
-                    }
-                }
-            }
-        }
+      }
     }
+  }
 
-    &.is-shown {
-        .c-search__form {
-            display: block;
-            width: 100%;
-            position: absolute;
-            left: 0;
-            background: #fff;
-            padding: 30px 15px 15px;
-            box-shadow: 0 2px 3px rgba(0,0,0, .15);
-        }
+  &.is-shown {
+    .c-search__form {
+      display: block;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      background: #fff;
+      padding: 30px 15px 15px;
+      box-shadow: 0 2px 3px rgba(0, 0, 0, .15);
     }
+  }
 }
 
 @media (max-width: 640px) {
-    .c-search.is-shown .c-search__form {
-        min-height: 100vh;
+  .c-search.is-shown .c-search__form {
+    min-height: 100vh;
+  }
+}
+
+// Search Suggestion
+.has-suggestions {
+  position: relative;
+}
+.c-search-suggestions {
+  position: absolute;
+  background: #fff;
+  box-shadow: 0 1px 5px rgba(#000, .2);
+  width: 100%;
+  z-index: 999;
+  top: calc(100% + 5px);
+  border-radius: 4px;
+  padding: 8px;
+  &__item {
+    display: block;
+    padding: 8px 16px;
+    border-radius: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 12px;
+    &:hover {
+      background: $color-primary;
+      color: #fff;
     }
+  }
 }
