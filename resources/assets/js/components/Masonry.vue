@@ -1,5 +1,5 @@
 <template>
-	<div class="o-grid o-grid--masonry">
+	<div ref="el" class="o-grid o-grid--masonry">
 		<div class="o-grid__sizer u-1/5@lg"></div>
 		<slot></slot>
 	</div>
@@ -16,8 +16,7 @@ export default {
     },
     watch: {
         '$route': () => {
-            this.init();
-            this.masonry.layout();
+            this.masonryDraw();
         }
 	},
 	mounted() {
@@ -25,15 +24,32 @@ export default {
 	},
     methods: {
         init() {
-            setTimeout(() => {
-                const elem = document.querySelector('.o-grid--masonry');
-                this.masonry = new Masonry( elem, {
-                    columnWidth: '.o-grid__sizer',
-                    itemSelector: '.o-grid__col',
-                    percentPosition: true
-                });
-            }, 1000);
-        }
+
+            //const elem = document.querySelector('.o-grid--masonry');
+            this.masonry = new Masonry(this.$refs.el, {
+                columnWidth: '.o-grid__sizer',
+                itemSelector: '.o-grid__col',
+                percentPosition: true,
+                isResizeBound: false
+            });
+
+            Vue.nextTick(() => {
+                this.masonryDraw();
+            });
+
+            Event.listen("masonry.refresh", () => {
+                this.masonryDraw();
+            });
+
+//            setTimeout(() => {
+//                this.masonryDraw();
+//			}, 1000);
+        },
+
+        masonryDraw() {
+            this.masonry.reloadItems();
+            this.masonry.layout();
+		}
     }
 }
 </script>

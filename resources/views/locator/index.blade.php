@@ -64,12 +64,12 @@
                     </div>
 
                     <div v-else class="locator-result">
-                        <div class="locator-result__bar">
-                            <button class="btn btn-success" type="button" @click="saveAll" :disabled="saving">
-                                <span v-if="!saving">Save All</span>
-                                <span v-else>Loading...</span>
-                            </button>
-                        </div>
+                        {{--<div class="locator-result__bar">--}}
+                            {{--<button class="btn btn-success" type="button" @click="saveAll" :disabled="saving">--}}
+                                {{--<span v-if="!saving">Save All</span>--}}
+                                {{--<span v-else>Loading...</span>--}}
+                            {{--</button>--}}
+                        {{--</div>--}}
                         <div v-for="(result, index) in results" class="location has-no-logo">
                             <div class="row">
                                 <div class="col-sm-6">

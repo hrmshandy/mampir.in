@@ -66,6 +66,23 @@ class VenueForm extends FormRequest
         return $venue;
     }
 
+    /**
+     *
+     */
+    public function storeAll()
+    {
+        foreach($this->venues as $venue) {
+            $venue = Venue::create($this->data());
+
+            $venue->detail()->save(new VenueDetail($this->detail));
+
+            $venue->categories()->attach($this->categories);
+
+            $this->photos($venue);
+        }
+
+    }
+
     public function update($venue)
     {
         $venue->update($this->data());
