@@ -72,7 +72,7 @@
                 </div>
             </div>
 
-            <div v-masonry-tile class="o-grid__col u-3/12@lg">
+            <div v-masonry-tile class="o-grid__col u-3/12@lg" v-if="reviewed">
                 <div class="c-card c-card--dialog c-card--dialog__placeholder">
                     <div class="c-card__header">
                         <rating v-model="myReview.rating" :venue-id="venueId" method="get"></rating>
