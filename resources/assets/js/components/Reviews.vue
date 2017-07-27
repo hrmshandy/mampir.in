@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="o-grid o-grid--middle">
-            <div class="o-grid__col u-6/12"><h3 class="review-header-title o-type-26 u-color-primary">Review</h3></div>
+            <!-- <div class="o-grid__col u-6/12"><h3 class="review-header-title o-type-26 u-color-primary">Review</h3></div> -->
             <!-- <div class="o-grid__col u-6/12 u-text-right">
                 <button class="o-button o-button--primary" @click="writeReview">Write a Review</button>
             </div> -->
@@ -46,20 +46,16 @@
                  column-width=".o-grid__sizer"
                  class="o-grid">
 
-                <div class="o-grid__sizer u-1/5@lg"></div>
+                <div class="o-grid__sizer u-3/12@lg"></div>
 
-                <div v-masonry-tile class="o-grid__col u-2/5@lg" v-show="(authenticated && !reviewed)">
+                <div v-masonry-tile class="o-grid__col u-3/12@lg" v-show="(authenticated && !reviewed)">
                     <div class="c-card c-card--dialog c-card--dialog__placeholder c-card--dialog__review">
                         <div class="c-card__header">
                             <rating v-model="form.rating" :venue-id="venueId" method="post"></rating>
                         </div>
                         <div class="c-card__body">
-                            <textarea v-model="form.content" rows="4" class="o-textarea" placeholder="Ceritakan pengalamanmu ..."></textarea>
-                            <button class="o-button o-button--primary" @click="activeUpload" v-show="!activedUpload">
-                                Upload Image
-                            </button>
                             <input v-for="photo in uploadedPhotos"  type="hidden" v-model="photo.filename"/>
-                            <dropzone v-show="activedUpload"
+                            <dropzone
                                     id="myVueDropzone"
                                     ref="reviewUpload"
                                     url="/api/review/upload"
@@ -68,6 +64,11 @@
                                 <!-- Optional parameters if any! -->
                                 <input type="hidden" name="token" value="xxx">
                             </dropzone>
+                            <textarea v-model="form.content" rows="4" class="o-textarea" placeholder="Ceritakan pengalamanmu ..."></textarea>
+                            <!-- <button class="o-button o-button--primary" @click="activeUpload" v-show="!activedUpload">
+                                Upload Image
+                            </button> -->
+
                         </div>
                         <div class="c-card__footer">
                             <div class="o-user-block">
@@ -76,6 +77,8 @@
                                 </div>
                                 <div class="o-user-block__info">
                                     <span class="o-user-block__name">{{ user.name }}</span>
+                                </div>
+                                <div class="o-user-block__submit">
                                     <button class="o-button o-button--primary write-a-review__button" @click="submitReview">Kirim Review</button>
                                 </div>
                             </div>
@@ -83,7 +86,7 @@
                     </div>
                 </div>
 
-                <div v-masonry-tile class="o-grid__col u-2/5@lg" v-show="(!authenticated && !reviewed)">
+                <div v-masonry-tile class="o-grid__col u-3/12@lg" v-show="(!authenticated && !reviewed)">
                     <div class="c-card c-card--dialog c-card--dialog__placeholder c-card--dialog__dummy">
                         <!--   <div class="c-card__header">
                               <rating v-model="form.rating" :venue-id="venueId" method="post"></rating>
@@ -109,7 +112,7 @@
                     </div>
                 </div>
 
-                <div v-masonry-tile v-for="review in reviews" class="o-grid__col u-1/5@lg">
+                <div v-masonry-tile v-for="review in reviews" class="o-grid__col u-3/12@lg">
                     <div class="c-card c-card--dialog c-card--dialog__placeholder">
                         <div class="c-card__header">
                             <rating v-model="review.rating" :venue-id="venueId" method="get"></rating>

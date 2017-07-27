@@ -3,7 +3,7 @@
         <button type="button" class="c-search__button iconim iconim-search-close" @click="toggleSearch"></button>
         <div class="c-search__form">
             <div class="c-form-group">
-                <select :class="['o-input', inputSize]" v-model="location" id="location">
+                <!-- <select :class="['o-input', inputSize]" v-model="location" id="location">
                     <option value="">Kota</option>
                     <option value="Bandung">Bandung</option>
                     <option value="Jakarta Barat">Jakarta Barat</option>
@@ -11,9 +11,13 @@
                     <option value="Jakarta Selatan">Jakarta Selatan</option>
                     <option value="Jakarta Timur">Jakarta Timur</option>
                     <option value="Jakarta Utara">Jakarta Utara</option>
-                </select>
+                </select> -->
+                <input type="text"
+                       :class="['o-input', inputSize]"
+                       placeholder="Pilih Lokasi"
+                       v-model="location">
             </div>
-            <div class="c-form-group has-suggestions">
+            <!-- <div class="c-form-group has-suggestions">
                 <input type="text"
                        :class="['o-input', inputSize]"
                        placeholder="Area"
@@ -24,7 +28,7 @@
                         <a href="#" class="c-search-suggestions__item" @click.prevent="setAsValue($event, suggest)">{{ suggest.text }}</a>
                     </template>
                 </div>
-            </div>
+            </div> -->
             <div class="c-form-group has-suggestions" ref="searchSuggestions">
                 <input type="text"
                        :class="['o-input', inputSize]"
@@ -39,9 +43,15 @@
                 </div>
             </div>
             <div class="c-form-group">
-                <button :class="['o-button', 'o-button--primary', 'o-button--block', btnSize]" type="submit">
+                <button :class="['o-button', 'o-button--primary','o-button-custom', 'o-button--block', btnSize]" type="submit">
                     <span v-if="!inline">Yuk,&nbsp;</span>
                     <strong>Cari<span v-if="!inline">!</span></strong>
+                    <span class="text-cari-icons" style="display: none;">
+                        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                            <path d="M0 0h24v24H0z" fill="none"/>
+                        </svg>
+                    </span>
                     <span class="text-cari-lagi" style="display: none;">Cari Lagi</span>
                 </button>
             </div>

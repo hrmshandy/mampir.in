@@ -21,7 +21,26 @@
         opacity: 0;
         visibility: hidden;
         transition: all .3s ease;
+        .c-search__form {
+            .o-button-custom {
+                background: transparent;
+                color: #818181;
+                padding: 0;
+                width: auto;
+                font-size: 1.8rem;
+                height: auto;
+                strong {
+                    display: none;
+                }
+                .text-cari-icons {
+                    display: flex!important;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+        }
     }
+
     &.is-sticky {
         position: fixed;
         background: #fff;
@@ -43,4 +62,3 @@
         margin-left: 10px;
     }
 }
-

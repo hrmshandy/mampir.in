@@ -1,6 +1,7 @@
 <template>
     <div>
-        <a href="#" @click.prevent="openModal" class="o-button o-button--primary-outlined o-button--small">Login</a>
+        <!-- <a href="#" @click.prevent="openModal" class="o-button o-button--primary-outlined o-button--small">Login</a> -->
+        <a href="#" @click.prevent="openModal" class="item">Login</a>
         <modal v-model="showModal" class="sign-modal sign-in">
             <sign>
                 <facebook></facebook>

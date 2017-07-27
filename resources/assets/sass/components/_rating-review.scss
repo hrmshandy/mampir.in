@@ -1,6 +1,9 @@
 .c-rating-review {
     display: flex;
     flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
     @include until(641px) {
         align-items: center;
         justify-content: space-between;
@@ -10,6 +13,7 @@
 .c-rating-review-list {
     padding-left: 0;
     list-style: none;
+    margin-left: 20px;
     > li {
         display: flex;
         align-items: center;

@@ -7,7 +7,7 @@
                 </router-link>
                 <mobile-menu></mobile-menu>
                 <search v-show="topSearch"></search>
-                <div class="u-pull-right login--wrapper">
+                <!-- <div class="u-pull-right login--wrapper">
                     <template v-if="authenticated">
                         <user></user>
                     </template>
@@ -15,7 +15,7 @@
                         <login></login>
                         <register></register>
                     </template>
-                </div>
+                </div> -->
             </div>
         </div>
     </header>

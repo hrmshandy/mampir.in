@@ -12,10 +12,33 @@
 						<search-form size="large" :inline="false"></search-form>
 					</div>
 				</div>
-				<category :categories="categories"></category>
+				<div class="category__new o-grid">
+					<div class="o-grid__col u-/12@sm">
+					</div>
+				</div>
 			</div>
 		</section>
-		<div class="c-categories c-categories--widget">
+		<!-- <div class="category__new">
+			<div class="slider js_slider">
+                <div class="frame js_frame">
+                    <ul class="slides js_slides">
+                        <li class="js_slide">1</li>
+                        <li class="js_slide">2</li>
+                        <li class="js_slide">3</li>
+                        <li class="js_slide">4</li>
+                        <li class="js_slide">5</li>
+                        <li class="js_slide">6</li>
+                    </ul>
+                </div>
+                <span class="js_prev prev">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 501.5 501.5"><g><path fill="#2E435A" d="M302.67 90.877l55.77 55.508L254.575 250.75 358.44 355.116l-55.77 55.506L143.56 250.75z"/></g></svg>
+                </span>
+                <span class="js_next next">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 501.5 501.5"><g><path fill="#2E435A" d="M199.33 410.622l-55.77-55.508L247.425 250.75 143.56 146.384l55.77-55.507L358.44 250.75z"/></g></svg>
+                </span>
+            </div>
+		</div> -->
+		<!-- <div class="c-categories c-categories--widget">
 			<div class="o-container">
 				<div class="o-grid">
 					<div v-for="category in categories" class="o-category__wrapper o-grid__col u-6/12@xs u-3/12@sm">
@@ -35,7 +58,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		<section v-if="reviews.length" class="o-section o-section--grey">
 			<div class="o-container--fluid">
 				<h1 class="o-section__title">Yang Happening di {{ city }}</h1>
@@ -101,6 +124,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import {lory} from 'lory.js';
+
 import Masonry from '../components/Masonry.vue'
 import SearchForm from '../components/Search.vue'
 import Category from '../components/Categories.vue'
@@ -152,6 +177,15 @@ export default {
 	        axios.get('/api/reviews?location='+city).then(({ data }) => {
 	           this.reviews = data;
 			});
+		},
+		initIory() {
+			document.addEventListener('DOMContentLoaded', () => {
+		        const slider = document.querySelector('.js_slider');
+
+		        lory(slider, {
+		            // options going here
+		        });
+		    });
 		}
 	},
 	created() {
@@ -160,6 +194,12 @@ export default {
 	mounted() {
 	    this.fetchReviews(document.getElementById('location').value);
 		//this.fitHeroUnitHeight();
+		this.initIory();
+		
+	 	/*Vue.nextTick(() => {
+			this.initIory();
+	 	});*/
+
 	}
 }
 </script>

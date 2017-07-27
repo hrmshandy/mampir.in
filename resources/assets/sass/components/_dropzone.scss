@@ -6,6 +6,10 @@
     transition: background-color .2s linear;
     padding: 0;
     min-height: 136px;
+    border-radius: 10px;
+    background: rgba(247, 247, 247, 0.5);
+    border: 2px solid rgb(247, 247, 247);
+    margin-bottom: 10px;
     &:hover {
         background-color: #F6F6F6;
     }
@@ -31,7 +35,8 @@
             transition: opacity .2s linear;
             text-align: left;
             margin: 0;
-            .dz-filename span, .dz-size span {
+            .dz-filename span,
+            .dz-size span {
                 background-color: transparent;
             }
             .dz-filename:not(:hover) span {

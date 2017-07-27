@@ -1,10 +1,10 @@
 <template>
-    <div class="o-container--fluid">
+    <div class="o-container--fluid o-container--reviews">
         <div :class="['p-venue-detail__overview', {'has-no-logo': !logo}]">
             <div class="p-venue-detail__logo"></div>
             <div class="p-venue-detail__info">
                 <h1 class="p-venue-detail__title o-type-35 u-mb-x2">{{ name }}</h1>
-                <small class="text-muted p-venue-detail__categories">{{ formatedCategories }}</small>
+                <!-- <small class="text-muted p-venue-detail__categories">{{ formatedCategories }}</small> -->
                 <div class="c-rating-review-display c-rating-review-display__mobile">
                     <!-- <span class="c-rating-review-display__number">{{ rating }}</span> -->
                     <rating v-model="rating" :venue-id="venueId" method="get"></rating>
@@ -17,7 +17,12 @@
                     <p class="p-venue-detail__address">
                         {{ address }}
                         <a :href="directionLink" target="_blank" class="p-venue-detail__map-direction">
-                            <i class="fa fa-share"></i> Get Direction
+                            <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/>
+                                <path d="M0 0h24v24H0z" fill="none"/>
+                            </svg>
+
+                             Get Direction
                         </a>
                     </p>
                 </div>
@@ -56,7 +61,7 @@
                 <!-- <hr> -->
             </div>
             <div class="p-venue-detail__rating">
-                <h5 class="o-type-20 u-mb-x2">Review of {{ name }}</h5>
+                <!-- <h5 class="o-type-20 u-mb-x2">Review of {{ name }}</h5> -->
                 <div class="c-rating-review">
                     <ul class="c-rating-review-list">
                         <li v-for="i in 5">

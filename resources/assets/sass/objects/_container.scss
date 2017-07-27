@@ -8,6 +8,11 @@ $iota-objs-container-size-extra: ( small: 510px, large: 1000px, wide: 1200px);
     margin-right: auto;
 }
 
+.o-container--reviews {
+    max-width: 98%;
+    margin: auto;
+}
+
 @import '~iotacss/objects/container';
 .o-container--wide {
     max-width: none;

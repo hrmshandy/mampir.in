@@ -1,11 +1,41 @@
 .nav-mobile {
-    display: none;
+    // display: none;
     @include until(641px) {
         display: block;
+    }
+    .o-logo__mobile {
+        @include until(641px) {
+            svg {
+                display: none;
+            }
+        }
+        @include from(641px) {
+            i {
+                display: none;
+            }
+        }
     }
     svg {
         width: 40px;
         height: 2em;
+    }
+    &__menu {
+        margin-left: 160px; // border-left: 1px solid #ccc;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        padding-bottom: 50px;
+        justify-content: center;
+        &::before {
+            content: '';
+            display: block;
+            height: 100vh;
+            background: #d0d0d0;
+            width: 1px;
+            position: absolute;
+            top: 15px;
+            margin-left: 15px;
+        }
     }
     &__wrapper {
         background: #fff;
@@ -20,9 +50,26 @@
     }
     &__item {
         list-style-type: none;
-        a {
+        a.item {
             display: block;
-            padding: 10px 20px;
+            padding: 10px 40px;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: #b7b7b7;
+            &.active {
+                color: #854f28;
+            }
+        }
+        .user {
+            display: block;
+            padding: 10px 40px;
+            font-size: 2.2rem;
+            color: #854f28;
+            margin-bottom: 20px;
+            &__name {
+                font-size: 2rem;
+                font-weight: normal;
+            }
         }
     }
     &.is-shown {

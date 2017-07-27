@@ -23,7 +23,7 @@
         border-top-right-radius: 5px;
         background: #fff;
         padding: 10px 15px;
-        border-bottom: 1px solid #eee;
+        // border-bottom: 1px solid #eee;
     }
     &__image {
         @extend %radius;
@@ -97,6 +97,9 @@
                 .o-user-block {
                     display: flex;
                     justify-content: space-between;
+                }
+                .o-user-block__submit {
+
                 }
             }
         }
