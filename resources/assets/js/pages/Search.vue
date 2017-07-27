@@ -37,14 +37,15 @@
                                          :style="{ backgroundImage: `url(${venue.cover})`}"></div>
                                     <div class="c-venue-card__info">
                                         <h5 class="c-venue-card__name o-type-18">{{ venue.name }}</h5>
-                                        <div class="c-venue-card__categories">
-                                            {{ venue.categories | joinBy }}
-                                        </div>
                                     </div>
                                     <div class="c-venue-card__footer">
                                         <div class="c-venue-card__rating">
                                             <rating :venue-id="venue.id" :value="venue.rating" method="get"></rating>
                                             <small class="text-muted">{{ venue.total_reviews }} Reviews</small>
+                                        </div>
+                                        <div class="c-venue-card__categories">
+                                            <!-- {{ venue.categories | joinBy }} -->
+                                            Jl. Kemang Selatan 1
                                         </div>
                                     </div>
                                 </a>
