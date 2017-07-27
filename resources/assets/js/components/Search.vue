@@ -14,6 +14,7 @@
                 </select> -->
                 <input type="text"
                        :class="['o-input', inputSize]"
+                       id="location"
                        placeholder="Pilih Lokasi"
                        v-model="location">
             </div>
