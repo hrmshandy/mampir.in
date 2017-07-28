@@ -20,8 +20,7 @@
 				  	"cellSelector": ".carousel-cell",
 				  	"contain": true,
 				  	"prevNextButtons": false,
-				  	"pageDots": false,
-				  	"draggable": false
+				  	"pageDots": false
 				  }'>
 				  <!-- <div class="static-banner static-banner1">Static banner 1</div> -->
 				  <!-- <div class="static-banner static-banner2">Static banner 2</div> -->
