@@ -18,8 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/search', 'SearchController@search');
-Route::get('/search/suggest', 'SearchController@suggest');
-Route::get('/search/suggest-area', 'SearchController@suggestArea');
+Route::get('/search/suggest/location', 'SearchController@suggestLocation');
+Route::get('/search/suggest/category', 'SearchController@suggestCategory');
 Route::get('venue/{slug}', 'VenueController');
 Route::get('reviews', 'ReviewController@index');
 Route::post('review', 'ReviewController@store');

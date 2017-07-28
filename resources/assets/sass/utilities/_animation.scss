@@ -1,31 +1,36 @@
 @-webkit-keyframes placeHolderShimmer {
-    0% {
-        background-position: -468px 0
-    }
-    100% {
-        background-position: 468px 0
-    }
+  0% {
+    transform: translateX(-110%)
+  }
+  100% {
+    transform: translateX(110%)
+  }
 }
 
 @keyframes placeHolderShimmer {
-    0% {
-        background-position: -468px 0
-    }
-    100% {
-        background-position: 468px 0
-    }
+  0% {
+    transform: translateX(-110%)
+  }
+  100% {
+    transform: translateX(110%)
+  }
 }
 
-@mixin placeHolderShimmer($primary: #eee, $secondary: #ddd) {
+@mixin placeHolderShimmer($width: 800px, $height: 104px, $primary: #f6f7f9, $secondary: #e9ebee) {
+  background: $primary;
+  overflow: hidden;
+  position: relative;
+  &:before {
     animation-duration: 1s;
     animation-fill-mode: forwards;
     animation-iteration-count: infinite;
     animation-name: placeHolderShimmer;
     animation-timing-function: linear;
-    background: $primary;
-    background: -webkit-gradient(linear, left top, right top, color-stop(8%, #{$primary}), color-stop(18%, #{$secondary}), color-stop(33%, #{$primary}));
-    background: -webkit-linear-gradient(left, #{$primary} 8%, #{$secondary} 18%, #{$primary} 33%);
-    background: linear-gradient(to right, #{$primary} 8%, #{$secondary} 18%, #{$primary} 33%);
-    background-size: 800px 104px;
+    background-image: linear-gradient(to right, #{$primary} 0%, #{$secondary} 20%, #{$primary} 40%, #{$primary} 100%);
+    background-size: $width $height;
+    content: ' ';
+    display: block;
+    height: 100%;
     position: relative;
+  }
 }

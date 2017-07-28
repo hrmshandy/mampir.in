@@ -70,32 +70,3 @@
         min-height: 100vh;
     }
 }
-
-// Search Suggestion
-.has-suggestions {
-    position: relative;
-}
-
-.c-search-suggestions {
-    position: absolute;
-    background: #fff;
-    box-shadow: 0 1px 5px rgba(#000, .2);
-    width: 100%;
-    z-index: 999;
-    top: calc(100% + 5px);
-    border-radius: 4px;
-    padding: 8px;
-    &__item {
-        display: block;
-        padding: 8px 16px;
-        border-radius: 3px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        font-size: 12px;
-        &:hover {
-            background: $color-primary;
-            color: #fff;
-        }
-    }
-}

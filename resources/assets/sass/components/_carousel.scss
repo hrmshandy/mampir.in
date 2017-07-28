@@ -1,0 +1,18 @@
+.c-carousel {
+  height: 200px;
+  position: relative;
+  &:focus {
+    outline: none;
+  }
+
+  &.is-waiting {
+    opacity: 0;
+  }
+
+  &__item {
+    width: calc((100% / 3) - 5px);
+    height: 200px;
+    margin-right: 10px;
+  }
+}
+

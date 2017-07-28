@@ -2,7 +2,7 @@
 	<div class="main">
 		<!--<div class="o-map o-map&#45;&#45;detail" ref="map"></div>-->
 
-		<galleries :photos="photos"></galleries>
+		<galleries :photos.sync="photos"></galleries>
 
 		<section class="o-section">
 		

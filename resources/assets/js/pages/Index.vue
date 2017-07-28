@@ -124,7 +124,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import {lory} from 'lory.js';
+//import {lory} from 'lory.js';
 
 import Masonry from '../components/Masonry.vue'
 import SearchForm from '../components/Search.vue'
@@ -194,7 +194,7 @@ export default {
 	mounted() {
 	    this.fetchReviews(document.getElementById('location').value);
 		//this.fitHeroUnitHeight();
-		this.initIory();
+		//this.initIory();
 		
 	 	/*Vue.nextTick(() => {
 			this.initIory();

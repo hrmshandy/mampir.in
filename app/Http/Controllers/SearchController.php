@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\City;
 use App\Models\Venue;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SearchController extends Controller
 {
@@ -43,29 +46,13 @@ class SearchController extends Controller
         return $venue->paginate(20);
     }
 
-    public function suggest(Request $request)
+    public function suggestLocation(Request $request)
     {
-        $venue = Venue::with('city')->select('id', 'name', 'slug');
-
-        if($request->has('location')) {
-            $venue = $venue->whereHas('city', function($query) use($request){
-                $query->where('name', $request->location);
-            });
-        }
-
-        if($request->has('area')) {
-            $venue = $venue->where('area', 'like', '%'.$request->area.'%');
-        }
-
         if($request->has('keyword')) {
-            $venue = $venue->where(function($query) use($request) {
-                $query->where('name', 'like', '%'.$request->keyword.'%')
-                    ->orWhereHas('categories', function($query) use($request){
-                        $this->filterCategories($query, $request, $request->keyword);
-                    });
-            });
+            $locations = City::where('name', 'like', '%'.$request->keyword.'%')
+                            ->select('id', 'name AS text');
 
-            return $venue
+            return $locations
                 ->take(10)
                 ->get();
         }
@@ -73,8 +60,19 @@ class SearchController extends Controller
         return [];
     }
 
-    public function suggestArea(Request $request)
+    public function suggestCategory(Request $request)
     {
+        if($request->has('keyword')) {
+            $categories = Category::where('name', 'like', '%'.$request->keyword.'%')
+                                  ->orWhere('alias', 'like', '%'.$request->keyword.'%')
+                                  ->select('id', 'name AS text', 'alias');
+
+            return $categories
+                ->take(10)
+                ->get();
+        }
+
+        return [];
         $venue = Venue::with('city')->select('area');
 
         if($request->has('location')) {
