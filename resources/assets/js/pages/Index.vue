@@ -15,15 +15,15 @@
 			</div>
 			<div class="category__new">
 				<!-- <div class="main-carousel"></div> -->
-				<div class="carousel"
-				  data-flickity='{ 
-				  	"cellSelector": ".carousel-cell",
-				  	"contain": true,
-				  	"prevNextButtons": false,
-				  	"pageDots": false
-				  }'>
-				  <!-- <div class="static-banner static-banner1">Static banner 1</div> -->
-				  <!-- <div class="static-banner static-banner2">Static banner 2</div> -->
+				<div 
+					class="carousel"
+					data-flickity='{ 
+						"cellSelector": ".carousel-cell",
+						"contain": true,
+						"prevNextButtons": false,
+						"pageDots": false
+					}'
+				  >
 				  <div class="carousel-cell">
 				  		<router-link :to="'/search?location='+city+'&categories=kuliner'">
 				  			<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 40.5 58.8" style="enable-background:new 0 0 40.5 58.8;" xml:space="preserve">
@@ -476,8 +476,6 @@ export default {
 	},
 	mounted() {
 	    this.fetchReviews(document.getElementById('location').value);
-		//this.fitHeroUnitHeight();
-		// this.initIory();
 	}
 }
 </script>

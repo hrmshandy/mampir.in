@@ -5,7 +5,7 @@
                 <a href="/" class="o-logo">
                     <logo class="o-logo__desktop"></logo>
                 </a>
-                <mobile-menu></mobile-menu>
+            <mobile-menu></mobile-menu>
                 <search v-show="topSearch"></search>
                 <!-- <div class="u-pull-right login--wrapper">
                     <template v-if="authenticated">
