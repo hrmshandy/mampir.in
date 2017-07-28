@@ -38,9 +38,9 @@
                             <div class="o-user-block__info">
                                 <span class="o-user-block__name">{{ user.name }}</span>
                             </div>
-                            <div class="o-user-block__submit">
-                                <button class="o-button o-button--primary write-a-review__button" @click="submitReview">Kirim Review</button>
-                            </div>
+                        </div>
+                        <div class="o-user-block__submit">
+                            <button class="o-button o-button--primary write-a-review__button" @click="submitReview">Kirim Review</button>
                         </div>
                     </div>
                 </div>

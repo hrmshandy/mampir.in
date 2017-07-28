@@ -1,44 +1,68 @@
-// .slider {}
 
-// .frame {
-//     width: 880px;
-//     position: relative;
-//     font-size: 0;
-//     line-height: 0;
-//     overflow: hidden;
-//     white-space: nowrap;
-// }
+.carousel {
+    background: #f6f6f6;
+    position: relative;
+}
 
-// .slides {
-//     display: inline-block;
-// }
+.carousel-cell {
+    width: 100px;
+    height: 100px;
+    margin: 0;
+    margin-right: 10px;
+    background: transparent;
+    border-radius: 5px;
+    counter-increment: carousel-cell;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    a {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    svg {
+        width: 3em;
+        height: 3em;
+    }
+    p {
+        text-align: center;
+        margin-top: 10px;
+        color: #854f28;
+        font-weight: bold;
+    }
+}
 
-// li {
-//     position: relative;
-//     display: inline-block;
 
 
-//     width: 880px;
-// }
 
-// .prev,
-// .next {
-//     position: absolute;
-//     top: 50%;
-//     margin-top: -25px;
-//     display: block;
-//     cursor: pointer;
-// }
 
-// .next {
-//     right: 0;
-// }
 
-// .prev {
-//     left: 0;
-// }
 
-// .next svg,
-// .prev svg {
-//     width: 25px;
-// }
+
+
+
+/* cell number */
+
+.carousel-cell:before {
+    display: block; // text-align: center;
+    // content: counter(carousel-cell);
+    // font-size: 80px;
+    // color: white;
+}
+
+.static-banner {
+    position: absolute;
+    background: hsla(0, 0%, 0%, 0.3);
+    z-index: 1;
+    padding: 2px 20px;
+    font-size: 26px;
+    color: white;
+    pointer-events: none;
+}
+
+.category__new {
+    width: 980px;
+    margin: 30px 0 50px;
+    width: 100%;
+}
