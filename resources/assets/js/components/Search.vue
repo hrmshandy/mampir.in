@@ -43,7 +43,7 @@
                     </template>
                 </div>
             </div>
-            <div class="c-form-group">
+            <div class="c-form-group c-form-group__search--button">
                 <button :class="['o-button', 'o-button--primary','o-button-custom', 'o-button--block', btnSize]" type="submit">
                     <span v-if="!inline">Yuk,&nbsp;</span>
                     <strong>Cari<span v-if="!inline">!</span></strong>
