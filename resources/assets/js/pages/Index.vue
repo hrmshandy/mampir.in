@@ -25,7 +25,7 @@
 				  <!-- <div class="static-banner static-banner1">Static banner 1</div> -->
 				  <!-- <div class="static-banner static-banner2">Static banner 2</div> -->
 				  <div class="carousel-cell">
-				  		<a :href="'/search?location='+city+'&categories=Kuliner'">
+				  		<router-link :to="'/search?location='+city+'&categories=kuliner'">
 				  			<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 40.5 58.8" style="enable-background:new 0 0 40.5 58.8;" xml:space="preserve">
 						    <g>
 						        <path class="st0" style="fill: #854F28;" d="M16,3.7C13.7,0,8.8-1.1,5.1,1.2c-1,0.6-1.8,1.5-2.5,2.5C0.9,6.2-0.1,9.1,0,12.2c0,2.1,0.4,4.3,1.3,6.2
@@ -49,10 +49,10 @@
 						    </g>
 						</svg>	
 				  			<p>Kuliner</p>
-				  		</a>
+				  		</router-link>
 				  </div>
 				  <div class="carousel-cell">
-				  		<a :href="'/search?location='+city+'&categories=Relaksasi'">
+				  		<router-link :to="'/search?location='+city+'&categories=relaksasi'">
 				  		<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 								 viewBox="0 0 68.1 60.6" style="enable-background:new 0 0 68.1 60.6;" xml:space="preserve">
 							<g id="Forma_1">
@@ -83,10 +83,10 @@
 							</svg>
 
 				  			<p>Relaksasi</p>
-				  		</a>
+				  		</router-link>
 				  </div>
 				  <div class="carousel-cell">
-				  		<a :href="'/search?location='+city+'&categories=Rekreasi'">
+				  		<router-link :to="'/search?location='+city+'&categories=rekreasi'">
 				  		<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 63.2 55.2" style="enable-background:new 0 0 63.2 55.2;" xml:space="preserve">
 						<g>
 							<path class="st0" style="fill:#854F28;" d="M33.2,28.2v-7.9c0-0.1-0.1-0.2-0.2-0.2h-2v-1.5c0-1.2-0.7-2.2-1.7-2.7c-0.4-0.2-0.8-0.3-1.3-0.3
@@ -113,10 +113,10 @@
 						</g>
 						</svg>
 				  			<p>Rekreasi</p>
-				  		</a>
+				  		</router-link>
 				  </div>
 				  <div class="carousel-cell">
-					  	<a :href="'/search?location='+city+'&categories=Shopping'">
+				  		<router-link :to="'/search?location='+city+'&categories=shopping'">
 					  	<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 38.8 52.9" style="enable-background:new 0 0 38.8 52.9;" xml:space="preserve">
 						<g>
 							<g>
@@ -128,10 +128,10 @@
 						</g>
 						</svg>
 				  			<p>Shopping</p>
-				  		</a>
+				  		</router-link>
 				  </div>
 				  <div class="carousel-cell">
-				  		<a :href="'/search?location='+city+'&categories=Kecantikan'">
+				  		<router-link :to="'/search?location='+city+'&categories=kecantikan'">
 				  		<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 41.8 62.1" style="enable-background:new 0 0 41.8 62.1;" xml:space="preserve">
 						    <path class="st0" style="fill: #854F28;" d="M18.6,39.5c0-2.5-2-4.5-4.5-4.5s-4.5,2-4.5,4.5s2,4.5,4.5,4.5S18.6,42,18.6,39.5z M14.2,43.1
 							c-2,0-3.6-1.6-3.6-3.6s1.6-3.6,3.6-3.6s3.6,1.6,3.6,3.6C17.8,41.5,16.2,43.1,14.2,43.1z" />
@@ -223,10 +223,10 @@
 							c0.2-0.2,0.2-0.4,0-0.6C13,40.4,12.7,40.4,12.5,40.5z" />
 						</svg>
 				  			<p>Kecantikan</p>
-				  		</a>
+				  		</router-link>
 				  </div>
 				  <div class="carousel-cell">
-				  		<a :href="'/search?location='+city+'&categories=Barbershop'">
+				  		<router-link :to="'/search?location='+city+'&categories=barbershop'">
 				  		<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 47.2 49.1" style="enable-background:new 0 0 47.2 49.1;" xml:space="preserve">
 							<g>
 								<path class="st0" style="fill:#854F28;" d="M8.7,32.9c-4.4-0.5-8.2,2.7-8.7,7C-0.2,42,0.4,44,1.7,45.7C3,47.3,4.9,48.4,7,48.6c0.3,0,0.6,0,0.9,0l0,0
@@ -259,10 +259,10 @@
 							</g>
 						</svg>
 				  			<p>Barbershop</p>
-				  		</a>
+				  		</router-link>
 				  </div>
 				  <div class="carousel-cell">
-				  		<a :href="'/search?location='+city+'&categories=Olahraga'">
+				  		<router-link :to="'/search?location='+city+'&categories=olahraga'">
 				  		<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 57.7 29.7" style="enable-background:new 0 0 57.7 29.7;" xml:space="preserve">
 						    <path class="st0" style="fill:#854F28;" d="M56.9,10.6h-3.3V6.2c0-0.5-0.4-0.9-0.9-0.9h-5.3V0.9C47.4,0.4,47,0,46.5,0h-6.2c-0.5,0-0.9,0.4-0.9,0.9v9.8h-21
 							V0.9C18.4,0.4,18,0,17.5,0h-6.2c-0.5,0-0.9,0.4-0.9,0.9v4.4H4.9C4.4,5.3,4,5.7,4,6.2v4.4H0.9C0.4,10.6,0,11,0,11.5V18
@@ -273,10 +273,10 @@
 							V17.1z" />
 						</svg>
 				  			<p>Olahraga</p>
-				  		</a>
+				  		</router-link>
 				  </div>
 				  <div class="carousel-cell">
-				  		<a :href="'/search?location='+city+'&categories=Komunitas'">
+				  		<router-link :to="'/search?location='+city+'&categories=komunitas'">
 				  		<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 57.1 47.3" style="enable-background:new 0 0 57.1 47.3;" xml:space="preserve">
 						    <g id="Layer_2">
 						    </g>
@@ -315,7 +315,7 @@
 						    </g>
 						</svg>
 				  			<p>Komunitas</p>
-				  		</a>
+				  		</router-link>
 				  </div>
 				</div>
 			</div>
