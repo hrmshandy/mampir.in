@@ -135,7 +135,7 @@
             },
             geolocation() {
                 if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(this.getCurrentPosition, this.forceAllowLocation);
+                    navigator.geolocation.getCurrentPosition(this.getCurrentPosition);
                 } else {
                     this.getCurrentCity();
                 }
@@ -153,6 +153,7 @@
                                 let result = results.filter(function (item) {
                                     return item.types[0] == 'locality';
                                 });
+
                                 if (_.isEmpty(this.location)) {
                                     this.location = !_.isEmpty(result) ? result[0].address_components[0].long_name : '';
                                 }
@@ -187,9 +188,9 @@
         mounted() {
             const query = this.$route.query;
 
-            this.location = query.location;
-            this.area = query.area;
-            this.keyword = query.keyword;
+            this.location = !_.isUndefined(query.location) ? query.location : '';
+            this.area = !_.isUndefined(query.area) ? query.area : '';
+            this.keyword = !_.isUndefined(query.keyword) ? query.keyword : '';
 
             this.geolocation();
         }
