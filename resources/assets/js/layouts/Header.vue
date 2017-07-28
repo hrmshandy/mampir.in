@@ -2,9 +2,9 @@
     <header :class="['l-header', { 'is-sticky': isSticky }]">
         <div class="o-container o-container--wide">
             <div class="l-header__body">
-                <router-link to="/" class="o-logo">
+                <a href="/" class="o-logo">
                     <logo class="o-logo__desktop"></logo>
-                </router-link>
+                </a>
                 <mobile-menu></mobile-menu>
                 <search v-show="topSearch"></search>
                 <!-- <div class="u-pull-right login--wrapper">

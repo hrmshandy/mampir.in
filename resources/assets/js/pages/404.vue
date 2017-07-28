@@ -9,7 +9,7 @@
 							Maaf kami tidak menemukan apa yang kamu cari <br>
 							Mungkin berasal dari planet lain ??
 						</p>
-						<search-form size="large" :inline="false"></search-form>
+						<search-form size="large" :inline="false" style="margin-left: 0;"></search-form>
 					</div>
 					<div class="not-found__section">
 						<img src="../../img/404/robots.png" class="o-image-robots">
