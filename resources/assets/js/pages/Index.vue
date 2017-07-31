@@ -146,6 +146,9 @@
             },
             'query.location': function (value) {
                 this.fetchReviews(value);
+            },
+            reviews() {
+                Vue.redrawVueMasonry();
             }
         },
         methods: {
