@@ -39,8 +39,15 @@
         <section v-if="reviews.length" class="o-section o-section--grey">
             <div class="o-container--fluid">
                 <h1 class="o-section__title">Yang Happening di {{ city }}</h1>
-                <masonry>
-                    <div v-for="review in reviews" class="o-grid__col u-1/5@lg u-6/12@sm c-card__wrapper">
+                <div v-masonry
+                     transition-duration="0.3s"
+                     item-selector=".o-grid__col"
+                     column-width=".o-grid__sizer"
+                     class="o-grid">
+
+                    <div class="o-grid__sizer u-3/12@lg"></div>
+
+                    <div v-masonry-tile v-for="review in reviews" class="o-grid__col u-3/12@lg c-card__wrapper">
                         <div class="c-card c-card--dialog u-mb-x4">
                             <!--<div class="c-card__header">
                                 <router-link :to="'/detail/'+review.venue.slug" class="o-user-block">
@@ -75,7 +82,7 @@
 
                         </div>
                     </div>
-                </masonry>
+                </div>
             </div>
         </section>
         <section class="o-section">
