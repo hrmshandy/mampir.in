@@ -5,6 +5,10 @@
     height: 100px;
   }
   .c-carousel__item {
+    @media (max-width:640px) {
+        width: 80px;
+        height: 100px;
+    }
     width: 100px;
     height: 100px;
   }
@@ -36,4 +40,5 @@
     font-size: 13px;
   }
 }
+
 
