@@ -9,15 +9,37 @@ trait VenueGetters
 {
     public function getRatingAttribute()
     {
-        return round($this->reviews->avg('rating'));
+        $rating = $this->reviews
+                    ->filter(function($item){
+                        return $item->rating > 0;
+                    })->avg('rating');
+
+        return round($rating, 1);
     }
 
     public function getRatingsAttribute()
     {
-        return $this->reviews()
+        $ratings = [];
+        $reviews = $this->reviews()
                     ->select('rating', DB::raw('COUNT(*) as reviews'))
                     ->groupBy('rating')
-                    ->orderBy('rating', 'desc')->get();
+                    ->orderBy('rating', 'desc')
+                    ->get()
+                    ->pluck('reviews', 'rating')
+                    ->filter(function($value, $key){
+                        return $key > 0;
+                    })
+                    ->all();
+
+        for ($i = 4; $i >= 0; $i--) {
+            $index = ($i + 1);
+            $ratings[] = [
+                "rating" => $index,
+                "reviews" => isset($reviews[$index]) ? $reviews[$index] : 0
+            ];
+        }
+
+        return $ratings;
     }
 
     public function getCoverAttribute()

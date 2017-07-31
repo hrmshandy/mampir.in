@@ -137,7 +137,7 @@
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(this.getCurrentPosition);
                 } else {
-                    this.getCurrentCity();
+                    //this.getCurrentCity();
                 }
             },
             getCurrentPosition(position) {

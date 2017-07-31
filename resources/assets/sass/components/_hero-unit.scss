@@ -1,46 +1,48 @@
 .c-hero {
-    background: url('../../img/hero-bg.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    padding-top: 100px;
-    min-height: 100vh;
-    margin-top: -60px;
-    flex-direction: column;
-    @media (max-width: 640px) {
-        background-position: center;
-        background-position-x: -260px;
+  background: url('../../img/hero-bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  padding-top: 100px;
+  min-height: 100vh;
+  margin-top: -60px;
+  flex-direction: column;
+  @media (max-width: 640px) {
+    background-position: center;
+    background-position-x: -260px;
+  }
+  &__img {
+    max-width: 100%;
+    max-height: 400px;
+    display: block;
+    margin: 30px auto;
+    @include until(641px) {
+      padding: 10%;
     }
-    &__img {
-        max-width: 100%;
-        max-height: calc(100vh - 60px);
-        display: block;
-        margin: 30px auto;
-        @include until(641px) {
-            padding: 10%;
-        }
+  }
+  &__title {
+    color: $color-primary;
+    line-height: 1.5;
+    @include iota-type((xs: 28px, sm: 30px, md: 37px, lg: 39px));
+    font-weight: 400;
+    @include mobile {
+      text-align: center;
     }
-    &__title {
-        font-weight: bold;
-        color: $color-primary;
-        @include iota-type( ( xs: (30px, 1.5), lg: (45px, 1.5)));
-        @include mobile {
-            text-align: center;
-        }
+  }
+  &__subtitle {
+    margin-bottom: 1.5rem;
+    color: $color-primary;
+    line-height: 1.5;
+    @include iota-type((xs: 35px, sm: 35px, md: 46px, lg: 48px));
+    font-weight: 400;
+    @include mobile {
+      text-align: center;
     }
-    &__subtitle {
-        margin-bottom: 1.5rem;
-        color: $color-primary;
-        @include iota-type( ( xs: (20px, 1.5), lg: (24px, 1.5)));
-        font-weight: 300;
-        @include mobile {
-            text-align: center;
-        }
-        @media(max-width:640px) {
-            margin-top: .5rem;
-            font-size: 37px;
-            line-height: 1.5;
-        }
-    }
+  }
+
+  &__container {
+    max-width: 945px;
+    padding: 0 30px;
+  }
 }

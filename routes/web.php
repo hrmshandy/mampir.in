@@ -11,11 +11,21 @@
 |
 */
 
+use Auth;
+use Hash;
 
 Route::get('/', 'IndexController');
 
 Route::get('test', function(){
-    return join(DIRECTORY_SEPARATOR, array('uuid', 'name'));
+    $auth = Auth::attempt([
+        'email' => 'hrmshandy05@gmail.com',
+        'password' => 'secret'
+    ]);
+
+    $pass = Hash::check('secret', '$2y$10$QT6PKMDUo1oVnzGy2yhHTO3zlaOnCGWTJzrW1CtfY7/S4nugvXf8.');
+
+    dd($pass);
+    //return join(DIRECTORY_SEPARATOR, array('uuid', 'name'));
     //App\Services\GoogleMapExtractor::get('hiburan', 'tempat hiburan di jakarta');
 });
 

@@ -1,35 +1,57 @@
 <template>
-    <div class="main-carousel"></div>
+    <carousel class="c-categories" :options="options">
+        <template v-for="category in categories">
+            <carousel-item>
+                <a :href="'/search?location='+location+'&categories='+category" class="c-category">
+                    <icon :name="category" class="c-category__icon"></icon>
+                    <span class="c-category__name">{{ category | capitalize }}</span>
+                </a>
+            </carousel-item>
+        </template>
+    </carousel>
 </template>
 
 <script>
-import Flickity from 'flickity';
-export default {
-    props: ['categories'],
-    data() {
-        return {
-            ready: false
-        }
-    },
-    watch: {
-        categories(value){
-            var flkty = new Flickity(this.$el, {
-                wrapAround: true
-            });
+    import Carousel from './Carousel.vue';
+    import CarouselItem from './CarouselItem.vue';
+    import Icon from './Icon.vue';
 
-            console.log(value);
+    export default {
+        components: {Carousel, CarouselItem, Icon},
+        props: {
+          location: {
+              type: String,
+              required: true
+          }
+        },
+        data() {
+            return {
+                categories: [
+                    'kuliner', 'relaksasi', 'rekreasi', 'shopping', 'kecantikan', 'barbershop', 'olahraga', 'komunitas'
+                ]
+            }
+        },
+        computed: {
+            options() {
+                let options = {
+                    prevNextButtons: false,
+                    pageDots: false,
+                    cellAlign: 'left',
+                    draggable: false
+                };
 
-            value.forEach((item, index) => {
-                var cell = document.createElement('div');
-                    cell.classList.add('carousel-cell');
-                var img = document.createElement('div');
-                    img.classList.add('carousel-image');
-                    img.style.backgroundImage = 'url('+item+')';
+                const toggleDraggable = () => {
+                    options.draggable = window.innerWidth < 900;
+                };
 
-                cell.append(img);
-                flkty.insert( cell, index )
-            })
+                toggleDraggable();
+
+                window.onresize = function(event) {
+                    toggleDraggable();
+                };
+
+                return options;
+            }
         }
     }
-}
 </script>
