@@ -40,7 +40,7 @@
 
 			setTimeout(() => {
                 this.loading2 = true
-			}, 2800)
+			}, 1000)
 		}
 	}
 	

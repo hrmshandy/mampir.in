@@ -11,9 +11,6 @@
 |
 */
 
-use Auth;
-use Hash;
-
 Route::get('/', 'IndexController');
 
 Route::get('test', function(){

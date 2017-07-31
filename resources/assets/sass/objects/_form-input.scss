@@ -57,5 +57,6 @@ $input-disabled-border: $color-white-ter;
 
   &--large {
     @include control-large;
+    text-align: center
   }
 }

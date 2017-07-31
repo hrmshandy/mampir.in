@@ -10,10 +10,17 @@
 
             <div v-masonry-tile class="o-grid__col u-3/12@lg" v-show="(authenticated && !reviewed)">
                 <div class="c-card c-card--dialog c-card--dialog__placeholder c-card--dialog__review">
-                    <div class="c-card__header">
-                        <rating v-model="form.rating" :venue-id="venueId" method="post"></rating>
+
+                    <div class="o-user-block">
+                        <div class="o-user-block__pic">
+                            <img :src="user.avatar" alt="">
+                        </div>
+                        <div class="o-user-block__info">
+                            <span class="o-user-block__name">{{ user.name }}</span>
+                        </div>
                     </div>
                     <div class="c-card__body">
+                        <rating v-model="form.rating" :venue-id="venueId" method="post"></rating>
                         <input v-for="photo in uploadedPhotos"  type="hidden" v-model="photo.filename"/>
                         <dropzone
                                 id="myVueDropzone"
@@ -31,14 +38,6 @@
 
                     </div>
                     <div class="c-card__footer">
-                        <div class="o-user-block">
-                            <div class="o-user-block__pic">
-                                <img :src="user.avatar" alt="">
-                            </div>
-                            <div class="o-user-block__info">
-                                <span class="o-user-block__name">{{ user.name }}</span>
-                            </div>
-                        </div>
                         <div class="o-user-block__submit">
                             <button class="o-button o-button--primary write-a-review__button" @click="submitReview">Kirim Review</button>
                         </div>
@@ -51,6 +50,14 @@
                     <!--   <div class="c-card__header">
                           <rating v-model="form.rating" :venue-id="venueId" method="post"></rating>
                       </div> -->
+                    <div class="o-user-block">
+                        <div class="o-user-block__pic">
+                            <img :src="user.avatar" alt="">
+                        </div>
+                        <div class="o-user-block__info">
+                            <span class="o-user-block__name">{{ user.name }}</span>
+                        </div>
+                    </div>
                     <div class="c-card__body">
                         <h2 class="c-card--dialog__dummy__title">
                             Tulis Review Kamu Sekarang
@@ -60,14 +67,6 @@
                         </button>
                     </div>
                     <div class="c-card__footer">
-                        <div class="o-user-block">
-                            <div class="o-user-block__pic">
-                                <img :src="user.avatar" alt="">
-                            </div>
-                            <div class="o-user-block__info">
-                                <span class="o-user-block__name">{{ user.name }}</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -98,24 +97,20 @@
 
             <div v-masonry-tile v-for="review in reviews" class="o-grid__col u-3/12@lg">
                 <div class="c-card c-card--dialog c-card--dialog__placeholder">
-                    <div class="c-card__header">
-                        <rating v-model="review.rating" :venue-id="venueId" method="get"></rating>
+                    <div class="o-user-block">
+                        <div class="o-user-block__pic">
+                            <img :src="review.user.avatar" alt="">
+                        </div>
+                        <div class="o-user-block__info">
+                            <span class="o-user-block__name">{{ review.user.name }}</span>
+                            <span class="o-user-block__status">{{ formatedDate(review.created_at) }}</span>
+                        </div>
                     </div>
                     <div class="c-card__body">
+                        <rating v-model="review.rating" :venue-id="venueId" method="get"></rating>
                         <p>
                             {{ review.content }}
                         </p>
-                    </div>
-                    <div class="c-card__footer">
-                        <div class="o-user-block">
-                            <div class="o-user-block__pic">
-                                <img :src="review.user.avatar" alt="">
-                            </div>
-                            <div class="o-user-block__info">
-                                <span class="o-user-block__name">{{ review.user.name }}</span>
-                                <span class="o-user-block__status">{{ formatedDate(review.created_at) }}</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

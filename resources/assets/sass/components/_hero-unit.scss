@@ -7,7 +7,6 @@
   padding-top: 100px;
   min-height: 100vh;
   margin-top: -60px;
-  flex-direction: column;
   @media (max-width: 640px) {
     background-position: center;
     background-position-x: -260px;
@@ -24,7 +23,7 @@
   &__title {
     color: $color-primary;
     line-height: 1.5;
-    @include iota-type((xs: 28px, sm: 30px, md: 37px, lg: 39px));
+    @include iota-type((xs: 29px, sm: 30px, md: 37px, lg: 39px));
     font-weight: 400;
     @include mobile {
       text-align: center;

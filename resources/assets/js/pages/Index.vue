@@ -42,32 +42,37 @@
                 <masonry>
                     <div v-for="review in reviews" class="o-grid__col u-1/5@lg u-6/12@sm c-card__wrapper">
                         <div class="c-card c-card--dialog u-mb-x4">
-                            <div class="c-card__header">
+                            <!--<div class="c-card__header">
                                 <router-link :to="'/detail/'+review.venue.slug" class="o-user-block">
                                     <div class="o-user-block__pic o-user-block__pic--small"
                                          :style="{ backgroundImage: 'url('+review.venue.cover+')'}">
                                     </div>
                                     <div class="o-user-block__info">
-                                        <small class="o-user-block__name">{{ review.venue.name }}</small>
+                                        
                                     </div>
                                 </router-link>
+                            </div>-->
+                            <div class="o-user-block">
+                                <div class="o-user-block__pic">
+                                    <img :src="review.user.avatar" alt="">
+                                </div>
+                                <div class="o-user-block__info">
+                                    <span class="o-user-block__name">{{ review.user.name }}</span>
+                                    <span class="o-user-block__status">{{ review.created_at | dateFromNow }}</span>
+                                </div>
                             </div>
                             <div class="c-card__body">
+                                <router-link :to="'/detail/'+review.venue.slug" class="o-user-block">
+                                    <small class="o-user-block__name">di {{ review.venue.name }}</small>
+                                </router-link>
+
+                                <div class="o-ratings"><div href="#" class="o-rating is-rated"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 53.867 53.867"><defs><linearGradient class="half"><stop offset="50%" stop-color="yellow"></stop> <stop offset="50%" stop-color="grey" stop-opacity="1"></stop></linearGradient></defs> <polygon points="26.934,1.318 35.256,18.182 53.867,20.887 40.4,34.013 43.579,52.549 26.934,43.798 10.288,52.549 13.467,34.013 0,20.887 18.611,18.182 "></polygon></svg></div><div href="#" class="o-rating is-rated"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 53.867 53.867"><defs><linearGradient class="half"><stop offset="50%" stop-color="yellow"></stop> <stop offset="50%" stop-color="grey" stop-opacity="1"></stop></linearGradient></defs> <polygon points="26.934,1.318 35.256,18.182 53.867,20.887 40.4,34.013 43.579,52.549 26.934,43.798 10.288,52.549 13.467,34.013 0,20.887 18.611,18.182 "></polygon></svg></div><div href="#" class="o-rating is-rated"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 53.867 53.867"><defs><linearGradient class="half"><stop offset="50%" stop-color="yellow"></stop> <stop offset="50%" stop-color="grey" stop-opacity="1"></stop></linearGradient></defs> <polygon points="26.934,1.318 35.256,18.182 53.867,20.887 40.4,34.013 43.579,52.549 26.934,43.798 10.288,52.549 13.467,34.013 0,20.887 18.611,18.182 "></polygon></svg></div><div href="#" class="o-rating is-rated"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 53.867 53.867"><defs><linearGradient class="half"><stop offset="50%" stop-color="yellow"></stop> <stop offset="50%" stop-color="grey" stop-opacity="1"></stop></linearGradient></defs> <polygon points="26.934,1.318 35.256,18.182 53.867,20.887 40.4,34.013 43.579,52.549 26.934,43.798 10.288,52.549 13.467,34.013 0,20.887 18.611,18.182 "></polygon></svg></div><div href="#" class="o-rating"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 53.867 53.867"><defs><linearGradient class="half"><stop offset="50%" stop-color="yellow"></stop> <stop offset="50%" stop-color="grey" stop-opacity="1"></stop></linearGradient></defs> <polygon points="26.934,1.318 35.256,18.182 53.867,20.887 40.4,34.013 43.579,52.549 26.934,43.798 10.288,52.549 13.467,34.013 0,20.887 18.611,18.182 "></polygon></svg></div> <div class="rating-status" style="display: none;"><!----> <!----> <!----> <!----> <!----></div></div>
+
                                 <p>
                                     {{ review.content }}
                                 </p>
                             </div>
-                            <div class="c-card__footer">
-                                <div class="o-user-block">
-                                    <div class="o-user-block__pic">
-                                        <img :src="review.user.avatar" alt="">
-                                    </div>
-                                    <div class="o-user-block__info">
-                                        <span class="o-user-block__name">{{ review.user.name }}</span>
-                                        <span class="o-user-block__status">{{ review.created_at | dateFromNow }}</span>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </masonry>
