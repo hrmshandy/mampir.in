@@ -6,9 +6,9 @@
              column-width=".o-grid__sizer"
              class="o-grid">
 
-            <div class="o-grid__sizer u-3/12@lg"></div>
+            <div class="o-grid__sizer u-3/12@lg u-6/12@sm"></div>
 
-            <div v-masonry-tile class="o-grid__col u-3/12@lg" v-show="(authenticated && !reviewed)">
+            <div v-masonry-tile class="o-grid__col u-3/12@lg u-6/12@sm" v-show="(authenticated && !reviewed)">
                 <div class="c-card c-card--dialog c-card--dialog__placeholder c-card--dialog__review">
 
                     <div class="o-user-block">
@@ -43,7 +43,7 @@
                 </div>
             </div>
 
-            <div v-masonry-tile class="o-grid__col u-3/12@lg" v-show="(!authenticated && !reviewed)">
+            <div v-masonry-tile class="o-grid__col u-3/12@lg u-6/12@sm" v-show="(!authenticated && !reviewed)">
                 <div class="c-card c-card--dialog c-card--dialog__placeholder c-card--dialog__dummy">
                     <!--   <div class="c-card__header">
                           <rating v-model="form.rating" :venue-id="venueId" method="post"></rating>
@@ -69,7 +69,7 @@
                 </div>
             </div>
 
-            <div v-masonry-tile class="o-grid__col u-3/12@lg" v-if="reviewed">
+            <div v-masonry-tile class="o-grid__col u-3/12@lg u-6/12@sm" v-if="reviewed">
                 <div class="c-card c-card--dialog c-card--dialog__placeholder">
                     <div class="c-card__header">
                         <rating v-model="myReview.rating" :venue-id="venueId" method="get"></rating>
@@ -93,7 +93,7 @@
                 </div>
             </div>
 
-            <div v-masonry-tile v-for="review in reviews" class="o-grid__col u-3/12@lg">
+            <div v-masonry-tile v-for="review in reviews" class="o-grid__col u-3/12@lg u-6/12@sm">
                 <div class="c-card c-card--dialog c-card--dialog__placeholder">
                     <div class="o-user-block">
                         <div class="o-user-block__pic">

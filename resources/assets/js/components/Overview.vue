@@ -66,7 +66,7 @@
                     <ul class="c-rating-review-list">
                         <li v-for="i in 5">
                             <div>{{ getRating(i-1) }} <o-star></o-star></div>
-                            <div>
+                            <div class="o-progress-bar__wrapper">
                                 <div class="o-progress-bar">
                                     <div class="o-progress-bar__value" :style="{ width: getRetingBarWidth(i-1) }"></div>
                                 </div>
