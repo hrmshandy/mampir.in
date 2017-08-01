@@ -3,7 +3,7 @@
         <section class="c-hero">
             <div class="o-container c-hero__container">
                 <div class="o-grid o-grid--middle c-hero__grid">
-                    <div class="o-grid__col u-7/12@sm u-hidden@xs">
+                    <div class="o-grid__col u-6/12@sm u-hidden@xs">
                         <img src="../../img/hero-iconic.png" alt="Mampir.in" class="c-hero__img">
                     </div>
                     <div class="o-grid__col u-5/12@sm">
@@ -70,10 +70,12 @@
                             </div>
                             <div class="c-card__body">
                                 <router-link :to="'/detail/'+review.venue.slug" class="o-user-block">
-                                    <small class="o-user-block__name">di {{ review.venue.name }}</small>
+                                    <small class="o-user-block__name">{{ review.venue.name }}</small>
                                 </router-link>
 
                                 <div class="o-ratings"><div href="#" class="o-rating is-rated"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 53.867 53.867"><defs><linearGradient class="half"><stop offset="50%" stop-color="yellow"></stop> <stop offset="50%" stop-color="grey" stop-opacity="1"></stop></linearGradient></defs> <polygon points="26.934,1.318 35.256,18.182 53.867,20.887 40.4,34.013 43.579,52.549 26.934,43.798 10.288,52.549 13.467,34.013 0,20.887 18.611,18.182 "></polygon></svg></div><div href="#" class="o-rating is-rated"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 53.867 53.867"><defs><linearGradient class="half"><stop offset="50%" stop-color="yellow"></stop> <stop offset="50%" stop-color="grey" stop-opacity="1"></stop></linearGradient></defs> <polygon points="26.934,1.318 35.256,18.182 53.867,20.887 40.4,34.013 43.579,52.549 26.934,43.798 10.288,52.549 13.467,34.013 0,20.887 18.611,18.182 "></polygon></svg></div><div href="#" class="o-rating is-rated"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 53.867 53.867"><defs><linearGradient class="half"><stop offset="50%" stop-color="yellow"></stop> <stop offset="50%" stop-color="grey" stop-opacity="1"></stop></linearGradient></defs> <polygon points="26.934,1.318 35.256,18.182 53.867,20.887 40.4,34.013 43.579,52.549 26.934,43.798 10.288,52.549 13.467,34.013 0,20.887 18.611,18.182 "></polygon></svg></div><div href="#" class="o-rating is-rated"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 53.867 53.867"><defs><linearGradient class="half"><stop offset="50%" stop-color="yellow"></stop> <stop offset="50%" stop-color="grey" stop-opacity="1"></stop></linearGradient></defs> <polygon points="26.934,1.318 35.256,18.182 53.867,20.887 40.4,34.013 43.579,52.549 26.934,43.798 10.288,52.549 13.467,34.013 0,20.887 18.611,18.182 "></polygon></svg></div><div href="#" class="o-rating"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 53.867 53.867"><defs><linearGradient class="half"><stop offset="50%" stop-color="yellow"></stop> <stop offset="50%" stop-color="grey" stop-opacity="1"></stop></linearGradient></defs> <polygon points="26.934,1.318 35.256,18.182 53.867,20.887 40.4,34.013 43.579,52.549 26.934,43.798 10.288,52.549 13.467,34.013 0,20.887 18.611,18.182 "></polygon></svg></div> <div class="rating-status" style="display: none;"><!----> <!----> <!----> <!----> <!----></div></div>
+
+                                <img src="https://www.parktheatre.co.uk/media/images/coffee-cake.jpg" class="o-user-block__photoreview">
 
                                 <p>
                                     {{ review.content }}

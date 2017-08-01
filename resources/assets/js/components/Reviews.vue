@@ -37,10 +37,8 @@
                         </button> -->
 
                     </div>
-                    <div class="c-card__footer">
-                        <div class="o-user-block__submit">
-                            <button class="o-button o-button--primary write-a-review__button" @click="submitReview">Kirim Review</button>
-                        </div>
+                    <div class="o-user-block__submit">
+                        <button class="o-button o-button--primary write-a-review__button" @click="submitReview">Kirim Review</button>
                     </div>
                 </div>
             </div>
@@ -108,6 +106,7 @@
                     </div>
                     <div class="c-card__body">
                         <rating v-model="review.rating" :venue-id="venueId" method="get"></rating>
+                        <img src="https://www.parktheatre.co.uk/media/images/coffee-cake.jpg" class="o-user-block__photoreview">
                         <p>
                             {{ review.content }}
                         </p>
