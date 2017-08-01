@@ -17,11 +17,11 @@
                                     <div class="c-venue-card__photo"></div>
                                     <div class="c-venue-card__info">
                                         <h5 class="c-venue-card__name"></h5>
-                                        <div class="c-venue-card__categories"></div>
                                     </div>
-                                    <div class="c-venue-card__footer u-mt-x2">
+                                    <div class="c-venue-card__footer" style="margin-top: 5px;">
                                         <div class="c-venue-card__rating"></div>
                                     </div>
+                                    <div class="c-venue-card__categories" style="margin-top: 5px;"></div>
                                 </div>
                             </div>
                         </template>
@@ -38,14 +38,14 @@
                                     <div class="c-venue-card__info">
                                         <h5 class="c-venue-card__name o-type-18">{{ venue.name }}</h5>
                                     </div>
-                                    <div class="c-venue-card__footer">
+                                    <div class="c-venue-card__footer" style="margin-top: 5px;">
                                         <div class="c-venue-card__rating">
                                             <rating :venue-id="venue.id" :value="venue.rating" method="get"></rating>
                                             <small class="text-muted">{{ venue.total_reviews }} Reviews</small>
                                         </div>
-                                        <div class="c-venue-card__categories">
+                                        <div class="c-venue-card__categories" style="margin-top: 5px;">
                                             <!-- {{ venue.categories | joinBy }} -->
-                                            Jl. Kemang Selatan 1
+                                            {{ venue.address.split(',')[0] }}
                                         </div>
                                     </div>
                                 </a>

@@ -16,10 +16,11 @@ class CategoriesTableSeeder extends Seeder
             ['name' => 'Kuliner', 'slug' => 'kuliner'],
             ['name' => 'Relaksasi', 'slug' => 'relaksasi'],
             ['name' => 'Rekreasi', 'slug' => 'rekreasi'],
-            ['name' => 'Hiburan', 'slug' => 'hiburan'],
-            ['name' => 'Salon', 'slug' => 'salon'],
+            ['name' => 'Shopping', 'slug' => 'shopping'],
+            ['name' => 'Kecantikan', 'slug' => 'kecantikan'],
             ['name' => 'Barbershop', 'slug' => 'barbershop'],
-            ['name' => 'Olahraga', 'slug' => 'olahraga']
+            ['name' => 'Olahraga', 'slug' => 'olahraga'],
+            ['name' => 'Komunitas', 'slug' => 'komunitas'],
         ];
 
         foreach ($categories as $category) {

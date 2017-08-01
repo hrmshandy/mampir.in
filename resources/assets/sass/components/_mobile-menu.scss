@@ -5,15 +5,16 @@
     }
     .o-logo__mobile {
         @include until(641px) {
-            svg {
-                display: none;
-            }
-        }
-        @include from(641px) {
             i {
                 display: none;
             }
         }
+        @include from(641px) {
+        }
+    }
+    .o-logo__mobile i {
+                display: none;
+
     }
     svg {
         width: 40px;
@@ -86,5 +87,17 @@
             transition: all 0.5s ease;
             transform: rotate(180deg);
         }
+    }
+}
+
+
+@media (max-width:640px) {
+    .nav-mobile {
+        &__menu {
+            margin-left: 0;
+        }
+    }
+    .nav-mobile__menu::before {
+        display:none
     }
 }

@@ -21,7 +21,7 @@ class VenueController extends Controller
             $query->with('user')
                   ->where('reviews.user_id', "<>", $user_id)
                   ->orderBy('created_at', 'desc');
-        }, 'categories'])->where('slug', $slug)->first();
+        }, 'categories', 'detail'])->where('slug', $slug)->first();
 
         $myReview =  Review::with('user')
                             ->where('user_id', $user_id)
