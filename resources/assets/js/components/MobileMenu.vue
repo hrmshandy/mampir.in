@@ -1,7 +1,7 @@
 <template>
     <div :class="['nav-mobile', {'nav-mobile--inline': inline, 'is-shown': showNav}]">
+    	<logo-mobile class="o-logo__mobile"></logo-mobile>
     	<div class="o-logo__mobile o-logo__mobile--chevron" @click="toggleNav">
-        	<logo-mobile class="o-logo__mobile"></logo-mobile>
             <i class="fa fa-chevron-down" aria-hidden="true"></i>
         	<svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 0h24v24H0z" fill="none"/>
@@ -14,26 +14,31 @@
 			name="slide">
 	    	<div class="nav-mobile__wrapper">
 	    		<div class="nav-mobile__menu">	
+			    	
 			    	<li class="nav-mobile__item">
 			    		<router-link class="item" to="/">
 			    			Home
 			    		</router-link>
 			    	</li>
+			    	
 			    	<li class="nav-mobile__item">
 			    		<router-link class="item" to="/">
 			    			Trending
 			    		</router-link>
 			    	</li>
+			    	
 			    	<li class="nav-mobile__item">
 			    		<router-link class="item" to="/">
 			    			Journal
 			    		</router-link>
 			    	</li>
+	                
 	                <template v-if="authenticated">
 			    		<li class="nav-mobile__item">
 	                    	<user></user>
 	                    </li>
 	                </template>
+
 	                <template v-else>
 			    		<li class="nav-mobile__item">
 	                    	<login></login>

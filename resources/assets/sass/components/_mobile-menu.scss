@@ -21,12 +21,15 @@
         height: 2em;
     }
     &__menu {
-        margin-left: 160px; // border-left: 1px solid #ccc;
+        margin-left: 160px;
         display: flex;
         flex-direction: column;
         min-height: 100vh;
         padding-bottom: 50px;
         justify-content: center;
+        @include until(641px) {
+            margin-left: 0;
+        }
         &::before {
             content: '';
             display: block;
@@ -36,6 +39,9 @@
             position: absolute;
             top: 15px;
             margin-left: 15px;
+            @include until(641px) {
+                display: none;
+            }
         }
     }
     &__wrapper {
