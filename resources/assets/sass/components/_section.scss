@@ -1,5 +1,5 @@
 .section {
-    padding: 3rem 1rem;
+    padding: 10vh 1rem;
     + .section {
         padding-top: 1rem;
     }
@@ -23,4 +23,8 @@
 
 .section--search {
     background: #fff;
+}
+
++ .why {
+    padding-top: 30vh;
 }

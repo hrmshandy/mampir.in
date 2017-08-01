@@ -87,7 +87,7 @@
                 </div>
             </div>
         </section>
-        <section class="o-section">
+        <section class="o-section why">
             <div class="o-container">
                 <h1 class="o-section__title">Kenapa Harus Mampir.in</h1>
                 <!-- <p class="section__subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pretium est at metus rutrum, at tincidunt sem maximus. Donec iaculis commodo ligula ut laoreet.</p> -->
