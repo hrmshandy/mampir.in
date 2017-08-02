@@ -15,22 +15,22 @@
 	    	<div class="nav-mobile__wrapper">
 	    		<div class="nav-mobile__menu">	
 			    	
-			    	<li class="nav-mobile__item">
+			    	<li class="nav-mobile__item active">
 			    		<a href="/" class="item">
 			    			Home
 			    		</a>
 			    	</li>
 			    	
 			    	<li class="nav-mobile__item">
-			    		<router-link class="item" to="/">
+			    		<a class="item" to="/">
 			    			Trending
-			    		</router-link>
+			    		</a>
 			    	</li>
 			    	
 			    	<li class="nav-mobile__item">
-			    		<router-link class="item" to="/">
+			    		<a class="item" to="/">
 			    			Journal
-			    		</router-link>
+			    		</a>
 			    	</li>
 	                
 	                <template v-if="authenticated">
