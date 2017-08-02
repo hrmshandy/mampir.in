@@ -14,7 +14,6 @@
 			name="slide">
 	    	<div class="nav-mobile__wrapper">
 	    		<div class="nav-mobile__menu">	
-<<<<<<< HEAD
 
 			    	<div class="nav-mobile__menu-general">
 				    	<li class="nav-mobile__item">
@@ -37,29 +36,6 @@
 	                </div>
 
 		                <template v-if="authenticated">
-=======
-			    	
-			    	<li class="nav-mobile__item active">
-			    		<a href="/" class="item">
-			    			Home
-			    		</a>
-			    	</li>
-			    	
-			    	<li class="nav-mobile__item">
-			    		<a class="item" to="/">
-			    			Trending
-			    		</a>
-			    	</li>
-			    	
-			    	<li class="nav-mobile__item">
-			    		<a class="item" to="/">
-			    			Journal
-			    		</a>
-			    	</li>
-	                
-	                <template v-if="authenticated">
-			    		<li class="nav-mobile__item">
->>>>>>> develop
 	                    	<user></user>
 
 	                <div class="nav-mobile__menu-merchant">
