@@ -67,7 +67,9 @@
         padding-top: 80px;
         z-index: 9;
         display: none;
-        overflow: scroll;
+        @include until(641px) {
+            overflow: scroll;
+        }
     }
     &__item {
         list-style-type: none;
