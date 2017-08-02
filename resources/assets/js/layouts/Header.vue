@@ -42,7 +42,7 @@ export default {
     methods: {
         stickyHeader() {
             if(this.currentRoute == '/') {
-                if(document.body.scrollTop >= (window.innerHeight - 10)) {
+                if(document.body.scrollTop >= (1)) {
                     this.isSticky = true;
                     this.$el.classList.add('is-sticky');
                 } else {

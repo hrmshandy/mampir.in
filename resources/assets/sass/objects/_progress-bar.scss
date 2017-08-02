@@ -9,7 +9,9 @@
         height: 7px;
     }
     &__wrapper {
-        width: 40%;
+        @include until(641px) {
+            width: 60%;
+        }
     }
     @include until(641px) {
         width: 100px;

@@ -1,16 +1,21 @@
 .c-categories {
   position: relative;
-  margin: 50px -30px 30px -15px;
+  margin: 50px -30px 30px -30px;
   .c-carousel {
     height: 100px;
   }
   .c-carousel__item {
-    @media (max-width:640px) {
-        width: 25%;
-        height: 100px;
-    }
     width: 100px;
     height: 100px;
+    border-radius: 5px;
+    @media (max-width:640px) {
+        width: 23%;
+        height: 100px;
+        background:#fff;
+        -webkit-box-shadow: 0px 2px 5px 1px rgba(221,221,221,1);
+        -moz-box-shadow: 0px 2px 5px 1px rgba(221,221,221,1);
+        box-shadow: 0px 2px 5px 1px rgba(221,221,221,1);
+    }
   }
 }
 
@@ -26,7 +31,10 @@
   justify-content: center;
   border-radius: 5px;
   &:hover {
-    background: #eee;
+    background:#fff;
+    -webkit-box-shadow: 0px 2px 5px 1px rgba(221,221,221,1);
+    -moz-box-shadow: 0px 2px 5px 1px rgba(221,221,221,1);
+    box-shadow: 0px 2px 5px 1px rgba(221,221,221,1);
     cursor: pointer;
   }
   &__icon {

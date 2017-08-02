@@ -60,26 +60,23 @@
 
                 <!-- <hr> -->
             </div>
-            <div class="p-venue-detail__rating">
-                <!-- <h5 class="o-type-20 u-mb-x2">Review of {{ name }}</h5> -->
-                <div class="c-rating-review">
-                    <ul class="c-rating-review-list">
-                        <li v-for="i in 5">
-                            <div>{{ getRating(i-1) }} <o-star></o-star></div>
-                            <div class="o-progress-bar__wrapper">
-                                <div class="o-progress-bar">
-                                    <div class="o-progress-bar__value" :style="{ width: getRetingBarWidth(i-1) }"></div>
-                                </div>
-                            </div>
-                            <div>{{ getReviews(i-1) }}</div>
-                        </li>
-                    </ul>
-                    <div class="c-rating-review-display">
-                        <span class="c-rating-review-display__number">{{ rating }}</span>
-                        <rating v-model="rating" :venue-id="venueId" method="get"></rating>
-                        <p class="c-rating-review-display__text">{{ totalReviews }} Reviews</p>
-                    </div>
+            <div class="c-rating-review">
+                <div class="c-rating-review-display">
+                    <span class="c-rating-review-display__number">{{ rating }}</span>
+                    <rating v-model="rating" :venue-id="venueId" method="get"></rating>
+                    <p class="c-rating-review-display__text">{{ totalReviews }} Reviews</p>
                 </div>
+                <ul class="c-rating-review-list">
+                    <li v-for="i in 5">
+                        <div>{{ getRating(i-1) }} <o-star></o-star></div>
+                        <div class="o-progress-bar__wrapper">
+                            <div class="o-progress-bar">
+                                <div class="o-progress-bar__value" :style="{ width: getRetingBarWidth(i-1) }"></div>
+                            </div>
+                        </div>
+                        <div>{{ getReviews(i-1) }}</div>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

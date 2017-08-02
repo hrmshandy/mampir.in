@@ -1,11 +1,9 @@
 .c-rating-review {
     display: flex;
-    flex-direction: row-reverse;
     justify-content: flex-end;
-    align-items: center;
     height: 100%;
     @include until(641px) {
-        align-items: center;
+    padding: 10vh 5vh 0 !important;
         justify-content: space-between;
     }
 }
@@ -14,6 +12,10 @@
     padding-left: 0;
     list-style: none;
     margin-left: 20px;
+
+    @include until(641px) {
+        width: 63%;
+    }
     > li {
         display: flex;
         align-items: center;
