@@ -1,0 +1,38 @@
+.journal {
+    &__top-wrapper {
+        background: #fafafa;
+        padding: 50px 0;
+    }
+    &__body {
+        padding: 50px 0;
+    }
+    &__content {
+        border-bottom: 1px solid #ddd;
+        padding: 20px 0;
+    }
+    .o-section__title {
+        text-align: left;
+    }
+    .o-journal-img {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    // Components
+    .c-comment {
+        .o-textarea {
+            height: 10em;
+            margin-bottom: 20px;
+        }
+        &__item {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            &--child {
+                margin: 0;
+            }
+        }
+    }
+}

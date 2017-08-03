@@ -6,6 +6,7 @@ export default [
   	{ path: '/', component: require('../pages/Index.vue') },
   	{ path: '/search', component: require('../pages/Search.vue'), meta: { hideFooter: true } },
   	{ path: '/detail/:slug', component: require('../pages/Detail.vue') },
+  	{ path: '/journal-detail', component: require('../pages/JournalDetail.vue') },
   	{ path: '/404', component: require('../pages/404.vue'), meta: { hideTopSearch: true, hideFooter: true } },
   	{ path: '/alert-location', component: require('../pages/LocationAlert.vue'), meta: { hideTopSearch: true, hideFooter: true } }
 ]
