@@ -18,8 +18,8 @@
         height: 2em;
     }
     &__menu {
-        width: 300px;
-        margin-left: 198px;
+        width: 80%;
+        margin: auto;
         display: flex;
         flex-direction: column;
         min-height: 100vh;
@@ -43,9 +43,9 @@
         }
     }
     &__menu-user {
-        margin: 25px 0;
         padding: 35px 0 0;
-        border-top: 1px dashed #ccc;
+        margin: 0;
+        border: 0;
     }
     &__menu-merchant {
         margin: 35px 0;
@@ -65,8 +65,7 @@
         width: 100%;
         padding-top: 80px;
         z-index: 9;
-        display: none;
-        // overflow: scroll;
+        display: none; 
     }
     &__item {
         list-style-type: none;
@@ -76,6 +75,7 @@
             font-size: 2.2rem;
             margin-bottom: 20px;
             color: #854f28;
+            line-height: normal;
         }
         .user {
             display: block;
