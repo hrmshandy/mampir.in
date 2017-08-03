@@ -12,7 +12,7 @@
             display: block;
             margin: 0 10px;
             font-size: 1.2rem;
-            color: #7a7a7a;
+            color: #a9a9a9;
         }
     }
 }
@@ -28,11 +28,19 @@
 
 .c-card__upload-journal {
     .c-card__body {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
         min-height: 300px;
         margin: 0;
+        &--inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #d2d2d2;
+            height: 100%;
+            border-radius: 10px;
+        }
+        i {
+            margin-bottom: 1rem;
+        }
     }
 }

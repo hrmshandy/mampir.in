@@ -35,26 +35,27 @@
 				    	</li>
 	                </div>
 
-		                <template v-if="authenticated">
-	                    	<user></user>
+	                <!-- <template v-if="authenticated"> -->
+	                <template>
+                    	<user></user>
 
-	                <div class="nav-mobile__menu-merchant">
-	                    <h3>Merchant</h3>
-	                        <a class="" href="#">Salona</a>
-	                        <a class="" href="#">Barbera</a>
-	                        <a class="o-button o-button--primary o-button-custom o-button--block" href="#">Add Merchant</a>
-	                </div>
+		                <div class="nav-mobile__menu-merchant">
+		                    <h3>Merchant</h3>
+		                        <a class="" href="#">Salona</a>
+		                        <a class="" href="#">Barbera</a>
+		                        <a class="o-button o-button--primary o-button-custom o-button--block" href="#">Add Merchant</a>
+		                </div>
 
-		                </template>
+	                </template>
 
-		                <template v-else>
-				    		<li class="nav-mobile__item">
-		                    	<login></login>
-				    		</li>
-				    		<li class="nav-mobile__item">
-		                    	<register></register>
-		                    </li>
-		                </template>
+	                <template v-else>
+			    		<li class="nav-mobile__item">
+	                    	<login></login>
+			    		</li>
+			    		<li class="nav-mobile__item">
+	                    	<register></register>
+	                    </li>
+	                </template>
 
 	
 

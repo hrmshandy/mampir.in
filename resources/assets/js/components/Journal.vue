@@ -11,10 +11,12 @@
                 <div class="c-card c-card__upload-journal">
 	                <a href="#">
 	                    <div class="c-card__body">
-		                	<i class="fa fa-pencil-square-o fa-5x" aria-hidden="true"></i>
-	                        <h2 class="c-card--dialog__dummy__title">
-	                            Upload Journal Kamu <br> Sekarang!
-	                        </h2>
+	                    	<div class="c-card__body--inner">
+			                	<i class="fa fa-pencil-square-o fa-5x" aria-hidden="true"></i>
+		                        <h2 class="c-card--dialog__dummy__title">
+		                            Upload Journal Kamu <br> Sekarang!
+		                        </h2>
+							</div>
 	                    </div>
 	                </a>
                 </div>

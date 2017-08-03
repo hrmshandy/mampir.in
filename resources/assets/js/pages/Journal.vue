@@ -2,7 +2,7 @@
 	<div>
 		<div class="o-section o-section--journal">
 			<div class="o-container--fluid">
-				<h1 class="o-heading u-text-center">
+				<h1 class="o-section__title u-text-center">
 					Journal
 				</h1>
 				<div class="o-filter-journal">

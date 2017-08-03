@@ -1,5 +1,4 @@
 .nav-mobile {
-    // display: none;
     @include until(641px) {
         display: block;
     }
