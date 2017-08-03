@@ -1,21 +1,21 @@
 .user {
     position: relative;
     //min-width: 180px;
-    padding: 0 10px;
+    padding: 0;
     &__block {
         display: flex;
         align-items: center;
         position: relative;
         z-index: 9;
-        height: 35px;
+        height: 64px;
         &:hover,
         &:focus {
             text-decoration: none;
         }
     }
     &__avatar {
-        width: 35px;
-        height: 35px;
+        width: 64px;
+        height: 64px;
         border-radius: 40px;
         overflow: hidden;
         border: 2px solid $color-primary;
@@ -34,9 +34,6 @@
             width: 100px;
             height: 10px;
             background: #ddd;
-        }
-        @include until(641px) {
-            display: none;
         }
     }
 }

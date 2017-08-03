@@ -14,39 +14,50 @@
 			name="slide">
 	    	<div class="nav-mobile__wrapper">
 	    		<div class="nav-mobile__menu">	
-			    	
-			    	<li class="nav-mobile__item active">
-			    		<a href="/" class="item">
-			    			Home
-			    		</a>
-			    	</li>
-			    	
-			    	<li class="nav-mobile__item">
-			    		<a class="item" to="/">
-			    			Trending
-			    		</a>
-			    	</li>
-			    	
-			    	<li class="nav-mobile__item">
-			    		<a class="item" to="/">
-			    			Journal
-			    		</a>
-			    	</li>
-	                
-	                <template v-if="authenticated">
-			    		<li class="nav-mobile__item">
-	                    	<user></user>
-	                    </li>
-	                </template>
 
-	                <template v-else>
-			    		<li class="nav-mobile__item">
-	                    	<login></login>
-			    		</li>
-			    		<li class="nav-mobile__item">
-	                    	<register></register>
-	                    </li>
-	                </template>
+			    	<div class="nav-mobile__menu-general">
+				    	<li class="nav-mobile__item">
+				    		<a href="/" class="item">
+				    			Home
+				    		</a>
+				    	</li>
+				    	
+				    	<li class="nav-mobile__item">
+				    		<router-link class="item" to="/">
+				    			Trending
+				    		</router-link>
+				    	</li>
+				    	
+				    	<li class="nav-mobile__item">
+				    		<router-link class="item" to="/">
+				    			Journal
+				    		</router-link>
+				    	</li>
+	                </div>
+
+		                <template v-if="authenticated">
+	                    	<user></user>
+
+	                <div class="nav-mobile__menu-merchant">
+	                    <h3>Merchant</h3>
+	                        <a class="" href="#">Salona</a>
+	                        <a class="" href="#">Barbera</a>
+	                        <a class="o-button o-button--primary o-button-custom o-button--block" href="#">Add Merchant</a>
+	                </div>
+
+		                </template>
+
+		                <template v-else>
+				    		<li class="nav-mobile__item">
+		                    	<login></login>
+				    		</li>
+				    		<li class="nav-mobile__item">
+		                    	<register></register>
+		                    </li>
+		                </template>
+
+	
+
 	    		</div>
 	    	</div>
 		</transition>
