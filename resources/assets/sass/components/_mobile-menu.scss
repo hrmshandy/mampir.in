@@ -1,5 +1,4 @@
 .nav-mobile {
-    // display: none;
     @include until(641px) {
         display: block;
     }
@@ -9,19 +8,18 @@
                 display: none;
             }
         }
-        @include from(641px) {
-        }
+        @include from(641px) {}
     }
     .o-logo__mobile i {
-                display: none;
-
+        display: none;
     }
     svg {
         width: 40px;
         height: 2em;
     }
     &__menu {
-        margin-left: 160px;
+        width: 80%;
+        margin: auto;
         display: flex;
         flex-direction: column;
         min-height: 100vh;
@@ -32,7 +30,7 @@
         }
         &::before {
             content: '';
-            display: block;
+            display: none;
             height: 100vh;
             background: #d0d0d0;
             width: 1px;
@@ -44,27 +42,40 @@
             }
         }
     }
+    &__menu-user {
+        padding: 35px 0 0;
+        margin: 0;
+        border: 0;
+    }
+    &__menu-merchant {
+        margin: 35px 0;
+        padding: 35px 0;
+        border-top: 1px dashed #ccc;
+        & a {
+            display: block;
+            margin: 15px 0;
+        }
+    }
     &__wrapper {
         background: #fff;
-        min-height: 100vh;
+        height: 100vh;
         position: absolute;
         left: 0;
         top: 0;
         width: 100%;
         padding-top: 80px;
         z-index: 9;
-        display: none;
+        display: none; 
     }
     &__item {
         list-style-type: none;
         a.item {
             display: block;
-            padding: 10px 40px;
+            padding: 10px 0;
             font-size: 2.2rem;
             margin-bottom: 20px;
             color: #854f28;
-            &.active {
-            }
+            line-height: normal;
         }
         .user {
             display: block;
@@ -89,14 +100,20 @@
     }
 }
 
+.user .o-button {
+    margin-top: 10px;
+}
+
 
 @media (max-width:640px) {
     .nav-mobile {
         &__menu {
+            width: 100%;
             margin-left: 0;
+            padding: 0 64px;
         }
     }
     .nav-mobile__menu::before {
-        display:none
+        display: none
     }
 }

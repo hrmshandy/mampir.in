@@ -1,39 +1,26 @@
 <template>
-    <div :class="['user', {'user-menu-is-shown': menuIsShown }]">
-        <a href="#" class="user__block" @click.prevent="showMenu">
+    <div class="user nav-mobile__menu-user">
+        <div class="user__block">
             <div class="user__avatar">
                 <img v-show="user.avatar" :src="user.avatar" :alt="'Mampir.in - '+user.name">
             </div>
-            <span :class="['user__name', { 'has-placeholder': !user.name }]">{{ user.name }}</span>
-        </a>
-        <ul v-show="menuIsShown" class="user-menu" @click="(e) => e.stopPropagation()">
-            <li class="user-menu__item">
-                <ul class="user-info">
-                    <li class="user-info__id">
-                        <label>ID Mampir.in</label>
-                        <h4>{{ user.id }}</h4>
-                    </li>
-                    <li class="user-info__stamp">
-                        <label>Mampir.in stamps</label>
-                        <h4>{{ user.mampirin_stamps }} Point</h4>
-                    </li>
-                    <li class="user-info__stamp">
-                        <label>Venue stamps</label>
-                        <h4>{{ user.venue_stamps }} Point</h4>
-                    </li>
-                </ul>
-            </li>
-            <li class="user-menu__item">
+            <h3 :class="['user__name', { 'has-placeholder': !user.name }]">{{ user.name }}</h3>
+        </div>
+                        <a class="o-button o-button--primary o-button-custom o-button--block" href="#">Get Check-in ID</a>
+                        <a class="o-button o-button--primary o-button-custom o-button--block" href="#">
+                            Mampir.in Point <strong>({{ user.mampirin_stamps }})</strong>
+                        </a>
+                        <a class="o-button o-button--primary o-button-custom o-button--block" href="#">Merchant Point <strong>({{ user.venue_stamps }})</strong></a>
+            <!--<li class="user-menu__item">
                 <a href="#" class="user-menu__link"><icon name="user-alt"></icon> <span>Profile</span></a>
             </li>
-            <!-- <li class="user-menu__item">
+             <li class="user-menu__item">
                 <a href="#" class="user-menu__link"><icon name="heart"></icon> <span>Favorite</span></a>
             </li> -->
-            <li class="user-menu__item">
                 <a href="#" class="user-menu__link logout" @click.prevent="handleLogout"><span>Log out</span><icon name="power-off"></icon></a>
-            </li>
-        </ul>
+
     </div>
+
 </template>
 
 <script>
@@ -42,7 +29,7 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
     data() {
         return {
-            menuIsShown: false
+            menuIsShown: true
         }
     },
     computed: {
