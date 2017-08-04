@@ -82,23 +82,24 @@
         },
         methods: {
             fetchData() {
-                axios.get('/api/venue/' + this.$route.params.slug).then(({data}) => {
+                axios.get('/api/venue/g/' + this.$route.params.slug).then(({data}) => {
+                    console.log(data);
                     // set venue id
                     this.venueId = data.id;
 
                     // set overview data
                     this.name = data.name;
                     this.address = data.address;
-                    this.cover = data.cover;
-                    this.logo = data.logo;
+//                    this.cover = data.cover;
+//                    this.logo = data.logo;
                     this.phone_number = data.detail.phone_number;
                     this.photos = data.photos;
                     this.categories = data.categories;
                     this.location = {lat: data.lat, lng: data.lng};
                     this.rating = data.rating;
-                    this.ratings = data.ratings;
+//                    this.ratings = data.ratings;
                     this.reviews = data.reviews;
-                    this.myReview = data.myReview;
+//                    this.myReview = data.myReview;
 
                     window.document.title = data.name + ' - Mampir.in';
                 });

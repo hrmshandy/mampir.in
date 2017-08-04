@@ -169,7 +169,7 @@ return [
         Hrmsh\Finder\FinderServiceProvider::class,
         Hrmshandy\Finder\FinderServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-        Laravel\Passport\PassportServiceProvider::class,
+        //Laravel\Passport\PassportServiceProvider::class,
         Laravel\Scout\ScoutServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,

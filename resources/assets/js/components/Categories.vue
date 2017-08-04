@@ -2,7 +2,7 @@
     <carousel class="c-categories" :options="options">
         <template v-for="category in categories">
             <carousel-item>
-                <a :href="'/search?location='+location+'&categories='+category" class="c-category">
+                <a :href="getCategoryUrl(category)" class="c-category">
                     <icon :name="category" class="c-category__icon"></icon>
                     <span class="c-category__name">{{ category | capitalize }}</span>
                 </a>
@@ -19,7 +19,7 @@
     export default {
         components: {Carousel, CarouselItem, Icon},
         props: {
-          location: {
+          city: {
               type: String,
               required: true
           }
@@ -51,6 +51,11 @@
                 };
 
                 return options;
+            }
+        },
+        methods: {
+            getCategoryUrl(category) {
+                return `/search/?query=${category+(!_.isEmpty(this.city) ? '+in+'+this.city : '')}`;
             }
         }
     }

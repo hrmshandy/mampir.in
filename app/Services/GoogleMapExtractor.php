@@ -20,43 +20,38 @@ class GoogleMapExtractor
 		$raw = file_get_contents($url);
 		$json = json_decode($raw, true);
 
-		foreach ($json['results'] as $place) {
-
-
-
-			$data = [
-				"name" => $place['name'],
-				"address" => self::getAddress($place['formatted_address']),
-				"lat" => $place['geometry']['location']['lat'],
-				"lng" => $place['geometry']['location']['lng'],
+		return collect($json['results'])->map(function($place) {
+            $data = [
+                "name" => $place['name'],
+                "address" => self::getAddress($place['formatted_address']),
+                "lat" => $place['geometry']['location']['lat'],
+                "lng" => $place['geometry']['location']['lng'],
                 "detail" => [],
                 "opening_hours" => [],
                 "photos" => [],
                 "reviews" => []
-			];
+            ];
 
-			$data['exists'] = self::hasVenue($data);
+            $data['exists'] = self::hasVenue($data);
 
-			$rawDetail = file_get_contents(self::$baseUrl."/details/json?placeid=".$place["place_id"]."&key=".self::$key);
-			$detail_json = json_decode($rawDetail, true);
-			if(isset($detail_json['result'])) {
-				$detail = $detail_json['result'];
+            $rawDetail = file_get_contents(self::$baseUrl."/details/json?placeid=".$place["place_id"]."&key=".self::$key);
+            $detail_json = json_decode($rawDetail, true);
+            if(isset($detail_json['result'])) {
+                $detail = $detail_json['result'];
 
-				$data['detail'] = [
-				    'phone_number' => self::exists($detail, 'international_phone_number'),
-				    'email' => self::exists($detail, 'email'),
-				    'website' => self::exists($detail, 'website')
-				];
+                $data['detail'] = [
+                    'phone_number' => self::exists($detail, 'international_phone_number'),
+                    'email' => self::exists($detail, 'email'),
+                    'website' => self::exists($detail, 'website')
+                ];
 
-				$data['opening_hours'] = self::opening_hours($detail);
-				$data['photos'] = self::photos($detail);
-				$data['reviews'] = self::reviews($detail);
-			}
+                $data['opening_hours'] = self::opening_hours($detail);
+                $data['photos'] = self::photos($detail);
+                $data['reviews'] = self::reviews($detail);
+            }
 
-			$results[] = $data;
-		}
-
-		return $results;
+            return $data;
+        })->all();
 	}
 
 	protected static function opening_hours($detail) {

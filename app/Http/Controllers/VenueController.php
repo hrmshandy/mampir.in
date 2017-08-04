@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Review;
 use App\Models\Venue;
+use App\Services\GooglePlacesApi;
 use Illuminate\Http\Request;
 use JWTAuth;
 
 class VenueController extends Controller
 {
-    public function __invoke($slug) {
+    public function getFromLocal($slug) {
 
         if(JWTAuth::getToken()){
             $user_id = JWTAuth::parseToken()->toUser()->id;
@@ -30,5 +31,10 @@ class VenueController extends Controller
         $venue->myReview = $myReview;
 
         return response()->json($venue);
+    }
+
+    public function getFromGoogle(GooglePlacesApi $google, $place_id)
+    {
+        return $google->get($place_id);
     }
 }

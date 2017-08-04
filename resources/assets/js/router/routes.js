@@ -1,11 +1,15 @@
-// const Index = r => require.ensure(['../pages/Index.vue'], () => r(require('../pages/Index.vue')) )
-// const Search = r => require.ensure(['../pages/Search.vue'], () => r(require('../pages/Search.vue')) )
-// const Detail = r => require.ensure(['../pages/Detail.vue'], () => r(require('../pages/Detail.vue')) )
+const Index = () => import('../pages/Index.vue');
+const Search = () => import('../pages/Search.vue');
+const Detail = () => import('../pages/Detail.vue');
+const Login = () => import('../pages/Login.vue');
+const Register = () => import('../pages/Register.vue');
+const Error404 = () => import('../pages/404.vue');
 
 export default [
-  	{ path: '/', component: require('../pages/Index.vue') },
-  	{ path: '/search', component: require('../pages/Search.vue'), meta: { hideFooter: true } },
-  	{ path: '/detail/:slug', component: require('../pages/Detail.vue') },
-  	{ path: '/404', component: require('../pages/404.vue'), meta: { hideTopSearch: true, hideFooter: true } },
-  	{ path: '/alert-location', component: require('../pages/LocationAlert.vue'), meta: { hideTopSearch: true, hideFooter: true } }
+    {path: '/', component: Index},
+    {path: '/search', component: Search, meta: {hideFooter: true}},
+    {path: '/detail/:slug', component: Detail},
+    {path: '/login', component: Login},
+    {path: '/register', component: Register},
+    {path: '/404', component: Error404, meta: {hideTopSearch: true, hideFooter: true}}
 ]

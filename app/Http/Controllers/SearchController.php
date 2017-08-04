@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\Venue;
+use App\Services\GoogleMapExtractor;
+use App\Services\GooglePlacesApi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class SearchController extends Controller
 {
-    public function search(Request $request)
+    public function localSearch(Request $request)
     {
         $venue = Venue::with('categories', 'city');
 
@@ -46,6 +48,11 @@ class SearchController extends Controller
         return $venue->paginate(20);
     }
 
+    public function googlePlacesSearch(Request $request, GooglePlacesApi $google, $type)
+    {
+        return $google->{$type.'Search'}($request);
+    }
+
     public function suggestLocation(Request $request)
     {
         if($request->has('keyword')) {
@@ -68,25 +75,6 @@ class SearchController extends Controller
                                   ->select('id', 'name AS text', 'alias');
 
             return $categories
-                ->take(10)
-                ->get();
-        }
-
-        return [];
-        $venue = Venue::with('city')->select('area');
-
-        if($request->has('location')) {
-            $venue = $venue->whereHas('city', function($query) use($request){
-                $query->where('name', $request->location);
-            });
-        }
-
-        if($request->has('area')) {
-            $venue = $venue->where(function($query) use($request) {
-                $query->where('area', 'like', '%'.$request->area.'%');
-            });
-
-            return $venue->groupBy('area')
                 ->take(10)
                 ->get();
         }

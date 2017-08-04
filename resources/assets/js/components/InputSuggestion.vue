@@ -8,7 +8,8 @@
                v-model="keyword"
                @focus="onInputFocus"
                @input="fetchSuggestions"
-               @blur="blurHandler">
+               @blur="blurHandler"
+               @change="onchange">
         <div v-if="showInputSuggestions && !isEmptySuggestions" class="c-input-suggestion__suggestions">
             <template v-for="suggestion in suggestions">
                 <a href="#"
@@ -134,6 +135,9 @@
                     this.closeSuggestions();
                     setTimeout(() => { this.closeSuggestions(); }, 350); // hide suggestions on fast input
                 } //else if (this !== document.activeElement) setTimeout(function(){ this.focus(); }, 20);
+            },
+            onchange(e) {
+                this.$emit('change', e);
             }
         }
     }

@@ -131,7 +131,7 @@ export default {
         event: 'reviews'
     },
     props: {
-        venueId: { type: Number, required: true },
+        venueId: { required: true },
         myReview: { type: Object, required: false },
         reviews: { type: Array, required: true }
     },
