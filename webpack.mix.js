@@ -30,6 +30,13 @@ function site(mix) {
         .extract(plugins)
         .sass(mix.src('sass/app.scss'), 'css')
         .sass(mix.src('sass/locator.scss'), 'css');
+
+    mix.webpackConfig({
+        output: {
+            publicPath: '/',
+            chunkFilename: 'js/[name].js'
+        }
+    });
 }
 
 /*

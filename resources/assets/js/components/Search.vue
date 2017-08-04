@@ -4,43 +4,19 @@
         <div class="c-search__form">
             <div class="c-form-group">
                 <input-suggestion
-                        :options="suggestionOptions.location"
-                        v-model="location"
-                        @suggestionClicked="suggestionClicked">
+                        :options="suggestionOptions.city"
+                        v-model="searchQuery.city"
+                        @suggestionClicked="suggestionClicked"
+                        @change="onCityChanged">
                 </input-suggestion>
             </div>
             <div class="c-form-group">
                 <input-suggestion
                         :options="suggestionOptions.category"
-                        v-model="keyword"
+                        v-model="searchQuery.keyword"
                         @suggestionClicked="suggestionClicked">
                 </input-suggestion>
             </div>
-            <!-- <div class="c-form-group has-suggestions">
-                <input type="text"
-                       :class="['o-input', inputSize]"
-                       placeholder="Area"
-                       v-model="area"
-                       @input="fetchAreaSuggestions">
-                <div v-if="showSearchAreaSuggestions && !isEmptyAreaSuggestions" class="c-search-suggestions">
-                    <template v-for="suggest in areaSuggestions">
-                        <a href="#" class="c-search-suggestions__item" @click.prevent="setAsValue($event, suggest)">{{ suggest.text }}</a>
-                    </template>
-                </div>
-            </div> -->
-            <!--<div class="c-form-group has-suggestions" ref="searchSuggestions">-->
-                <!--<input type="text"-->
-                       <!--:class="['o-input', inputSize]"-->
-                       <!--placeholder="Nyari Apa?"-->
-                       <!--v-model="keyword"-->
-                       <!--@focus="onInputFocus"-->
-                       <!--@input="fetchSuggestions">-->
-                <!--<div v-if="showSearchSuggestions && !isEmptySuggestions" class="c-search-suggestions">-->
-                    <!--<template v-for="suggest in suggestions">-->
-                        <!--<a href="#" class="c-search-suggestions__item" @click.prevent="goToSearch($event, suggest)">{{ suggest.text }}</a>-->
-                    <!--</template>-->
-                <!--</div>-->
-            <!--</div>-->
             <div class="c-form-group">
                 <button :class="['o-button', 'o-button--primary','o-button-custom', 'o-button--block', btnSize]" type="submit">
                     <span v-if="!inline">Yuk,&nbsp;</span>
@@ -74,16 +50,26 @@
             return {
                 showSearchForm: false,
 
-                // search query
-                location: '',
-                area: '',
-                keyword: ''
+                searchQuery: {
+                    location: '',
+                    city: '',
+                    keyword: '',
+                    query: '',
+                    radius: 5000,
+                    modified: false
+                }
             }
         },
         computed: {
-            ...mapGetters([
-                'query'
-            ]),
+//            ...mapGetters([
+//                'query'
+//            ]),
+            query() {
+              let query = Object.assign({}, this.searchQuery);
+                  query.query = query.keyword+(!_.isEmpty(query.city) ? ' in '+query.city : '');
+
+              return serialize(query);
+            },
             inputSize() {
                 return !_.isEmpty(this.size) ? 'o-input--' + this.size : null;
             },
@@ -92,10 +78,10 @@
             },
             suggestionOptions() {
                 return {
-                    location: {
+                    city: {
                         endpoint: '/api/search/suggest/location',
                         placeholder: 'Pilih Kota',
-                        inputId: 'location',
+                        inputId: 'city',
                         inputClass: this.inputSize
                     },
                     category: {
@@ -117,21 +103,20 @@
                 }
             }
         },
-        watch: {
-            location(value) {
-                this.$store.commit('SET_LOCATION', value);
-            },
-            area(value) {
-                this.$store.commit('SET_AREA', value);
-            },
-            keyword(value) {
-                this.$store.commit('SET_KEYWORD', value);
-            }
-        },
+//        watch: {
+//            location(value) {
+//                this.$store.commit('SET_LOCATION', value);
+//            },
+//            area(value) {
+//                this.$store.commit('SET_AREA', value);
+//            },
+//            keyword(value) {
+//                this.$store.commit('SET_KEYWORD', value);
+//            }
+//        },
         methods: {
             submit() {
-                const queryString = serialize(clean(this.query));
-                window.location = '/search?' + queryString;
+                window.location = '/search?' + this.query;
             },
             geolocation() {
                 if (navigator.geolocation) {
@@ -146,10 +131,10 @@
                     location.longitude = position.coords.longitude;
                     var geocoder = new google.maps.Geocoder();
                     var latLng = new google.maps.LatLng(location.latitude, location.longitude);
-
+                    this.searchQuery.location = location.latitude+','+location.longitude;
                     if (geocoder) {
                         geocoder.geocode({'latLng': latLng}, (results, status) => {
-                            if (status == google.maps.GeocoderStatus.OK) {
+                            if (status === google.maps.GeocoderStatus.OK) {
                                 let result = results.filter(function (item) {
                                     return item.types[0] == 'locality';
                                 });
@@ -183,15 +168,13 @@
             },
             suggestionClicked() {
 
+            },
+            onCityChanged(e) {
+                this.modified = true;
             }
         },
         mounted() {
-            const query = this.$route.query;
-
-            this.location = !_.isUndefined(query.location) ? query.location : '';
-            this.area = !_.isUndefined(query.area) ? query.area : '';
-            this.keyword = !_.isUndefined(query.keyword) ? query.keyword : '';
-
+            Object.assign(this.searchQuery, this.$route.query);
             this.geolocation();
         }
     }

@@ -17,10 +17,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/search', 'SearchController@search');
+Route::get('/search/local', 'SearchController@localSearch');
+Route::get('/search/google-places/{type}', 'SearchController@googlePlacesSearch');
 Route::get('/search/suggest/location', 'SearchController@suggestLocation');
 Route::get('/search/suggest/category', 'SearchController@suggestCategory');
-Route::get('venue/{slug}', 'VenueController');
+Route::get('venue/l/{slug}', 'VenueController@getFromLocal');
+Route::get('venue/g/{place_id}', 'VenueController@getFromGoogle');
 Route::get('reviews', 'ReviewController@index');
 Route::post('review', 'ReviewController@store');
 Route::post('review/upload', 'ReviewController@upload');

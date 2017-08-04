@@ -30,9 +30,9 @@
 
                 <template v-if="!isEmpty">
                     <div class="o-grid">
-                        <template v-for="venue in listings">
+                        <template v-for="venue in google.listings">
                             <div class="o-grid__col u-4/12@lg u-6/12@sm u-12/12@xs">
-                                <a :href="'/detail/'+venue.slug" :id="'venue-card-'+venue.id" class="c-venue-card">
+                                <a :href="'/detail/'+venue.id" :id="'venue-card-'+venue.id" class="c-venue-card">
                                     <div class="c-venue-card__photo"
                                          :style="{ backgroundImage: `url(${venue.cover})`}"></div>
                                     <div class="c-venue-card__info">
@@ -41,11 +41,10 @@
                                     <div class="c-venue-card__footer" style="margin-top: 5px;">
                                         <div class="c-venue-card__rating">
                                             <rating :venue-id="venue.id" :value="venue.rating" method="get"></rating>
-                                            <small class="text-muted">{{ venue.total_reviews }} Reviews</small>
                                         </div>
                                         <div class="c-venue-card__categories" style="margin-top: 5px;">
                                             <!-- {{ venue.categories | joinBy }} -->
-                                            {{ venue.address.split(',')[0] }}
+                                            {{ venue.short_address }}
                                         </div>
                                     </div>
                                 </a>
@@ -96,7 +95,17 @@
                 map: null,
                 isEmpty: false,
                 viewListing: true,
-                viewMaps: true
+                viewMaps: true,
+
+                // new
+                local: {
+                    next_page_url: '',
+                    listings: []
+                },
+                google: {
+                    next_page_url: '',
+                    listings: []
+                }
             }
         },
         computed: {
@@ -109,11 +118,11 @@
         },
         mounted() {
             const query = this.$route.query;
-            this.$store.dispatch('setQuery', query);
+//            this.$store.dispatch('setQuery', query);
             this.fetchData(query)
         },
         watch: {
-            listings(value) {
+            'google.listings': (value) => {
                 let M = new Map;
 
                 if (M.map === undefined) {
@@ -126,31 +135,29 @@
         },
         methods: {
             fetchData (query) {
-                this.error = this.listings = null;
                 this.loading = true;
 
+                let url = '/api/search/google-places/text';
+//                if(!_.isEmpty(query.location) && query.modified !== "true") {
+//                    url += 'nearby';
+//                } else {
+//                    url += 'text';
+//                }
+//
                 let Q = serialize(query);
 
-                axios.get('/api/search?' + Q).then(({data}) => {
-
+//
+                axios.get(url+'?'+Q).then(({data}) => {
                     setTimeout(() => {
                         this.loading = false;
-                        this.listings = _.shuffle(data.data);
-                        this.currentPage = data.current_page;
-                        this.perPage = data.per_page;
-                        this.totalRecords = data.total;
+                        this.google.listings = data.data;
+                        this.google.next_page_url = data.next_page_url;
                         if (data.data.length <= 0) {
-                            let location = this.$route.query.location;
-                            this.$store.dispatch('setQuery', {
-                                keyword: null,
-                                location: location,
-                                area: null
-                            });
                             router.push('404');
                         }
                     }, 1000);
 
-                })
+                });
             },
             clickViewMaps () {
                 this.viewMaps = true;

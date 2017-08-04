@@ -1,35 +1,36 @@
 @font-face {
-  font-family: 'Hanken';
-  src: url('../../fonts/Hanken-Light.eot');
-  src: local('Hanken Light'), local('Hanken-Light'),
-  url('../../fonts/Hanken-Light.eot?#iefix') format('embedded-opentype'),
-  url('../../fonts/Hanken-Light.woff2') format('woff2'),
-  url('../../fonts/Hanken-Light.woff') format('woff'),
-  url('../../fonts/Hanken-Light.ttf') format('truetype');
-  font-weight: 300;
-  font-style: normal;
+    font-family: 'Hanken';
+    src: url('../../fonts/Hanken-Light.eot');
+    src: local('Hanken Light'), local('Hanken-Light'),
+    url('../../fonts/Hanken-Light.eot?#iefix') format('embedded-opentype'),
+    url('../../fonts/Hanken-Light.woff2') format('woff2'),
+    url('../../fonts/Hanken-Light.woff') format('woff'),
+    url('../../fonts/Hanken-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: 'Hanken';
-  src: url('../../fonts/Hanken-Book.eot');
-  src: local('Hanken Book'), local('Hanken-Book'),
-  url('../../fonts/Hanken-Book.eot?#iefix') format('embedded-opentype'),
-  url('../../fonts/Hanken-Book.woff2') format('woff2'),
-  url('../../fonts/Hanken-Book.woff') format('woff'),
-  url('../../fonts/Hanken-Book.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'Hanken';
+    src: url('../../fonts/Hanken-Book.eot');
+    src: local('Hanken Book'), local('Hanken-Book'),
+    url('../../fonts/Hanken-Book.eot?#iefix') format('embedded-opentype'),
+    url('../../fonts/Hanken-Book.woff2') format('woff2'),
+    url('../../fonts/Hanken-Book.woff') format('woff'),
+    url('../../fonts/Hanken-Book.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
 body {
-  font-family: "Hanken", sans-serif;
-  @include iota-type($type-16);
-  color: $color-grey;
-  letter-spacing: 0.01em;
-  -webkit-font-smoothing: antialiased;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  -webkit-font-feature-settings: "kern" 1;
-  -moz-font-feature-settings: "kern" 1;
+    font-family: "Hanken", sans-serif;
+    color: #777;
+    line-height: 1.8;
+    font-size: 14px;
+    letter-spacing: 0.01em;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-font-feature-settings: "kern" 1;
+    -moz-font-feature-settings: "kern" 1;
 }

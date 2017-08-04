@@ -13,7 +13,7 @@
                         <search-form size="large" :inline="false"></search-form>
                     </div>
                 </div>
-                <categories :location="city"></categories>
+                <categories :city="city"></categories>
             </div>
         </section>
         <!-- <div class="c-categories c-categories--widget">
@@ -120,8 +120,9 @@
     import Flickity from 'flickity';
 
     import Masonry from '../components/Masonry.vue'
-    import SearchForm from '../components/Search.vue'
     import Categories from '../components/Categories.vue'
+
+    const SearchForm = () => import('../components/Search.vue');
 
     export default {
         components: {Categories, Masonry, SearchForm},
@@ -138,14 +139,16 @@
                 'query'
             ]),
             city() {
-                return this.query.location;
+                if (document.getElementById('city')) {
+                    return document.getElementById('city').value;
+                } else {
+                    return '';
+                }
             }
         },
         watch: {
             '$route': function () {
-                if (document.getElementById('location')) {
-                    this.fetchReviews(document.getElementById('location').value);
-                }
+                this.fetchReviews(this.city);
             },
             'query.location': function (value) {
                 this.fetchReviews(value);
@@ -173,7 +176,7 @@
                 axios.get('/api/reviews?location=' + city).then(({data}) => {
                     this.reviews = data;
                 });
-            },
+            }
             // initIory() {
             // 	document.addEventListener('DOMContentLoaded', () => {
             //         const slider = document.querySelector('.js_slider');
@@ -188,7 +191,7 @@
             window.document.title = "Bahagia Itu Dekat - Mampir.in"
         },
         mounted() {
-            this.fetchReviews(document.getElementById('location').value);
+            this.fetchReviews(this.city);
             //this.fitHeroUnitHeight();
             // this.initIory();
         }

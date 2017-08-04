@@ -28,8 +28,9 @@ import Login from '../components/auth/Login.vue'
 import Logo from '../objects/Logo.vue'
 import MobileMenu from '../components/MobileMenu.vue'
 import Register from '../components/auth/Register.vue'
-import Search from '../components/Search.vue'
 import User from '../components/User.vue'
+
+const Search = () => import('../components/Search.vue');
 
 export default {
     components: { Login, Logo, MobileMenu, Register, Search, User },

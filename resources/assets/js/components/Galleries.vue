@@ -6,7 +6,7 @@
         </div>
         <template v-for="photo in photos">
             <carousel-item>
-                <div class="c-gallery__image" :style="{ backgroundImage: 'url(/img/cache/original/'+photo+')' }"></div>
+                <div class="c-gallery__image" :style="{ backgroundImage: 'url('+photo+')' }"></div>
             </carousel-item>
         </template>
     </carousel>
