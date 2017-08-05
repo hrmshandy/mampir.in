@@ -15,6 +15,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $locale = request()->segment(2);
+        $lc_time = $locale.'_'.strtoupper($locale).'.utf8';
+        setlocale(LC_TIME, $lc_time);
+
         Schema::defaultStringLength(191);
 
         View::addNamespace('admin', realpath(resource_path('admin/views')));

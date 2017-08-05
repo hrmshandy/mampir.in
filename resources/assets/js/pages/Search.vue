@@ -40,7 +40,7 @@
                                     </div>
                                     <div class="c-venue-card__footer" style="margin-top: 5px;">
                                         <div class="c-venue-card__rating">
-                                            <rating :venue-id="venue.id" :value="venue.rating" method="get"></rating>
+                                            <!--<rating :venue-id="venue.id" :value="venue.rating" method="get"></rating>-->
                                         </div>
                                         <div class="c-venue-card__categories" style="margin-top: 5px;">
                                             <!-- {{ venue.categories | joinBy }} -->

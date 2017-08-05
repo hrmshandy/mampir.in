@@ -155,3 +155,11 @@
         display: none;
     }
 }
+
+
+// Google Place Details
+.p-gp-details {
+    &__overview {
+        @extend .p-venue-detail__overview;
+    }
+}

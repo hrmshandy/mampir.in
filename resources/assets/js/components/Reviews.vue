@@ -71,24 +71,21 @@
 
             <div v-masonry-tile class="o-grid__col u-3/12@lg u-6/12@sm" v-if="reviewed">
                 <div class="c-card c-card--dialog c-card--dialog__placeholder">
-                    <div class="c-card__header">
-                        <rating v-model="myReview.rating" :venue-id="venueId" method="get"></rating>
+                    <div class="o-user-block">
+                        <div class="o-user-block__pic">
+                            <img :src="myReview.user.avatar" alt="">
+                        </div>
+                        <div class="o-user-block__info">
+                            <span class="o-user-block__name">{{ myReview.user.name }}</span>
+                            <span class="o-user-block__status">{{ formatedDate(myReview.created_at) }}</span>
+                        </div>
                     </div>
                     <div class="c-card__body">
+                        <rating v-model="myReview.rating" :venue-id="venueId" method="get"></rating>
+                        <img src="https://www.parktheatre.co.uk/media/images/coffee-cake.jpg" class="o-user-block__photoreview">
                         <p>
                             {{ myReview.content }}
                         </p>
-                    </div>
-                    <div class="c-card__footer">
-                        <div class="o-user-block">
-                            <div class="o-user-block__pic">
-                                <img :src="myReview.user.avatar" alt="">
-                            </div>
-                            <div class="o-user-block__info">
-                                <span class="o-user-block__name">{{ myReview.user.name }}</span>
-                                <span class="o-user-block__status">{{ formatedDate(myReview.created_at) }}</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -132,6 +129,7 @@ export default {
     },
     props: {
         venueId: { required: true },
+        venueType: String,
         myReview: { type: Object, required: false },
         reviews: { type: Array, required: true }
     },
@@ -143,24 +141,30 @@ export default {
     },
     watch: {
         venueId(value) {
-            this.form.venue_id = value;
+            if(this.venueType === 'google') {
+                this.form.google_id = value;
+            } else {
+                this.form.venue_id = value;
+            }
         },
         myReview(value) {
             if(value)
                 this.reviewed = true;
         },
-        'user.id': function(value) {
-            this.form.user_id = value;
+        user(value) {
+            this.form.user_id = value.id;
         }
     },
     data() {
+//        const user
         return {
             writingReview: false,
             reviewed: false,
             activedUpload: false,
             form: new Form({
-                user_id: 0,
-                venue_id: 0,
+                user_id: this.$store.getters.user.id,
+                venue_id: null,
+                google_id: null,
                 rating: 0,
                 content: null,
                 imageCollection: []
