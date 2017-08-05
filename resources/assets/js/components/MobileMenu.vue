@@ -12,53 +12,54 @@
 		<transition
 			enter-active-class="animated slideInDown"
 			name="slide">
-
 	    	<div class="nav-mobile__wrapper">
-	    		<div class="nav-mobile__menu">
-	    			<div class="o-grid">
-			    		<div class="o-grid__col u-6/12@lg">
-					    	<div class="nav-mobile__menu-general">
-						    	<li class="nav-mobile__item">
-						    		<a href="/" class="item">
-						    			Home
-						    		</a>
-						    	</li>
-						    	
-						    	<li class="nav-mobile__item">
-						    		<router-link class="item" to="/">
-						    			Trending
-						    		</router-link>
-						    	</li>
-						    	
-						    	<li class="nav-mobile__item">
-						    		<router-link class="item" to="/">
-						    			Journal
-						    		</router-link>
-						    	</li>
+	    		<div class="nav-mobile__menu">	
 
-						    	<li class="nav-mobile__item">
-		                    		<login></login>
-					    		</li>
-					    		<li class="nav-mobile__item">
-			                    	<register></register>
-			                    </li>
+			    	<div class="nav-mobile__menu-general">
+				    	<li class="nav-mobile__item">
+				    		<a href="/" class="item">
+				    			Home
+				    		</a>
+				    	</li>
+				    	
+				    	<li class="nav-mobile__item">
+				    		<router-link class="item" to="/">
+				    			Trending
+				    		</router-link>
+				    	</li>
+				    	
+				    	<li class="nav-mobile__item">
+				    		<router-link class="item" to="/">
+				    			Journal
+				    		</router-link>
+				    	</li>
+	                </div>
+
+		                <template>
+	                    	<user></user>
+
+			                <div class="nav-mobile__menu-merchant">
+			                    <h3>Merchant</h3>
+			                        <a class="" href="#">Salona</a>
+			                        <a class="" href="#">Barbera</a>
+			                        <a class="o-button o-button--primary o-button-custom o-button--block" href="#">Add Merchant</a>
 			                </div>
-			    		</div>	
-			    		<div class="o-grid__col u-4/12@lg">
-			                <template>
-		                    	<user></user>
-				                <div class="nav-mobile__menu-merchant">
-				                    <h3>Merchant</h3>
-				                        <a class="" href="#">Salona</a>
-				                        <a class="" href="#">Barbera</a>
-				                        <a class="o-button o-button--primary o-button-custom o-button--block" href="#">Add Merchant</a>
-				                </div>
-			                </template>
-			    		</div>
-	    			</div>		    		
+
+		                </template>
+
+		                <template>
+				    		<li class="nav-mobile__item">
+		                    	<login></login>
+				    		</li>
+				    		<li class="nav-mobile__item">
+		                    	<register></register>
+		                    </li>
+		                </template>
+
+	
+
 	    		</div>
 	    	</div>
-
 		</transition>
 		
     </div>
@@ -70,7 +71,6 @@ import LogoMobile from '../components/LogoMobile.vue'
 import Login from '../components/auth/Login.vue'
 import Register from '../components/auth/Register.vue'
 import User from '../components/User.vue'
-
 export default {
 	components: { LogoMobile, Login, Register, User },
 	props: {
