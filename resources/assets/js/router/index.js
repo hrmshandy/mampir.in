@@ -11,26 +11,26 @@ const router = new VueRouter({
   	routes // short for routes: routes
 });
 //
-// router.beforeEach((to, from, next) => {
-//     // if(from.path !== '/login' || from.path !== '/register') {
-//     //     window.localStorage.setItem('current_url', from.fullPath);
-//     // }
-//     if (to.matched.some(record => record.meta.hideFooter)) {
-//         store.commit('SHOW_FOOTER', false);
-// 	} else {
-//         store.commit('SHOW_FOOTER', true);
-//     }
-//
-//     if (to.matched.some(record => record.meta.hideTopSearch)) {
-//         store.commit('SHOW_TOP_SEARCH', false);
-//     } else {
-//         store.commit('SHOW_TOP_SEARCH', true);
-//     }
-//
-//     store.dispatch('authCheck');
-//
-//     next()
-// })
+router.beforeEach((to, from, next) => {
+    // if(from.path !== '/login' || from.path !== '/register') {
+    //     window.localStorage.setItem('current_url', from.fullPath);
+    // }
+    if (to.matched.some(record => record.meta.hideFooter)) {
+        store.commit('SHOW_FOOTER', false);
+	} else {
+        store.commit('SHOW_FOOTER', true);
+    }
+
+    if (to.matched.some(record => record.meta.hideTopSearch)) {
+        store.commit('SHOW_TOP_SEARCH', false);
+    } else {
+        store.commit('SHOW_TOP_SEARCH', true);
+    }
+
+    store.dispatch('authCheck');
+
+    next()
+})
 
 window.router = router;
 export default router;

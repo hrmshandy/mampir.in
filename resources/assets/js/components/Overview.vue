@@ -67,14 +67,14 @@
                     <p class="c-rating-review-display__text">{{ totalReviews }} Reviews</p>
                 </div>
                 <ul class="c-rating-review-list">
-                    <li v-for="i in 5">
-                        <div>{{ getRating(i-1) }} <o-star></o-star></div>
+                    <li v-for="(i, index) in ratings">
+                        <div>{{ 5-index }} <o-star></o-star></div>
                         <div class="o-progress-bar__wrapper">
                             <div class="o-progress-bar">
                                 <div class="o-progress-bar__value" :style="{ width: getRetingBarWidth(i-1) }"></div>
                             </div>
                         </div>
-                        <div>{{ getReviews(i-1) }}</div>
+                        <div>{{ i }}</div>
                     </li>
                 </ul>
             </div>

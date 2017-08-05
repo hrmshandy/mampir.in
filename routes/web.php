@@ -10,7 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('test/{lang}', function($lang){
+    return App\Models\Venue::find(153)->created_at->formatLocalized('%B %d, %Y');
+});
 Route::get('/', 'IndexController');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout');

@@ -26,7 +26,7 @@
         <!-- </section> -->
         <section class="o-section o-section--grey">
             <div class="o-container--fluid">
-                <reviews :venue-id="venueId" :my-review="myReview" v-model="reviews"></reviews>
+                <reviews :venue-id="venueId" :my-review="myReview" :venue-type="type" v-model="reviews"></reviews>
             </div>
         </section>
     </div>
@@ -40,6 +40,7 @@
 
     import {loaded} from '../api/map/loader'
     import Icon from '../api/map/map-pin-empty'
+
 
     export default {
         components: {Overview, Galleries, Reviews},
@@ -60,7 +61,8 @@
                 rating: 0,
                 ratings: [],
                 reviews: [],
-                myReview: {}
+                myReview: {},
+                type: ''
             }
         },
         created() {
@@ -97,9 +99,10 @@
                     this.categories = data.categories;
                     this.location = {lat: data.lat, lng: data.lng};
                     this.rating = data.rating;
-//                    this.ratings = data.ratings;
-                    this.reviews = data.reviews;
-//                    this.myReview = data.myReview;
+                    this.ratings = Object.values(data.reviews.ratings).reverse();
+                    this.reviews = data.reviews.reviews;
+                    this.type = data.type;
+                    this.myReview = data.myReview;
 
                     window.document.title = data.name + ' - Mampir.in';
                 });
