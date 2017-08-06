@@ -8,6 +8,13 @@
     @include elevation-transition();
     transition: all .3s ease;
     z-index: 999;
+    &.is-sticky .o-container.o-container--wide {
+        background: #fff;
+        display: block;
+        width: 100%;
+        position: absolute;
+        z-index: 10;
+    }
     &__body {
         display: flex;
         align-items: center;

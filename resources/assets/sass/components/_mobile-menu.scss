@@ -67,7 +67,12 @@
         padding-top: 80px;
         z-index: 9;
         display: none;
-        @include until(641px) {
+        @include from(641px) {
+            overflow-y: scroll;
+            width: 102%;
+        }
+
+        @include until(640px) {
             overflow: scroll;
         }
     }
@@ -113,7 +118,7 @@
         &__menu {
             width: 100%;
             margin-left: 0;
-            padding: 0 64px;
+            padding: 0 57px;
         }
     }
     .nav-mobile__menu::before {

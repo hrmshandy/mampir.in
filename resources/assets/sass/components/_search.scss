@@ -39,6 +39,9 @@
             display: none;
             @include desktop {
                 display: flex;
+                position: absolute;
+                top: 12px;
+                right: 25px;
                 >.c-form-group {
                     margin-left: 10px;
                     margin-bottom: 0;

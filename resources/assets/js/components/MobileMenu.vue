@@ -104,6 +104,7 @@ export default {
 		  if(this.showNav) {
 		      this.showNav = false;
 		      iconim.off('search-close');
+		      
 		  } else {
               this.showNav = true;
               iconim.on('search-close');
