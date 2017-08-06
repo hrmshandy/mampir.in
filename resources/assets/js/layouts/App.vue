@@ -7,8 +7,12 @@
 		<l-footer v-show="footer"></l-footer>
 		<select-city></select-city>
 		<preloader></preloader>
-		                    	<login></login>
-		                    	<register></register>
+
+		<div style="display:none">
+	    	<login></login>
+	    	<register></register>
+    	</div>
+
 	</div>
 </template>
 
