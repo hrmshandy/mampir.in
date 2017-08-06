@@ -19,6 +19,12 @@
             </li> -->
                 <a href="#" class="user-menu__link logout" @click.prevent="handleLogout"><span>Log out</span><icon name="power-off"></icon></a>
 
+        <div class="nav-mobile__menu-merchant">
+            <h3>Merchant</h3>
+                <a class="" href="#">Salona</a>
+                <a class="" href="#">Barbera</a>
+                <a class="o-button o-button--primary o-button-custom o-button--block" href="#">Add Merchant</a>
+        </div>
     </div>
 
 </template>

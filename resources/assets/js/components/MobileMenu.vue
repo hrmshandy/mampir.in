@@ -38,13 +38,6 @@
 		                <template>
 	                    	<user></user>
 
-			                <div class="nav-mobile__menu-merchant">
-			                    <h3>Merchant</h3>
-			                        <a class="" href="#">Salona</a>
-			                        <a class="" href="#">Barbera</a>
-			                        <a class="o-button o-button--primary o-button-custom o-button--block" href="#">Add Merchant</a>
-			                </div>
-
 		                </template>
 
 		                <template>
