@@ -64,7 +64,7 @@
                 <div class="c-rating-review-display">
                     <span class="c-rating-review-display__number">{{ rating }}</span>
                     <rating v-model="rating" :venue-id="venueId" method="get"></rating>
-                    <p class="c-rating-review-display__text">{{ totalReviews }} Reviews</p>
+                    <p class="c-rating-review-display__text">{{ totalReviews }} Ulasan</p>
                 </div>
                 <ul class="c-rating-review-list">
                     <li v-for="(i, index) in ratings">
@@ -94,7 +94,7 @@ export default {
             return _.map(this.categories,'name').join(", ")
         },
         totalReviews() {
-            return _.sumBy(this.ratings, 'reviews')
+            return _.sumBy(this.ratings)
         },
         directionLink() {
             return `http://maps.google.com/maps?saddr=(${this.location.lat}, ${this.location.lng})&daddr=My+location`

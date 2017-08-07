@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -15,9 +16,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $locale = request()->segment(2);
-        $lc_time = $locale.'_'.strtoupper($locale).'.utf8';
-        setlocale(LC_TIME, $lc_time);
+        setlocale(LC_TIME, 'id_ID');
+        Carbon::setLocale('id');
 
         Schema::defaultStringLength(191);
 
