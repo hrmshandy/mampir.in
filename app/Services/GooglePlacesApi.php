@@ -161,7 +161,7 @@ class GooglePlacesApi
             ]
         ];
         if(isset($detail['reviews'])) {
-            $local_reviews = Review::where('google_id', $detail['place_id'])
+            $local_reviews = Review::with('user')->where('google_id', $detail['place_id'])
                                     ->where('user_id', "<>", $this->user_id)
                                     ->orderBy('created_at', 'desc')->get()->toArray();
             $result['reviews'] = collect($detail['reviews'])->map(function($item) use(&$result){
@@ -172,6 +172,7 @@ class GooglePlacesApi
                         'rating' => $item['rating'],
                         'content' => $item['text'],
                         'status' => 2,
+                        'photos' => [],
                         'user' => [
                             'name' => $item['author_name'],
                             'email' => str_random(10).'@mail.com',
@@ -182,7 +183,7 @@ class GooglePlacesApi
                     ];
                 }
 
-            })->merge($local_reviews);
+            })->merge($local_reviews)->filter()->all();
         }
         return $result;
     }

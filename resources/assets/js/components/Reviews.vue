@@ -82,7 +82,13 @@
                     </div>
                     <div class="c-card__body">
                         <rating v-model="myReview.rating" :venue-id="venueId" method="get"></rating>
-                        <img src="https://www.parktheatre.co.uk/media/images/coffee-cake.jpg" class="o-user-block__photoreview">
+                        <carousel v-if="myReview.photos.length > 0" class="o-photoreview" :options="carouselOptions" :timeout="1000">
+                            <template v-for="photo in myReview.photos">
+                                <carousel-item class="o-photoreview__item">
+                                    <div class="o-photoreview__image" :style="{ backgroundImage: 'url(/img/cache/card/'+photo+')' }"></div>
+                                </carousel-item>
+                            </template>
+                        </carousel>
                         <p>
                             {{ myReview.content }}
                         </p>
@@ -103,7 +109,13 @@
                     </div>
                     <div class="c-card__body">
                         <rating v-model="review.rating" :venue-id="venueId" method="get"></rating>
-                        <img src="https://www.parktheatre.co.uk/media/images/coffee-cake.jpg" class="o-user-block__photoreview">
+                        <carousel v-if="review.photos.length > 0" class="o-photoreview" :options="carouselOptions" :timeout="1000">
+                            <template v-for="photo in review.photos">
+                                <carousel-item class="o-photoreview__item">
+                                    <div class="o-photoreview__image" :style="{ backgroundImage: 'url(/img/cache/card/'+photo+')' }"></div>
+                                </carousel-item>
+                            </template>
+                        </carousel>
                         <p>
                             {{ review.content }}
                         </p>
@@ -120,9 +132,11 @@ import { mapGetters } from 'vuex'
 import Form from '../utils/form.js'
 import Rating from './Rating.vue'
 import Dropzone from 'vue2-dropzone'
+import Carousel from './Carousel.vue';
+import CarouselItem from './CarouselItem.vue';
 
 export default {
-    components: { Rating, Dropzone },
+    components: { Rating, Dropzone, Carousel, CarouselItem },
     model: {
         prop: 'reviews',
         event: 'reviews'
@@ -131,29 +145,13 @@ export default {
         venueId: { required: true },
         venueType: String,
         myReview: { type: Object, required: false },
-        reviews: { type: Array, required: true }
+        reviews: { required: true }
     },
     computed: {
         ...mapGetters([
             'authenticated',
             'user'
         ])
-    },
-    watch: {
-        venueId(value) {
-            if(this.venueType === 'google') {
-                this.form.google_id = value;
-            } else {
-                this.form.venue_id = value;
-            }
-        },
-        myReview(value) {
-            if(value)
-                this.reviewed = true;
-        },
-        user(value) {
-            this.form.user_id = value.id;
-        }
     },
     data() {
 //        const user
@@ -169,7 +167,27 @@ export default {
                 content: null,
                 imageCollection: []
             }),
-            uploadedPhotos:[]
+            uploadedPhotos:[],
+            carouselOptions: {
+                cellAlign: 'left',
+                contain: true
+            }
+        }
+    },
+    watch: {
+        venueId(value) {
+            if(this.venueType === 'google') {
+                this.form.google_id = value;
+            } else {
+                this.form.venue_id = value;
+            }
+        },
+        myReview(value) {
+            if(value)
+                this.reviewed = true;
+        },
+        'user.id': function(value) {
+            this.form.user_id = value;
         }
     },
     created() {

@@ -41,7 +41,6 @@
     import {loaded} from '../api/map/loader'
     import Icon from '../api/map/map-pin-empty'
 
-
     export default {
         components: {Overview, Galleries, Reviews},
         data() {
