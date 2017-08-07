@@ -1,5 +1,7 @@
-.c-search {
-    margin-left: auto;
+.c-search {    
+    @media (max-width: 640px) {
+        margin: 10%;
+    }
     &__button {
         @include unselectable;
         background: transparent;
@@ -37,6 +39,9 @@
             display: none;
             @include desktop {
                 display: flex;
+                position: absolute;
+                top: 12px;
+                right: 25px;
                 >.c-form-group {
                     margin-left: 10px;
                     margin-bottom: 0;

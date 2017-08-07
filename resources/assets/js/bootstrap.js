@@ -1,6 +1,13 @@
+import Promise from 'promise-polyfill';
+if (!window.Promise) {
+    window.Promise = Promise;
+}
+
 window._ = require('lodash');
 window.Cookies = require('js-cookie');
 window.moment = require('moment');
+
+moment.locale('id');
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

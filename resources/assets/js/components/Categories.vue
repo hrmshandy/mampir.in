@@ -37,7 +37,8 @@
                     prevNextButtons: false,
                     pageDots: false,
                     cellAlign: 'left',
-                    draggable: false
+                    draggable: false,
+                    wrapAround: true
                 };
 
                 const toggleDraggable = () => {

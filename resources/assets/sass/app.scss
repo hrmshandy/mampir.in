@@ -53,6 +53,7 @@
 @import 'objects/cities';
 @import 'objects/map';
 @import 'objects/google-maps';
+@import 'objects/photoreview';
 
 @import 'components/form';
 @import 'components/navbar';
@@ -109,7 +110,7 @@
 //// Components
 //@import "pages/home";
 @import "pages/search";
-@import "pages/detail";
+@import "pages/details";
 @import "pages/journal-detail";
 @import "pages/404";
 @import "pages/journal";

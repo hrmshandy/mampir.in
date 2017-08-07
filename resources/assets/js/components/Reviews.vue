@@ -71,24 +71,27 @@
 
             <div v-masonry-tile class="o-grid__col u-3/12@lg u-6/12@sm" v-if="reviewed">
                 <div class="c-card c-card--dialog c-card--dialog__placeholder">
-                    <div class="c-card__header">
-                        <rating v-model="myReview.rating" :venue-id="venueId" method="get"></rating>
+                    <div class="o-user-block">
+                        <div class="o-user-block__pic">
+                            <img :src="myReview.user.avatar" alt="">
+                        </div>
+                        <div class="o-user-block__info">
+                            <span class="o-user-block__name">{{ myReview.user.name }}</span>
+                            <span class="o-user-block__status">{{ formatedDate(myReview.created_at) }}</span>
+                        </div>
                     </div>
                     <div class="c-card__body">
+                        <rating v-model="myReview.rating" :venue-id="venueId" method="get"></rating>
+                        <carousel v-if="myReview.photos.length > 0" class="o-photoreview" :options="carouselOptions" :timeout="1000">
+                            <template v-for="photo in myReview.photos">
+                                <carousel-item class="o-photoreview__item">
+                                    <div class="o-photoreview__image" :style="{ backgroundImage: 'url(/img/cache/card/'+photo+')' }"></div>
+                                </carousel-item>
+                            </template>
+                        </carousel>
                         <p>
                             {{ myReview.content }}
                         </p>
-                    </div>
-                    <div class="c-card__footer">
-                        <div class="o-user-block">
-                            <div class="o-user-block__pic">
-                                <img :src="myReview.user.avatar" alt="">
-                            </div>
-                            <div class="o-user-block__info">
-                                <span class="o-user-block__name">{{ myReview.user.name }}</span>
-                                <span class="o-user-block__status">{{ formatedDate(myReview.created_at) }}</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -106,7 +109,13 @@
                     </div>
                     <div class="c-card__body">
                         <rating v-model="review.rating" :venue-id="venueId" method="get"></rating>
-                        <img src="https://www.parktheatre.co.uk/media/images/coffee-cake.jpg" class="o-user-block__photoreview">
+                        <carousel v-if="review.photos.length > 0" class="o-photoreview" :options="carouselOptions" :timeout="1000">
+                            <template v-for="photo in review.photos">
+                                <carousel-item class="o-photoreview__item">
+                                    <div class="o-photoreview__image" :style="{ backgroundImage: 'url(/img/cache/card/'+photo+')' }"></div>
+                                </carousel-item>
+                            </template>
+                        </carousel>
                         <p>
                             {{ review.content }}
                         </p>
@@ -123,17 +132,20 @@ import { mapGetters } from 'vuex'
 import Form from '../utils/form.js'
 import Rating from './Rating.vue'
 import Dropzone from 'vue2-dropzone'
+import Carousel from './Carousel.vue';
+import CarouselItem from './CarouselItem.vue';
 
 export default {
-    components: { Rating, Dropzone },
+    components: { Rating, Dropzone, Carousel, CarouselItem },
     model: {
         prop: 'reviews',
         event: 'reviews'
     },
     props: {
         venueId: { required: true },
+        venueType: String,
         myReview: { type: Object, required: false },
-        reviews: { type: Array, required: true }
+        reviews: { required: true }
     },
     computed: {
         ...mapGetters([
@@ -141,9 +153,34 @@ export default {
             'user'
         ])
     },
+    data() {
+//        const user
+        return {
+            writingReview: false,
+            reviewed: false,
+            activedUpload: false,
+            form: new Form({
+                user_id: this.$store.getters.user.id,
+                venue_id: null,
+                google_id: null,
+                rating: 0,
+                content: null,
+                imageCollection: []
+            }),
+            uploadedPhotos:[],
+            carouselOptions: {
+                cellAlign: 'left',
+                contain: true
+            }
+        }
+    },
     watch: {
         venueId(value) {
-            this.form.venue_id = value;
+            if(this.venueType === 'google') {
+                this.form.google_id = value;
+            } else {
+                this.form.venue_id = value;
+            }
         },
         myReview(value) {
             if(value)
@@ -151,21 +188,6 @@ export default {
         },
         'user.id': function(value) {
             this.form.user_id = value;
-        }
-    },
-    data() {
-        return {
-            writingReview: false,
-            reviewed: false,
-            activedUpload: false,
-            form: new Form({
-                user_id: 0,
-                venue_id: 0,
-                rating: 0,
-                content: null,
-                imageCollection: []
-            }),
-            uploadedPhotos:[]
         }
     },
     created() {

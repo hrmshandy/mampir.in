@@ -64,17 +64,17 @@
                 <div class="c-rating-review-display">
                     <span class="c-rating-review-display__number">{{ rating }}</span>
                     <rating v-model="rating" :venue-id="venueId" method="get"></rating>
-                    <p class="c-rating-review-display__text">{{ totalReviews }} Reviews</p>
+                    <p class="c-rating-review-display__text">{{ totalReviews }} Ulasan</p>
                 </div>
                 <ul class="c-rating-review-list">
-                    <li v-for="i in 5">
-                        <div>{{ getRating(i-1) }} <o-star></o-star></div>
+                    <li v-for="(i, index) in ratings">
+                        <div>{{ 5-index }} <o-star></o-star></div>
                         <div class="o-progress-bar__wrapper">
                             <div class="o-progress-bar">
                                 <div class="o-progress-bar__value" :style="{ width: getRetingBarWidth(i-1) }"></div>
                             </div>
                         </div>
-                        <div>{{ getReviews(i-1) }}</div>
+                        <div>{{ i }}</div>
                     </li>
                 </ul>
             </div>
@@ -94,7 +94,7 @@ export default {
             return _.map(this.categories,'name').join(", ")
         },
         totalReviews() {
-            return _.sumBy(this.ratings, 'reviews')
+            return _.sumBy(this.ratings)
         },
         directionLink() {
             return `http://maps.google.com/maps?saddr=(${this.location.lat}, ${this.location.lng})&daddr=My+location`

@@ -4,6 +4,7 @@
 namespace App\Services;
 
 
+use App\Models\Review;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use GuzzleHttp\TransferStats;
@@ -11,6 +12,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Validator;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class GooglePlacesApi
 {
@@ -22,8 +24,15 @@ class GooglePlacesApi
     protected $key;
     protected $client;
 
+    protected $user_id;
+
     public function __construct()
     {
+        if(JWTAuth::getToken()){
+            $this->user_id = JWTAuth::parseToken()->toUser()->id;
+        } else{
+            $this->user_id = 0;
+        }
         $this->key = config('services.google-map.key');
         $this->client = new Client([
             'base_uri' => self::BASE_URL,
@@ -48,6 +57,7 @@ class GooglePlacesApi
 
     public function get($place_id, $params = [])
     {
+
         $params['placeid'] = $place_id;
         $response = $this->makeRequest(self::DETAILS_SEARCH_URL, $params);
 
@@ -67,7 +77,9 @@ class GooglePlacesApi
                 ],
                 "photos" => $this->photos($detail),
                 "reviews" => $this->reviews($detail),
-                "rating" => $detail['rating']
+                "myReview" => $this->myReview($detail),
+                "rating" => $detail['rating'],
+                'type' => 'google'
             ];
 
             return $data;
@@ -121,7 +133,7 @@ class GooglePlacesApi
                 "lng" => $item['geometry']['location']['lng'],
                 'cover' => $this->getCover($item),
                 'details_url' => url('api/venue/g/'.$item['place_id']),
-                'rating' => $this->getRating($item['place_id'])
+//                'rating' => $this->getRating($item['place_id'])
             ];
 
             return $data;
@@ -138,25 +150,42 @@ class GooglePlacesApi
     }
 
     protected function reviews($detail) {
+        $result = [
+            'reviews' => [],
+            'ratings' => [
+                5 => 0,
+                4 => 0,
+                3 => 0,
+                2 => 0,
+                1 => 0
+            ]
+        ];
         if(isset($detail['reviews'])) {
-            return collect($detail['reviews'])->map(function($item){
+            $local_reviews = Review::with('user')->where('google_id', $detail['place_id'])
+                                    ->where('user_id', "<>", $this->user_id)
+                                    ->orderBy('created_at', 'desc')->get()->toArray();
+            $result['reviews'] = collect($detail['reviews'])->map(function($item) use(&$result){
                 if(!empty($item['text'])) {
+                    if($item['rating'] > 0)
+                        $result['ratings'][$item['rating']]++;
                     return [
                         'rating' => $item['rating'],
                         'content' => $item['text'],
                         'status' => 2,
+                        'photos' => [],
                         'user' => [
                             'name' => $item['author_name'],
                             'email' => str_random(10).'@mail.com',
                             'password' => 'secret',
-                            'fake' => 1
+                            'fake' => 1,
+                            'avatar' => $item['profile_photo_url']
                         ]
                     ];
                 }
 
-            })->all();
+            })->merge($local_reviews)->filter()->all();
         }
-        return [];
+        return $result;
     }
 
     protected function getRating($place_id)
@@ -227,5 +256,14 @@ class GooglePlacesApi
         $ref = $photo['photo_reference'];
         return self::BASE_URL.'photo?maxwidth=800&photoreference='.$ref.'&key='.$this->key;;
 
+    }
+
+    protected function myReview($detail)
+    {
+        $myReview =  Review::with('user')
+            ->where('user_id', $this->user_id)
+            ->where('google_id', $detail['place_id'])
+            ->first();
+        return $myReview;
     }
 }

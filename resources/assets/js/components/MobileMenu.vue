@@ -15,7 +15,7 @@
 	    	<div class="nav-mobile__wrapper">
 	    		<div class="nav-mobile__menu">	
 
-			    	<div class="nav-mobile__menu-general">
+			    	<ul class="nav-mobile__menu-general">
 				    	<li class="nav-mobile__item">
 				    		<a href="/" class="item">
 				    			Home
@@ -33,31 +33,19 @@
 				    			Journal
 				    		</router-link>
 				    	</li>
-	                </div>
+	                </ul>
 
-		                <template>
-	                    	<user></user>
+					<template v-if="authenticated">
+						<user></user>
+					</template>
 
-			                <div class="nav-mobile__menu-merchant">
-			                    <h3>Merchant</h3>
-			                        <a class="" href="#">Salona</a>
-			                        <a class="" href="#">Barbera</a>
-			                        <a class="o-button o-button--primary o-button-custom o-button--block" href="#">Add Merchant</a>
-			                </div>
-
-		                </template>
-
-		                <template>
-				    		<li class="nav-mobile__item">
-		                    	<login></login>
-				    		</li>
-				    		<li class="nav-mobile__item">
-		                    	<register></register>
-		                    </li>
-		                </template>
-
-	
-
+					<template v-else>
+						<ul>
+							<li class="nav-mobile__item">
+								<a href="#" @click.prevent="openLogin" class="item">Login</a>
+							</li>
+						</ul>
+					</template>
 	    		</div>
 	    	</div>
 		</transition>
@@ -104,10 +92,15 @@ export default {
 		  if(this.showNav) {
 		      this.showNav = false;
 		      iconim.off('search-close');
+              document.documentElement.classList.remove('menu-is-opened');
 		  } else {
               this.showNav = true;
               iconim.on('search-close');
+              document.documentElement.classList.add('menu-is-opened');
 		  }
+		},
+		openLogin(e) {
+	  	    Event.fire('show-login-modal', e);
 		}
 	}
 }

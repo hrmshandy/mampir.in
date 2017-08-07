@@ -40,6 +40,10 @@
                 this.carousel = new Flickity(this.$refs.el, options);
             },
             getOptions() {
+                if(this.$children.length <= 1) {
+                    this.defaultOptions.prevNextButtons = false;
+                    this.defaultOptions.draggable = false;
+                }
                 return Object.assign({}, this.defaultOptions, this.options);
             },
             events() {

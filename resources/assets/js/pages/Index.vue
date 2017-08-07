@@ -3,7 +3,6 @@
         <section class="c-hero">
             <div class="o-container c-hero__container">
                 <div class="o-grid o-grid--middle c-hero__grid">
-                    <div class="o-grid__col u-1/12@sm u-hidden@xs"></div>
                     <div class="o-grid__col u-6/12@sm u-hidden@xs">
                         <img src="../../img/hero-iconic.png" alt="Mampir.in" class="c-hero__img">
                     </div>
