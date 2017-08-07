@@ -68,8 +68,7 @@
         z-index: 9;
         display: none;
         @include from(641px) {
-            overflow-y: scroll;
-            width: 102%;
+            overflow-x: hidden;
         }
 
         @include until(640px) {
@@ -124,4 +123,8 @@
     .nav-mobile__menu::before {
         display: none
     }
+}
+
+html.menu-is-opened {
+    overflow: hidden;
 }

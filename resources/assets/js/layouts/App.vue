@@ -8,10 +8,8 @@
 		<select-city></select-city>
 		<preloader></preloader>
 
-		<div style="display:none">
-	    	<login></login>
-	    	<register></register>
-    	</div>
+		<login></login>
+		<register></register>
 
 	</div>
 </template>
