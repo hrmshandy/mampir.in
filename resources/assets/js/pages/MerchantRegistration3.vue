@@ -1,6 +1,7 @@
 <template>
     <div class="merchant-registration o-section">
         <div class="o-container">
+            <step active="3"></step>
             <h2 class="o-heading u-m-x3">
                 Karakteristik Merchant
             </h2>
@@ -150,7 +151,7 @@
                     <router-link to="/merchant/registration/success" class="o-button o-button--primary o-button--block o-button--large"> Next </router-link>
                 </div>
 
-                <div class="c-form-group">
+                <div class="c-form-group u-mt-x5">
                     <router-link to="/merchant/registration/2"> < Kembali</router-link>
                 </div>
 
@@ -161,7 +162,10 @@
 </template>
 
 <script>
+    import Step from '../components/StepTab.vue'
+
     export default {
+        components: { Step },
         data() {
             return {
                 columnTimes: [

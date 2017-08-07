@@ -4,7 +4,7 @@ import Icon from './map-pin-empty'
 import ClusterIcon from './cluster-icon'
 import MarkerClusterer from './markerclusterer'
 
-load('AIzaSyDxu7mv5mlPM9Aj2CiYKFWY9b6adizdC4c');
+load('AIzaSyDxu7mv5mlPM9Aj2CiYKFWY9b6adizdC4c', '3', ['places']);
 
 class Map
 {

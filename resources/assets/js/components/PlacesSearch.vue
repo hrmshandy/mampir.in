@@ -1,14 +1,15 @@
 <template>
     <div class="c-places-search">
         <div class="c-form-group">
-            <input ref="input" type="text" class="o-input" :name="name" placeholder="Search Address.." @keypress="preventEnter" :value="address">
+            <input ref="input" type="text" class="o-input" :name="name" placeholder="Masukan Lokasi Merchant" @keypress="preventEnter" :value="address">
         </div>
+        <label for="" class="u-weight-bold u-mb-x1">Lokasi merchant dalam peta (Opsional) </label>
         <div ref="map" style="width: 100%; height: 300px;"></div>
         <label class="c-places-search__toggle-lat-lng u-mt-x2">
             <input type="checkbox" v-model="showLatLng">
             Show latitude & longitude input
         </label>
-        <div v-show="showLatLng" class="o-grid">
+        <div v-show="showLatLng" class="o-grid c-form-group">
             <div class="o-grid__col u-4/12">
                 <label for="lat">Latitude</label>
                 <input id="lat" type="text" name="lat" class="o-input" placeholder="Latitude" v-model="lat">
@@ -23,6 +24,7 @@
 
 <script>
     import { load, loaded } from '../api/map/loader'
+
 
     export default {
         props: {
@@ -48,7 +50,7 @@
         },
         mounted() {
 
-            load('AIzaSyDxu7mv5mlPM9Aj2CiYKFWY9b6adizdC4c', '3', ['places']);
+            //load('AIzaSyDxu7mv5mlPM9Aj2CiYKFWY9b6adizdC4c', '3', ['places']);
 
             this.address = this.value.address;
             this.lat = this.value.lat;

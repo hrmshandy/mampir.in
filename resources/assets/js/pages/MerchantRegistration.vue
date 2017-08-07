@@ -1,6 +1,7 @@
 <template>
     <div class="merchant-registration o-section">
         <div class="o-container">
+            <step active="1"></step>
             <h2 class="o-heading u-m-x3">
                 Informasi Basic
             </h2>
@@ -24,7 +25,7 @@
                 <div class="c-form-group">
                     <input type="text" id="" placeholder="No Telp" autocomplete="off" class="o-input o-input--large">
                 </div>
-                <div class="c-form-group">
+                <div class="c-form-group u-mt-x5">
                     <router-link to="/merchant/registration/2" class="o-button o-button--primary o-button--block o-button--large"> Next </router-link>
                 </div>
             </div>
@@ -34,9 +35,15 @@
 
 <script>
     import Dropzone from 'vue2-dropzone'
+    import Step from '../components/StepTab.vue'
 
     export default {
-        components: { Dropzone },
+        components: { Dropzone, Step },
+        data() {
+            return {
+                activeTab: 1
+            }
+        },
         methods: {
             template() {
                 return `
