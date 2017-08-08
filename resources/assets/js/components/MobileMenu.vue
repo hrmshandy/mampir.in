@@ -13,8 +13,7 @@
 			enter-active-class="animated slideInDown"
 			name="slide">
 	    	<div class="nav-mobile__wrapper">
-	    		<div class="nav-mobile__menu">	
-
+	    		<div class="nav-mobile__menu">
 			    	<ul class="nav-mobile__menu-general">
 				    	<li class="nav-mobile__item">
 				    		<a href="/" class="item">

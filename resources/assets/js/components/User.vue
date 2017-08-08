@@ -23,7 +23,7 @@
             <h3>Merchant</h3>
                 <a class="" href="#">Salona</a>
                 <a class="" href="#">Barbera</a>
-                <a class="o-button o-button--primary o-button-custom o-button--block" href="#">Add Merchant</a>
+                <router-link class="o-button o-button--primary o-button-custom o-button--block" to="/merchant/registration/1">Add Merchant</router-link>
         </div>
     </div>
 
