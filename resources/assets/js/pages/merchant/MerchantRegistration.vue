@@ -6,25 +6,28 @@
                 Informasi Basic
             </h2>
             <div class="tab-1">
-                <div class="c-form-group">
-                    <dropzone
-                        id="myVueDropzone"
-                        ref="reviewUpload"
-                        url="/api/merchant/upload"
-                        >
-                        <!-- Optional parameters if any! -->
-                        <input type="hidden" name="token" value="xxx">
-                    </dropzone>
-                </div>
-                <div class="c-form-group">
-                    <input type="text" id="" placeholder="Nama Tempat" autocomplete="off" class="o-input o-input--large">
-                </div>
-                <div class="c-form-group">
-                    <input type="text" id="" placeholder="Kota" autocomplete="off" class="o-input o-input--large">
-                </div>
-                <div class="c-form-group">
-                    <input type="text" id="" placeholder="No Telp" autocomplete="off" class="o-input o-input--large">
-                </div>
+                <form action="">
+                    <div class="c-form-group">
+                        <dropzone
+                            id="myVueDropzone"
+                            ref="reviewUpload"
+                            url="/api/merchant/upload"
+                            >
+                            <!-- Optional parameters if any! -->
+                            <input type="hidden" name="token" value="xxx">
+                        </dropzone>
+                    </div>
+                    <div class="c-form-group">
+                        <input type="text" id="" placeholder="Nama Tempat" autocomplete="off" class="o-input o-input--large">
+                    </div>
+                    <div class="c-form-group">
+                        <input type="text" id="" placeholder="Kota" autocomplete="off" class="o-input o-input--large">
+                    </div>
+                    <div class="c-form-group">
+                        <input type="text" id="" placeholder="No Telp" autocomplete="off" class="o-input o-input--large">
+                    </div>
+                </form>
+
                 <div class="c-form-group u-mt-x5">
                     <router-link to="/merchant/registration/2" class="o-button o-button--primary o-button--block o-button--large"> Next </router-link>
                 </div>
@@ -35,7 +38,7 @@
 
 <script>
     import Dropzone from 'vue2-dropzone'
-    import Step from '../components/StepTab.vue'
+    import Step from '../../components/StepTab.vue'
 
     export default {
         components: { Dropzone, Step },

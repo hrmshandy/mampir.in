@@ -162,7 +162,7 @@
 </template>
 
 <script>
-    import Step from '../components/StepTab.vue'
+    import Step from '../../components/StepTab.vue'
 
     export default {
         components: { Step },

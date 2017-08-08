@@ -5,11 +5,11 @@ const Login = () => import('../pages/Login.vue');
 const Register = () => import('../pages/Register.vue');
 const Error404 = () => import('../pages/404.vue');
 
-const Merchant = () => import('../pages/MerchantRegistration.vue');
-const Merchant2 = () => import('../pages/MerchantRegistration2.vue');
-const Merchant3 = () => import('../pages/MerchantRegistration3.vue');
-const Merchant4 = () => import('../pages/MerchantRegistration4.vue');
-const MerchantSuccess = () => import('../pages/MerchantRegistrationSuccess.vue');
+const Merchant = () => import('../pages/merchant/MerchantRegistration.vue');
+const Merchant2 = () => import('../pages/merchant/MerchantRegistration2.vue');
+const Merchant3 = () => import('../pages/merchant/MerchantRegistration3.vue');
+const Merchant4 = () => import('../pages/merchant/MerchantRegistration4.vue');
+const MerchantSuccess = () => import('../pages/merchant/MerchantRegistrationSuccess.vue');
 
 
 export default [
