@@ -15,7 +15,7 @@
             </div>
 
             <div class="c-form-group">
-                <router-link to="/merchant/registration/3" class="o-button o-button--primary o-button--block o-button--large"> Next </router-link>
+                <router-link to="/merchant/registration/success" class="o-button o-button--primary o-button--block o-button--large"> Next </router-link>
             </div>
         </div>
     </div>
