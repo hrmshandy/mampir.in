@@ -83,7 +83,8 @@
         },
         methods: {
             fetchData() {
-                axios.get('/api/venue/g/' + this.$route.params.slug).then(({data}) => {
+                const url = `/api/venue/${this.$route.params.type}/${this.$route.params.slug}`;
+                axios.get(url).then(({data}) => {
                     console.log(data);
                     // set venue id
                     this.venueId = data.id;
@@ -98,8 +99,8 @@
                     this.categories = data.categories;
                     this.location = {lat: data.lat, lng: data.lng};
                     this.rating = data.rating;
-                    this.ratings = Object.values(data.reviews.ratings).reverse();
-                    this.reviews = data.reviews.reviews;
+                    this.ratings = Object.values(data.ratings).reverse();
+                    this.reviews = data.reviews;
                     this.type = data.type;
                     this.myReview = data.myReview;
 

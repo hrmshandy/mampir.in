@@ -19,26 +19,25 @@ trait VenueGetters
 
     public function getRatingsAttribute()
     {
-        $ratings = [];
-        $reviews = $this->reviews()
-                    ->select('rating', DB::raw('COUNT(*) as reviews'))
-                    ->groupBy('rating')
-                    ->orderBy('rating', 'desc')
-                    ->get()
-                    ->pluck('reviews', 'rating')
-                    ->filter(function($value, $key){
-                        return $key > 0;
-                    })
-                    ->all();
+        $ratings = [
+            5 => 0,
+            4 => 0,
+            3 => 0,
+            2 => 0,
+            1 => 0
+        ];
 
-        for ($i = 4; $i >= 0; $i--) {
-            $index = ($i + 1);
-            $ratings[] = [
-                "rating" => $index,
-                "reviews" => isset($reviews[$index]) ? $reviews[$index] : 0
-            ];
-        }
-
+        $this->reviews()
+            ->select('rating', DB::raw('COUNT(*) as reviews'))
+            ->groupBy('rating')
+            ->orderBy('rating', 'desc')
+            ->get()
+            ->filter(function($item){
+                return $item->rating > 0;
+            })
+            ->map(function($item) use(&$ratings){
+                $ratings[$item->rating] = $item->reviews;
+            });
         return $ratings;
     }
 
@@ -54,12 +53,17 @@ trait VenueGetters
     public function getPhotosAttribute()
     {
         return $this->photos()->get()->map(function($item){
-            return $item->filename;
+            return url('/storage/images/places/'.$item->filename);
         });
     }
 
     public function getTotalReviewsAttribute()
     {
         return count($this->reviews()->get());
+    }
+
+    public function getShortAddressAttribute()
+    {
+        return explode(',', $this->address)[0];
     }
 }

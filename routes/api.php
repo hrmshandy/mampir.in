@@ -25,6 +25,7 @@ Route::get('venue/l/{slug}', 'VenueController@getFromLocal');
 Route::get('venue/g/{place_id}', 'VenueController@getFromGoogle');
 Route::get('reviews', 'ReviewController@index');
 Route::post('review', 'ReviewController@store');
+Route::put('review/{review}', 'ReviewController@update');
 Route::post('review/upload', 'ReviewController@upload');
 
 Route::get('city', function(Request $request){

@@ -28,7 +28,7 @@ class Venue extends Model
      * @var array
      */
     protected $appends = [
-        'rating', 'ratings', 'cover', 'photos', 'total_reviews'
+        'rating', 'ratings', 'cover', 'photos', 'total_reviews', 'short_address'
     ];
 
     /**

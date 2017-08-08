@@ -11,6 +11,7 @@ use App\Services\GoogleMapExtractor;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use Illuminate\Support\Facades\File;
 use Ramsey\Uuid\Uuid;
 
 class LocatorController extends Controller
@@ -91,8 +92,12 @@ class LocatorController extends Controller
         $photos = [];
         if($request->has('photos') and !empty($request->photos)) {
             foreach ($request->photos as $photourl) {
+                $path = storage_path('app/public/images/places');
                 $filename = Uuid::uuid1()->toString().'.jpg';
-                $newimg = storage_path('app/public/'.$filename);
+                if(!File::exists($path)) {
+                    File::makeDirectory($path, 0777, true);
+                }
+                $newimg = $path.'/'.$filename;
 
                 // Write the contents back to a new file
                 copy($photourl, $newimg);

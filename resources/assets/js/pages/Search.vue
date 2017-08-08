@@ -28,11 +28,12 @@
                     </div>
                 </template>
 
-                <template v-if="!isEmpty">
+                <template v-if="local.listings.length > 0">
+                    <h3 class="u-mb-x2">Rekomendasi</h3>
                     <div class="o-grid">
-                        <template v-for="venue in google.listings">
+                        <template v-for="venue in local.listings">
                             <div class="o-grid__col u-4/12@lg u-6/12@sm u-12/12@xs">
-                                <a :href="'/detail/'+venue.id" :id="'venue-card-'+venue.id" class="c-venue-card">
+                                <a :href="'/place/l/'+venue.slug" :id="'venue-card-'+venue.id" class="c-venue-card">
                                     <div class="c-venue-card__photo"
                                          :style="{ backgroundImage: `url(${venue.cover})`}"></div>
                                     <div class="c-venue-card__info">
@@ -51,9 +52,33 @@
                             </div>
                         </template>
                     </div>
-                    <!--<div class="text-center vanue-pagination">-->
-                    <!--<pagination :current-page="currentPage" :per-page="perPage" :records="totalRecords" @change="onPageChange"></pagination>-->
-                    <!--</div>-->
+                    <hr>
+                </template>
+
+                <template v-if="google.listings.length > 0">
+                    <h3 class="u-mb-x2">Tempat Lainnya</h3>
+                    <div class="o-grid">
+                        <template v-for="venue in google.listings">
+                            <div class="o-grid__col u-4/12@lg u-6/12@sm u-12/12@xs">
+                                <a :href="'/place/g/'+venue.id" :id="'venue-card-'+venue.id" class="c-venue-card">
+                                    <div class="c-venue-card__photo"
+                                         :style="{ backgroundImage: `url(${venue.cover})`}"></div>
+                                    <div class="c-venue-card__info">
+                                        <h5 class="c-venue-card__name o-type-18">{{ venue.name }}</h5>
+                                    </div>
+                                    <div class="c-venue-card__footer" style="margin-top: 5px;">
+                                        <div class="c-venue-card__rating">
+                                            <!--<rating :venue-id="venue.id" :value="venue.rating" method="get"></rating>-->
+                                        </div>
+                                        <div class="c-venue-card__categories" style="margin-top: 5px;">
+                                            <!-- {{ venue.categories | joinBy }} -->
+                                            {{ venue.short_address }}
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </template>
+                    </div>
                 </template>
 
                 <template v-else>
@@ -137,26 +162,28 @@
             fetchData (query) {
                 this.loading = true;
 
-                let url = '/api/search/google-places/text';
-//                if(!_.isEmpty(query.location) && query.modified !== "true") {
-//                    url += 'nearby';
-//                } else {
-//                    url += 'text';
-//                }
-//
+                this.makeRequest('/api/search/local', query, 'local');
+
+                this.makeRequest('/api/search/google-places/text', query, 'google').then(data => {
+                    if ((this.local.listings.length <= 0) && (data.data.length <= 0)) {
+                        router.push('404');
+                    }
+                });
+            },
+            makeRequest(url, query, target) {
                 let Q = serialize(query);
+                return new Promise((resolve, reject) => {
+                    axios.get(url + '?' + Q).then(({data}) => {
+                        setTimeout(() => {
+                            this.loading = false;
+                            this[target].listings = data.data;
+                            this[target].next_page_url = data.next_page_url;
 
-//
-                axios.get(url+'?'+Q).then(({data}) => {
-                    setTimeout(() => {
-                        this.loading = false;
-                        this.google.listings = data.data;
-                        this.google.next_page_url = data.next_page_url;
-                        if (data.data.length <= 0) {
-                            router.push('404');
-                        }
-                    }, 1000);
-
+                            resolve(data);
+                        }, 1000);
+                    }).catch(error => {
+                        reject(error);
+                    });
                 });
             },
             clickViewMaps () {

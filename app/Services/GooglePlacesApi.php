@@ -64,6 +64,11 @@ class GooglePlacesApi
         $detail = $response['result'];
 
         if(!empty($detail)) {
+            $reviews = $this->reviews($detail);
+            $myReview = $this->myReview($detail);
+            if(!empty($myReview)) {
+                $reviews['ratings'][$myReview->rating]++;
+            }
             $data = [
                 "id" => $detail['place_id'],
                 "name" => $detail['name'],
@@ -76,8 +81,9 @@ class GooglePlacesApi
                     'website' => $this->exists($detail, 'website')
                 ],
                 "photos" => $this->photos($detail),
-                "reviews" => $this->reviews($detail),
-                "myReview" => $this->myReview($detail),
+                "reviews" => $reviews['reviews'],
+                "ratings" => $reviews['ratings'],
+                "myReview" => $myReview,
                 "rating" => $detail['rating'],
                 'type' => 'google'
             ];
@@ -133,7 +139,7 @@ class GooglePlacesApi
                 "lng" => $item['geometry']['location']['lng'],
                 'cover' => $this->getCover($item),
                 'details_url' => url('api/venue/g/'.$item['place_id']),
-//                'rating' => $this->getRating($item['place_id'])
+                //'rating' => $this->getRating($item['place_id'])
             ];
 
             return $data;
@@ -163,7 +169,11 @@ class GooglePlacesApi
         if(isset($detail['reviews'])) {
             $local_reviews = Review::with('user')->where('google_id', $detail['place_id'])
                                     ->where('user_id', "<>", $this->user_id)
-                                    ->orderBy('created_at', 'desc')->get()->toArray();
+                                    ->orderBy('created_at', 'desc')->get()
+                                    ->each(function ($item, $key) use(&$result) {
+                                        if($item->rating > 0)
+                                            $result['ratings'][$item->rating]++;
+                                    })->toArray();
             $result['reviews'] = collect($detail['reviews'])->map(function($item) use(&$result){
                 if(!empty($item['text'])) {
                     if($item['rating'] > 0)

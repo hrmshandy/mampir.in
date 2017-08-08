@@ -16,14 +16,10 @@ class SearchController extends Controller
     {
         $venue = Venue::with('categories', 'city');
 
-        if($request->has('location')) {
+        if($request->has('city')) {
             $venue = $venue->whereHas('city', function($query) use($request){
-                $query->where('name', $request->location);
+                $query->where('name', $request->city);
             });
-        }
-
-        if($request->has('area')) {
-            $venue = $venue->where('area', 'like', '%'.$request->area.'%');
         }
 
         if($request->has('keyword')) {
@@ -45,7 +41,7 @@ class SearchController extends Controller
 
         //dd($venue->toSql());
 
-        return $venue->paginate(20);
+        return response()->json(['data' => $venue->take(6)->get(), 'next_page_url' => null]);
     }
 
     public function googlePlacesSearch(Request $request, GooglePlacesApi $google, $type)

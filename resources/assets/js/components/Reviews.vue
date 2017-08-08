@@ -8,7 +8,7 @@
 
             <div class="o-grid__sizer u-3/12@lg u-6/12@sm"></div>
 
-            <div v-masonry-tile class="o-grid__col u-3/12@lg u-6/12@sm" v-show="(authenticated && !reviewed)">
+            <div v-masonry-tile class="o-grid__col u-3/12@lg u-6/12@sm" v-show="(authenticated && !reviewed) || editingReview">
                 <div class="c-card c-card--dialog c-card--dialog__placeholder c-card--dialog__review">
 
                     <div class="o-user-block">
@@ -38,7 +38,19 @@
 
                     </div>
                     <div class="o-user-block__submit">
-                        <button class="o-button o-button--primary write-a-review__button" @click="submitReview">Kirim Review</button>
+                        <template v-if="editingReview">
+                            <button class="o-button o-button--primary write-a-review__button" @click="updateReview">
+                                Update Review
+                            </button>
+                            <button class="o-button o-button--default write-a-review__button" @click="cancelUpdateReview">
+                                Cancel
+                            </button>
+                        </template>
+                        <template v-else>
+                            <button class="o-button o-button--primary write-a-review__button" @click="submitReview">
+                                Kirim Review
+                            </button>
+                        </template>
                     </div>
                 </div>
             </div>
@@ -69,7 +81,7 @@
                 </div>
             </div>
 
-            <div v-masonry-tile class="o-grid__col u-3/12@lg u-6/12@sm" v-if="reviewed">
+            <div v-masonry-tile class="o-grid__col u-3/12@lg u-6/12@sm" v-if="reviewed && !editingReview">
                 <div class="c-card c-card--dialog c-card--dialog__placeholder">
                     <div class="o-user-block">
                         <div class="o-user-block__pic">
@@ -92,6 +104,9 @@
                         <p>
                             {{ myReview.content }}
                         </p>
+                        <div class="u-text-right">
+                            <a href="#" @click.prevent="editReview">Edit</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -158,6 +173,7 @@ export default {
         return {
             writingReview: false,
             reviewed: false,
+            editingReview: false,
             activedUpload: false,
             form: new Form({
                 user_id: this.$store.getters.user.id,
@@ -183,8 +199,28 @@ export default {
             }
         },
         myReview(value) {
-            if(value)
+            if(value) {
                 this.reviewed = true;
+
+                this.form.rating = value.rating;
+                this.form.content = value.content;
+                this.form.imageCollection = value.photos;
+
+                const dz = this.$refs.reviewUpload;
+                dz.removeAllFiles();
+
+                for(let i = 0; i < value.photos.length; i++) {
+                    const photo = value.photos[i];
+                    const mockFile = { name: photo, size: 12345 };
+
+                    dz.manuallyAddFile(mockFile, '/storage/images/reviews/'+photo, null, null, {
+                        dontSubstractMaxFiles: false,
+                        addToFiles: true
+                    });
+                }
+
+            }
+
         },
         'user.id': function(value) {
             this.form.user_id = value;
@@ -244,6 +280,33 @@ export default {
                       <div class="dz-error-mark"><i class="fa fa-close"></i></div>
                   </div>
               `;
+        },
+        editReview() {
+            setTimeout(() => {
+                Vue.redrawVueMasonry();
+            });
+            this.editingReview = true;
+        },
+        updateReview() {
+            this.form.imageCollection = this.uploadedPhotos;
+            this.form.submit('put', '/api/review/'+this.myReview.id).then((response) => {
+                if(response){
+                    this.myReview = response;
+                    this.editingReview = false;
+                    this.reviewed = true;
+                    setTimeout(() => {
+                        Vue.redrawVueMasonry();
+                    });
+                }
+            }).catch((errors) => {
+                console.log(errors);
+            });
+        },
+        cancelUpdateReview() {
+            setTimeout(() => {
+                Vue.redrawVueMasonry();
+            });
+            this.editingReview = false;
         }
     }
 }

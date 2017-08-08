@@ -31,6 +31,16 @@ class ReviewController extends Controller
         return Review::with('user')->find($review->id);
     }
 
+    public function update(Request $request, $id) {
+        $review = Review::with('user')->find($id);
+        $review->imageCollection = $request->get('imageCollection');
+        $review->content = $request->content;
+        $review->rating = $request->rating;
+        $review->save();
+
+        return $review;
+    }
+
     public function upload(Request $request) {
         $temp = TemporaryFile::saveImage($request->file);
         return response()->json($temp);
