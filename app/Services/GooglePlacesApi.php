@@ -130,7 +130,7 @@ class GooglePlacesApi
 
     protected function formatData($data)
     {
-        return collect($data)->map(function($item){
+        $collection = collect($data)->map(function($item){
             $data = [
                 'id' => $item['place_id'],
                 "name" => $item['name'],
@@ -141,9 +141,12 @@ class GooglePlacesApi
                 'details_url' => url('api/venue/g/'.$item['place_id']),
                 //'rating' => $this->getRating($item['place_id'])
             ];
+            if(isset($data['cover'])) {
+                return $data;
+            }
+        })->filter()->toArray();
 
-            return $data;
-        });
+        return array_values($collection);
     }
 
     protected function photos($detail) {

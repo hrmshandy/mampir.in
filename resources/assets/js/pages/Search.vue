@@ -130,7 +130,8 @@
                 google: {
                     next_page_url: '',
                     listings: []
-                }
+                },
+                gMap: ''
             }
         },
         computed: {
@@ -144,17 +145,22 @@
         mounted() {
             const query = this.$route.query;
 //            this.$store.dispatch('setQuery', query);
-            this.fetchData(query)
+            this.fetchData(query);
+
+            this.gMap = new Map;
+            if (this.gMap.map === undefined) {
+                this.gMap.init();
+            }
         },
         watch: {
-            'google.listings': (value) => {
-                let M = new Map;
-
-                if (M.map === undefined) {
-                    M.init();
-                }
+            'local.listings': function(value) {
                 setTimeout(() => {
-                    M.loadMarker(value);
+                    this.gMap.loadMarker(value);
+                }, 1000);
+            },
+            'google.listings': function(value) {
+                setTimeout(() => {
+                    this.gMap.loadMarker(value);
                 }, 1000);
             }
         },
