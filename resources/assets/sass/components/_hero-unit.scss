@@ -1,47 +1,49 @@
 .c-hero {
-  background: #f7f7f7 url('../../img/hero-bg.jpg') right -20vh;
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: flex;
-  align-items: center;
-  padding-top: 100px;
-  min-height: 100vh;
-  margin-top: -60px;
-  @media (max-width: 640px) {
-    background-position: center;
-    background-position-x: -260px;
-  }
-  &__img {
-    max-width: 100%;
-    max-height: 50vh;
-    display: block;
-    margin: 0 30px;
-    @include until(641px) {
-      padding: 10%;
+    background: #f7f7f7 url('../../img/hero-bg.jpg') right -20vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    padding-top: 100px;
+    min-height: 100vh;
+    margin-top: -60px;
+    @media (max-width: 640px) {
+        background-position: center;
+        background-position-x: -260px;
     }
-  }
-  &__title {
-    color: $color-primary;
-    line-height: 1.5;
-    @include iota-type((xs: 29px, sm: 30px, md: 37px, lg: 39px));
-    font-weight: 400;
-    @include mobile {
-      text-align: center;
+    &__img {
+        max-width: 100%;
+        max-height: 50vh;
+        display: block;
+        margin: 0 30px;
+        width: auto;
+        height: auto;
+        @include until(641px) {
+            padding: 10%;
+        }
     }
-  }
-  &__subtitle {
-    margin-bottom: 1.5rem;
-    color: $color-primary;
-    line-height: 1.5;
-    @include iota-type((xs: 35px, sm: 35px, md: 46px, lg: 48px));
-    font-weight: 400;
-    @include mobile {
-      text-align: center;
+    &__title {
+        color: $color-primary;
+        line-height: 1.5;
+        @include iota-type((xs: 29px, sm: 30px, md: 37px, lg: 39px));
+        font-weight: 400;
+        @include mobile {
+            text-align: center;
+        }
     }
-  }
+    &__subtitle {
+        margin-bottom: 1.5rem;
+        color: $color-primary;
+        line-height: 1.5;
+        @include iota-type((xs: 35px, sm: 35px, md: 46px, lg: 48px));
+        font-weight: 400;
+        @include mobile {
+            text-align: center;
+        }
+    }
 
-  &__container {
-    max-width: 945px;
-    padding: 0;
-  }
+    &__container {
+        max-width: 945px;
+        padding: 0;
+    }
 }
