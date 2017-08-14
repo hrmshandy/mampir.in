@@ -22,6 +22,10 @@ class Map
                 },
 	          	//styles: Styles
 	        });
+
+			this.bounds = new google.maps.LatLngBounds();
+
+			this.cluster();
 		});
 
 		return this;
@@ -31,15 +35,48 @@ class Map
 		this.map.remove();
 	}
 
+	cluster() {
+        const clusterStyles = [
+            {
+                textColor: 'white',
+                fontFamily: "Hanken, Arial, sans-serif",
+                textSize: 20,
+                url: ClusterIcon,
+                width: 50,
+                height: 60,
+                anchorIcon: [50, 25]
+            },
+            {
+                textColor: 'white',
+                fontFamily: "Hanken, Arial, sans-serif",
+                textSize: 20,
+                url: ClusterIcon,
+                width: 50,
+                height: 60,
+                anchorIcon: [50, 25]
+            },
+            {
+                textColor: 'white',
+                fontFamily: "Hanken, Arial, sans-serif",
+                textSize: 20,
+                url: ClusterIcon,
+                width: 50,
+                height: 60,
+                anchorIcon: [50, 25]
+            }
+        ];
+
+        this.markerClusterer = new MarkerClusterer(this.map, [], { styles: clusterStyles });
+	}
+
 	loadMarker(addressPoints) {
 		const self = this;
 		self.activeInfowindow = null;
 
 		loaded.then(() => {
-            let bounds = new google.maps.LatLngBounds();
-
-            let markers = [];
+            this.markers = [];
 			for (let i = 0; i < addressPoints.length; i++) {
+
 	        	let latLng = new google.maps.LatLng(addressPoints[i].lat, addressPoints[i].lng);
 
 	        	let marker = new google.maps.Marker({
@@ -53,7 +90,7 @@ class Map
 		            // }
 		        });
 
-                bounds.extend(marker.getPosition());
+                this.bounds.extend(marker.getPosition());
 
 		        let contentString = `
 					<div class="c-info-box">
@@ -106,46 +143,13 @@ class Map
 				    self.activeInfowindow = infowindow;
 				});
 
-                markers.push(marker);
+                this.markers.push(marker);
+
+                this.markerClusterer.addMarker(marker);
 	        }
 
-            this.map.fitBounds(bounds);
-
-			const clusterStyles = [
-                {
-                    textColor: 'white',
-                    fontFamily: "Hanken, Arial, sans-serif",
-                    textSize: 20,
-                    url: ClusterIcon,
-                    width: 50,
-					height: 60,
-                    anchorIcon: [50, 25]
-                },
-                {
-                    textColor: 'white',
-                    fontFamily: "Hanken, Arial, sans-serif",
-                    textSize: 20,
-                    url: ClusterIcon,
-                    width: 50,
-                    height: 60,
-                    anchorIcon: [50, 25]
-                },
-                {
-                    textColor: 'white',
-                    fontFamily: "Hanken, Arial, sans-serif",
-                    textSize: 20,
-                    url: ClusterIcon,
-                    width: 50,
-                    height: 60,
-                    anchorIcon: [50, 25]
-                }
-			];
-
-            const markerCluster = new MarkerClusterer(this.map, markers, { styles: clusterStyles });
+            this.map.fitBounds(this.bounds);
 		});
-
-
-
 	}
 }
 export default Map;
