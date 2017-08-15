@@ -9,12 +9,12 @@
                 </h2>
             </div>
 
-            <h2 class="o-heading u-text-center">
+            <h1 class="o-heading u-text-center">
                 Merchant Anda Sudah Terdaftar
-            </h2>
+            </h1>
 
             <div class="c-form-group u-text-center">
-                <a href="#" class="o-button o-button--primary o-button--block o-button--large">Ke halaman merchant saya</a>
+                <a href="#" class="o-button o-button--primary o-button--mincontent o-button--large">Ke halaman merchant saya</a>
             </div>
         </div>
     </div>

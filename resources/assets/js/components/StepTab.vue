@@ -10,9 +10,6 @@
             <div :class="['stepwizard-step', { active: active == 3 } ]">
                 <button type="button" class="o-button o-button--primary o-button--block btn-circle">3</button>
             </div>
-            <div :class="['stepwizard-step', { active: active == 4 } ]">
-                <button type="button" class="o-button o-button--primary o-button--block btn-circle">4</button>
-            </div>
         </div>
     </div>
 </template>

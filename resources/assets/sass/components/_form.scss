@@ -1,5 +1,8 @@
 .c-form-group {
   margin-bottom: 1rem;
+  &--mg2 {
+  	margin-bottom: 2rem;
+  }
   &.has-error {
     position: relative;
     margin-bottom: 38px;
@@ -32,4 +35,22 @@
   display: block;
   position: absolute;
   bottom: -27px;
+}
+
+.c-input-group {
+	display: flex;
+	input {
+		border-radius: 4px 0px 0px 4px;
+		border-right: none;
+	}
+	button {
+		border-radius: 0px 4px 4px 0px;
+		border-left: none;
+	}
+}
+
+.c-places-search {
+	&--mg2 {
+		margin-bottom: 2rem;
+	}
 }

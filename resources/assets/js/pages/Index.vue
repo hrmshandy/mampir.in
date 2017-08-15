@@ -4,7 +4,7 @@
             <div class="o-container c-hero__container">
                 <div class="o-grid o-grid--middle c-hero__grid">
                     <div class="o-grid__col u-6/12@sm u-hidden@xs">
-                        <img src="../../img/hero-iconic.png" alt="Mampir.in" class="c-hero__img">
+                        <logo-banner></logo-banner>
                     </div>
                     <div class="o-grid__col u-5/12@sm">
                         <h1 class="c-hero__title">Bahagia Itu Dekat</h1>
@@ -12,7 +12,7 @@
                         <search-form size="large" :inline="false"></search-form>
                     </div>
                 </div>
-                <!--<categories :city="city"></categories>-->
+                <!-- <categories :city="city"></categories> -->
             </div>
         </section>
         <!-- <div class="c-categories c-categories--widget">
@@ -120,11 +120,12 @@
 
     import Masonry from '../components/Masonry.vue'
     import Categories from '../components/Categories.vue'
+    import LogoBanner from '../components/LogoBanner.vue'
 
     const SearchForm = () => import('../components/Search.vue');
 
     export default {
-        components: {Categories, Masonry, SearchForm},
+        components: { Categories, Masonry, SearchForm, LogoBanner },
         data() {
             return {
                 categories: [
