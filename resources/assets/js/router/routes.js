@@ -5,10 +5,10 @@ const Login = () => import('../pages/Login.vue');
 const Register = () => import('../pages/Register.vue');
 const Error404 = () => import('../pages/404.vue');
 
+const MerchantClaim = () => import('../pages/merchant/MerchantClaim.vue');
 const Merchant = () => import('../pages/merchant/MerchantRegistration.vue');
 const Merchant2 = () => import('../pages/merchant/MerchantRegistration2.vue');
 const Merchant3 = () => import('../pages/merchant/MerchantRegistration3.vue');
-const Merchant4 = () => import('../pages/merchant/MerchantRegistration4.vue');
 const MerchantSuccess = () => import('../pages/merchant/MerchantRegistrationSuccess.vue');
 
 
@@ -19,10 +19,10 @@ export default [
     {path: '/login', component: Login},
     {path: '/register', component: Register},
 
+    {path: '/merchant/claim', component: MerchantClaim },
     {path: '/merchant/registration/1', component: Merchant },
     {path: '/merchant/registration/2', component: Merchant2 },
     {path: '/merchant/registration/3', component: Merchant3 },
-    {path: '/merchant/registration/4', component: Merchant4 },
     {path: '/merchant/registration/success', component: MerchantSuccess },
 
     {path: '/404', component: Error404, meta: {hideTopSearch: true, hideFooter: true}}

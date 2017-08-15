@@ -1,7 +1,9 @@
 <template>
-    <div class="c-places-search">
-        <div class="c-form-group">
+    <div class="c-places-search c-places-search--mg2">
+        <label for="" class="u-weight-bold u-mb-x1">Lokasi</label>
+        <div class="c-form-group c-input-group">
             <input ref="input" type="text" class="o-input" :name="name" placeholder="Masukan Lokasi Merchant" @keypress="preventEnter" :value="address">
+            <button class="o-button" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
         </div>
         <label for="" class="u-weight-bold u-mb-x1">Lokasi merchant dalam peta (Opsional) </label>
         <div ref="map" style="width: 100%; height: 300px;"></div>

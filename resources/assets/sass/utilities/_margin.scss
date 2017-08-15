@@ -9,3 +9,9 @@ $iota-utils-margin-extra: (
 $iota-utils-margin-res: true;
 
 @import '~iotacss/utilities/margin';
+
+.o-heading {
+	&--mg2{
+		margin-bottom: 2rem;
+	}
+}

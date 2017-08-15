@@ -59,4 +59,12 @@ $input-disabled-border: $color-white-ter;
   &--large {
     @include control-large;
   }
+
+  &--addon {
+    width: min-content;
+    padding: 5px 10px;
+    border: 1px solid #dbdbdb;
+    border-radius: 4px 0px 0px 4px;
+    border-right: none;
+  }
 }

@@ -1,0 +1,80 @@
+.c-result {
+	margin-top: 2.5rem;
+	margin-bottom: 2.5rem;
+	h4 {
+		font-weight: 400;
+	}
+	&__item {
+		display: flex;
+    	flex-direction: row;
+    	align-items: center;
+    	justify-content: center;
+    	flex-flow: wrap;
+    	border-bottom: 1px solid #eee;
+    	&__img {
+    		max-height: 130px;
+    		margin: 10px;
+    		flex-basis: 20%;
+    		overflow: hidden;
+    		border-radius: 4px;
+    	}
+    	&__desc {
+    		flex-basis: 55%;
+    		padding: 10px;
+    	}
+    	.o-button {
+    		flex-basis: 20%;
+    	}
+	}
+	&__notfound {
+	    margin-top: 4rem;
+    	margin-bottom: 2rem;
+    	.o-button {
+    		margin-top: 1.5rem;
+    	}
+	}
+}
+.c-form-group {
+	&--addon {
+		display: flex;
+		select {
+		    border-radius: 0px 4px 4px 0px;
+		    border-left: none;
+		}
+	}
+}
+
+@media (max-width: 768px){
+	.c-result {
+		&__item {
+			margin-bottom: 2rem;
+	    	&__img {
+	    		flex-basis: 20%;
+	    	}
+	    	&__desc {
+	    		flex-basis: 70%;
+	    		padding: 10px;
+	    	}
+	    	.o-button {
+	    		flex-basis: 90%;
+	    	}
+		}
+	}
+}
+@media (max-width: 480px){
+	.c-result {
+		&__item {
+	    	&__img {
+    			max-height: 160px;
+	    		flex-basis: 100%;
+	    	}
+	    	&__desc {
+	    		flex-basis: 100%;
+	    		padding: 10px 0px;
+	    	}
+	    	.o-button {
+	    		flex-basis: 100%;
+	    	}
+		}
+	}
+}

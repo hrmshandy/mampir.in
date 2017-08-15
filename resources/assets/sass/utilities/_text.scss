@@ -1,1 +1,10 @@
 @import '~iotacss/utilities/text';
+
+.o-heading {
+	small,
+	.small {
+		display: block;
+    	font-weight: 400;
+    	color: #999999;
+	}
+}

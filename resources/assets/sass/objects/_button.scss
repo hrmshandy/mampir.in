@@ -134,6 +134,10 @@ $button-shadow-inset: inset 0 1px 2px rgba($color-black, 0.2);
         display: block;
         width: 100%;
     }
+    &--mincontent {
+        display: inline-block;
+        width: min-content;
+    }
 }
 
 // Adjustment for vertical spacing
