@@ -26,10 +26,11 @@
             options() {
                 let options = {
                     imagesLoaded: true,
-                    wrapAround: true
+                    cellAlign: 'left',
+                    contain: true
+                    //wrapAround: true
                 };
                 if (this.photos.length < 3) {
-                    options.cellAlign = 'left';
                     options.draggable = false;
                     options.prevNextButtons = false;
                 }

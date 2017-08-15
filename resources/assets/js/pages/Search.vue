@@ -57,7 +57,7 @@
 
                 <template v-if="google.listings.length > 0">
                     <h3 class="u-mb-x2">Tempat Lainnya</h3>
-                    <div class="o-grid">
+                    <div class="o-grid" ref="googleListings">
                         <template v-for="venue in google.listings">
                             <div class="o-grid__col u-4/12@lg u-6/12@sm u-12/12@xs">
                                 <a :href="'/place/g/'+venue.id" :id="'venue-card-'+venue.id" class="c-venue-card">
@@ -79,11 +79,24 @@
                             </div>
                         </template>
                     </div>
+                    <!-- status elements -->
+                    <!--<div class="scroller-status">-->
+                        <!--<div class="infinite-scroll-request loader-ellips">-->
+                            <!--...-->
+                        <!--</div>-->
+                        <!--<p class="infinite-scroll-last">End of content</p>-->
+                        <!--<p class="infinite-scroll-error">No more pages to load</p>-->
+                    <!--</div>-->
+
+                    <!-- pagination has path -->
+                    <!--<p class="pagination">-->
+                        <!--<a class="pagination__next" href="">Next page</a>-->
+                    <!--</p>-->
                 </template>
 
-                <template v-else>
-                    <p class="text-center">Not Found.</p>
-                </template>
+                <!--<template v-else>-->
+                    <!--<p class="text-center">Not Found.</p>-->
+                <!--</template>-->
             </div>
             <div class="p-search__map" v-show="viewMaps">
                 <div class="filter--wrapper filter--wrapper__maps">
@@ -106,6 +119,8 @@
     //import MapView from '../components/Map.vue'
     import Rating from '../components/Rating.vue'
     import Pagination from '../components/Pagination.vue'
+
+    import InfiniteScroll from 'infinite-scroll'
 
     export default {
         components: {Rating, Pagination},
@@ -144,13 +159,15 @@
         },
         mounted() {
             const query = this.$route.query;
-//            this.$store.dispatch('setQuery', query);
             this.fetchData(query);
 
             this.gMap = new Map;
             if (this.gMap.map === undefined) {
                 this.gMap.init();
             }
+
+            //this.infiniteScroll();
+
         },
         watch: {
             'local.listings': function(value) {
@@ -168,22 +185,28 @@
             fetchData (query) {
                 this.loading = true;
 
-                this.makeRequest('/api/search/local', query, 'local');
+                this.makeRequest('/api/search/local', query).then(data => this.setData(data, 'local'));
 
-                this.makeRequest('/api/search/google-places/text', query, 'google').then(data => {
+                this.makeRequest('/api/search/google-places/text', query).then(data => {
+                    this.setData(data, 'google');
                     if ((this.local.listings.length <= 0) && (data.data.length <= 0)) {
                         router.push('404');
                     }
                 });
             },
-            makeRequest(url, query, target) {
+            setData(data, target) {
+                this[target].listings = data.data;
+                this[target].next_page_url = data.next_page_url;
+            },
+            makeRequest(url, query = '') {
                 let Q = serialize(query);
+                if(!_.isEmpty(query)) {
+                    url += (url.includes("?") ? '&' : '?') + Q;
+                }
                 return new Promise((resolve, reject) => {
-                    axios.get(url + '?' + Q).then(({data}) => {
+                    axios.get(url).then(({data}) => {
                         setTimeout(() => {
                             this.loading = false;
-                            this[target].listings = data.data;
-                            this[target].next_page_url = data.next_page_url;
 
                             resolve(data);
                         }, 1000);
@@ -202,6 +225,31 @@
             },
             onPageChange(page, query){
                 this.fetchData(query);
+            },
+            infiniteScroll() {
+                Vue.nextTick(() => {
+                    setTimeout(() => {
+                        const infScroll = new InfiniteScroll( this.$refs.googleListings, {
+                            // options
+                            path: this.google.next_page_url+'&page={{#}}',
+                            append: false,
+                            responseType: 'text',
+                            status: '.scroller-status',
+                            history: false
+                        });
+
+                        infScroll.on( 'load', ( response, path ) => {
+                            const data = JSON.parse(response);
+
+                            this.google.listings = this.google.listings.concat(data.data);
+                            this.google.next_page_url = data.next_page_url;
+
+                            infScroll.option({
+                                path: data.next_page_url+'&page={{#}}',
+                            })
+                        });
+                    }, 3000);
+                });
             }
         }
     }

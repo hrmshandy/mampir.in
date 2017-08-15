@@ -1,21 +1,27 @@
 <template>
-    <form :class="['c-search', {'c-search--inline': inline, 'is-shown': showSearchForm}]" @submit.prevent="submit">
+    <form :class="['c-search', {'c-search--inline': inline, 'is-shown': showSearchForm}]"
+          @submit.prevent="submit">
         <button type="button" class="c-search__button iconim iconim-search-close" @click="toggleSearch"></button>
         <div class="c-search__form">
-            <div class="c-form-group">
-                <input-suggestion
-                        :options="suggestionOptions.city"
-                        v-model="searchQuery.city"
-                        @suggestionClicked="suggestionClicked"
-                        @change="onCityChanged">
-                </input-suggestion>
+            <div :class="['c-form-group', {'has-error': validator.errors.has('city')}]">
+                <input ref="input"
+                       type="text"
+                       :class="['o-input', inputSize]"
+                       v-model="searchQuery.city"
+                       placeholder="Pilih Lokasi"
+                       name="city"
+                       @keypress="preventEnter"
+                       @change="validate('city', $event)">
+                <span v-if="validator.errors.has('city')" class="c-form-feedback">Wajib diisi.</span>
             </div>
-            <div class="c-form-group">
+            <div :class="['c-form-group', {'has-error': validator.errors.has('keyword')}]">
                 <input-suggestion
                         :options="suggestionOptions.category"
                         v-model="searchQuery.keyword"
-                        @suggestionClicked="suggestionClicked">
+                        @suggestionClicked="suggestionClicked"
+                        @change="validate('keyword', $event)">
                 </input-suggestion>
+                <span v-if="validator.errors.has('keyword')" class="c-form-feedback">Wajib diisi.</span>
             </div>
             <div class="c-form-group">
                 <button :class="['o-button', 'o-button--primary','o-button-custom', 'o-button--block', btnSize]" type="submit">
@@ -40,6 +46,8 @@
 
     import InputSuggestion from './InputSuggestion.vue'
 
+    import { Validator, ErrorBag } from 'vee-validate';
+
     export default {
         components: { InputSuggestion },
         props: {
@@ -57,7 +65,11 @@
                     query: '',
                     radius: 5000,
                     modified: false
-                }
+                },
+                validator: new Validator({
+                    city: 'required',
+                    keyword: 'required'
+                })
             }
         },
         computed: {
@@ -90,14 +102,13 @@
                         inputClass: this.inputSize,
                         showDefaultSuggestionOnEmpty: true,
                         defaultSuggestions: [
-                            { text: "Kuliner"},
-                            { text: "Kecantikan"},
-                            { text: "Relaksasi"},
-                            { text: "Rekreasi"},
-                            { text: "Olahraga"},
-                            { text: "Shopping"},
+                            { text: "Makan"},
+                            { text: "Kopi"},
+                            { text: "Salon"},
+                            { text: "Spa"},
                             { text: "Barbershop"},
-                            { text: "Komunitas"}
+                            { text: "Futsal"},
+                            { text: "Gym"}
                         ]
                     }
                 }
@@ -116,7 +127,20 @@
 //        },
         methods: {
             submit() {
-                window.location = '/search?' + this.query;
+                this.validator.validateAll({ city: this.searchQuery.city, keyword: this.searchQuery.keyword }).then(result => {
+                    if (!result) {
+                        return;
+                        // validation failed.
+                    }
+                    window.location = '/search?' + this.query;
+                    // success stuff.
+                }).catch(() => {
+                    console.log('error')
+                    // something went wrong (non-validation related).
+                });
+            },
+            validate(field, e) {
+                this.validator.validate(field, e.target.value);
             },
             geolocation() {
                 if (navigator.geolocation) {
@@ -171,11 +195,38 @@
             },
             onCityChanged(e) {
                 this.modified = true;
+            },
+            preventEnter(e) {
+                if(e.keyCode == 13) {
+                    e.preventDefault();
+                }
+            },
+            googleSearchSuggestion() {
+                loaded.then(() => {
+                    const options = {
+                        types: ['(cities)'],
+                        componentRestrictions: {country: "id"}
+                    };
+
+                    const defaultBounds = new google.maps.LatLngBounds(new google.maps.LatLng(-0.789275, 113.92132700000002));
+
+                    const input = this.$refs.input;
+                    const searchBox = new google.maps.places.Autocomplete(input, options);
+
+                    searchBox.addListener('place_changed', () => {
+
+                        let location = searchBox.getPlace();
+
+                        this.searchQuery.city = location.formatted_address;
+                    });
+                });
             }
         },
         mounted() {
             Object.assign(this.searchQuery, this.$route.query);
             this.geolocation();
+
+            this.googleSearchSuggestion();
         }
     }
 </script>

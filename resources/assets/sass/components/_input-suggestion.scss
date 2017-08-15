@@ -2,27 +2,49 @@
   position: relative;
 
   &__suggestions {
+    background-color: #fff;
     position: absolute;
-    background: #fff;
-    box-shadow: 0 1px 5px rgba(#000, .2);
-    width: 100%;
-    z-index: 999;
-    top: calc(100% + 5px);
+    z-index: 1000;
     border-radius: 4px;
-    padding: 8px;
+    box-shadow: 0 1px 5px rgba(#000, .2);
+    overflow: hidden;
+    width: 100%;
+    top: calc(100% + 5px);
   }
 
   &__item {
     display: block;
-    padding: 8px 16px;
-    border-radius: 3px;
-    white-space: nowrap;
-    overflow: hidden;
+    cursor: default;
+    padding: 0 25px;
     text-overflow: ellipsis;
-    font-size: 12px;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 30px;
+    text-align: left;
+    border-top: 1px solid #e6e6e6;
+    font-size: 13px;
+    color: #000;
     &:hover {
-      background: $color-primary;
-      color: #fff;
+      background-color: #fafafa;
+    }
+    &.is-selected {
+      background-color: lighten($color-primary, 60%);
     }
   }
+}
+
+// google suggestions
+
+.pac-container {
+  border-radius: 4px !important;
+  box-shadow: 0 1px 5px rgba(#000, .2) !important;
+  border-top: 0 !important;
+  font-family: inherit !important;
+  &:after {
+    display: none !important;
+  }
+}
+
+.pac-item-selected, .pac-item-selected:hover {
+  background-color: lighten($color-primary, 60%) !important;
 }

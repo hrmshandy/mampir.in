@@ -15,6 +15,9 @@ window.iconim = new Iconim();
 import VueMasonryPlugin from 'vue-masonry';
 Vue.use(VueMasonryPlugin);
 
+// import VeeValidate from 'vee-validate';
+// Vue.use(VeeValidate);
+
 /**
  * Vue application instance
  */

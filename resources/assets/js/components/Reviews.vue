@@ -22,15 +22,16 @@
                     <div class="c-card__body">
                         <rating v-model="form.rating" :venue-id="venueId" method="post"></rating>
                         <input v-for="photo in uploadedPhotos"  type="hidden" v-model="photo.filename"/>
-                        <dropzone
-                                id="myVueDropzone"
-                                ref="reviewUpload"
-                                url="/api/review/upload"
-                                v-on:vdropzone-success="showSuccess"
-                                v-bind:preview-template="template">
-                            <!-- Optional parameters if any! -->
-                            <input type="hidden" name="token" value="xxx">
-                        </dropzone>
+                        <!--<dropzone-->
+                                <!--id="myVueDropzone"-->
+                                <!--ref="reviewUpload"-->
+                                <!--url="/api/review/upload"-->
+                                <!--v-on:vdropzone-success="showSuccess"-->
+                                <!--v-bind:preview-template="template">-->
+                            <!--&lt;!&ndash; Optional parameters if any! &ndash;&gt;-->
+                            <!--<input type="hidden" name="token" value="xxx">-->
+                        <!--</dropzone>-->
+                        <image-upload v-model="imageCollection"></image-upload>
                         <textarea v-model="form.content" rows="4" class="o-textarea" placeholder="Ceritakan pengalamanmu ..."></textarea>
                         <!-- <button class="o-button o-button--primary" @click="activeUpload" v-show="!activedUpload">
                             Upload Image
@@ -147,11 +148,12 @@ import { mapGetters } from 'vuex'
 import Form from '../utils/form.js'
 import Rating from './Rating.vue'
 import Dropzone from 'vue2-dropzone'
-import Carousel from './Carousel.vue';
-import CarouselItem from './CarouselItem.vue';
+import Carousel from './Carousel.vue'
+import CarouselItem from './CarouselItem.vue'
+import ImageUpload from './ImageUpload.vue'
 
 export default {
-    components: { Rating, Dropzone, Carousel, CarouselItem },
+    components: { Rating, Dropzone, Carousel, CarouselItem, ImageUpload },
     model: {
         prop: 'reviews',
         event: 'reviews'
@@ -206,18 +208,18 @@ export default {
                 this.form.content = value.content;
                 this.form.imageCollection = value.photos;
 
-                const dz = this.$refs.reviewUpload;
-                dz.removeAllFiles();
-
-                for(let i = 0; i < value.photos.length; i++) {
-                    const photo = value.photos[i];
-                    const mockFile = { name: photo, size: 12345 };
-
-                    dz.manuallyAddFile(mockFile, '/storage/images/reviews/'+photo, null, null, {
-                        dontSubstractMaxFiles: false,
-                        addToFiles: true
-                    });
-                }
+//                const dz = this.$refs.reviewUpload;
+//                dz.removeAllFiles();
+//
+//                for(let i = 0; i < value.photos.length; i++) {
+//                    const photo = value.photos[i];
+//                    const mockFile = { name: photo, size: 12345 };
+//
+//                    dz.manuallyAddFile(mockFile, '/storage/images/reviews/'+photo, null, null, {
+//                        dontSubstractMaxFiles: false,
+//                        addToFiles: true
+//                    });
+//                }
 
             }
 
