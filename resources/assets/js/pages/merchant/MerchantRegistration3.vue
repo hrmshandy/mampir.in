@@ -2,24 +2,28 @@
     <div class="merchant-registration o-section">
         <div class="o-container">
             <step active="3"></step>
-            <h2 class="o-heading u-m-x3">
-                Tambah Operator
-            </h2>
+            
+            <div class="o-container o-container--fit">
+                <div class="c-card c-card--merchant">
+                    <h2 class="o-heading u-m-x3">
+                        Tambah Operator
+                    </h2>
+                    <form action="">
+                        <div class="c-form-group">
+                            <input type="text" class="o-input o-input--large" placeholder="Masukan Email Operator"/>
+                        </div>
 
-            <form action="">
-                <div class="c-form-group">
-                    <input type="text" class="o-input o-input--large" placeholder="Masukan Email Operator"/>
+                        <div class="c-form-group">
+                            <input type="password" class="o-input o-input--large" placeholder="Password"/>
+                        </div>
+
+                        <div class="c-form-group">
+                            <router-link to="/merchant/registration/success" class="o-button o-button--primary o-button--block o-button--large"> Next </router-link>
+                        </div>
+
+                    </form>
                 </div>
-
-                <div class="c-form-group">
-                    <input type="password" class="o-input o-input--large" placeholder="Password"/>
-                </div>
-
-                <div class="c-form-group">
-                    <router-link to="/merchant/registration/success" class="o-button o-button--primary o-button--block o-button--large"> Next </router-link>
-                </div>
-
-            </form>
+            </div>
         </div>
     </div>
 </template>

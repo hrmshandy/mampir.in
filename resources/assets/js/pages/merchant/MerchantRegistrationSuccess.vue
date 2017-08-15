@@ -13,7 +13,7 @@
                 Merchant Anda Sudah Terdaftar
             </h1>
 
-            <div class="c-form-group u-text-center">
+            <div class="c-form-group u-text-center mg-top-1">
                 <a href="#" class="o-button o-button--primary o-button--mincontent o-button--large">Ke halaman merchant saya</a>
             </div>
         </div>

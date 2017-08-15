@@ -37,9 +37,26 @@
 .c-form-group {
 	&--addon {
 		display: flex;
-		select {
+		border-radius: 4px;
+		transition: all .21s ease-in-out;
+		input {
 		    border-radius: 0px 4px 4px 0px;
 		    border-left: none;
+		}
+		input,
+		span {
+			&:hover,
+			&:focus {
+				border-color: #dbdbdb;
+    			-webkit-box-shadow: unset;
+    			box-shadow: unset;
+			}
+		}
+		&:hover,
+		&:focus {
+			border-color: #fff;
+			-webkit-box-shadow: 0px 2px 5px 1px #dddddd;
+			box-shadow: 0px 2px 5px 1px #dddddd;
 		}
 	}
 }
@@ -50,6 +67,7 @@
 			margin-bottom: 2rem;
 	    	&__img {
 	    		flex-basis: 20%;
+	    		margin: 0px;
 	    	}
 	    	&__desc {
 	    		flex-basis: 70%;

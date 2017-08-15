@@ -14,9 +14,7 @@
 					<div class="o-grid__col u-5/12@lg">
 						<div class="c-form-group c-form-group--addon">
 							<span class="o-input o-input--addon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
-							<select name="lokasi" id="lokasi" class="o-input">
-								<option value>Lokasi</option>
-							</select>
+							<input type="text" placeholder="Lokasi" class="o-input">
 						</div>
 					</div>
 					<div class="o-grid__col u-5/12@lg">
