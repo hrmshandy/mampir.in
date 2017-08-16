@@ -124,9 +124,10 @@
 
 <script>
     import Step from '../../components/StepTab.vue'
+    import {Tabs, Tab} from 'vue-tabs-component'
 
     export default {
-        components: { Step },
+        components: { Step, Tabs, Tab },
         data() {
             return {
                 columnTimes: [

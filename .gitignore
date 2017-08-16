@@ -1,6 +1,8 @@
+/config/myconfig.rb
 /node_modules
 /public/hot
 .vscode
+/public/admin/
 /public/storage
 /public/css/
 /public/js/
@@ -15,7 +17,7 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 .env
+.DS_Store
 
 
 
-public/admin/
