@@ -34,6 +34,11 @@
 .o-container--third {
   width: 50%;
 }
+.o-textarea {
+  &__expand {
+    min-height: 100px;
+  }
+}
 // Object Step
 
 .stepwizard-step p {
