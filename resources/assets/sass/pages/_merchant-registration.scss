@@ -30,6 +30,10 @@
 .o-container--fit {
   width: 75%;
 }
+
+.o-container--third {
+  width: 50%;
+}
 // Object Step
 
 .stepwizard-step p {
@@ -93,12 +97,16 @@
 .mg-top-1 {
   margin-top: 1rem;
 }
+.dropzone.dz-clickable {
+  margin-bottom: 0px;
+}
 @media (max-width: 768px){
   .stepwizard-step:before {
      width: 50%;
      left: 75%;
   }
-  .o-container--fit {
+  .o-container--fit,
+  .o-container--third {
     width: unset;
   }
 }
