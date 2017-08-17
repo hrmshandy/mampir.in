@@ -127,10 +127,4 @@
             }
         }
     }
-<<<<<<< HEAD
-
-    Vue.component('tabs', Tabs);
-    Vue.component('tab', Tab);
-=======
->>>>>>> develop
 </script>
