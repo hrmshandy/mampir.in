@@ -53,7 +53,7 @@ npm run prod
 @task('deploy')
 cd {{ $working_dir }}
 
-git pull origin {{ $branch }}
+git pull origin {{ $branch }} --all
 
 @if(isset($update_composer))
     composer update
