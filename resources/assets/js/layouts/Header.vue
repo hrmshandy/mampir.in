@@ -38,7 +38,7 @@
             </div>
         </div>
             <!-- <mobile-menu></mobile-menu> -->
-        <MobileNav></MobileNav>
+        <!-- <MobileNav></MobileNav> -->
     </header>
 </template>
 

@@ -62,6 +62,7 @@
     }
 
     &.is-sticky {
+        height: 60px;
         position: fixed;
         background: #fff;
         @include elevation(4, 1);
