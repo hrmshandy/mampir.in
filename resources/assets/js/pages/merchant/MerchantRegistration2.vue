@@ -127,12 +127,9 @@
                     }
                 ]
             }
-        },
+        }
+    }
 
     Vue.component('tabs', Tabs);
     Vue.component('tab', Tab);
-
-    export default {
-        components: { Step }
-    }
 </script>

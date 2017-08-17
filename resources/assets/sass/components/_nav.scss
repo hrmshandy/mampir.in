@@ -1,0 +1,26 @@
+.c-nav {
+	list-style: none;
+    display: flex;
+    position: absolute;
+    right: 12px;
+    &__button {
+    	margin: 1px;
+    	a {
+    		padding: 15px 20px;
+    		border-radius: 4px;
+    		transition: all .23s ease-in-out;
+    		&:hover,
+    		&:focus {
+				border-color: #fff;
+				-webkit-box-shadow: 0px 2px 5px 1px #dddddd;
+				box-shadow: 0px 2px 5px 1px #dddddd;
+    		}
+    	}
+        &__search {
+            display: none;
+            @include until(1024px){
+                display: block;
+            }
+        }
+    }
+}
