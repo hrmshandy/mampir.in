@@ -52,7 +52,7 @@ mix.version();
 // mix.options({
 //     postCss: [
 //         require('autoprefixer')({
-//             browsers: ['> 1%', 'last 4 versions', 'Safari >= 8']
+//             browsers: ['> 1%', 'last 4 versions', 'Safari >= 8', 'not ie <= 11']
 //         })
 //     ]
 // });

@@ -120,19 +120,11 @@
         components: { Step, Tabs, Tab },
         data() {
             return {
-                columnTimes: [
-                    {
-                        from : '',
-                        to : ''
-                    }
-                ]
+                columnTimes: [{
+                    from : '',
+                    to : ''
+                }]
             }
-        },
-
-    Vue.component('tabs', Tabs);
-    Vue.component('tab', Tab);
-
-    export default {
-        components: { Step }
+        }
     }
 </script>
