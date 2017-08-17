@@ -3,8 +3,23 @@
     display: flex;
     position: absolute;
     right: 12px;
+    @include until(480px){
+        right: 0;
+        left: 0;
+        justify-content: space-around;
+    }
     &__button {
     	margin: 1px;
+        &:nth-child(2) {
+            @include until(480px){
+                margin-right: 40px;
+            }
+        }
+        &:nth-child(3) {
+            @include until(480px){
+                margin-left: 40px;
+            }
+        }
     	a {
     		padding: 15px 20px;
     		border-radius: 4px;

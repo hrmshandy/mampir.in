@@ -14,7 +14,7 @@
                     </router-link>
 				</li>
 				<li>
-					<router-link to="#search">M</router-link>
+					<a href="#search">M</a>
 				</li>
 				<li>
 					<a href="#" @click.prevent="openLogin">M</a>

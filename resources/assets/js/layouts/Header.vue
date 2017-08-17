@@ -16,7 +16,7 @@
                             <router-link to="/"> Journal </router-link>
                         </li>
                         <li class="c-nav__button c-nav__button__search">
-                            <a href="#">Search</a>
+                            <a href="#" @click="toggleSearch">Search</a>
                         </li>
                         <li class="c-nav__button" v-if="authenticated">
                             <router-link to="/"> Nama Anda </router-link>
@@ -50,13 +50,13 @@ import Logo from '../objects/Logo.vue'
 import MobileMenu from '../components/MobileMenu.vue'
 import Register from '../components/auth/Register.vue'
 import User from '../components/User.vue'
-import MobileNav from '../components/MobileNav.vue'
+// import MobileNav from '../components/MobileNav.vue'
 import mobileLogo from '../components/LogoMobile.vue'
 
 const Search = () => import('../components/Search.vue');
 
 export default {
-    components: { Login, Logo, MobileMenu, Register, Search, User, MobileNav, mobileLogo },
+    components: { Login, Logo, MobileMenu, Register, Search, User, mobileLogo },
     data() {
         return {
             offsetTop: 0,
@@ -66,7 +66,7 @@ export default {
     methods: {
         stickyHeader() {
             if(this.currentRoute == '/') {
-                if(document.body.scrollTop >= (1)) {
+                if(document.body.scrollTop >= (1) & window.innerWidth >= 480) {
                     this.isSticky = true;
                     this.$el.classList.add('is-sticky');
                 } else {
@@ -74,6 +74,9 @@ export default {
                     this.$el.classList.remove('is-sticky');
                 }
             }
+        },
+        toggleSearch() {
+            Event.fire('toggle-search')
         },
         openLogin(e) {
             Event.fire('show-login-modal', e);

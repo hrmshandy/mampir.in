@@ -64,11 +64,14 @@
         .c-search__form {
             display: block;
             width: 100%;
-            position: absolute;
+            position: fixed;
+            top: 0;
             left: 0;
+            right: 0;
             background: #fff;
             padding: 30px 15px 15px;
             box-shadow: 0 2px 3px rgba(0, 0, 0, .15);
+            padding-top: 80px;
         }
     }
 }
@@ -76,5 +79,15 @@
 @media (max-width: 640px) {
     .c-search.is-shown .c-search__form {
         min-height: 100vh;
+    }
+}
+@media (max-width: 480px) {
+    .c-search.is-shown .c-search__form {
+        min-height: min-content;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding-top: 30px;
     }
 }

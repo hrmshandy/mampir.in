@@ -4,9 +4,12 @@
     line-height: 1;
     z-index: 10;
     @include until(480px) {
-        margin-right: auto;
-        width: 100px;
-        display: none;
+        margin: auto;
+        width: min-content;
+        display: block;
+        position: absolute;
+        left: 0;
+        right: 0;
     }
     > svg {
         width: auto;

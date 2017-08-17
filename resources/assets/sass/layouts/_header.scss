@@ -11,6 +11,13 @@
     @include elevation-transition();
     transition: all .3s ease;
     z-index: 999;
+    @include until(480px){
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        background: #fff;
+        box-shadow: 0 0 6px 0px rgba(0, 0, 0, 0.47);
+    }
     &.is-sticky .o-container.o-container--wide {
         background: #fff;
         display: block;
@@ -73,10 +80,5 @@
 .login--wrapper {
     @include until(641px) {
         margin-left: 10px;
-    }
-}
-@media (max-width: 480px) {
-    .l-header__body {
-        display: none; 
     }
 }
