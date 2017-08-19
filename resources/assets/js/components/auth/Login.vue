@@ -6,45 +6,45 @@
             <sign>
                 <facebook></facebook>
                 <google></google>
-                <span class="divider">or</span>
-                <form class="sign-form" method="POST">
-                    <div :class="['c-form-group', {'has-danger' : form.errors.has('email')}]">
-                        <input type="email" name="email" v-model="form.email" class="o-input" placeholder="Email Adress">
-                        <span class="form-control-feedback" v-if="form.errors.has('email')" v-text="form.errors.get('email')"></span>
-                    </div>
-                    <div :class="['c-form-group', {'has-danger' : form.errors.has('password')}]">
-                        <input type="password" name="password" v-model="form.password" class="o-input" placeholder="Password">
-                        <span class="form-control-feedback" v-if="form.errors.has('password')" v-text="form.errors.get('password')"></span>
-                    </div>
-                    <div class="c-form-group">
-                        <div class="o-grid o-grid--middle">
-                            <div class="o-grid__col u-6/12">
-                                <label class="custom-control custom-checkbox remember">
-                                    <input type="checkbox" name="remember" class="custom-control-input" value="1">
-                                    <span class="custom-control-indicator"></span>
-                                    <span class="custom-control-description">Remember Me</span>
-                                </label>
-                            </div>
-                            <div class="o-grid__col u-6/12 u-text-right">
-                                <a href="#" class="forgot-password">Forgot password?</a>
-                            </div>
-                        </div>
-                    </div>
+                <!--<span class="divider">or</span>-->
+                <!--<form class="sign-form" method="POST">-->
+                    <!--<div :class="['c-form-group', {'has-danger' : form.errors.has('email')}]">-->
+                        <!--<input type="email" name="email" v-model="form.email" class="o-input" placeholder="Email Adress">-->
+                        <!--<span class="form-control-feedback" v-if="form.errors.has('email')" v-text="form.errors.get('email')"></span>-->
+                    <!--</div>-->
+                    <!--<div :class="['c-form-group', {'has-danger' : form.errors.has('password')}]">-->
+                        <!--<input type="password" name="password" v-model="form.password" class="o-input" placeholder="Password">-->
+                        <!--<span class="form-control-feedback" v-if="form.errors.has('password')" v-text="form.errors.get('password')"></span>-->
+                    <!--</div>-->
+                    <!--<div class="c-form-group">-->
+                        <!--<div class="o-grid o-grid&#45;&#45;middle">-->
+                            <!--<div class="o-grid__col u-6/12">-->
+                                <!--<label class="custom-control custom-checkbox remember">-->
+                                    <!--<input type="checkbox" name="remember" class="custom-control-input" value="1">-->
+                                    <!--<span class="custom-control-indicator"></span>-->
+                                    <!--<span class="custom-control-description">Remember Me</span>-->
+                                <!--</label>-->
+                            <!--</div>-->
+                            <!--<div class="o-grid__col u-6/12 u-text-right">-->
+                                <!--<a href="#" class="forgot-password">Forgot password?</a>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
 
-                    <button type="button" class="o-button o-button--primary o-button--block" @click.prevent="handleLogin" :disabled="loading">
-                        <span v-if="loading">Loading...</span>
-                        <span v-else>Log in</span>
-                    </button>
-                </form>
-                <hr>
-                <div class="o-grid o-grid--middle">
-                    <div class="o-grid__col u-8/12">
-                        <span>Don’t have an account?</span>
-                    </div>
-                    <div class="o-grid__col u-4/12 u-text-right">
-                        <a href="#" class="o-button o-button--primary-outlined o-button--small" @click.prevent="openRegisterModal">Register</a>
-                    </div>
-                </div>
+                    <!--<button type="button" class="o-button o-button&#45;&#45;primary o-button&#45;&#45;block" @click.prevent="handleLogin" :disabled="loading">-->
+                        <!--<span v-if="loading">Loading...</span>-->
+                        <!--<span v-else>Log in</span>-->
+                    <!--</button>-->
+                <!--</form>-->
+                <!--<hr>-->
+                <!--<div class="o-grid o-grid&#45;&#45;middle">-->
+                    <!--<div class="o-grid__col u-8/12">-->
+                        <!--<span>Don’t have an account?</span>-->
+                    <!--</div>-->
+                    <!--<div class="o-grid__col u-4/12 u-text-right">-->
+                        <!--<a href="#" class="o-button o-button&#45;&#45;primary-outlined o-button&#45;&#45;small" @click.prevent="openRegisterModal">Register</a>-->
+                    <!--</div>-->
+                <!--</div>-->
             </sign>
         </modal>
     </div>

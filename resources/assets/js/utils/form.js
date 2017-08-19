@@ -84,6 +84,7 @@ class Form {
      */
     submit(requestType, url) {
         this.isProcessed = true;
+        console.log(this.data(requestType), requestType);
         return new Promise((resolve, reject) => {
             axios.post(url, this.data(requestType))
                 .then(response => {

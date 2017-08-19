@@ -26,7 +26,7 @@
         <!-- </section> -->
         <section class="o-section o-section--grey">
             <div class="o-container--fluid">
-                <reviews :venue-id="venueId" :my-review="myReview" :venue-type="type" v-model="reviews"></reviews>
+                <reviews :venue-id="venueId" :my-review-value="myReview" :venue-type="type" v-model="reviews"></reviews>
             </div>
         </section>
     </div>
@@ -85,7 +85,6 @@
             fetchData() {
                 const url = `/api/venue/${this.$route.params.type}/${this.$route.params.slug}`;
                 axios.get(url).then(({data}) => {
-                    console.log(data);
                     // set venue id
                     this.venueId = data.id;
 
@@ -105,6 +104,8 @@
                     this.myReview = data.myReview;
 
                     window.document.title = data.name + ' - Mampir.in';
+                }).catch(() => {
+                    router.push('/404');
                 });
             },
             loadMap(destination) {

@@ -22,6 +22,12 @@
               image: ''
           }
         },
+        watch: {
+          value(value) {
+              if(value)
+                this.image = value;
+          }
+        },
         methods: {
             onFileChange(e) {
                 const files = e.target.files || e.dataTransfer.files;
@@ -44,6 +50,8 @@
             },
             removeImage: function (e) {
                 this.image = '';
+
+                this.$emit('input', '');
             }
         }
     }

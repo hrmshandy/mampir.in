@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/search/local', 'SearchController@localSearch');
 Route::get('/search/google-places/{type}', 'SearchController@googlePlacesSearch');
 Route::get('/search/suggest/location', 'SearchController@suggestLocation');
-Route::get('/search/suggest/category', 'SearchController@suggestCategory');
+Route::get('/search/suggest/keyword', 'SearchController@suggestKeyword');
 Route::get('venue/l/{slug}', 'VenueController@getFromLocal');
 Route::get('venue/g/{place_id}', 'VenueController@getFromGoogle');
 Route::get('reviews', 'ReviewController@index');

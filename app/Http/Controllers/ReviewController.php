@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests;
 use App\Models\Photo;
 use App\Models\Review;
 use App\Libraries\TemporaryFile;
@@ -23,22 +24,16 @@ class ReviewController extends Controller
         return response()->json($review);
     }
 
-    public function store(Request $request) {
-        $review = new Review($request->all());
-        $review->imageCollection = $request->get('imageCollection');
-        $review->save();
+    public function store(Requests\ReviewForm $form) {
+        $review = $form->store();
 
-        return Review::with('user')->find($review->id);
+        return Review::find($review->id);
     }
 
-    public function update(Request $request, $id) {
-        $review = Review::with('user')->find($id);
-        $review->imageCollection = $request->get('imageCollection');
-        $review->content = $request->content;
-        $review->rating = $request->rating;
-        $review->save();
+    public function update(Requests\ReviewForm $form, Review $review) {
+        $review = $form->update($review);
 
-        return $review;
+        return Review::find($review->id);
     }
 
     public function upload(Request $request) {

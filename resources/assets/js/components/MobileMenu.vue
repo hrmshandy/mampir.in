@@ -21,17 +21,17 @@
 				    		</a>
 				    	</li>
 				    	
-				    	<li class="nav-mobile__item">
-				    		<router-link class="item" to="/">
-				    			Trending
-				    		</router-link>
-				    	</li>
-				    	
-				    	<li class="nav-mobile__item">
-				    		<router-link class="item" to="/">
-				    			Journal
-				    		</router-link>
-				    	</li>
+				    	<!--<li class="nav-mobile__item">-->
+				    		<!--<router-link class="item" to="/">-->
+				    			<!--Trending-->
+				    		<!--</router-link>-->
+				    	<!--</li>-->
+				    	<!---->
+				    	<!--<li class="nav-mobile__item">-->
+				    		<!--<router-link class="item" to="/">-->
+				    			<!--Journal-->
+				    		<!--</router-link>-->
+				    	<!--</li>-->
 	                </ul>
 
 					<template v-if="authenticated">

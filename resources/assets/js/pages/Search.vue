@@ -56,7 +56,7 @@
                 </template>
 
                 <template v-if="google.listings.length > 0">
-                    <h3 class="u-mb-x2">Tempat Lainnya</h3>
+                    <h3 class="u-mb-x2" v-if="local.listings.length > 0">Tempat Lainnya</h3>
                     <div class="o-grid" ref="googleListings">
                         <template v-for="venue in google.listings">
                             <div class="o-grid__col u-4/12@lg u-6/12@sm u-12/12@xs">
@@ -78,6 +78,17 @@
                                 </a>
                             </div>
                         </template>
+                    </div>
+
+                    <div class="u-text-center">
+                        <button v-if="google.next_page_url"
+                                class="o-button o-button--primary"
+                                @click="loadMore"
+                                :disabled="loadMoreIsLoading">
+                            <span v-if="loadMoreIsLoading">Loading...</span>
+                            <span v-else>Load More</span>
+                        </button>
+                        <p v-else>Tidak ada lagi tempat lainnya</p>
                     </div>
                     <!-- status elements -->
                     <!--<div class="scroller-status">-->
@@ -120,8 +131,6 @@
     import Rating from '../components/Rating.vue'
     import Pagination from '../components/Pagination.vue'
 
-    import InfiniteScroll from 'infinite-scroll'
-
     export default {
         components: {Rating, Pagination},
         data() {
@@ -136,6 +145,8 @@
                 isEmpty: false,
                 viewListing: true,
                 viewMaps: true,
+
+                loadMoreIsLoading: false,
 
                 // new
                 local: {
@@ -154,11 +165,8 @@
                 'query'
             ])
         },
-        created() {
-            //window.document.title = "Search"
-        },
         mounted() {
-            const query = this.$route.query;
+            const query = this.$route.params.query;
             this.fetchData(query);
 
             this.gMap = new Map;
@@ -185,12 +193,12 @@
             fetchData (query) {
                 this.loading = true;
 
-                this.makeRequest('/api/search/local', query).then(data => this.setData(data, 'local'));
+                this.makeRequest('/api/search/local', {query}).then(data => this.setData(data, 'local'));
 
-                this.makeRequest('/api/search/google-places/text', query).then(data => {
+                this.makeRequest('/api/search/google-places/text', {query}).then(data => {
                     this.setData(data, 'google');
                     if ((this.local.listings.length <= 0) && (data.data.length <= 0)) {
-                        router.push('404');
+                        router.push('/404');
                     }
                 });
             },
@@ -226,29 +234,12 @@
             onPageChange(page, query){
                 this.fetchData(query);
             },
-            infiniteScroll() {
-                Vue.nextTick(() => {
-                    setTimeout(() => {
-                        const infScroll = new InfiniteScroll( this.$refs.googleListings, {
-                            // options
-                            path: this.google.next_page_url+'&page={{#}}',
-                            append: false,
-                            responseType: 'text',
-                            status: '.scroller-status',
-                            history: false
-                        });
-
-                        infScroll.on( 'load', ( response, path ) => {
-                            const data = JSON.parse(response);
-
-                            this.google.listings = this.google.listings.concat(data.data);
-                            this.google.next_page_url = data.next_page_url;
-
-                            infScroll.option({
-                                path: data.next_page_url+'&page={{#}}',
-                            })
-                        });
-                    }, 3000);
+            loadMore() {
+                this.loadMoreIsLoading = true;
+                this.makeRequest(this.google.next_page_url).then(data => {
+                    this.loadMoreIsLoading = false;
+                    this.google.listings = this.google.listings.concat(data.data);
+                    this.google.next_page_url = data.next_page_url;
                 });
             }
         }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\City;
+use App\Models\Keyword;
+use App\Models\SearchLog;
 use App\Models\Venue;
 use App\Services\GoogleMapExtractor;
 use App\Services\GooglePlacesApi;
@@ -14,30 +16,32 @@ class SearchController extends Controller
 {
     public function localSearch(Request $request)
     {
+        $q = $this->extractQuery($request->get('query'));
+
         $venue = Venue::with('categories', 'city');
 
-        if($request->has('city')) {
-            $venue = $venue->whereHas('city', function($query) use($request){
-                $query->where('name', $request->city);
+        if(isset($q['city'])) {
+            $venue = $venue->whereHas('city', function($query) use($q){
+                $query->where('name', $q['city']);
             });
         }
 
-        if($request->has('keyword')) {
-            $venue = $venue->where(function($query) use($request) {
-                $query->where('name', 'like', '%'.$request->keyword.'%')
-                        ->orWhereHas('categories', function($query) use($request){
-                            $this->filterCategories($query, $request, $request->keyword);
+        if(isset($query['keyword'])) {
+            $venue = $venue->where(function($query) use($q) {
+                $query->where('name', 'like', '%'.$q['keyword'].'%')
+                        ->orWhereHas('categories', function($query) use($q){
+                            $this->filterCategories($query, $q['keyword']);
                         });
             });
         }
 
-        if($request->has('categories')) {
-
-            $venue = $venue->whereHas('categories', function($query) use($request) {
-                $this->filterCategories($query, $request, $request->categories);
-            });
-
-        }
+//        if($request->has('categories')) {
+//
+//            $venue = $venue->whereHas('categories', function($query) use($request) {
+//                $this->filterCategories($query, $request->categories);
+//            });
+//
+//        }
 
         //dd($venue->toSql());
 
@@ -46,6 +50,7 @@ class SearchController extends Controller
 
     public function googlePlacesSearch(Request $request, GooglePlacesApi $google, $type)
     {
+        $this->writeLog($request);
         return $google->{$type.'Search'}($request);
     }
 
@@ -63,14 +68,14 @@ class SearchController extends Controller
         return [];
     }
 
-    public function suggestCategory(Request $request)
+    public function suggestKeyword(Request $request)
     {
         if($request->has('keyword')) {
-            $categories = Category::where('name', 'like', '%'.$request->keyword.'%')
-                                  ->orWhere('alias', 'like', '%'.$request->keyword.'%')
-                                  ->select('id', 'name AS text', 'alias');
+            $keywords = Keyword::where('keyword', 'like', '%'.$request->keyword.'%')
+                                 ->select('id', 'keyword AS text', 'hint')
+                                 ->orderBy('hint', 'desc');
 
-            return $categories
+            return $keywords
                 ->take(10)
                 ->get();
         }
@@ -79,9 +84,43 @@ class SearchController extends Controller
     }
 
 
-    protected function filterCategories($query, Request $request, $keyword)
+    protected function filterCategories($query, $keyword)
     {
         $query->where('name', 'like', '%'.$keyword.'%')
             ->orWhere('alias', 'like', '%'.$keyword.'%');
+    }
+
+    protected function writeLog(Request $request)
+    {
+        $query = $this->extractQuery($request->get('query'));
+
+        $keyword = Keyword::firstOrNew(['keyword' => $query['keyword']]);
+
+        $searchLog = SearchLog::firstOrNew([
+            'keyword_id' => $keyword->id,
+            'user_id' => auth()->check() ? auth()->user()->id : null,
+            'city' => $query['city'],
+            'ip' => $request->getClientIp()
+        ]);
+
+        if(!$searchLog->exists()) {
+            $keyword->hint++;
+            $keyword->save();
+
+            $searchLog->save();
+        }
+    }
+
+    protected function extractQuery($query)
+    {
+        $query = explode('in', $query);
+
+        list($keyword, $location) = collect($query)->map(function($item){
+            return trim($item);
+        })->all();
+
+        $city = explode(',', $location)[0];
+
+        return compact('keyword', 'city', 'location');
     }
 }

@@ -23,6 +23,13 @@ class Review extends Model
     ];
 
     /**
+     * The relations to eager load on every query.
+     *
+     * @var array
+     */
+    protected $with = ['user', 'photos'];
+
+    /**
      * The accessors to append to the model's array form.
      *
      * @var array

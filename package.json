@@ -34,6 +34,7 @@
     "lory.js": "^2.3.3",
     "masonry-layout": "^4.2.0",
     "moment": "^2.18.1",
+    "path-to-regexp": "^1.7.0",
     "promise-polyfill": "6.0.2",
     "q": "^1.5.0",
     "vee-validate": "^2.0.0-rc.13",

@@ -1,3 +1,5 @@
+const pathToRegexp = require('path-to-regexp');
+
 const Index = () => import('../pages/Index.vue');
 const Search = () => import('../pages/Search.vue');
 const Detail = () => import('../pages/Detail.vue');
@@ -14,7 +16,7 @@ const MerchantSuccess = () => import('../pages/merchant/MerchantRegistrationSucc
 
 export default [
     {path: '/', component: Index},
-    {path: '/search', component: Search, meta: {hideFooter: true}},
+    {path: '/search/:query', component: Search, meta: {hideFooter: true}},
     {path: '/place/:type/:slug', component: Detail},
     {path: '/login', component: Login},
     {path: '/register', component: Register},

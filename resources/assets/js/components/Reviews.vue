@@ -9,7 +9,14 @@
             <div class="o-grid__sizer u-3/12@lg u-6/12@sm"></div>
 
             <div v-masonry-tile class="o-grid__col u-3/12@lg u-6/12@sm" v-show="(authenticated && !reviewed) || editingReview">
-                <div class="c-card c-card--dialog c-card--dialog__placeholder c-card--dialog__review">
+                <div :class="[
+                    'c-card',
+                    'c-card--dialog',
+                    'c-card--dialog__placeholder',
+                    'c-card--dialog__review',
+                    'c-review-form',
+                    {'c-review-form--invalid': form.errors.any()}
+                ]">
 
                     <div class="o-user-block">
                         <div class="o-user-block__pic">
@@ -22,34 +29,24 @@
                     <div class="c-card__body">
                         <rating v-model="form.rating" :venue-id="venueId" method="post"></rating>
                         <input v-for="photo in uploadedPhotos"  type="hidden" v-model="photo.filename"/>
-                        <!--<dropzone-->
-                                <!--id="myVueDropzone"-->
-                                <!--ref="reviewUpload"-->
-                                <!--url="/api/review/upload"-->
-                                <!--v-on:vdropzone-success="showSuccess"-->
-                                <!--v-bind:preview-template="template">-->
-                            <!--&lt;!&ndash; Optional parameters if any! &ndash;&gt;-->
-                            <!--<input type="hidden" name="token" value="xxx">-->
-                        <!--</dropzone>-->
-                        <image-upload v-model="imageCollection"></image-upload>
+                        <image-upload v-model="form.imageCollection"></image-upload>
                         <textarea v-model="form.content" rows="4" class="o-textarea" placeholder="Ceritakan pengalamanmu ..."></textarea>
-                        <!-- <button class="o-button o-button--primary" @click="activeUpload" v-show="!activedUpload">
-                            Upload Image
-                        </button> -->
-
                     </div>
-                    <div class="o-user-block__submit">
+                    <span v-if="form.errors.any()" class="c-review-form__invalid-message">Semua field wajib di isi.</span>
+                    <div class="o-user-block__submit c-review-form__control">
                         <template v-if="editingReview">
-                            <button class="o-button o-button--primary write-a-review__button" @click="updateReview">
-                                Update Review
+                            <button class="o-button o-button--primary write-a-review__button" @click="updateReview" :disabled="loading">
+                                <span v-if="loading">Loading...</span>
+                                <span v-else>Update Review</span>
                             </button>
                             <button class="o-button o-button--default write-a-review__button" @click="cancelUpdateReview">
                                 Cancel
                             </button>
                         </template>
                         <template v-else>
-                            <button class="o-button o-button--primary write-a-review__button" @click="submitReview">
-                                Kirim Review
+                            <button class="o-button o-button--primary write-a-review__button" @click="submitReview" :disabled="loading">
+                                <span v-if="loading">Loading...</span>
+                                <span v-else>Kirim Review</span>
                             </button>
                         </template>
                     </div>
@@ -98,7 +95,7 @@
                         <carousel v-if="myReview.photos.length > 0" class="o-photoreview" :options="carouselOptions" :timeout="1000">
                             <template v-for="photo in myReview.photos">
                                 <carousel-item class="o-photoreview__item">
-                                    <div class="o-photoreview__image" :style="{ backgroundImage: 'url(/img/cache/card/'+photo+')' }"></div>
+                                    <div class="o-photoreview__image" :style="{ backgroundImage: 'url(/storage'+photo.filename+')' }"></div>
                                 </carousel-item>
                             </template>
                         </carousel>
@@ -128,7 +125,7 @@
                         <carousel v-if="review.photos.length > 0" class="o-photoreview" :options="carouselOptions" :timeout="1000">
                             <template v-for="photo in review.photos">
                                 <carousel-item class="o-photoreview__item">
-                                    <div class="o-photoreview__image" :style="{ backgroundImage: 'url(/img/cache/card/'+photo+')' }"></div>
+                                    <div class="o-photoreview__image" :style="{ backgroundImage: 'url(/storage'+photo+')' }"></div>
                                 </carousel-item>
                             </template>
                         </carousel>
@@ -161,14 +158,17 @@ export default {
     props: {
         venueId: { required: true },
         venueType: String,
-        myReview: { type: Object, required: false },
+        myReviewValue: { type: Object, required: false },
         reviews: { required: true }
     },
     computed: {
         ...mapGetters([
             'authenticated',
             'user'
-        ])
+        ]),
+        isInvalid() {
+            return !this.form.rating || !this.form.content || !this.form.imageCollection;
+        }
     },
     data() {
 //        const user
@@ -177,13 +177,15 @@ export default {
             reviewed: false,
             editingReview: false,
             activedUpload: false,
+            loading: false,
+            myReview: '',
             form: new Form({
                 user_id: this.$store.getters.user.id,
                 venue_id: null,
                 google_id: null,
                 rating: 0,
                 content: null,
-                imageCollection: []
+                imageCollection: ''
             }),
             uploadedPhotos:[],
             carouselOptions: {
@@ -200,13 +202,23 @@ export default {
                 this.form.venue_id = value;
             }
         },
+        newReview() {
+
+        },
+        myReviewValue(value) {
+          if(value)
+              this.myReview = value;
+        },
         myReview(value) {
             if(value) {
+                console.log(value);
                 this.reviewed = true;
 
+                this.form.user_id = this.$store.getters.user.id;
                 this.form.rating = value.rating;
                 this.form.content = value.content;
-                this.form.imageCollection = value.photos;
+                if(value.photos.length > 0)
+                    this.form.imageCollection = '/storage'+value.photos[0].filename;
 
 //                const dz = this.$refs.reviewUpload;
 //                dz.removeAllFiles();
@@ -243,9 +255,10 @@ export default {
             this.writingReview = false;
         },
         submitReview() {
-            this.form.imageCollection = this.uploadedPhotos;
+            this.loading = true;
             this.form.submit('post', '/api/review').then((response) => {
                 if(response){
+                    this.loading = false;
                     this.myReview = response;
                     this.writingReview = false;
                     this.reviewed = true;
@@ -254,6 +267,7 @@ export default {
                     });
                 }
             }).catch((errors) => {
+                this.loading = false;
                 console.log(errors);
             });
         },
@@ -290,9 +304,10 @@ export default {
             this.editingReview = true;
         },
         updateReview() {
-            this.form.imageCollection = this.uploadedPhotos;
+            this.loading = true;
             this.form.submit('put', '/api/review/'+this.myReview.id).then((response) => {
                 if(response){
+                    this.loading = false;
                     this.myReview = response;
                     this.editingReview = false;
                     this.reviewed = true;
@@ -301,6 +316,7 @@ export default {
                     });
                 }
             }).catch((errors) => {
+                this.loading = false;
                 console.log(errors);
             });
         },

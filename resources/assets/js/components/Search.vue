@@ -77,10 +77,9 @@
 //                'query'
 //            ]),
             query() {
-              let query = Object.assign({}, this.searchQuery);
-                  query.query = query.keyword+(!_.isEmpty(query.city) ? ' in '+query.city : '');
+              let q = this.searchQuery;
 
-              return serialize(query);
+              return q.keyword.replace(/\s/g, '+')+'+in+'+q.city.replace(/\s/g, '+');
             },
             inputSize() {
                 return !_.isEmpty(this.size) ? 'o-input--' + this.size : null;
@@ -97,34 +96,23 @@
                         inputClass: this.inputSize
                     },
                     category: {
-                        endpoint: '/api/search/suggest/category',
+                        endpoint: '/api/search/suggest/keyword',
                         placeholder: 'Nyari Apa?',
                         inputClass: this.inputSize,
                         showDefaultSuggestionOnEmpty: true,
                         defaultSuggestions: [
-                            { text: "Makan"},
-                            { text: "Kopi"},
-                            { text: "Salon"},
-                            { text: "Spa"},
-                            { text: "Barbershop"},
-                            { text: "Futsal"},
-                            { text: "Gym"}
+                            { text: "makan"},
+                            { text: "kopi"},
+                            { text: "salon"},
+                            { text: "spa"},
+                            { text: "barbershop"},
+                            { text: "futsal"},
+                            { text: "gym"}
                         ]
                     }
                 }
             }
         },
-//        watch: {
-//            location(value) {
-//                this.$store.commit('SET_LOCATION', value);
-//            },
-//            area(value) {
-//                this.$store.commit('SET_AREA', value);
-//            },
-//            keyword(value) {
-//                this.$store.commit('SET_KEYWORD', value);
-//            }
-//        },
         methods: {
             submit() {
                 this.validator.validateAll({ city: this.searchQuery.city, keyword: this.searchQuery.keyword }).then(result => {
@@ -132,7 +120,7 @@
                         return;
                         // validation failed.
                     }
-                    window.location = '/search?' + this.query;
+                    window.location = '/search/'+this.query;
                     // success stuff.
                 }).catch(() => {
                     console.log('error')

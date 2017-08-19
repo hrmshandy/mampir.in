@@ -7,7 +7,7 @@
 						<h1 class="o-heading-404">Oops!</h1>
 						<p class="o-description">
 							Maaf kami tidak menemukan apa yang kamu cari <br>
-							Mungkin berasal dari planet lain ??
+							<!--Mungkin berasal dari planet lain ??-->
 						</p>
 						<search-form size="large" :inline="false" style="margin-left: 0;"></search-form>
 					</div>
