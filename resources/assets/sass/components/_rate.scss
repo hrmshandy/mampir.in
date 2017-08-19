@@ -1,0 +1,39 @@
+.c-rate {
+  display: flex;
+  align-items: center;
+  &__item {
+    padding: 0 2px;
+    display: inline-block;
+    transition: .3s;
+    .o-star {
+      font-size: 16px;
+      > path {
+        fill: transparent;
+        &:not(.o-star__half) {
+          stroke: darken($color-secondary, 5%);
+          stroke-width: 20px;
+        }
+      }
+    }
+
+    &.is-rated, &.is-hovered {
+      &:not(.c-rate__item--half) {
+        .o-star > path {
+          fill: darken($color-secondary, 5%);
+        }
+      }
+      &.c-rate__item--half {
+        .o-star > .o-star__half {
+          fill: darken($color-secondary, 5%);
+        }
+      }
+    }
+
+    &.is-hovered {
+      transform: scale(1.15);
+    }
+  }
+  &__text {
+    padding-left: 10px;
+  }
+}

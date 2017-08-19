@@ -1,0 +1,70 @@
+$input-color: $color-black-ter;
+$input-border: $color-grey-lighter;
+$input-background: $color-white;
+
+$input-hover: $color-grey-darker;
+$input-hover-border: $color-grey-light;
+
+$input-focus: $color-grey-darker;
+$input-focus-border: $color-primary;
+
+$input-disabled: $color-grey;
+$input-disabled-background: $color-white-ter;
+$input-disabled-border: $color-white-ter;
+
+@mixin input {
+  width: 100%;
+  @include control;
+  color: $input-color;
+  border-color: $input-border;
+  background-color: $input-background;
+  background-clip: padding-box;
+  background-image: none;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  &:hover,
+  &.is-hovered,
+  &:focus,
+  &.is-focused,
+  &:active,
+  &.is-active {
+    border-color:#fff;
+    -webkit-box-shadow: 0px 2px 5px 1px rgba(221,221,221,1);
+    -moz-box-shadow: 0px 2px 5px 1px rgba(221,221,221,1);
+    box-shadow: 0px 2px 5px 1px rgba(221,221,221,1);
+  }
+  &[disabled] {
+    background-color: $input-disabled-background;
+    border-color: $input-disabled-border;
+    box-shadow: none;
+    color: $input-disabled;
+  }
+  @include placeholder {
+    color: rgba($input-color, 0.3);
+  }
+}
+
+.o-input, .o-textarea {
+  @include input;
+  width: 100%;
+  max-width: 100%;
+
+  &--small {
+    @include control-small;
+  }
+
+  &--medium {
+    @include control-medium;
+  }
+
+  &--large {
+    @include control-large;
+  }
+
+  &--addon {
+    width: min-content;
+    padding: 5px 10px;
+    border: 1px solid #dbdbdb;
+    border-radius: 4px 0px 0px 4px;
+    border-right: none;
+  }
+}

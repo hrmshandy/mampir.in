@@ -1,0 +1,45 @@
+.what-happened {
+	.section__title {
+		margin-bottom: 5rem;
+	}
+}
+.why-mampir-in {
+	max-width: 800px;
+	margin: auto;
+	text-align: center;
+	margin-top: 4rem;
+	h3 {
+		font-family: $font-family-secondary;
+		color: $color-primary;
+		font-size: 20px;
+		margin-top: 2rem;
+		font-weight: bold;
+	}
+	span {
+		font-size: 14px;
+		display: block;
+		margin-top: 10px;
+	}
+}
+
+footer {
+	background: $color-primary;
+	padding: 3rem 0;
+	.footer-center {
+		max-width: 350px;
+		margin: auto;
+		text-align: center;
+		color: #fff;
+		p {
+			margin-top: 1rem;
+			margin-bottom: 1rem;
+		}
+	}
+}
+.p-home {
+	&__categories {
+		max-width: 900px;
+		margin: auto;
+		padding: 0 15px;
+	}
+}

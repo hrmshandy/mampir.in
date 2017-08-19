@@ -1,0 +1,27 @@
+.o-section {
+    // padding: 3rem 1rem;
+    padding: 10vh 5px;
+    &__title {
+        color: $color-primary;
+        @include iota-type( ( xs: (25px, 1.5), lg: (35px, 1.5)));
+        font-weight: bold;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+    &--grey {
+        background: $background-gray;
+    }
+    &--white {
+        background: #fff;
+    }
+}
+
+
+.section--search {
+    background: #fff;
+    padding: 4vh 1rem;
+}
+
+.why {
+    padding: 25vh 0;
+}

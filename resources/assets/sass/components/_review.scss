@@ -1,0 +1,134 @@
+//%transparent-noborder {
+//	background: transparent;
+//	border: 0;
+//}
+//%display-flex {
+//	display: flex;
+//	align-items: center;
+//}
+//.review-card {
+//	@extend %transparent-noborder;
+//	margin-bottom: 0;
+//
+//	+ .review-card {
+//		margin-top: 2rem;
+//	}
+//	.card-header {
+//		background: #fff;
+//    	border: 1px solid rgba(0, 0, 0, 0.125);
+//    	.ratings {
+//    		.rating-item {
+//			    font-size: 1.5rem;
+//			    line-height: 1;
+//			}
+//    	}
+//	}
+//	.card-block {
+//		border-radius: calc(#{$card-border-radius} - 1px);
+//	    background: #fff;
+//	    border: 1px solid rgba(0, 0, 0, 0.125);
+//	    position: relative;
+//	    > img {
+//	    	max-width: 100%;
+//	    	margin-bottom: 10px;
+//	    }
+//	    > p {
+//			margin-bottom: 0;
+//	    }
+//	    &:before {
+//			content: '';
+//		    position: absolute;
+//		    border-bottom: 17px solid transparent;
+//		    border-left: 17px solid rgba(0, 0, 0, 0.125);
+//		    display: block;
+//		    width: 17px;
+//		    height: 17px;
+//		    bottom: -17px;
+//		    left: 19px;
+//		    z-index: 1;
+//	    }
+//	    &:after {
+//			content: '';
+//		    position: absolute;
+//		    border-bottom: 15px solid transparent;
+//		    border-left: 15px solid #fff;
+//		    display: block;
+//		    width: 15px;
+//		    height: 15px;
+//		    bottom: -15px;
+//		    left: 20px;
+//		    z-index: 2;
+//	    }
+//	}
+//	.card-header + .card-block {
+//		border-top: 0;
+//		border-top-left-radius: 0;
+//		border-top-right-radius: 0;
+//	}
+//	.card-footer {
+//		@extend %transparent-noborder;
+//		padding: 1.5rem 0 0.75rem;
+//	}
+//}
+//
+//.venue-block {
+//	@extend %display-flex;
+//	&__pic {
+//	}
+//	&__name {
+//		margin-left: 10px;
+//		font-size: 14px;
+//		font-weight: bold;
+//		color: #666;
+//	}
+//}
+//
+//.write-a-review {
+//	margin-bottom: 2rem;
+//	.card-header {
+//		border-bottom: 0;
+//		background: #fff;
+//	}
+//	&__button {
+//		min-width: 200px;
+//		cursor: pointer;
+//	}
+//}
+//
+//
+//.c-review-grid {
+//	transition: all .5s ease-in-out;
+//	column-gap: 30px;
+//	column-count: 4;
+//}
+//.c-review-cell {
+//	margin-bottom: 30px;
+//	break-inside: avoid;
+//}
+
+.c-review-form {
+	.c-rate {
+		margin-bottom: 10px;
+	}
+	.c-rate__item .o-star {
+		font-size: 35px;
+	}
+
+	&__control {
+		display: flex;
+		align-items: center;
+	}
+
+	&__invalid-message {
+		display: block;
+		color: $color-danger;
+		margin-bottom: 30px;
+	}
+
+	&--invalid {
+		.c-card__body {
+			border: 1px solid $color-danger;
+			margin-bottom: 10px;
+		}
+	}
+}

@@ -1,0 +1,9 @@
+.svg-icon {
+    display: inline-block;
+    > svg {
+        display: block;
+        fill: currentcolor;
+        height: 1em;
+        width: 1em;
+    }
+}

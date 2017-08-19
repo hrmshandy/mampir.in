@@ -1,0 +1,199 @@
+<template>
+    <div>
+        <section class="c-hero">
+            <div class="o-container c-hero__container">
+                <div class="o-grid o-grid--middle c-hero__grid">
+                    <div class="o-grid__col u-6/12@sm u-hidden@xs">
+                        <logo-banner></logo-banner>
+                    </div>
+                    <div class="o-grid__col u-5/12@sm">
+                        <h1 class="c-hero__title">Bahagia Itu Dekat</h1>
+                        <h3 class="c-hero__subtitle">Yuk, Mampir.in!</h3>
+                        <search-form size="large" :inline="false"></search-form>
+                    </div>
+                </div>
+                <!-- <categories :city="city"></categories> -->
+            </div>
+        </section>
+        <!-- <div class="c-categories c-categories--widget">
+            <div class="o-container">
+                <div class="o-grid">
+                    <div v-for="category in categories" class="o-category__wrapper o-grid__col u-6/12@xs u-3/12@sm">
+                        <router-link class="o-category o-category--card" :to="'/search?location='+city+'&categories='+category" :style="{ backgroundImage: 'url(/images/categories/'+category+'.png)' }">
+                            <div class="o-category__body">
+                                <img :src="'/images/categories/'+category+'-icon.png'" alt="" class="o-category__icon">
+                                <span class="o-category__name">{{ category | capitalize }}</span>
+                            </div>
+                        </router-link>
+                    </div>
+                    <div class="o-grid__col u-6/12@xs u-3/12@sm o-category__wrapper">
+                        <router-link class="o-category o-category--card" to="#">
+                            <div class="o-category__body">
+                                <span class="o-category__name">Lainnya</span>
+                            </div>
+                        </router-link>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <!--<section v-if="reviews.length" class="o-section o-section&#45;&#45;grey">-->
+            <!--<div class="o-container&#45;&#45;fluid">-->
+                <!--<h1 class="o-section__title">Yang Happening di {{ city }}</h1>-->
+                <!--<div v-masonry-->
+                     <!--transition-duration="0.3s"-->
+                     <!--item-selector=".o-grid__col"-->
+                     <!--column-width=".o-grid__sizer"-->
+                     <!--class="o-grid">-->
+
+                    <!--<div class="o-grid__sizer u-3/12@lg u-6/12@sm"></div>-->
+
+                    <!--<div v-masonry-tile v-for="review in reviews" class="o-grid__col u-3/12@lg u-6/12@sm c-card__wrapper">-->
+                        <!--<div class="c-card c-card&#45;&#45;dialog u-mb-x4">-->
+                            <!--&lt;!&ndash;<div class="c-card__header">-->
+                                <!--<router-link :to="'/detail/'+review.venue.slug" class="o-user-block">-->
+                                    <!--<div class="o-user-block__pic o-user-block__pic&#45;&#45;small"-->
+                                         <!--:style="{ backgroundImage: 'url('+review.venue.cover+')'}">-->
+                                    <!--</div>-->
+                                    <!--<div class="o-user-block__info">-->
+                                        <!---->
+                                    <!--</div>-->
+                                <!--</router-link>-->
+                            <!--</div>&ndash;&gt;-->
+                            <!--<div class="o-user-block">-->
+                                <!--<div class="o-user-block__pic">-->
+                                    <!--<img :src="review.user.avatar" alt="">-->
+                                <!--</div>-->
+                                <!--<div class="o-user-block__info">-->
+                                    <!--<span class="o-user-block__name">{{ review.user.name }}</span>-->
+                                    <!--<span class="o-user-block__status">{{ review.created_at | dateFromNow }}</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="c-card__body">-->
+                                <!--<router-link :to="'/detail/'+review.venue.slug" class="o-user-block">-->
+                                    <!--<small class="o-user-block__name">{{ review.venue.name }}</small>-->
+                                <!--</router-link>-->
+
+                                <!--<div class="o-ratings"><div href="#" class="o-rating is-rated"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 53.867 53.867"><defs><linearGradient class="half"><stop offset="50%" stop-color="yellow"></stop> <stop offset="50%" stop-color="grey" stop-opacity="1"></stop></linearGradient></defs> <polygon points="26.934,1.318 35.256,18.182 53.867,20.887 40.4,34.013 43.579,52.549 26.934,43.798 10.288,52.549 13.467,34.013 0,20.887 18.611,18.182 "></polygon></svg></div><div href="#" class="o-rating is-rated"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 53.867 53.867"><defs><linearGradient class="half"><stop offset="50%" stop-color="yellow"></stop> <stop offset="50%" stop-color="grey" stop-opacity="1"></stop></linearGradient></defs> <polygon points="26.934,1.318 35.256,18.182 53.867,20.887 40.4,34.013 43.579,52.549 26.934,43.798 10.288,52.549 13.467,34.013 0,20.887 18.611,18.182 "></polygon></svg></div><div href="#" class="o-rating is-rated"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 53.867 53.867"><defs><linearGradient class="half"><stop offset="50%" stop-color="yellow"></stop> <stop offset="50%" stop-color="grey" stop-opacity="1"></stop></linearGradient></defs> <polygon points="26.934,1.318 35.256,18.182 53.867,20.887 40.4,34.013 43.579,52.549 26.934,43.798 10.288,52.549 13.467,34.013 0,20.887 18.611,18.182 "></polygon></svg></div><div href="#" class="o-rating is-rated"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 53.867 53.867"><defs><linearGradient class="half"><stop offset="50%" stop-color="yellow"></stop> <stop offset="50%" stop-color="grey" stop-opacity="1"></stop></linearGradient></defs> <polygon points="26.934,1.318 35.256,18.182 53.867,20.887 40.4,34.013 43.579,52.549 26.934,43.798 10.288,52.549 13.467,34.013 0,20.887 18.611,18.182 "></polygon></svg></div><div href="#" class="o-rating"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 53.867 53.867"><defs><linearGradient class="half"><stop offset="50%" stop-color="yellow"></stop> <stop offset="50%" stop-color="grey" stop-opacity="1"></stop></linearGradient></defs> <polygon points="26.934,1.318 35.256,18.182 53.867,20.887 40.4,34.013 43.579,52.549 26.934,43.798 10.288,52.549 13.467,34.013 0,20.887 18.611,18.182 "></polygon></svg></div> <div class="rating-status" style="display: none;">&lt;!&ndash;&ndash;&gt; &lt;!&ndash;&ndash;&gt; &lt;!&ndash;&ndash;&gt; &lt;!&ndash;&ndash;&gt; &lt;!&ndash;&ndash;&gt;</div></div>-->
+
+                                <!--<img src="https://www.parktheatre.co.uk/media/images/coffee-cake.jpg" class="o-user-block__photoreview">-->
+
+                                <!--<p>-->
+                                    <!--{{ review.content }}-->
+                                <!--</p>-->
+                            <!--</div>-->
+
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</section>-->
+        <section class="o-section why">
+            <div class="o-container">
+                <h1 class="o-section__title">Kenapa Harus Mampir.in</h1>
+                <!-- <p class="section__subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pretium est at metus rutrum, at tincidunt sem maximus. Donec iaculis commodo ligula ut laoreet.</p> -->
+                <div class="o-grid u-text-center">
+                    <div class="o-grid__col u-4/12@sm u-mb-x3@xs c-why-circle">
+                        <img src="../../img/icon-01.png" alt="">
+                        <h3 class="u-color-primary u-mb-x2 u-mt-x3">Otak Jiwa Dan Raga</h3>
+                        <span>Butuh yang namanya refreshing</span>
+                    </div>
+                    <div class="o-grid__col u-4/12@sm u-mb-x3@xs c-why-circle">
+                        <img src="../../img/icon-02.png" alt="">
+                        <h3 class="u-color-primary u-mb-x2 u-mt-x3">Jodoh Tak Kunjung Mampir</h3>
+                        <span>Makanya kamu yang harus Mampir.in</span>
+                    </div>
+                    <div class="o-grid__col u-4/12@sm u-mb-x3@xs c-why-circle">
+                        <img src="../../img/icon-03.png" alt="">
+                        <h3 class="u-color-primary u-mb-x2 u-mt-x3">Silaturahmi</h3>
+                        <span>Biar rejekinya lancar. Amin</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</template>
+
+<script>
+    import {mapGetters} from 'vuex'
+    // import {lory} from 'lory.js';
+    import Flickity from 'flickity';
+
+    import Masonry from '../components/Masonry.vue'
+    import Categories from '../components/Categories.vue'
+    import LogoBanner from '../components/LogoBanner.vue'
+
+    const SearchForm = () => import('../components/Search.vue');
+
+    export default {
+        components: { Categories, Masonry, SearchForm, LogoBanner },
+        data() {
+            return {
+                categories: [
+                    'kuliner', 'relaksasi', 'rekreasi', 'hiburan', 'kecantikan', 'barbershop', 'olahraga'
+                ],
+                reviews: [],
+            }
+        },
+        computed: {
+            ...mapGetters([
+                'query'
+            ]),
+            city() {
+                if (document.getElementById('city')) {
+                    return document.getElementById('city').value;
+                } else {
+                    return '';
+                }
+            }
+        },
+        watch: {
+            '$route': function () {
+                this.fetchReviews(this.city);
+            },
+            'query.location': function (value) {
+                this.fetchReviews(value);
+            },
+            reviews() {
+                Vue.redrawVueMasonry();
+            }
+        },
+        methods: {
+            fitHeroUnitHeight() {
+                const hero = document.querySelector('.c-hero');
+
+                const setFitHeight = () => {
+                    let height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+                    hero.style.height = `${height}px`;
+                }
+
+                setFitHeight();
+
+                window.addEventListener('resize', () => {
+                    setFitHeight();
+                });
+            },
+            fetchReviews(city) {
+                axios.get('/api/reviews?location=' + city).then(({data}) => {
+                    this.reviews = data;
+                });
+            }
+            // initIory() {
+            // 	document.addEventListener('DOMContentLoaded', () => {
+            //         const slider = document.querySelector('.js_slider');
+
+            //         lory(slider, {
+            //             // options going here
+            //         });
+            //     });
+            // }
+        },
+        created() {
+            window.document.title = "Bahagia Itu Dekat - Mampir.in"
+        },
+        mounted() {
+            this.fetchReviews(this.city);
+            //this.fitHeroUnitHeight();
+            // this.initIory();
+        }
+    }
+</script>

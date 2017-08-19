@@ -1,0 +1,18 @@
+.gm-style .gm-style-iw {
+    font-family: "Hanken", sans-serif;
+}
+.gm-style-iw__body {
+    .c-venue-card {
+        border-radius: 5px;
+        overflow: hidden;
+        &__info, &__footer {
+            padding: 0 10px;
+        }
+        &__footer {
+            padding-bottom: 20px;
+        }
+        &__photo {
+            border-radius: 0;
+        }
+    }
+}

@@ -1,0 +1,35 @@
+.o-cites {
+  @extend .o-list;
+}
+
+.o-city {
+  @extend .o-list__item;
+  &__link {
+    display: block;
+    padding: 10px 20px;
+    color: #333;
+    &.is-selected {
+      color: $color-success;
+      position: relative;
+      &:before {
+        content: "\f041";
+        font-family: FontAwesome;
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        width: 1em;
+        height: 1em;
+        color: $color-success;
+      }
+    }
+  }
+}
+
+.select-city-modal {
+  .o-modal__close {
+    display: none;
+  }
+}

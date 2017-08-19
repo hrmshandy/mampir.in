@@ -1,0 +1,13 @@
+$iota-utils-color-names: (
+  'black'     : $color-black,
+  'white'     : $color-white,
+  'grey'      : $color-grey,
+  'primary'   : $color-primary,
+  'secondary' : $color-secondary,
+  'info'      : $color-info,
+  'success'   : $color-success,
+  'warning'   : $color-warning,
+  'danger'    : $color-danger,
+);
+
+@import '~iotacss/utilities/color';

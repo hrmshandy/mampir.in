@@ -1,0 +1,41 @@
+.c-nav {
+	list-style: none;
+    display: flex;
+    position: absolute;
+    right: 12px;
+    @include until(480px){
+        right: 0;
+        left: 0;
+        justify-content: space-around;
+    }
+    &__button {
+    	margin: 1px;
+        &:nth-child(2) {
+            @include until(480px){
+                margin-right: 40px;
+            }
+        }
+        &:nth-child(3) {
+            @include until(480px){
+                margin-left: 40px;
+            }
+        }
+    	a {
+    		padding: 15px 20px;
+    		border-radius: 4px;
+    		transition: all .23s ease-in-out;
+    		&:hover,
+    		&:focus {
+				border-color: #fff;
+				-webkit-box-shadow: 0px 2px 5px 1px #dddddd;
+				box-shadow: 0px 2px 5px 1px #dddddd;
+    		}
+    	}
+        &__search {
+            display: none;
+            @include until(1024px){
+                display: block;
+            }
+        }
+    }
+}

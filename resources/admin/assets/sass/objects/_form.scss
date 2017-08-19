@@ -1,0 +1,55 @@
+@mixin form-control {
+  .o-input, .o-text-area, .o-select {
+    @content
+  }
+}
+
+@mixin has-validate($type, $color) {
+  &.has-#{$type} {
+    @include form-control {
+      border-color: $color;
+    }
+    .o-form-feedback {
+      color: $color;
+    }
+  }
+}
+
+.o-form-group {
+  margin-bottom: 1rem;
+  position: relative;
+
+  @include has-validate('info', $color-info);
+  @include has-validate('success', $color-success);
+  @include has-validate('warning', $color-warning);
+  @include has-validate('danger', $color-danger);
+  @include has-validate('error', $color-danger);
+}
+
+.o-form-feedback {
+  margin-top: .25rem;
+}
+
+%offset-icon {
+  position: absolute;
+  bottom: 5px;
+  font-size: 24px;
+  color: $color-primary;
+}
+.o-input-group {
+  position: relative;
+  &__pre-offset-icon {
+    @extend %offset-icon;
+    left: -38px;
+  }
+  &__post-offset-icon {
+    @extend %offset-icon;
+    right: -38px;
+  }
+}
+
+@import 'form-input';
+@import 'form-checkbox';
+@import 'form-radio';
+@import 'form-select';
+@import 'form-textarea';

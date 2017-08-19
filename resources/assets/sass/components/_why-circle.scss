@@ -1,0 +1,29 @@
+.c-why-circle {
+    @include mobile {
+        margin-bottom: 3rem!important;
+    }
+    img {
+        @include mobile {
+            max-width: 120px;
+        }
+        @include until(641px) {
+            width: 120px;
+        }
+    }
+    h3 {
+        @include mobile {
+            font-size: 1rem;
+        }
+        @include until(641px) {
+            font-size: 1rem;
+        }
+    }
+    span {
+        @include mobile {
+            max-width: 120px;
+        }
+        @include mobile {
+            font-size: 1rem;
+        }
+    }
+}

@@ -1,0 +1,51 @@
+.l-auth {
+  max-width: 450px;
+  margin: 0px auto;
+  background-color: #fff;
+  border-radius: 4px;
+  //box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
+  &__logo {
+    text-align: center;
+    padding: 20%;
+    > a {
+      display: block;
+      > img {
+        height: 60px;
+      }
+    }
+  }
+  &__header {
+    //border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+    padding-left: 80px;
+
+    font-size: 1.5rem;
+    color: #333;
+    &:after {
+      content: "";
+      background-color: $color-primary;
+      width: 32px;
+      height: 7px;
+      border-radius: 2px;
+      display: block;
+      position: absolute;
+      bottom: -4px;
+      left: 80px;
+    }
+  }
+  &__form {
+    padding: 20px 80px;
+    padding-bottom: 60px;
+  }
+  &__actions {
+    padding-top: 1rem;
+    margin-top: 0.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    .o-checkbox {
+      margin-left: 1rem;
+    }
+  }
+}

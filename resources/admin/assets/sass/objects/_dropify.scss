@@ -1,0 +1,49 @@
+.o-dropify {
+  position: relative;
+  &__upload {
+    background: #fff;
+    border: 1px solid #ccc;
+    position: relative;
+    width: 100%;
+    padding-bottom: 75%;
+    > input {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0 ;
+      right: 0;
+      opacity: 0;
+      &, &::-webkit-file-upload-button {
+        cursor: pointer;
+      }
+    }
+  }
+  &__text {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem;
+  }
+  &__preview {
+    background: #fff;
+    border: 2px solid #ccc;
+    padding: 5px;
+    > img {
+      max-height: 200px;
+    }
+  }
+  &__clear {
+    font-size: 12px;
+    background: $color-danger;
+    border: 2px solid $color-danger;
+    margin-top: 10px;
+    color: #fff;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,62 @@
+.o-logo {
+    display: flex;
+    margin-right: 30px;
+    line-height: 1;
+    z-index: 10;
+    @include until(480px) {
+        margin: auto;
+        width: min-content;
+        display: block;
+        position: absolute;
+        left: 0;
+        right: 0;
+    }
+    > svg {
+        width: auto;
+        height: 30px;
+    }
+    &__desktop {
+        @include until(900px) {
+            display: none;
+        }
+    }
+    &__mobile {
+        svg {
+            height: 40px;
+        }
+        @include from(900px) {
+            display: none;
+        }
+        @include until(480px) {
+            display: block;
+        }
+        &--chevron {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-left: 5px;
+            z-index: 10;
+            position: absolute;
+            left: 186px;
+            top: 25px;
+            -webkit-transition: all .3s ease;
+            transition: all .3s ease;
+            @include until(641px) {
+                left: 5px;
+            }
+        }
+        &--bottom {
+            @include from(480px){
+                display: block;
+            }
+        }
+    }
+}
+
+.l-header.is-sticky .o-logo__mobile {
+            top: 16px;
+        }
+
+.svg-icon {
+    line-height: 18px;
+}

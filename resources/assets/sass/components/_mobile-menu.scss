@@ -1,0 +1,130 @@
+.nav-mobile {
+    // display: none;
+    @include until(641px) {
+        display: block;
+    }
+    .o-logo__mobile {
+        @include until(641px) {
+            i {
+                display: none;
+            }
+        }
+        @include from(641px) {}
+    }
+    .o-logo__mobile i {
+        display: none;
+    }
+    svg {
+        width: 40px;
+        height: 2em;
+    }
+    &__menu {
+        width: 300px;
+        margin-left: 198px;
+        display: block;
+        flex-direction: column;
+        min-height: 100vh;
+        padding-bottom: 50px;
+        justify-content: center;
+        @include until(641px) {
+            margin-left: 0;
+        }
+        &::before {
+            content: '';
+            display: none;
+            height: 100vh;
+            background: #d0d0d0;
+            width: 1px;
+            position: absolute;
+            top: 15px;
+            margin-left: 15px;
+            @include until(641px) {
+                display: none;
+            }
+        }
+    }
+    &__menu-user {
+        margin: 25px 0;
+        padding: 35px 0 0;
+        border-top: 1px dashed #ccc;
+    }
+    &__menu-merchant {
+        margin: 35px 0;
+        padding: 35px 0;
+        border-top: 1px dashed #ccc;
+        & a {
+            display: block;
+            margin: 15px 0;
+        }
+    }
+    &__wrapper {
+        background: #fff;
+        height: 100vh;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        padding-top: 80px;
+        z-index: 9;
+        display: none;
+        @include from(641px) {
+            overflow-x: hidden;
+        }
+
+        @include until(640px) {
+            overflow: scroll;
+        }
+    }
+    &__item {
+        list-style-type: none;
+        a.item {
+            display: block;
+            padding: 10px 0;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: #854f28;
+        }
+        .user {
+            display: block;
+            padding: 10px 40px;
+            font-size: 2.2rem;
+            color: #854f28;
+            margin-bottom: 20px;
+            &__name {
+                font-size: 2rem;
+                font-weight: normal;
+            }
+        }
+    }
+    &.is-shown {
+        .nav-mobile__wrapper {
+            display: block;
+        }
+        .fa-chevron-down {
+            transition: all 0.5s ease;
+            transform: rotate(180deg);
+        }
+    }
+}
+
+.user .o-button {
+    margin-top: 10px;
+}
+
+
+@media (max-width:640px) {
+    .nav-mobile {
+        &__menu {
+            width: 100%;
+            margin-left: 0;
+            padding: 0 57px;
+        }
+    }
+    .nav-mobile__menu::before {
+        display: none
+    }
+}
+
+html.menu-is-opened {
+    overflow: hidden;
+}
