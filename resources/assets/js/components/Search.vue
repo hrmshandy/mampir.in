@@ -237,6 +237,10 @@
             this.geolocation();
 
             this.googleSearchSuggestion();
+
+            Event.listen('toggle-search', () => {
+                this.toggleSearch();
+            });
         }
     }
 </script>

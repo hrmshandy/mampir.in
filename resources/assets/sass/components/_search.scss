@@ -39,9 +39,9 @@
             display: none;
             @include desktop {
                 display: flex;
-                position: absolute;
-                top: 12px;
-                right: 25px;
+                // position: absolute;
+                // top: 12px;
+                // right: 25px;
                 >.c-form-group {
                     margin-left: 10px;
                     margin-bottom: 0;
@@ -62,10 +62,15 @@
 
     &.is-shown {
         .c-search__form {
-            display: block;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             width: 100%;
-            position: absolute;
+            position: fixed;
+            top: 0;
             left: 0;
+            right: 0;
+            bottom: 0;
             background: #fff;
             padding: 30px 15px 15px;
             box-shadow: 0 2px 3px rgba(0, 0, 0, .15);
@@ -76,5 +81,15 @@
 @media (max-width: 640px) {
     .c-search.is-shown .c-search__form {
         min-height: 100vh;
+    }
+}
+@media (max-width: 480px) {
+    .c-search.is-shown .c-search__form {
+        min-height: min-content;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding-top: 30px;
     }
 }
