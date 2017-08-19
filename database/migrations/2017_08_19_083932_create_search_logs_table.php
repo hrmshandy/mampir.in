@@ -27,6 +27,8 @@ class CreateSearchLogsTable extends Migration
                 ->onDelete('cascade');
             $table->string('city')->nullable();
             $table->string('ip', 20)->index();
+            $table->string('user_agent')->nullable();
+            $table->integer('hint')->default(0);
             $table->timestamps();
         });
     }

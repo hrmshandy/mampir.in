@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\WriteSearchLog;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\Keyword;
@@ -50,7 +51,10 @@ class SearchController extends Controller
 
     public function googlePlacesSearch(Request $request, GooglePlacesApi $google, $type)
     {
-        $this->writeLog($request);
+        if($request->has('query')) {
+            $query = $this->extractQuery($request->get('query'));
+            dispatch(new WriteSearchLog($query));
+        }
         return $google->{$type.'Search'}($request);
     }
 
@@ -90,32 +94,12 @@ class SearchController extends Controller
             ->orWhere('alias', 'like', '%'.$keyword.'%');
     }
 
-    protected function writeLog(Request $request)
-    {
-        $query = $this->extractQuery($request->get('query'));
-
-        $keyword = Keyword::firstOrNew(['keyword' => $query['keyword']]);
-
-        $searchLog = SearchLog::firstOrNew([
-            'keyword_id' => $keyword->id,
-            'user_id' => auth()->check() ? auth()->user()->id : null,
-            'city' => $query['city'],
-            'ip' => $request->getClientIp()
-        ]);
-
-        if(!$searchLog->exists()) {
-            $keyword->hint++;
-            $keyword->save();
-
-            $searchLog->save();
-        }
-    }
-
     protected function extractQuery($query)
     {
         $query = explode('in', $query);
 
         list($keyword, $location) = collect($query)->map(function($item){
+            $item = preg_replace("/\+/", " ", $item);
             return trim($item);
         })->all();
 

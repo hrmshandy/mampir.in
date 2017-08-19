@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div class="c-card__body">
-                        <rating v-model="form.rating" :venue-id="venueId" method="post"></rating>
+                        <rate v-model="form.rating" show-text></rate>
                         <input v-for="photo in uploadedPhotos"  type="hidden" v-model="photo.filename"/>
                         <image-upload v-model="form.imageCollection"></image-upload>
                         <textarea v-model="form.content" rows="4" class="o-textarea" placeholder="Ceritakan pengalamanmu ..."></textarea>
@@ -91,7 +91,7 @@
                         </div>
                     </div>
                     <div class="c-card__body">
-                        <rating v-model="myReview.rating" :venue-id="venueId" method="get"></rating>
+                        <rate v-model="myReview.rating" readonly></rate>
                         <carousel v-if="myReview.photos.length > 0" class="o-photoreview" :options="carouselOptions" :timeout="1000">
                             <template v-for="photo in myReview.photos">
                                 <carousel-item class="o-photoreview__item">
@@ -121,7 +121,7 @@
                         </div>
                     </div>
                     <div class="c-card__body">
-                        <rating v-model="review.rating" :venue-id="venueId" method="get"></rating>
+                        <rate v-model="review.rating" readonly></rate>
                         <carousel v-if="review.photos.length > 0" class="o-photoreview" :options="carouselOptions" :timeout="1000">
                             <template v-for="photo in review.photos">
                                 <carousel-item class="o-photoreview__item">
@@ -143,14 +143,14 @@
 import { mapGetters } from 'vuex'
 
 import Form from '../utils/form.js'
-import Rating from './Rating.vue'
-import Dropzone from 'vue2-dropzone'
+import Rate from './Rate.vue'
+//import Dropzone from 'vue2-dropzone'
 import Carousel from './Carousel.vue'
 import CarouselItem from './CarouselItem.vue'
 import ImageUpload from './ImageUpload.vue'
 
 export default {
-    components: { Rating, Dropzone, Carousel, CarouselItem, ImageUpload },
+    components: { Rate, Carousel, CarouselItem, ImageUpload },
     model: {
         prop: 'reviews',
         event: 'reviews'

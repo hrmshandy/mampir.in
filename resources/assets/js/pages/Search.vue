@@ -215,9 +215,9 @@
                     axios.get(url).then(({data}) => {
                         setTimeout(() => {
                             this.loading = false;
-
-                            resolve(data);
                         }, 1000);
+
+                        resolve(data);
                     }).catch(error => {
                         reject(error);
                     });

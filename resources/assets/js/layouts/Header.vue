@@ -17,7 +17,7 @@
                 </div> -->
             </div>
         </div>
-            <mobile-menu></mobile-menu>
+            <!--<mobile-menu></mobile-menu>-->
     </header>
 </template>
 

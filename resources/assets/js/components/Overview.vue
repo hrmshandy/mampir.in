@@ -7,7 +7,7 @@
                 <!-- <small class="text-muted p-venue-detail__categories">{{ formatedCategories }}</small> -->
                 <div class="c-rating-review-display c-rating-review-display__mobile">
                     <!-- <span class="c-rating-review-display__number">{{ rating }}</span> -->
-                    <rating v-model="rating" :venue-id="venueId" method="get"></rating>
+                    <rate v-model="rating" readonly></rate>
                     <!-- <p class="c-rating-review-display__text">{{ totalReviews }} Reviews</p> -->
                 </div>
                 <div class="p-venue-detail__list">
@@ -63,7 +63,7 @@
             <div class="c-rating-review">
                 <div class="c-rating-review-display">
                     <span class="c-rating-review-display__number">{{ rating }}</span>
-                    <rating v-model="rating" :venue-id="venueId" method="get"></rating>
+                    <rate v-model="rating" readonly></rate>
                     <p class="c-rating-review-display__text">{{ totalReviews }} Ulasan</p>
                 </div>
                 <ul class="c-rating-review-list">
@@ -83,11 +83,13 @@
 </template>
 
 <script>
-import Rating from './Rating.vue'
+import Rate from './Rate.vue'
 import OStar from '../objects/Star.vue'
 
+// async components
+
 export default {
-    components: { Rating, OStar },
+    components: { Rate, OStar },
     props: ['venueId', 'name', 'address', 'cover', 'logo', 'phone_number', 'categories', 'location', 'rating', 'ratings'],
     computed: {
         formatedCategories() {

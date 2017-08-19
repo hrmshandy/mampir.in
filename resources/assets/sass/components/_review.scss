@@ -107,16 +107,11 @@
 //}
 
 .c-review-form {
-	.o-ratings {
-		justify-content: flex-start;
-		flex-wrap: wrap;
+	.c-rate {
+		margin-bottom: 10px;
 	}
-	.o-rating {
-		font-size: 40px;
-		line-height: 1;
-	}
-	.rating-status {
-		padding-left: 10px;
+	.c-rate__item .o-star {
+		font-size: 35px;
 	}
 
 	&__control {

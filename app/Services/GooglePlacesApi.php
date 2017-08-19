@@ -134,7 +134,7 @@ class GooglePlacesApi
             $data = [
                 'id' => $item['place_id'],
                 "name" => $item['name'],
-                "short_address" => $this->getShortAddress($item),
+                "short_address" => isset($item['formatted_address']) ? $this->getAddress($item['formatted_address']) : '',
                 "lat" => $item['geometry']['location']['lat'],
                 "lng" => $item['geometry']['location']['lng'],
                 'cover' => $this->getCover($item),
@@ -226,16 +226,18 @@ class GooglePlacesApi
     protected function getShortAddress($data)
     {
         if(isset($data['formatted_address'])) {
-            return explode(',', $data['formatted_address'])[0];
+            $address_components = explode(',', $data['formatted_address']);
+            array_splice($address_components, -2);
+            return implode(',', $address_components);
         }
         return '';
     }
 
     protected function getAddress($string)
     {
-        $arr = explode(',', $string);
-        $address = array_splice($arr, 0, 3);
-        return implode(', ', $address);
+        $address_components = explode(',', $string);
+        array_splice($address_components, -2);
+        return implode(',', $address_components);
     }
 
     protected function exists($data, $key)

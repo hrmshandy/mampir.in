@@ -12,9 +12,3 @@ if(!function_exists('adm_url')) {
         return url('_admin/'.$url);
     }
 }
-
-if(!function_exists('normalize_string')) {
-    function normalize_string($string) {
-        return preg_replace('/\+/', ' ', $string);
-    }
-}

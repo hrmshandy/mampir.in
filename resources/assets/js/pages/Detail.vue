@@ -34,12 +34,14 @@
 
 <script>
     //import MapView from '../components/Map.vue'
-    import Overview from '../components/Overview.vue'
     import Galleries from '../components/Galleries.vue'
-    import Reviews from '../components/Reviews.vue'
 
     import {loaded} from '../api/map/loader'
     import Icon from '../api/map/map-pin-empty'
+
+    // async components
+    const Overview = () => import('../components/Overview.vue')
+    const Reviews = () => import('../components/Reviews.vue')
 
     export default {
         components: {Overview, Galleries, Reviews},

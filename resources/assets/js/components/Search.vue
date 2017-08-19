@@ -113,6 +113,9 @@
                 }
             }
         },
+        watch: {
+          '$route': 'fetchQuery'
+        },
         methods: {
             submit() {
                 this.validator.validateAll({ city: this.searchQuery.city, keyword: this.searchQuery.keyword }).then(result => {
@@ -208,10 +211,29 @@
                         this.searchQuery.city = location.formatted_address;
                     });
                 });
+            },
+            extractQuery(query) {
+                if(!query) {
+                    return {};
+                } else {
+                    query = query.split('in');
+
+                    query = query.map(item => {
+                        item = item.replace(/\+/g, ' ', item);
+                        return item.trim();
+                    });
+
+                    return { keyword: query[0], city: query[1] };
+                }
+            },
+            fetchQuery() {
+                let query = this.extractQuery(this.$route.params.query);
+                Object.assign(this.searchQuery, query);
             }
         },
         mounted() {
-            Object.assign(this.searchQuery, this.$route.query);
+            this.fetchQuery();
+
             this.geolocation();
 
             this.googleSearchSuggestion();
