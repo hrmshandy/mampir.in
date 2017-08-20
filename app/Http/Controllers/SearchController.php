@@ -21,13 +21,13 @@ class SearchController extends Controller
 
         $venue = Venue::with('categories', 'city');
 
-        if(isset($q['city'])) {
+        if(!empty($q['city'])) {
             $venue = $venue->whereHas('city', function($query) use($q){
                 $query->where('name', $q['city']);
             });
         }
 
-        if(isset($query['keyword'])) {
+        if(!empty($q['keyword'])) {
             $venue = $venue->where(function($query) use($q) {
                 $query->where('name', 'like', '%'.$q['keyword'].'%')
                         ->orWhereHas('categories', function($query) use($q){
@@ -35,16 +35,6 @@ class SearchController extends Controller
                         });
             });
         }
-
-//        if($request->has('categories')) {
-//
-//            $venue = $venue->whereHas('categories', function($query) use($request) {
-//                $this->filterCategories($query, $request->categories);
-//            });
-//
-//        }
-
-        //dd($venue->toSql());
 
         return response()->json(['data' => $venue->take(6)->get(), 'next_page_url' => null]);
     }
