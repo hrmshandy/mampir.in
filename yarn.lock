@@ -1316,9 +1316,9 @@ code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
 
-collect.js@^3.0.49:
-  version "3.0.49"
-  resolved "https://registry.yarnpkg.com/collect.js/-/collect.js-3.0.49.tgz#799d918f0612330ad05cb7531d12e8217e2c8622"
+collect.js@^3.0.46:
+  version "3.0.47"
+  resolved "https://registry.yarnpkg.com/collect.js/-/collect.js-3.0.47.tgz#15988ca080633f39902e2f18f8d43ff66bb9d52c"
 
 color-convert@^1.3.0, color-convert@^1.9.0:
   version "1.9.0"
@@ -3017,7 +3017,7 @@ imagemin@^5.2.0:
     pify "^2.3.0"
     replace-ext "^1.0.0"
 
-imagesloaded@^4.1.3, imagesloaded@latest:
+imagesloaded@latest:
   version "4.1.3"
   resolved "https://registry.yarnpkg.com/imagesloaded/-/imagesloaded-4.1.3.tgz#94b82a069e532c9da112a4ea3960e58424a42be4"
   dependencies:
@@ -3791,9 +3791,9 @@ loose-envify@^1.0.0, loose-envify@^1.1.0:
   dependencies:
     js-tokens "^3.0.0"
 
-lory.js@^2.3.3:
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/lory.js/-/lory.js-2.3.3.tgz#7c6827decd042b6befd7b4fdfe3ae91264319b32"
+lory.js@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/lory.js/-/lory.js-2.2.1.tgz#e45ff82f1e403ee9df5e9c01b31636a09f45a743"
 
 loud-rejection@^1.0.0:
   version "1.6.0"
@@ -4488,12 +4488,6 @@ path-parse@^1.0.5:
 path-to-regexp@0.1.7:
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-0.1.7.tgz#df604178005f522f15eb4490e7247a1bfaa67f8c"
-
-path-to-regexp@^1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-1.7.0.tgz#59fde0f435badacba103a84e9d3bc64e96b9937d"
-  dependencies:
-    isarray "0.0.1"
 
 path-type@^1.0.0:
   version "1.1.0"
@@ -6095,10 +6089,6 @@ vary@~1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.1.tgz#67535ebb694c1d52257457984665323f587e8d37"
 
-vee-validate@^2.0.0-rc.13:
-  version "2.0.0-rc.13"
-  resolved "https://registry.yarnpkg.com/vee-validate/-/vee-validate-2.0.0-rc.13.tgz#b2aadf729c277d7a908bec5d71169d02c54b7890"
-
 vendors@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/vendors/-/vendors-1.0.1.tgz#37ad73c8ee417fb3d580e785312307d274847f22"
@@ -6189,9 +6179,9 @@ vue-loader@^12.1.1:
     vue-style-loader "^3.0.0"
     vue-template-es2015-compiler "^1.2.2"
 
-vue-masonry@^0.10.10:
-  version "0.10.11"
-  resolved "https://registry.yarnpkg.com/vue-masonry/-/vue-masonry-0.10.11.tgz#42256da9eb4858774ae9d4f6babc47bb10a1c599"
+vue-masonry@^0.10.3:
+  version "0.10.4"
+  resolved "https://registry.yarnpkg.com/vue-masonry/-/vue-masonry-0.10.4.tgz#67f5625a63f1be51c5728cab8a9fc12f39c4facc"
   dependencies:
     imagesloaded latest
     masonry latest
@@ -6214,10 +6204,6 @@ vue-style-loader@^3.0.0:
   dependencies:
     hash-sum "^1.0.2"
     loader-utils "^1.0.2"
-
-vue-tabs-component@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/vue-tabs-component/-/vue-tabs-component-1.1.0.tgz#b1f0ce71cf39f642aab006fc1a1a7216cfaed80c"
 
 vue-template-compiler@^2.3.3:
   version "2.4.2"

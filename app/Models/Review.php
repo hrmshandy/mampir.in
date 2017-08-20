@@ -42,10 +42,6 @@ class Review extends Model
 
     public $imageCollection;
 
-    protected $casts = [
-      'rating' => 'integer'
-    ];
-
     /**
      * The event map for the model.
      *
