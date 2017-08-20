@@ -154,7 +154,7 @@
                 this.fetchReviews(value);
             },
             reviews() {
-                Vue.redrawVueMasonry();
+                this.$redrawVueMasonry();
             }
         },
         methods: {

@@ -53,10 +53,14 @@ npm run prod
 @task('deploy')
 cd {{ $working_dir }}
 
-git pull origin {{ $branch }} --all
+git pull origin {{ $branch }}
 
-@if(isset($update_composer))
+@if(isset($c))
     composer update
+@endif
+
+@if(isset($npm))
+    npm run prod
 @endif
 
 php artisan migrate
