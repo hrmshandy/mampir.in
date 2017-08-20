@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Models\Review;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ReviewForm extends FormRequest
 {
@@ -39,29 +40,37 @@ class ReviewForm extends FormRequest
     {
         $review = Review::create($this->except('imageCollection'));
 
-        if(!empty($this->imageCollection))
-            $review->savePhotos([$this->imageCollection], 500);
+        $this->uploadPhotos($review);
 
         return $review;
     }
 
     public function update(Review $review)
     {
-        $review->update($this->except('imageCollection'));
-
-        // delete existing photos
-        foreach ($review->photos()->get() as $photo){
-            if(Storage::exists($photo->filename)) {
-                Storage::delete($photo->filename);
-            }
-
-            $photo->delete();
-        }
+        $review->rating = $this->get('rating');
+        $review->content = $this->get('content');
+        $review->save();
 
         // save new photos
-        if(!empty($this->imageCollection))
-            $review->savePhotos([$this->imageCollection], 300);
+        $this->uploadPhotos($review);
+
 
         return $review;
+    }
+
+    protected function uploadPhotos(Review $review)
+    {
+        if(!empty($this->imageCollection) && $this->imageCollection instanceof UploadedFile) {
+            // delete existing photos
+            foreach ($review->photos()->get() as $photo){
+                if(Storage::exists($photo->filename)) {
+                    Storage::delete($photo->filename);
+                }
+
+                $photo->delete();
+            }
+
+            $review->savePhotos([$this->imageCollection], 300);
+        }
     }
 }
