@@ -5,6 +5,7 @@ const Search = () => import('../pages/Search.vue');
 const Detail = () => import('../pages/Detail.vue');
 const Login = () => import('../pages/Login.vue');
 const Register = () => import('../pages/Register.vue');
+const Journal = () => import('../pages/Journal.vue');
 const Error404 = () => import('../pages/404.vue');
 
 const MerchantClaim = () => import('../pages/merchant/MerchantClaim.vue');
@@ -20,6 +21,7 @@ export default [
     {path: '/place/:type/:slug', component: Detail},
     {path: '/login', component: Login},
     {path: '/register', component: Register},
+    {path: '/journal', component: Journal},
 
     {path: '/merchant/claim', component: MerchantClaim },
     {path: '/merchant/registration/1', component: Merchant },
