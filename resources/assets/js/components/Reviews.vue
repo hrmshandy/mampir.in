@@ -211,7 +211,6 @@ export default {
         },
         myReview(value) {
             if(value) {
-                console.log(value);
                 this.reviewed = true;
 
                 this.form.user_id = this.$store.getters.user.id;
@@ -219,20 +218,6 @@ export default {
                 this.form.content = value.content;
                 if(value.photos.length > 0)
                     this.form.imageCollection = '/storage'+value.photos[0].filename;
-
-//                const dz = this.$refs.reviewUpload;
-//                dz.removeAllFiles();
-//
-//                for(let i = 0; i < value.photos.length; i++) {
-//                    const photo = value.photos[i];
-//                    const mockFile = { name: photo, size: 12345 };
-//
-//                    dz.manuallyAddFile(mockFile, '/storage/images/reviews/'+photo, null, null, {
-//                        dontSubstractMaxFiles: false,
-//                        addToFiles: true
-//                    });
-//                }
-
             }
 
         },
@@ -263,7 +248,7 @@ export default {
                     this.writingReview = false;
                     this.reviewed = true;
                     setTimeout(() => {
-                        Vue.redrawVueMasonry();
+                        this.$redrawVueMasonry();
                     });
                 }
             }).catch((errors) => {
@@ -281,25 +266,9 @@ export default {
             if(response)
                 this.uploadedPhotos.push(response);
         },
-        template() {
-            return `
-                  <div class="dz-preview dz-file-preview">
-                      <div class="dz-image" style="width: 100px;height: 100px">
-                          <img data-dz-thumbnail /></div>
-                      <div class="dz-details">
-                        <div class="dz-size"><span data-dz-size></span></div>
-                        <div class="dz-filename"><span data-dz-name></span></div>
-                      </div>
-                      <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-                      <div class="dz-error-message"><span data-dz-errormessage></span></div>
-                      <div class="dz-success-mark"><i class="fa fa-check"></i></div>
-                      <div class="dz-error-mark"><i class="fa fa-close"></i></div>
-                  </div>
-              `;
-        },
         editReview() {
             setTimeout(() => {
-                Vue.redrawVueMasonry();
+                this.$redrawVueMasonry();
             });
             this.editingReview = true;
         },
@@ -312,7 +281,7 @@ export default {
                     this.editingReview = false;
                     this.reviewed = true;
                     setTimeout(() => {
-                        Vue.redrawVueMasonry();
+                        this.$redrawVueMasonry();
                     });
                 }
             }).catch((errors) => {
@@ -322,7 +291,7 @@ export default {
         },
         cancelUpdateReview() {
             setTimeout(() => {
-                Vue.redrawVueMasonry();
+                this.$redrawVueMasonry();
             });
             this.editingReview = false;
         }

@@ -3,13 +3,10 @@
     margin-right: 30px;
     line-height: 1;
     z-index: 10;
-    @include until(480px) {
-        margin: auto;
-        width: min-content;
-        display: block;
-        position: absolute;
-        left: 0;
-        right: 0;
+    @include until(641px) {
+        margin-right: auto;
+        width: 100px;
+        //display: none;
     }
     > svg {
         width: auto;
@@ -27,9 +24,6 @@
         @include from(900px) {
             display: none;
         }
-        @include until(480px) {
-            display: block;
-        }
         &--chevron {
             display: flex;
             justify-content: flex-start;
@@ -43,11 +37,6 @@
             transition: all .3s ease;
             @include until(641px) {
                 left: 5px;
-            }
-        }
-        &--bottom {
-            @include from(480px){
-                display: block;
             }
         }
     }

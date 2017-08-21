@@ -3,7 +3,7 @@
   padding: 50px 0;
   color: $color-primary;
   border-top: 1px solid #eee;
-  @include until(480px){
-  	padding-bottom: 120px;
-  }
+  //@include until(480px){
+  //	padding-bottom: 120px;
+  //}
 }
