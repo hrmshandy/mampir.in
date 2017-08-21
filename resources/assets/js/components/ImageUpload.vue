@@ -31,12 +31,11 @@
         methods: {
             onFileChange(e) {
                 const files = e.target.files || e.dataTransfer.files;
-
                 if (!files.length)
                     return;
                 this.createImage(files[0]);
 
-                //this.$emit('change');
+                this.$emit('change');
                 this.$emit('input', files[0]);
             },
             createImage(file) {
