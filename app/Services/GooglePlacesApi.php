@@ -187,11 +187,11 @@ class GooglePlacesApi
                         'status' => 2,
                         'photos' => [],
                         'user' => [
-                            'name' => $item['author_name'],
+                            'name' => isset($item['author_name']) ? $item['author_name'] : 'A Mampir.in User',
                             'email' => str_random(10).'@mail.com',
                             'password' => 'secret',
                             'fake' => 1,
-                            'avatar' => $item['profile_photo_url']
+                            'avatar' => isset($item['profile_photo_url']) ? $item['profile_photo_url'] : 'https://api.adorable.io/avatars/80/'.str_random().'.png'
                         ]
                     ];
                 }
