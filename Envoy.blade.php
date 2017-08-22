@@ -53,10 +53,18 @@ npm run prod
 @task('deploy')
 cd {{ $working_dir }}
 
+@if(isset($rh))
+    git reset --hard HEAD
+@endif
+
 git pull origin {{ $branch }}
 
 @if(isset($c))
     composer update
+@endif
+
+@if(isset($npmi))
+    npm install
 @endif
 
 @if(isset($npm))
