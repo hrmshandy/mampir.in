@@ -81,13 +81,14 @@ class Form {
      *
      * @param {string} requestType
      * @param {string} url
+     * @param reset
      */
-    submit(requestType, url) {
+    submit(requestType, url, reset = true) {
         this.isProcessed = true;
         return new Promise((resolve, reject) => {
             axios.post(url, this.data(requestType))
                 .then(response => {
-                    this.onSuccess(response.data);
+                    this.onSuccess(response.data, reset);
 
                     resolve(response.data);
                 })
@@ -105,9 +106,11 @@ class Form {
      *
      * @param {object} data
      */
-    onSuccess(data) {
+    onSuccess(data, reset) {
         this.isProcessed = false;
-        this.reset();
+        if(reset) {
+            this.reset();
+        }
     }
 
 

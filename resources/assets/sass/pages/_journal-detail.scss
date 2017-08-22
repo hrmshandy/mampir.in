@@ -21,6 +21,9 @@
             line-height: 1.6;
         }
     }
+    &__post-meta-inline {
+        font-size: 12px;
+    }
     .o-section__title {
         text-align: left;
     }
@@ -98,6 +101,23 @@
         &--twitter {
             color: #00abf0;
             border-color: #00abf0;
+        }
+    }
+
+    .c-user-post__name {
+        line-height: 1.2;
+        font-size: 16px;
+        position: relative;
+        top: 3px;
+        text-transform: capitalize;
+        margin-top: 5px;
+    }
+
+
+
+    &.is-editable {
+        .c-user-post__img {
+            width: 40px;
         }
     }
 }

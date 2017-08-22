@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Post;
 use Illuminate\Foundation\Http\FormRequest;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class PostForm extends FormRequest
 {
@@ -13,7 +15,7 @@ class PostForm extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,5 +28,29 @@ class PostForm extends FormRequest
         return [
             //
         ];
+    }
+
+    public function store()
+    {
+
+        $post = Post::create($this->data());
+
+        return $post;
+    }
+
+    public function update($post)
+    {
+        $post->update($this->data());
+
+        return $post;
+    }
+
+    protected function data()
+    {
+        $data = $this->all();
+        if($user = JWTAuth::parseToken()->toUser()) {
+            $data['user_id'] = $user->id;
+        }
+        return $data;
     }
 }

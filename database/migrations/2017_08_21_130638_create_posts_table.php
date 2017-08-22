@@ -20,9 +20,9 @@ class CreatePostsTable extends Migration
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
-            $table->string('title');
-            $table->string('slug')->unique();
-            $table->text('content');
+            $table->string('title')->nullable();
+            $table->string('slug')->unique()->nullable();
+            $table->text('content')->nullable();
             $table->enum('status', ['draft', 'published', 'scheduled', 'spam'])->default('draft');
             $table->timestamp('published_at')->nullable();
             $table->timestamps();

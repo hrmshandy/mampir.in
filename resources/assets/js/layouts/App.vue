@@ -30,7 +30,8 @@ export default {
 	components: { 'l-header': Header, 'l-footer': Footer, SelectCity, Preloader, Login, Register },
 	computed: {
 		...mapGetters([
-		    'footer'
+		    'footer',
+			'navbarPost'
 		])
 	}
 }

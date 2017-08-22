@@ -7,7 +7,13 @@
                         <logo class="o-logo__desktop"></logo>
                         <mobileLogo class="o-logo__mobile"></mobileLogo>
                     </a>
-                    <search v-show="topSearch"></search>
+
+                    <template v-if="navbarPost">
+                        <navbar-post></navbar-post>
+                    </template>
+                    <template v-else>
+                        <search v-show="topSearch"></search>
+                    </template>
                     <!--<ul class="c-nav">-->
                         <!--<li class="c-nav__button">-->
                             <!--<router-link to="/"> Home </router-link>-->
@@ -51,11 +57,12 @@ import Register from '../components/auth/Register.vue'
 import User from '../components/User.vue'
 // import MobileNav from '../components/MobileNav.vue'
 import mobileLogo from '../components/LogoMobile.vue'
+import NavbarPost from '../components/NavbarPost.vue'
 
 const Search = () => import('../components/Search.vue');
 
 export default {
-    components: { Login, Logo, MobileMenu, Register, Search, User, mobileLogo },
+    components: { Login, Logo, MobileMenu, Register, Search, User, mobileLogo, NavbarPost },
     data() {
         return {
             offsetTop: 0,
@@ -87,7 +94,8 @@ export default {
         },
         ...mapGetters([
             'authenticated',
-            'topSearch'
+            'topSearch',
+            'navbarPost'
         ])
     },
     watch: {

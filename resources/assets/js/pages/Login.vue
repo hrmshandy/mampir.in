@@ -75,11 +75,11 @@
         },
         methods: {
             openModal(e) {
-                e.stopPropagation();
+                //e.stopPropagation();
                 this.showModal = true;
             },
             closeModal(e) {
-                e.stopPropagation();
+                //e.stopPropagation();
                 this.showModal = false;
             },
             openRegisterModal(e){

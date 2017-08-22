@@ -5,5 +5,6 @@ export default {
 		area: null
 	},
 	footer: true,
-	topSearch: true
+	topSearch: true,
+	navbarPost: false
 }

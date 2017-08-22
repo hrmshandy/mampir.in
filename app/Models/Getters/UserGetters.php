@@ -25,4 +25,9 @@ trait UserGetters
     {
         return (new Carbon($this->birthday))->diff(Carbon::now())->format('%y');
     }
+
+    public function getUsernameAttribute()
+    {
+        return '@'.str_replace(" ","",$this->name);
+    }
 }

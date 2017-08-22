@@ -27,6 +27,7 @@ Route::get('reviews', 'ReviewController@index');
 Route::post('review', 'ReviewController@store');
 Route::put('review/{review}', 'ReviewController@update');
 Route::post('review/upload', 'ReviewController@upload');
+Route::get('posts/{user}', 'PostsController@index')->where('user', '@(\w+)');
 Route::apiResource('posts', 'PostsController');
 
 Route::get('city', function(Request $request){

@@ -23,4 +23,4 @@ Route::post('oauth/{provider}/connect', 'Auth\OAuthController');
 Route::get('user', 'UserController@index');
 Route::get('/images/{filename}', 'ImageCacheController')->where('filename', '[ \w\\.\\/\\-\\@]+');
 // For vue route history mode
-Route::get('/{vue?}', 'IndexController')->where('vue', '[\/\w\.-/+,\%]+');
+Route::get('/{vue?}', 'IndexController')->where('vue', '[\/\w\.-/+,\%@\-]+');

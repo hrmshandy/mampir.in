@@ -21,6 +21,12 @@ router.beforeEach((to, from, next) => {
         store.commit('SHOW_FOOTER', true);
     }
 
+    if (to.matched.some(record => record.meta.navbarPost)) {
+        store.commit('SHOW_NAVBAR_POST', true);
+    } else {
+        store.commit('SHOW_NAVBAR_POST', false);
+    }
+
     if (to.matched.some(record => record.meta.hideTopSearch)) {
         store.commit('SHOW_TOP_SEARCH', false);
     } else {

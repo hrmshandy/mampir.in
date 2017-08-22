@@ -37,7 +37,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $appends = [
-        'age', 'mampirin_stamps', 'venue_stamps'
+        'age', 'mampirin_stamps', 'venue_stamps', 'username'
     ];
 
 }

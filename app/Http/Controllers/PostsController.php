@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Http\Requests;
 
 class PostsController extends Controller
 {
@@ -11,64 +13,63 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($user = null)
     {
-        //
-    }
+        $post = Post::with('user');
+        if(!empty($user)) {
+            $user_id = preg_replace("/\@/", "", $user);
+            $post = $post->where('user_id', $user_id);
+        } else {
+            $post = $post->where('status', 'published');
+        }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return response()->json($post->get());
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Requests\PostForm $form
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\PostForm $form)
     {
-        //
+        return $form->store();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param $slug
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $post = Post::with('user')->where('slug', $slug)->first();
+        return response()->json($post);
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Display the specified resource.
      *
-     * @param  int  $id
+     * @param Post $post
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        return response()->json($post);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param Requests\PostForm $form
+     * @param Post $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\PostForm $form, Post $post)
     {
-        //
+        return $form->update($post);
     }
 
     /**

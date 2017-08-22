@@ -21,3 +21,7 @@ export const SHOW_FOOTER = (state, value) => {
 export const SHOW_TOP_SEARCH = (state, value) => {
     state.topSearch = value;
 }
+
+export const SHOW_NAVBAR_POST = (state, value) => {
+    state.navbarPost = value;
+}
