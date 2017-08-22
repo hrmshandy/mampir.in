@@ -24,7 +24,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
     {{--<link rel="stylesheet" href="{{ asset('css/leaflet.css') }}">--}}
     {{--<link rel="stylesheet" href="{{ asset('css/MarkerCluster.css') }}">--}}
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/medium-editor/latest/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+
 
 	<!-- Scripts -->
     <script>

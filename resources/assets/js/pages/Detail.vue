@@ -86,6 +86,7 @@
         methods: {
             fetchData() {
                 const url = `/api/venue/${this.$route.params.type}/${this.$route.params.slug}`;
+
                 axios.get(url).then(({data}) => {
                     // set venue id
                     this.venueId = data.id;
@@ -105,7 +106,8 @@
                     this.type = data.type;
                     this.myReview = data.myReview;
 
-                    window.document.title = data.name + ' - Mampir.in';
+                    window.document.title = `${data.name} - Mampir.in`;
+
                 }).catch(() => {
                     router.push('/404');
                 });
@@ -139,7 +141,7 @@
 
                 // Pass the directions request to the directions service.
                 const directionsService = new google.maps.DirectionsService({suppressMarkers: true});
-                directionsService.route(request, function (response, status) {
+                directionsService.route(request, function (response, status)  {
                     if (status == 'OK') {
                         // Display the route on the map.
                         directionsDisplay.setDirections(response);
