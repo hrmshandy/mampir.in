@@ -84,7 +84,7 @@
                 //this.modified = 1;
             },
             onKeyup() {
-                Event.fire('post:set-status', 'Unsaved change')
+                Event.fire('post:set-status-message', 'Unsaved change')
                 clearTimeout(this.typingTimer);
                 this.typingTimer = setTimeout(this.save, this.doneTypingInterval);
             },
@@ -95,11 +95,11 @@
                 console.log("done typing");
             },
             save() {
-                Event.fire('post:set-status', 'Saving...')
+                Event.fire('post:set-status-message', 'Saving...')
                 return new Promise((resolve, reject) => {
                     this.form.submit(this.method, this.url, false).then((response) => {
                         setTimeout(() => {
-                            Event.fire('post:set-status', 'Saved')
+                            Event.fire('post:set-status-message', 'Saved')
                         }, 1000)
 
                         if(this.method === 'post') {
@@ -109,7 +109,7 @@
                         resolve(response.data);
                     }).catch(error => {
                         this.hasErrors = true;
-                        Event.fire('post:set-status', '');
+                        Event.fire('post:set-status-message', '');
                         reject(error);
                     });
                 });
@@ -127,6 +127,32 @@
                         this.form.status = data.status;
                         this.method = 'put';
                         this.url += `/${data.id}`;
+
+                        Event.fire('post:set-status', data.status)
+                    });
+                }
+            },
+            publish() {
+                this.form.status = "published";
+                setTimeout(() => {
+                    this.save().then(() => {
+                        window.location = '/me/journal';
+                    });
+                })
+            },
+            unpublish() {
+                this.form.status = "draft";
+                setTimeout(() => {
+                    this.save().then(() => {
+                        window.location = '/me/journal';
+                    });
+                })
+            },
+            deletePost() {
+                if(confirm("Journal yang dihapus akan hilang selamanya. Apakah Anda yakin?")) {
+                    axios.delete(`/api/posts/${this.$route.params.id}`).then(() => {
+
+                        router.push('/me/journal');
                     });
                 }
             }
@@ -134,12 +160,13 @@
         mounted(e) {
             this.setup(e);
             Event.listen('post:publish', () => {
-               this.form.status = "published";
-               setTimeout(() => {
-                   this.save().then(() => {
-                       window.location = '/me/journal';
-                   });
-               })
+               this.publish();
+            });
+            Event.listen('post:unpublish', () => {
+                this.unpublish();
+            });
+            Event.listen('post:delete', () => {
+                this.deletePost();
             });
         }
     }
