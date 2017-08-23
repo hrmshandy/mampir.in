@@ -137,7 +137,7 @@
                this.form.status = "published";
                setTimeout(() => {
                    this.save().then(() => {
-                       window.location = '/journal/@'+this.user.id;
+                       window.location = '/me/journal';
                    });
                })
             });

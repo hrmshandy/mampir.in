@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class PostsController extends Controller
 {
@@ -15,15 +16,21 @@ class PostsController extends Controller
      */
     public function index($user = null)
     {
-        $post = Post::with('user');
-        if(!empty($user)) {
-            $user_id = preg_replace("/\@/", "", $user);
-            $post = $post->where('user_id', $user_id);
-        } else {
-            $post = $post->where('status', 'published');
-        }
+        $post = Post::with('user')->get();
+        return response()->json($post);
+    }
 
-        return response()->json($post->get());
+    public function user($status = null)
+    {
+        $post = [];
+        if($user = JWTAuth::parseToken()->toUser()) {
+            $post = Post::with('user')->where('user_id', $user->id);
+            if(!empty($status)) {
+                $post = $post->where('status', $status);
+            }
+            $post = $post->get();
+        }
+        return response()->json($post);
     }
 
     /**
@@ -75,11 +82,13 @@ class PostsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Post $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+        return response()->json('success');
     }
 }

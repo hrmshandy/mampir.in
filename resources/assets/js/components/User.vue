@@ -20,6 +20,16 @@
             </div>
             <div class="user-menu__divider"></div>
             <div class="user-menu__block">
+                <router-link class="o-button o-button--primary o-button-custom o-button--block" to="/me/journal">
+                    Journal List
+                </router-link>
+
+                <router-link class="o-button o-button--primary o-button-custom o-button--block" to="/journal/create">
+                    Add Journal
+                </router-link>
+            </div>
+            <div class="user-menu__divider"></div>
+            <div class="user-menu__block">
                 <div class="nav-mobile__menu-merchant">
                     <h3>Merchant</h3>
                     <ul class="merchant-list">
@@ -31,7 +41,9 @@
                         </li>
                     </ul>
 
-                    <router-link class="o-button o-button--primary o-button-custom o-button--block" to="/merchant/registration/1">Add Merchant</router-link>
+                    <router-link class="o-button o-button--primary o-button-custom o-button--block" to="/merchant/registration/1">
+                        Add Merchants
+                    </router-link>
                 </div>
             </div>
             <div class="user-menu__divider"></div>

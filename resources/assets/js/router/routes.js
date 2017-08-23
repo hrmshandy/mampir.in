@@ -6,6 +6,7 @@ const Detail = () => import('../pages/Detail.vue');
 const Login = () => import('../pages/Login.vue');
 const Register = () => import('../pages/Register.vue');
 const Journal = () => import('../pages/Journal.vue');
+const JournalUser = () => import('../pages/journal/User.vue');
 const JournalDetail = () => import('../pages/JournalDetail.vue');
 const JournalForm = () => import('../pages/journal/Form.vue');
 const Error404 = () => import('../pages/404.vue');
@@ -24,9 +25,10 @@ export default [
     {path: '/login', component: Login, meta: {hideHeader: true, hideFooter: true}},
     {path: '/register', component: Register},
     {path: '/journal/create', component: JournalForm, meta: {navbarPost: true}},
-    {path: '/journal/:user?', component: Journal},
+    {path: '/journal', component: Journal},
     {path: '/journal/:id/edit', component: JournalForm, meta: {navbarPost: true}},
     {path: '/journal/:user/:slug', component: JournalDetail},
+    {path: '/me/journal/:status?', component: JournalUser},
 
     {path: '/merchant/claim', component: MerchantClaim },
     {path: '/merchant/registration/1', component: Merchant },

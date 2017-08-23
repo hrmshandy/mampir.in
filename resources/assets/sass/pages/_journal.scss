@@ -13,6 +13,9 @@
             margin: 0 10px;
             font-size: 1.2rem;
             color: #a9a9a9;
+            &.active {
+                color: $color-primary;
+            }
         }
     }
 }
