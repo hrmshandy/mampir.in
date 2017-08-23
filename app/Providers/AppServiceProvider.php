@@ -22,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         View::addNamespace('admin', realpath(resource_path('admin/views')));
+        View::addNamespace('operator', realpath(resource_path('operator/views')));
     }
 
     /**
