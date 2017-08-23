@@ -4,40 +4,54 @@ const SidebarStore = {
   showSidebar: false,
   sidebarLinks: [
     {
-      name: 'Dashboard',
+      name: 'Overview',
       icon: 'ti-panel',
-      path: '/admin/overview'
+      path: '/overview'
     },
     {
-      name: 'User Profile',
+      name: 'Set Bonus Rule',
       icon: 'ti-user',
-      path: '/admin/stats'
-    },
-    {
-      name: 'Table List',
+      path: '/stats'
+    },{
+      name: 'Discount Promotion',
       icon: 'ti-view-list-alt',
-      path: '/admin/table-list'
+      path: '/discount'
     },
     {
-      name: 'Typography',
+      name: 'Edit Info/Gallery',
       icon: 'ti-text',
-      path: '/admin/typography'
+      path: '/info'
     },
     {
-      name: 'Icons',
+      name: 'Read Review/Photo',
       icon: 'ti-pencil-alt2',
-      path: '/admin/icons'
+      path: '/review'
+    }
+    /*{
+      name: 'Discount Promotion',
+      icon: 'ti-view-list-alt',
+      path: '/table-list'
+    },
+    {
+      name: 'Edit Info/Gallery',
+      icon: 'ti-text',
+      path: '/typography'
+    },
+    {
+      name: 'Read Review/Photo',
+      icon: 'ti-pencil-alt2',
+      path: '/icons'
     },
     {
       name: 'Maps',
       icon: 'ti-map',
-      path: '/admin/maps'
+      path: '/maps'
     },
     {
       name: 'Notifications',
       icon: 'ti-bell',
-      path: '/admin/notifications'
-    }
+      path: '/notifications'
+    }*/
   ],
   displaySidebar (value) {
     this.showSidebar = value

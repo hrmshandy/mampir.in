@@ -1,19 +1,18 @@
 <template>
   <div class="wrapper">
-    <side-bar type="sidebar" :sidebar-links="$sidebar.sidebarLinks">
-
-    </side-bar>
     <notifications>
 
     </notifications>
     <div class="main-panel">
       <top-navbar></top-navbar>
+      
+      <side-bar type="sidebar" :sidebar-links="$sidebar.sidebarLinks">
+
+      </side-bar>
 
       <dashboard-content @click.native="toggleSidebar">
 
       </dashboard-content>
-
-      <content-footer></content-footer>
     </div>
   </div>
 </template>

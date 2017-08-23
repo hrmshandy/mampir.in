@@ -1,0 +1,15 @@
+.o-btn {
+    border: none;
+    padding: 7px 15px;
+    border-radius: 4px;
+    color: #fff;
+    line-height: 21px;
+	&-general {
+	    background: #8d552f;
+	    &:hover,
+	    &:focus {
+		    background-color: #7b4925;
+		    color: #fff;
+		}
+	}
+}

@@ -1,0 +1,19 @@
+.o-input {
+	&-id {
+		background: transparent;
+		border: none;
+		padding: 0 6px;
+	    border-bottom: 1px #ccc solid;
+	    margin: 0px 15px 0 0;
+	    font-size: 5rem;
+	    color: #808080;
+	    width: 45px;
+	    height: 55px;
+	}
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0;
+  text-align: center; 
+}

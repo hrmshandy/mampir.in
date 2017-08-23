@@ -62,7 +62,7 @@
           margin-left: 0px;
           margin-right: 10px;
           background: white;
-          border-radius: 40px;
+          border-radius: 4px;
           text-align: center;
 
         img{
@@ -78,10 +78,15 @@
     li {
       > a {
         margin: 10px 0px;
-        padding-left: 25px;
-        padding-right: 25px;
-
+        padding: 0px 25px;
         opacity: .7;
+        p {
+          margin: 0;
+          line-height: 30px;
+          font-size: 12px;
+          font-weight: 600;
+          text-transform: capitalize;
+        }
       }
 
       &:hover > a {
@@ -93,13 +98,16 @@
         opacity: 1;
       }
     }
-
-    p {
+    p.title {
+      padding: 0px 25px;
+      padding-top: 20px;
       margin: 0;
-      line-height: 30px;
+      line-height: 0px;
+      color: #fff;
+      opacity: .7;
       font-size: 12px;
       font-weight: 600;
-      text-transform: uppercase;
+      text-transform: capitalize;
     }
 
     i {
@@ -130,7 +138,7 @@
     @include sidebar-background-color($white-background-color, $default-color);
   }
   &[data-background-color="black"] {
-    @include sidebar-background-color($black-background-color, $white-color);
+    @include sidebar-background-color(#8d552f, $white-color);
   }
   &[data-background-color="darkblue"] {
     @include sidebar-background-color($darkblue-background-color, $white-color);
@@ -159,12 +167,16 @@
   position: relative;
   z-index: 2;
   float: right;
-  width: $sidebar-width;
+  width: 100%;
   min-height: 100%;
 
   > .content {
     padding: 30px 15px;
     min-height: calc(100% - 123px);
+    max-width: calc(100% - 267px);
+    margin-right: 0;
+    margin-left: auto;
+    padding-top: 70px;
   }
 
   > .footer {
@@ -172,10 +184,29 @@
   }
 
   .navbar {
+    position: fixed;
     margin-bottom: 0;
+    width: 100%;
+    border-radius: 0px;
+    .navbar-default {
+      background-color: #ffffff;
+      border-color: #ffffff;
+    }
   }
 }
-
+.nav {
+  li {
+    a:hover,
+    a:focus {
+      background-color: rgb(105, 70, 47)!important;
+    }
+  }
+}
+.sidebar[data-active-color="success"] .nav li.active > a,
+.off-canvas-sidebar[data-active-color="success"] .nav li.active > a {
+    color: #fff;
+    opacity: 1;
+}
 .sidebar,
 .main-panel {
   overflow: auto;
@@ -191,7 +222,12 @@
 }
 
 .sidebar {
-  position: absolute;
+  position: fixed;
   overflow: hidden;
   overflow-y: hidden;
+  padding-top: 70px;
+}
+.sidebar[data-background-color="black"] .logo,
+.off-canvas-sidebar[data-background-color="black"] .logo {
+    border-bottom: none!important;
 }

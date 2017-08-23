@@ -1,26 +1,52 @@
 <template>
   <div>
-
-    <!--Stats cards-->
     <div class="row">
-      <div class="col-lg-3 col-sm-6" v-for="stats in statsCards">
-        <stats-card>
-          <div class="icon-big text-center" :class="`icon-${stats.type}`" slot="header">
-            <i :class="stats.icon"></i>
+      <div class="col-xs-12">
+        <form action="">
+          <h4>Input Check-In ID</h4>
+          <div class="input-group">
+            <input v-for="i in 4" v-on:keyup="$event.target.nextElementSibling.focus()" type="text" class="o-input o-input-id" maxlength="1" v-validate="{ rules: { regex: /^([0-9]+)$/} }">
           </div>
-          <div class="numbers" slot="content">
-            <p>{{stats.title}}</p>
-            {{stats.value}}
-          </div>
-          <div class="stats" slot="footer">
-            <i :class="stats.footerIcon"></i> {{stats.footerText}}
-          </div>
-        </stats-card>
+          <button type="submit" name="inputId" id="inputId" class="o-btn o-btn-general">Input ID</button>
+        </form>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-xs-12">
+        <form action="">
+          <h4>Statistik</h4>
+          <div class="daterange-wrapper">
+            <select class="form-control" name="date-one" id="date-one">
+              <option value="">Tgl</option>
+              <option v-for="n in 31" :value="n">{{ n }}</option>
+            </select>   
+            <select class="form-control" name="month-one" id="month-one">
+              <option v-for="(item, index) in monthName" :value="index">{{ item.month }}</option>
+            </select>
+            <div class="line"></div>
+            <select class="form-control" name="date-one" id="date-one">
+              <option value="">Tgl</option>
+              <option v-for="n in 31" :value="n">{{ n }}</option>
+            </select>   
+            <select class="form-control" name="month-one" id="month-one">
+              <option v-for="(item, index) in monthName" :value="index">{{ item.month }}</option>
+            </select>
+          </div>      
+        </form>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="well well-custom">
+          
+        </div>
       </div>
     </div>
 
     <!--Charts-->
-    <div class="row">
+    <!-- <div class="row">
 
       <div class="col-xs-12">
         <chart-card :chart-data="usersChart.data" :chart-options="usersChart.options">
@@ -63,11 +89,16 @@
         </chart-card>
       </div>
 
-    </div>
+    </div> -->
 
   </div>
 </template>
 <script>
+  import Vue from 'vue';
+  import VeeValidate from 'vee-validate';
+
+  Vue.use(VeeValidate);
+
   import StatsCard from '../../UIComponents/Cards/StatsCard.vue'
   import ChartCard from '../../UIComponents/Cards/ChartCard.vue'
   export default {
@@ -80,6 +111,21 @@
      */
     data () {
       return {
+        monthName: [
+          { month: 'Bulan' },
+          { month: 'Januari' },
+          { month: 'Februari' },
+          { month: 'Maret' },
+          { month: 'April' },
+          { month: 'Mei' },
+          { month: 'Juni' },
+          { month: 'Juli' },
+          { month: 'Agustus' },
+          { month: 'September' },
+          { month: 'Oktober' },
+          { month: 'November' },
+          { month: 'Desember' }
+        ],
         statsCards: [
           {
             type: 'warning',
@@ -164,9 +210,10 @@
 
       }
     }
+    /*computed: {
+      inputClasses () {
+        return this.attr('maxlength','6');
+      }
+    }*/
   }
-
 </script>
-<style>
-
-</style>

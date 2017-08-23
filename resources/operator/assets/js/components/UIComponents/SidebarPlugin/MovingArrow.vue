@@ -33,7 +33,7 @@
     border-bottom: 17px solid transparent;
     display: inline-block;
     position: absolute;
-    left: 243px;
+    left: 248px;
     top: 95px;
     transition: all 0.5s cubic-bezier(0.29, 1.42, 0.79, 1);
   }

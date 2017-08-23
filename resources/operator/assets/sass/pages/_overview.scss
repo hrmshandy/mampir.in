@@ -1,0 +1,25 @@
+form {
+	margin-bottom: 20px;
+}
+h4 {
+	color: #808080!important;
+}
+.daterange-wrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center; 
+	width: 450px;
+	position: relative;
+	> .form-control {
+		width: min-content;
+	}
+	> .line {
+		width: 40px;
+		height: 1px;
+		background: #808080;
+	} 
+}
+.well-custom {
+    background-color: #ffffff!important;
+    border: 1px solid #e7e6e1!important;
+}

@@ -19,18 +19,42 @@
       </slot>
       <ul :class="navClasses">
         <!--By default vue-router adds an active class to each route link. This way the links are colored when clicked-->
-        <router-link v-for="(link,index) in sidebarLinks" :to="link.path" tag="li" :ref="link.name">
+        <router-link to="/overview" tag="li">
           <a>
-            <i :class="link.icon"></i>
-
-            <p>{{link.name}}
+            <p>Overview
             </p>
           </a>
         </router-link>
-      </ul>
+        <p class="title">Promo & Discount</p>
+        <router-link to="/stats" tag="li">
+          <a>
+            <p>Set Bonus Rule
+            </p>
+          </a>
+        </router-link>
+        <router-link to="/discount" tag="li">
+          <a>
+            <p>Discount Promotion
+            </p>
+          </a>
+        </router-link>
+        <p class="title">Merchant</p>
+        <router-link to="/info" tag="li">
+          <a>
+            <p>Edit Info/Gallery
+            </p>
+          </a>
+        </router-link>
+        <router-link to="/review" tag="li">
+          <a>
+            <p>Read Review/Photo
+            </p>
+          </a>
+        </router-link>
+      </ul><!-- 
       <moving-arrow :move-y="arrowMovePx">
 
-      </moving-arrow>
+      </moving-arrow> -->
     </div>
   </div>
 </template>

@@ -1,45 +1,21 @@
 <template>
   <nav class="navbar navbar-default">
-    <div class="container-fluid">
+    <div class="custom-container">
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle" :class="{toggled: $sidebar.showSidebar}" @click="toggleSidebar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar bar1"></span>
-          <span class="icon-bar bar2"></span>
-          <span class="icon-bar bar3"></span>
-        </button>
-        <a class="navbar-brand">{{routeName}}</a>
-      </div>
-      <div class="navbar-right-menu">
-        <ul class="nav navbar-nav navbar-right">
-          <li class="open">
-            <a href="#" class="dropdown-toggle btn-magnify" data-toggle="dropdown">
-              <i class="ti-panel"></i>
-              <p>Stats</p>
-            </a>
-          </li>
-             <drop-down title="5 Notifications" icon="ti-bell">
-               <li><a href="#">Notification 1</a></li>
-               <li><a href="#">Notification 2</a></li>
-               <li><a href="#">Notification 3</a></li>
-               <li><a href="#">Notification 4</a></li>
-               <li><a href="#">Another notification</a></li>
-             </drop-down>
-          <li>
-            <a href="#" class="btn-rotate">
-              <i class="ti-settings"></i>
-              <p>
-                Settings
-              </p>
-            </a>
-          </li>
-        </ul>
+        <a href="#" class="o-logo">
+            <logo class="o-logo__desktop"></logo>
+            <mobileLogo class="o-logo__mobile"></mobileLogo>
+        </a>
       </div>
     </div>
   </nav>
 </template>
 <script>
-  export default {
+import Logo from '../../UIComponents/Logo.vue'
+import mobileLogo from '../../UIComponents/LogoMobile.vue'
+
+export default {
+    components: { Logo, mobileLogo },
     computed: {
       routeName () {
         const {name} = this.$route
