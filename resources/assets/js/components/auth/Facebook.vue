@@ -1,5 +1,8 @@
 <template>
-    <oauth-button @login="login" provider="facebook" :isLink="isLink" :prefix-word="prefixWord"></oauth-button>
+    <oauth-button @login="login" provider="facebook" :isLink="isLink" :prefix-word="prefixWord">
+        <span>Continue with Facebook</span>
+        <small>We won’t post without asking</small>
+    </oauth-button>
 </template>
 
 <script>

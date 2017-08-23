@@ -1,5 +1,7 @@
 <template>
-    <oauth-button @login="login" provider="google" :is-link="isLink" :prefix-word="prefixWord"></oauth-button>
+    <oauth-button @login="login" provider="google" :is-link="isLink" :prefix-word="prefixWord">
+        <span>Continue with Google</span>
+    </oauth-button>
 </template>
 
 <script>

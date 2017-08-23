@@ -1,7 +1,7 @@
 <template>
 	<div class="app">
-		<l-header></l-header>
-		<main class="l-body">
+		<l-header v-show="header"></l-header>
+		<main :class="['l-body', {'no-header': !header}]">
 			<router-view></router-view>
 		</main>
 		<l-footer v-show="footer"></l-footer>
@@ -30,6 +30,7 @@ export default {
 	components: { 'l-header': Header, 'l-footer': Footer, SelectCity, Preloader, Login, Register },
 	computed: {
 		...mapGetters([
+		    'header',
 		    'footer',
 			'navbarPost'
 		])

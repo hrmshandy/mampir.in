@@ -14,23 +14,21 @@
                     <template v-else>
                         <search v-show="topSearch"></search>
                     </template>
-                    <!--<ul class="c-nav">-->
-                        <!--<li class="c-nav__button">-->
-                            <!--<router-link to="/"> Home </router-link>-->
-                        <!--</li>-->
-                        <!--<li class="c-nav__button">-->
-                            <!--<router-link to="/"> Journal </router-link>-->
-                        <!--</li>-->
-                        <!--<li class="c-nav__button c-nav__button__search">-->
-                            <!--<a href="#" @click="toggleSearch">Search</a>-->
-                        <!--</li>-->
-                        <!--<li class="c-nav__button" v-if="authenticated">-->
-                            <!--<router-link to="/"> Nama Anda </router-link>-->
-                        <!--</li>-->
-                        <!--<li class="c-nav__button" v-else>-->
-                            <!--<a href="#" @click.prevent="openLogin" >Login</a>-->
-                        <!--</li>-->
-                    <!--</ul>-->
+
+                    <ul class="c-nav">
+                        <li class="c-nav__item">
+                            <a href="/"> Home </a>
+                        </li>
+                        <li class="c-nav__item">
+                            <a href="/journal"> Journal </a>
+                        </li>
+                        <li class="c-nav__item" v-if="authenticated">
+                            <user></user>
+                        </li>
+                        <li class="c-nav__item" v-else>
+                            <router-link :to="{ path: '/login', query: { redirect: currentRoute }}">Login / Register</router-link>
+                        </li>
+                    </ul>
                     <!-- <div class="u-pull-right login--wrapper">
                         <template v-if="authenticated">
                             <user></user>
@@ -96,7 +94,7 @@ export default {
             'authenticated',
             'topSearch',
             'navbarPost'
-        ])
+        ]),
     },
     watch: {
         currentRoute(value) {

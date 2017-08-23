@@ -29,10 +29,10 @@
 // =====================
 %button {
     font-size: 16px;
-    font-weight: bold;
     cursor: pointer;
     background: #fff;
-    border: 2px solid #000;
+    border: 1px solid rgba(0,0,0,.15);
+    font-family: inherit;
     &:not(.is-link) {
         border-radius: 5px;
         display: flex;
@@ -40,12 +40,14 @@
         justify-content: center;
         padding: 6px 12px;
         width: 100%;
+        height: 58px;
     }
     &.is-link {
         background: transparent !important;
         display: inline-block;
         color: $color-secondary !important;
         border: 0 !important;
+        font-weight: bold;
         > .sign-icon {
             display: none;
         }
@@ -57,16 +59,33 @@
         outline: none;
     }
 }
+.sign-button__label {
+    > span, > small {
+        display: block;
+    }
+    > small {
+        color: rgba(#fff, 0.65);
+        font-size: 12px;
+        line-height: 16px;
+    }
+}
 .sign-button--facebook {
     @extend %button;
     margin-bottom: 10px;
     background: #4568b2;
     border-color: #4568b2;
     color: #fff;
+    &:hover, &:focus {
+        background: darken(#4568b2, 15%);
+        border-color: darken(#4568b2, 15%);
+    }
 }
 .sign-button--google {
     @extend %button;
-    border-color: #767676;
+    color: rgba(0,0,0,.6);
+    &:hover, &:focus {
+        background-color: rgba(0,0,0,.05);
+    }
 }
 
 .sign-button--email {

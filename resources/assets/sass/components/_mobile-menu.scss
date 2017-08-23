@@ -48,15 +48,15 @@
         padding: 35px 0 0;
         border-top: 1px dashed #ccc;
     }
-    &__menu-merchant {
-        margin: 35px 0;
-        padding: 35px 0;
-        border-top: 1px dashed #ccc;
-        & a {
-            display: block;
-            margin: 15px 0;
-        }
-    }
+    //&__menu-merchant {
+    //    margin: 35px 0;
+    //    padding: 35px 0;
+    //    border-top: 1px dashed #ccc;
+    //    & a {
+    //        display: block;
+    //        margin: 15px 0;
+    //    }
+    //}
     &__wrapper {
         background: #fff;
         height: 100vh;
@@ -107,9 +107,9 @@
     }
 }
 
-.user .o-button {
-    margin-top: 10px;
-}
+//.user .o-button {
+//    margin-top: 10px;
+//}
 
 
 @media (max-width:640px) {

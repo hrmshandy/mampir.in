@@ -15,6 +15,12 @@ router.beforeEach((to, from, next) => {
     // if(from.path !== '/login' || from.path !== '/register') {
     //     window.localStorage.setItem('current_url', from.fullPath);
     // }
+    if (to.matched.some(record => record.meta.hideHeader)) {
+        store.commit('SHOW_HEADER', false);
+    } else {
+        store.commit('SHOW_HEADER', true);
+    }
+
     if (to.matched.some(record => record.meta.hideFooter)) {
         store.commit('SHOW_FOOTER', false);
 	} else {

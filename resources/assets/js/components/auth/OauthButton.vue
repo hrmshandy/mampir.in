@@ -1,8 +1,9 @@
 <template>
     <button type="button" :class="['sign-button--'+provider, { 'is-link': isLink }]" @click="login">
         <icon :name="provider" class="sign-icon"></icon>
-        <span v-if="!isLink">{{ prefixWord }}&nbsp;</span>
-        <span>{{ provider | capitalize }}</span>
+        <div class="sign-button__label">
+            <slot></slot>
+        </div>
     </button>
 </template>
 
@@ -28,7 +29,7 @@ export default {
         Event.listen('oauth-connect', ({ provider, user }) => {
             this.connect({ provider, user }).then(() => {
                 Event.fire('sign-loading', false)
-                location.reload()
+                Event.fire('oauth-connected')
             })
         })
     }

@@ -6,7 +6,7 @@
                     <img :src="user.avatar" class="c-user-post__img" width="60">
                     <div class="c-user-post__content">
                         <h4 class="c-user-post__name">{{ user.name }}</h4>
-                        <span class="journal__post-meta-inline">Draft</span>
+                        <span class="journal__post-meta-inline">{{ form.status | capitalize }}</span>
                     </div>
                 </div>
                 <form-title
@@ -28,6 +28,11 @@
             </div>
         </div>
 
+        <transition name="slide" enter-active-class="animated slideInDown" leave-active-class="animated slideOutUp">
+            <div v-if="hasErrors" class="c-alert c-alert--error c-alert--fixed">
+                Ups, sepertinya Anda melewatkan sesuatu atau mungkin Anda menulis terlalu singkat, Tolong tulis lagi dan coba publish lagi.
+            </div>
+        </transition>
     </div>
 </template>
 
@@ -49,17 +54,29 @@
                   title: '',
                   content: '',
                   status: 'draft'
-              })
+              }),
+              hasErrors: false
           }
         },
         computed: {
             ...mapGetters([
                 'authenticated',
                 'user'
-            ]),
+            ])
         },
         watch: {
-            '$route': 'setup'
+            '$route': 'setup',
+            'form.title': function() {
+                Event.fire('post:ready-to-publish', true);
+            },
+            'form.content': function() {
+                Event.fire('post:ready-to-publish', true);
+            },
+            hasErrors(value) {
+                setTimeout(() => {
+                    this.hasErrors = false;
+                }, 2000);
+            }
         },
         methods: {
             onInput(e) {
@@ -91,6 +108,8 @@
 
                         resolve(response.data);
                     }).catch(error => {
+                        this.hasErrors = true;
+                        Event.fire('post:set-status', '');
                         reject(error);
                     });
                 });
@@ -98,14 +117,14 @@
             },
             setup(e) {
                 if(!this.authenticated) {
-                    Event.fire('show-login-modal', );
-                    return;
+                    router.push({ path: '/login', query: { redirect: this.$route.path }})
                 }
 
                 if(this.$route.params.id !== undefined) {
                     axios.get(`/api/posts/${this.$route.params.id}/edit`).then(({data}) => {
                         this.form.title = data.title;
                         this.form.content = data.content;
+                        this.form.status = data.status;
                         this.method = 'put';
                         this.url += `/${data.id}`;
                     });

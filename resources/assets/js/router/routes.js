@@ -21,7 +21,7 @@ export default [
     {path: '/', component: Index},
     {path: '/search/:query', component: Search, meta: {hideFooter: true}},
     {path: '/place/:type/:slug', component: Detail},
-    {path: '/login', component: Login},
+    {path: '/login', component: Login, meta: {hideHeader: true, hideFooter: true}},
     {path: '/register', component: Register},
     {path: '/journal/create', component: JournalForm, meta: {navbarPost: true}},
     {path: '/journal/:user?', component: Journal},

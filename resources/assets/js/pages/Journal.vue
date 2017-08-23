@@ -34,7 +34,7 @@
 
 					<div v-masonry-tile class="o-grid__col u-3/12@lg u-6/12@sm">
 						<div class="c-card">
-							<a href="#" class="c-card__upload-journal" @click.prevent="createNewJournal">
+							<router-link to="/journal/create" class="c-card__upload-journal">
 								<div class="c-card__body">
 									<div class="c-card__inner">
 										<i class="fa fa-pencil-square-o fa-5x" aria-hidden="true"></i>
@@ -43,7 +43,7 @@
 										</h2>
 									</div>
 								</div>
-							</a>
+							</router-link>
 						</div>
 					</div>
 
@@ -96,13 +96,6 @@
 	            axios.get('/api/posts').then(({data}) => {
 					this.posts = data;
 				});
-			},
-            createNewJournal(e) {
-                if(!this.authenticated) {
-                    Event.fire('show-login-modal', e);
-                } else {
-                    window.location = '/journal/create';
-                }
 			}
 		},
 		mounted() {

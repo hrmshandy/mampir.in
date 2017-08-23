@@ -1,24 +1,22 @@
 .user {
     position: relative;
-    //min-width: 180px;
     padding: 0;
     &__block {
         display: flex;
         align-items: center;
         position: relative;
         z-index: 9;
-        height: 64px;
+        text-decoration: none;
         &:hover,
         &:focus {
             text-decoration: none;
         }
     }
     &__avatar {
-        width: 64px;
-        height: 64px;
+        width: 32px;
+        height: 32px;
         border-radius: 40px;
         overflow: hidden;
-        border: 2px solid $color-primary;
         background: #ddd;
         > img {
             width: 100%;
@@ -48,32 +46,47 @@
 .user-menu {
     list-style: none;
     position: absolute;
-    background: #fff;
-    box-shadow: 0 0 5px rgba(#000, .15);
-    padding-left: 0;
-    margin-bottom: 0;
-    // box-shadow: 0 2px 5px rgba(#000, .11);
-    left: 0;
-    min-width: 150px;
     top: 35px;
+    right: -5px;
+    background: #fff;
+    padding: 12px 0;
+    margin-bottom: 0;
+    box-shadow: 0 1px 2px rgba(0,0,0,.25), 0 0 1px rgba(0,0,0,.35);
+    min-width: 250px;
+    max-width: 100%;
     width: 100%;
     border-radius: 4px;
     z-index: 3;
     margin-top: 15px;
-    &:before {
-        content: "";
+    &__arrow {
         position: absolute;
-        width: 0;
-        height: 0;
-        margin-left: -0.5em;
-        top: 0;
-        left: 25px;
-        box-sizing: border-box;
-        border: 8px solid black;
-        border-color: #fff #fff transparent transparent;
-        transform-origin: 0 0;
-        transform: rotate(-45deg);
-        box-shadow: 1px -1px 3px rgba(0, 0, 0, 0.15);
+        top: -14px;
+        right: 14px;
+        clip: rect(0 18px 14px -4px);
+        &:after {
+            content: '';
+            display: block;
+            width: 14px;
+            height: 14px;
+            background: #fff;
+            transform: rotate(45deg) translate(6px,6px);
+            box-shadow: -1px -1px 1px -1px rgba(0,0,0,.44);
+        }
+    }
+    &__greeting {
+        font-weight: bold;
+        padding: 12px 24px;
+        text-transform: capitalize;
+    }
+    &__block {
+        padding: 12px 24px;
+    }
+    &__divider {
+        width: 100%;
+        height: 1px;
+        border-top: 1px dashed rgba(#000, .15);
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
     &__link {
         @extend %item;
@@ -91,13 +104,15 @@
         }
         &.logout {
             background: #eee;
-            border-bottom-left-radius: 4px;
-            border-bottom-right-radius: 4px;
+            border-radius: 4px;
             line-height: 25px;
-            margin-top: 8px;
             justify-content: space-between;
             color: #333;
         }
+    }
+
+    .o-button + .o-button {
+        margin-top: 10px;
     }
 }
 
@@ -131,4 +146,9 @@
     //.user__name {
     //    color: #fff;
     //}
+}
+
+.merchant-list {
+    list-style: none;
+    margin-bottom: 15px;
 }

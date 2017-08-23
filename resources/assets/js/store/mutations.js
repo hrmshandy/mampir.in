@@ -14,6 +14,10 @@ export const SET_AREA = (state, value) => {
     state.query.area = value;
 }
 
+export const SHOW_HEADER = (state, value) => {
+    state.header = value;
+}
+
 export const SHOW_FOOTER = (state, value) => {
     state.footer = value;
 }

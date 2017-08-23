@@ -25,9 +25,14 @@ class PostForm extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
-        ];
+        $rules = [];
+
+        if($this->get('status') == "published") {
+            $rules['title'] = 'required';
+            $rules['content'] = 'required';
+        }
+
+        return $rules;
     }
 
     public function store()
