@@ -4,12 +4,8 @@ import NotFound from '../components/GeneralViews/NotFoundPage.vue'
 
 // Admin pages
 import Overview from '../components/Dashboard/Views/Overview.vue'
-import UserProfile from '../components/Dashboard/Views/UserProfile.vue'
-import Notifications from '../components/Dashboard/Views/Notifications.vue'
-import Icons from '../components/Dashboard/Views/Icons.vue'
-import Maps from '../components/Dashboard/Views/Maps.vue'
-import Typography from '../components/Dashboard/Views/Typography.vue'
-import TableList from '../components/Dashboard/Views/TableList.vue'
+import Bonus from '../components/Dashboard/Views/Bonus.vue'
+import Discount from '../components/Dashboard/Views/Discount.vue'
 
 const routes = [
   // {
@@ -20,7 +16,7 @@ const routes = [
   {
     path: '/',
     component: DashboardLayout,
-    redirect: '/stats',
+    redirect: '/overview',
     children: [
       {
         path: 'overview',
@@ -28,34 +24,14 @@ const routes = [
         component: Overview
       },
       {
-        path: 'stats',
-        name: 'stats',
-        component: UserProfile
+        path: 'set-bonus',
+        name: 'set-bonus',
+        component: Bonus
       },
       {
-        path: 'notifications',
-        name: 'notifications',
-        component: Notifications
-      },
-      {
-        path: 'icons',
-        name: 'icons',
-        component: Icons
-      },
-      {
-        path: 'maps',
-        name: 'maps',
-        component: Maps
-      },
-      {
-        path: 'typography',
-        name: 'typography',
-        component: Typography
-      },
-      {
-        path: 'table-list',
-        name: 'table-list',
-        component: TableList
+        path: 'discount',
+        name: 'discount',
+        component: Discount
       }
     ]
   },

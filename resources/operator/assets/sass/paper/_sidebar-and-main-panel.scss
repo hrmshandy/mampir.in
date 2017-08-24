@@ -78,7 +78,7 @@
     li {
       > a {
         margin: 10px 0px;
-        padding: 0px 25px;
+        padding: 4px 25px;
         opacity: .7;
         p {
           margin: 0;
@@ -111,9 +111,10 @@
     }
 
     i {
-      font-size: 24px;
+      padding-top: 3px;
+      font-size: 21px;
       float: left;
-      margin-right: 15px;
+      margin-right: 8px;
       line-height: 30px;
       width: 30px;
       text-align: center;

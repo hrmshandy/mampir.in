@@ -1,4 +1,33 @@
 .o-input {
+	width: 100%;
+    align-items: center;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    box-shadow: none;
+    display: inline-flex;
+    font-size: 16px;
+    height: 2.25em;
+    justify-content: flex-start;
+    line-height: 1.5;
+    padding: calc(0.375em - 1px) calc(0.625em - 1px);
+    position: relative;
+    vertical-align: top;
+    font-family: inherit;
+    color: #242424;
+    border-color: #dbdbdb;
+    background-color: white;
+    background-clip: padding-box;
+    background-image: none;
+    -webkit-transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    &--area {
+    	height: unset!important;
+    }
 	&-id {
 		background: transparent;
 		border: none;
@@ -9,6 +38,12 @@
 	    color: #808080;
 	    width: 45px;
 	    height: 55px;
+	}
+	&:hover,
+	&:focus {
+		border-color: #fff;
+		-webkit-box-shadow: 0px 2px 5px 1px #dddddd;
+		box-shadow: 0px 2px 5px 1px #dddddd;
 	}
 }
 input[type=number]::-webkit-inner-spin-button, 

@@ -17,19 +17,19 @@
         <form action="">
           <h4>Statistik</h4>
           <div class="daterange-wrapper">
-            <select class="form-control" name="date-one" id="date-one">
+            <select class="o-input" name="date-one" id="date-one">
               <option value="">Tgl</option>
               <option v-for="n in 31" :value="n">{{ n }}</option>
             </select>   
-            <select class="form-control" name="month-one" id="month-one">
+            <select class="o-input" name="month-one" id="month-one">
               <option v-for="(item, index) in monthName" :value="index">{{ item.month }}</option>
             </select>
             <div class="line"></div>
-            <select class="form-control" name="date-one" id="date-one">
+            <select class="o-input" name="date-one" id="date-one">
               <option value="">Tgl</option>
               <option v-for="n in 31" :value="n">{{ n }}</option>
             </select>   
-            <select class="form-control" name="month-one" id="month-one">
+            <select class="o-input" name="month-one" id="month-one">
               <option v-for="(item, index) in monthName" :value="index">{{ item.month }}</option>
             </select>
           </div>      
@@ -39,58 +39,67 @@
 
     <div class="row">
       <div class="col-xs-12">
-        <div class="well well-custom">
-          
+        <div class="card">
+          <div class="content row">
+            <div class="col-xs-6">
+              <div class="statistic-value">
+                <h4>Banyaknya Check-in</h4>
+                <h1>275</h1>
+                <div class="statistic-value__progress">
+                  <h4>
+                    <span><i class="fa fa-arrow-up" aria-hidden="true"></i> 90</span>
+                    dari bulan lalu
+                  </h4>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-6">
+              <div class="statistic-value">
+                <h4>Kisaran Pendapatan</h4>
+                <h1>Rp1.500.000</h1>
+                <div class="statistic-value__progress">
+                  <h4>
+                    <span><i class="fa fa-arrow-up" aria-hidden="true"></i> Rp200.000</span>
+                    dari bulan lalu
+                  </h4>
+                </div>
+              </div>
+            </div>
+              
+          </div>
         </div>
       </div>
     </div>
 
     <!--Charts-->
-    <!-- <div class="row">
-
+    <div class="row">
       <div class="col-xs-12">
         <chart-card :chart-data="usersChart.data" :chart-options="usersChart.options">
-          <h4 class="title" slot="title">Users behavior</h4>
-          <span slot="subTitle"> 24 Hours performance</span>
-          <span slot="footer">
-            <i class="ti-reload"></i> Updated 3 minutes ago</span>
-          <div slot="legend">
-            <i class="fa fa-circle text-info"></i> Open
-            <i class="fa fa-circle text-danger"></i> Click
-            <i class="fa fa-circle text-warning"></i> Click Second Time
-          </div>
+          <span slot="subTitle" class="o-btn-wrapper">
+            <span class="o-btn-group">
+              <button class="o-btn o-btn-chart" v-on:click="setActiveCheckin" v-bind:class="{ active: isActive }" type="button">Banyaknya Check-in</button>
+              <button class="o-btn o-btn-chart" v-on:click="setActiveKisaran" v-bind:class="{ active: isActiveK }" type="button">Kisaran Pendapatan</button>
+            </span>
+          </span>
         </chart-card>
       </div>
-
-      <div class="col-md-6 col-xs-12">
-        <chart-card :chart-data="preferencesChart.data"  chart-type="Pie">
-          <h4 class="title" slot="title">Email Statistics</h4>
-          <span slot="subTitle"> Last campaign performance</span>
-          <span slot="footer">
-            <i class="ti-timer"></i> Campaign set 2 days ago</span>
-          <div slot="legend">
-            <i class="fa fa-circle text-info"></i> Open
-            <i class="fa fa-circle text-danger"></i> Bounce
-            <i class="fa fa-circle text-warning"></i> Unsubscribe
-          </div>
-        </chart-card>
+      <div class="col-xs-12">
+        <chart-card-second :chart-data="twoChart.data" :chart-options="twoChart.options">
+          <span slot="subTitle" class="o-btn-wrapper">
+            <span class="o-btn-group">
+              <button class="o-btn o-btn-chart" v-on:click="setActiveCheckin" v-bind:class="{ active: isActive }" type="button">Banyaknya Check-in</button>
+              <button class="o-btn o-btn-chart" v-on:click="setActiveKisaran" v-bind:class="{ active: isActiveK }" type="button">Kisaran Pendapatan</button>
+            </span>
+          </span>
+        </chart-card-second>
       </div>
-
-      <div class="col-md-6 col-xs-12">
-        <chart-card :chart-data="activityChart.data" :chart-options="activityChart.options">
-          <h4 class="title" slot="title">2015 Sales</h4>
-          <span slot="subTitle"> All products including Taxes</span>
-          <span slot="footer">
-            <i class="ti-check"></i> Data information certified</span>
-          <div slot="legend">
-            <i class="fa fa-circle text-info"></i> Tesla Model S
-            <i class="fa fa-circle text-warning"></i> BMW 5 Series
-          </div>
-        </chart-card>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <h4>Statistik merchant anda sepi? tingkatkan statistik merchant anda</h4>
+        <button class="o-btn o-btn-general">Upgrade Merchant</button>
       </div>
-
-    </div> -->
-
+    </div>
   </div>
 </template>
 <script>
@@ -101,16 +110,20 @@
 
   import StatsCard from '../../UIComponents/Cards/StatsCard.vue'
   import ChartCard from '../../UIComponents/Cards/ChartCard.vue'
+  import ChartCardSecond from '../../UIComponents/Cards/ChartCard.vue'
   export default {
     components: {
       StatsCard,
-      ChartCard
+      ChartCard,
+      'chart-card-second': ChartCardSecond
     },
     /**
      * Chart data used to render stats, charts. Should be replaced with server data
      */
     data () {
       return {
+        isActive: true,
+        isActiveK: false,
         monthName: [
           { month: 'Bulan' },
           { month: 'Januari' },
@@ -126,94 +139,61 @@
           { month: 'November' },
           { month: 'Desember' }
         ],
-        statsCards: [
-          {
-            type: 'warning',
-            icon: 'ti-server',
-            title: 'Capacity',
-            value: '105GB',
-            footerText: 'Updated now',
-            footerIcon: 'ti-reload'
-          },
-          {
-            type: 'success',
-            icon: 'ti-wallet',
-            title: 'Revenue',
-            value: '$1,345',
-            footerText: 'Last day',
-            footerIcon: 'ti-calendar'
-          },
-          {
-            type: 'danger',
-            icon: 'ti-pulse',
-            title: 'Errors',
-            value: '23',
-            footerText: 'In the last hour',
-            footerIcon: 'ti-timer'
-          },
-          {
-            type: 'info',
-            icon: 'ti-twitter-alt',
-            title: 'Followers',
-            value: '+45',
-            footerText: 'Updated now',
-            footerIcon: 'ti-reload'
-          }
-        ],
         usersChart: {
           data: {
-            labels: ['9:00AM', '12:00AM', '3:00PM', '6:00PM', '9:00PM', '12:00PM', '3:00AM', '6:00AM'],
+            labels: ['20 Agu', '21 Agu', '22 Agu', '23 Agu', '24 Agu', '25 Agu', '26 Agu', '27 Agu'],
             series: [
-              [287, 385, 490, 562, 594, 626, 698, 895, 952],
-              [67, 152, 193, 240, 387, 435, 535, 642, 744],
-              [23, 113, 67, 108, 190, 239, 307, 410, 410]
+              [160, 150, 255, 200, 310, 280, 307, 410, 410]
             ]
           },
           options: {
             low: 0,
-            high: 1000,
+            high: 500,
             showArea: true,
-            height: '245px',
+            height: '312px',
             axisX: {
               showGrid: false
             },
             lineSmooth: this.$Chartist.Interpolation.simple({
-              divisor: 3
+              divisor: 10
             }),
             showLine: true,
-            showPoint: false
+            showPoint: true
           }
         },
-        activityChart: {
+        twoChart: {
           data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            labels: ['20 Agu', '21 Agu', '22 Agu', '23 Agu', '24 Agu', '25 Agu', '26 Agu', '27 Agu'],
             series: [
-              [542, 543, 520, 680, 653, 753, 326, 434, 568, 610, 756, 895],
-              [230, 293, 380, 480, 503, 553, 600, 664, 698, 710, 736, 795]
+              [460, 350, 255, 200, 210, 380, 107, 210, 110]
             ]
           },
           options: {
-            seriesBarDistance: 10,
+            low: 0,
+            high: 500,
+            showArea: true,
+            height: '312px',
             axisX: {
               showGrid: false
             },
-            height: '245px'
+            lineSmooth: this.$Chartist.Interpolation.simple({
+              divisor: 10
+            }),
+            showLine: true,
+            showPoint: true
           }
-        },
-        preferencesChart: {
-          data: {
-            labels: ['62%', '32%', '6%'],
-            series: [62, 32, 6]
-          },
-          options: {}
         }
-
+      }
+    },
+    methods: {
+      setActiveCheckin: function(){
+          this.isActiveK = !this.isActiveK;
+          this.isActive = !this.isActive;
+      },
+      setActiveKisaran: function(){
+          this.isActive = !this.isActive;
+          this.isActiveK = !this.isActiveK;
       }
     }
-    /*computed: {
-      inputClasses () {
-        return this.attr('maxlength','6');
-      }
-    }*/
   }
 </script>

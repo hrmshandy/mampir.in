@@ -2,10 +2,12 @@
 /public/hot
 .vscode
 /public/admin/
+/public/_operator/
 /public/storage
 /public/css/
 /public/js/
 /public/mix-manifest.json
+/public/_operator/
 /storage/app/public/*
 /storage/*.key
 /vendor

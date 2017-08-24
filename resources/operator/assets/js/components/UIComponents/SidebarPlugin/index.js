@@ -11,7 +11,7 @@ const SidebarStore = {
     {
       name: 'Set Bonus Rule',
       icon: 'ti-user',
-      path: '/stats'
+      path: '/set-bonus'
     },{
       name: 'Discount Promotion',
       icon: 'ti-view-list-alt',

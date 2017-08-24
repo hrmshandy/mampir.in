@@ -21,19 +21,22 @@
         <!--By default vue-router adds an active class to each route link. This way the links are colored when clicked-->
         <router-link to="/overview" tag="li">
           <a>
+            <i><home></home></i>
             <p>Overview
             </p>
           </a>
         </router-link>
         <p class="title">Promo & Discount</p>
-        <router-link to="/stats" tag="li">
+        <router-link to="/set-bonus" tag="li">
           <a>
+            <i><bonus></bonus></i>
             <p>Set Bonus Rule
             </p>
           </a>
         </router-link>
         <router-link to="/discount" tag="li">
           <a>
+            <i><discount></discount></i>
             <p>Discount Promotion
             </p>
           </a>
@@ -41,12 +44,14 @@
         <p class="title">Merchant</p>
         <router-link to="/info" tag="li">
           <a>
+            <i><edit></edit></i>
             <p>Edit Info/Gallery
             </p>
           </a>
         </router-link>
         <router-link to="/review" tag="li">
           <a>
+            <i><review></review></i>
             <p>Read Review/Photo
             </p>
           </a>
@@ -60,7 +65,21 @@
 </template>
 <script>
   import MovingArrow from './MovingArrow.vue'
+  import home from '../icons/home.vue'
+  import bonus from '../icons/bonus.vue'
+  import discount from '../icons/discount.vue'
+  import edit from '../icons/edit.vue'
+  import review from '../icons/review.vue'
+
   export default {
+    components: {
+      MovingArrow,
+      home,
+      bonus,
+      discount,
+      edit,
+      review
+    },
     props: {
       type: {
         type: String,
@@ -90,9 +109,6 @@
         type: Array,
         default: () => []
       }
-    },
-    components: {
-      MovingArrow
     },
     computed: {
       sidebarClasses () {
