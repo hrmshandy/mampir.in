@@ -24,9 +24,153 @@
         <!-- <div class="o-container--fluid"> -->
         <!-- </div> -->
         <!-- </section> -->
+
+        <section class="o-section o-section--grey o-section--promo">
+            <div class="o-container--fluid">
+                <div class="o-grid">
+                    <div class="o-grid__col u-6/12@lg u-12/12@sm">
+                        <h2 class="o-heading o-heading--promo">
+                            Promo General
+                        </h2>
+                        <div class="c-card__promo">
+                            <a href="#">
+                                <div class="content content__img">
+                                    <img src="../../img/promo/1.png" alt="">
+                                </div>
+                                <div class="content content__text">
+                                    <div>
+                                        <h2 class="promo__heading">Promo Hongkong Dimsum Kemerdekaan</h2>
+                                        <p>
+                                            <i class="fa fa-clock-o"></i> 17 Agustus - 23 Agustus 2017
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="o-grid__col u-6/12@lg u-12/12@sm">
+                        <h2 class="o-heading o-heading--promo">
+                            Promo Purchase Point
+                        </h2>
+                        <div class="c-card__promo">
+                            <a href="#">
+                                <div class="content content__img">
+                                    <img src="../../img/promo/2.png" alt="">
+                                </div>
+                                <div class="content content__text">
+                                    <div class="content content__text">
+                                        <div>
+                                            <h2 class="promo__heading">Promo Hongkong Dimsum Kemerdekaan</h2>
+                                            <p>
+                                                <i class="fa fa-clock-o"></i> 17 Agustus - 23 Agustus 2017
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="o-section o-section--grey">
             <div class="o-container--fluid">
                 <reviews :venue-id="venueId" :my-review-value="myReview" :venue-type="type" v-model="reviews"></reviews>
+            </div>
+        </section>
+
+
+        <section class="o-section">
+            <div class="o-container--fluid">
+                <h1 class="o-heading o-heading--other u-mb-x2 o-type-18 ">
+                    Merchant lain di lokasi yang sama
+                </h1>
+
+                <div class="o-grid">
+
+                    <div class="o-grid__col u-3/12@lg u-6/12@sm u-12/12@xs">
+                        <a href="#" id="" class="c-venue-card">
+                           <div class="c-venue-card__photo" style="background-image: url(&quot;https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&amp;photoreference=CmRaAAAA0k0F9tN4Chtd1tOn3qJHScgIjdl9m1vWycNL8nvWCms1qbTC8NOmH_f-B1FL4p-XWBHap8qNWDMHmIP0ZEsNAI25iTamcgMf_Gu6KZvoOSXI9vjWjuFw9xA5OaQGtTo-EhDFP6sa3Y7KuGKX8TnPKKBqGhQaW1AXKKFHFNCDS147Z_wEgNM1Gg&amp;key=AIzaSyDxu7mv5mlPM9Aj2CiYKFWY9b6adizdC4c&quot;);"></div>
+                            <div class="c-venue-card__info">
+                                <h5 class="c-venue-card__name o-type-18">
+                                    Inggil Museum Resto
+                                </h5>
+                            </div>
+                            <div class="c-venue-card__footer" style="margin-top: 5px;">
+                                <div class="c-venue-card__rating">
+                                    <!--<rating :venue-id="venue.id" :value="venue.rating" method="get"></rating>-->
+                                </div>
+                                <div class="c-venue-card__categories" style="margin-top: 5px;">
+                                    <!-- {{ venue.categories | joinBy }} -->
+                                    Jl. Gajahmada No.4, Kiduldalem, Klojen, Kota Malang
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="o-grid__col u-3/12@lg u-6/12@sm u-12/12@xs">
+                        <a href="#" id="" class="c-venue-card">
+                           <div class="c-venue-card__photo" style="background-image: url(&quot;https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&amp;photoreference=CmRaAAAA0k0F9tN4Chtd1tOn3qJHScgIjdl9m1vWycNL8nvWCms1qbTC8NOmH_f-B1FL4p-XWBHap8qNWDMHmIP0ZEsNAI25iTamcgMf_Gu6KZvoOSXI9vjWjuFw9xA5OaQGtTo-EhDFP6sa3Y7KuGKX8TnPKKBqGhQaW1AXKKFHFNCDS147Z_wEgNM1Gg&amp;key=AIzaSyDxu7mv5mlPM9Aj2CiYKFWY9b6adizdC4c&quot;);"></div>
+                            <div class="c-venue-card__info">
+                                <h5 class="c-venue-card__name o-type-18">
+                                    Inggil Museum Resto
+                                </h5>
+                            </div>
+                            <div class="c-venue-card__footer" style="margin-top: 5px;">
+                                <div class="c-venue-card__rating">
+                                    <!--<rating :venue-id="venue.id" :value="venue.rating" method="get"></rating>-->
+                                </div>
+                                <div class="c-venue-card__categories" style="margin-top: 5px;">
+                                    <!-- {{ venue.categories | joinBy }} -->
+                                    Jl. Gajahmada No.4, Kiduldalem, Klojen, Kota Malang
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="o-grid__col u-3/12@lg u-6/12@sm u-12/12@xs">
+                        <a href="#" id="" class="c-venue-card">
+                           <div class="c-venue-card__photo" style="background-image: url(&quot;https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&amp;photoreference=CmRaAAAA0k0F9tN4Chtd1tOn3qJHScgIjdl9m1vWycNL8nvWCms1qbTC8NOmH_f-B1FL4p-XWBHap8qNWDMHmIP0ZEsNAI25iTamcgMf_Gu6KZvoOSXI9vjWjuFw9xA5OaQGtTo-EhDFP6sa3Y7KuGKX8TnPKKBqGhQaW1AXKKFHFNCDS147Z_wEgNM1Gg&amp;key=AIzaSyDxu7mv5mlPM9Aj2CiYKFWY9b6adizdC4c&quot;);"></div>
+                            <div class="c-venue-card__info">
+                                <h5 class="c-venue-card__name o-type-18">
+                                    Inggil Museum Resto
+                                </h5>
+                            </div>
+                            <div class="c-venue-card__footer" style="margin-top: 5px;">
+                                <div class="c-venue-card__rating">
+                                    <!--<rating :venue-id="venue.id" :value="venue.rating" method="get"></rating>-->
+                                </div>
+                                <div class="c-venue-card__categories" style="margin-top: 5px;">
+                                    <!-- {{ venue.categories | joinBy }} -->
+                                    Jl. Gajahmada No.4, Kiduldalem, Klojen, Kota Malang
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="o-grid__col u-3/12@lg u-6/12@sm u-12/12@xs">
+                        <a href="#" id="" class="c-venue-card">
+                           <div class="c-venue-card__photo" style="background-image: url(&quot;https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&amp;photoreference=CmRaAAAA0k0F9tN4Chtd1tOn3qJHScgIjdl9m1vWycNL8nvWCms1qbTC8NOmH_f-B1FL4p-XWBHap8qNWDMHmIP0ZEsNAI25iTamcgMf_Gu6KZvoOSXI9vjWjuFw9xA5OaQGtTo-EhDFP6sa3Y7KuGKX8TnPKKBqGhQaW1AXKKFHFNCDS147Z_wEgNM1Gg&amp;key=AIzaSyDxu7mv5mlPM9Aj2CiYKFWY9b6adizdC4c&quot;);"></div>
+                            <div class="c-venue-card__info">
+                                <h5 class="c-venue-card__name o-type-18">
+                                    Inggil Museum Resto
+                                </h5>
+                            </div>
+                            <div class="c-venue-card__footer" style="margin-top: 5px;">
+                                <div class="c-venue-card__rating">
+                                    <!--<rating :venue-id="venue.id" :value="venue.rating" method="get"></rating>-->
+                                </div>
+                                <div class="c-venue-card__categories" style="margin-top: 5px;">
+                                    <!-- {{ venue.categories | joinBy }} -->
+                                    Jl. Gajahmada No.4, Kiduldalem, Klojen, Kota Malang
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+
+                </div>
             </div>
         </section>
     </div>
