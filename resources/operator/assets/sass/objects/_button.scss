@@ -1,0 +1,43 @@
+.o-btn {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    color: #fff;
+    line-height: 21px;
+   	transition: all .23s ease-in-out;
+    &-wrapper {
+		display: flex;
+		justify-content: center
+    }
+    &-group {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background: #fff;
+		border: 1px solid #ddd;
+		border-radius: 4px;
+		.o-btn {
+			padding: 15px 40px;
+		}
+    }
+    &-chart {
+    	background: transparent;
+    	border-radius: 0px;
+    	color: #848484;	
+    	transition: all .23s ease-in-out;
+    	&:hover,
+    	&:focus,
+    	&.active {
+			background: rgba(0, 0, 0, 0.15);
+    	}
+    }
+	&-general {
+	    background: #8d552f;
+	    &:hover,
+	    &:focus {
+		    background-color: #7b4925;
+		    color: #fff;
+		}
+	}
+}

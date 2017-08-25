@@ -13,6 +13,10 @@ function admin(mix) {
         .sass(mix.src('sass/main.scss'), 'css');
 }
 
+function operator(mix) {
+    mix.js(mix.src('js/main.js'), 'js')
+        .sass(mix.src('sass/paper-dashboard.scss'), 'css');
+}
 /*
  |--------------------------------------------------------------------------
  | Compile Front Site Assets
@@ -61,9 +65,16 @@ if(process.argv.includes('--env.admin')) {
     mix.setPublicPath(path.join('public', 'admin'));
     mix.src = path => 'resources/admin/assets/'+path;
     admin(mix);
-} else {
+}
+
+else if(process.argv.includes('--env.operator')){
+    mix.setPublicPath(path.join('public', '_operator'));
+    mix.src = path => 'resources/operator/assets/'+path;
+    operator(mix);
+}
+
+else {
     mix.setPublicPath('public');
     mix.src = path => 'resources/assets/'+path;
     site(mix);
 }
-

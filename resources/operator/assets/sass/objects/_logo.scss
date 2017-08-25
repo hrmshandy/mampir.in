@@ -1,0 +1,24 @@
+.o-logo {
+    display: flex;
+    margin-right: 30px;
+    line-height: 1;
+    z-index: 10;
+    &__desktop,
+    &__mobile {
+	    height: 3em;
+	    width: 8em;
+    }
+    &__mobile {
+    	display: none;
+    }
+}
+@media (max-width: 480px){
+	.o-logo {
+		&__mobile{
+			display: block;
+		}
+		&__desktop{
+			display: none;
+		}
+	}
+}
