@@ -71,6 +71,14 @@ git pull origin {{ $branch }}
     npm run prod
 @endif
 
+@if(isset($npmop))
+    npm run prod-operator
+@endif
+
+@if(isset($npmadm))
+    npm run prod-admin
+@endif
+
 php artisan migrate
 
 @endtask
