@@ -6,7 +6,8 @@ const state = {
         name: null,
         email: null,
         mampirin_stamps: 0,
-        venue_stamps: 0
+        venue_stamps: 0,
+        username: null
     }
 }
 
@@ -106,6 +107,7 @@ const mutations = {
         state.user.email = user.email;
         state.user.mampirin_stamps = user.mampirin_stamps;
         state.user.venue_stamps = user.venue_stamps;
+        state.user.username = user.username;
     }
 }
 

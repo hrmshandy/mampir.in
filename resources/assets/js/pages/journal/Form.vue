@@ -106,7 +106,7 @@
                             router.push(`/journal/${response.id}/edit`);
                         }
 
-                        resolve(response.data);
+                        resolve(response);
                     }).catch(error => {
                         this.hasErrors = true;
                         Event.fire('post:set-status-message', '');
@@ -135,8 +135,12 @@
             publish() {
                 this.form.status = "published";
                 setTimeout(() => {
-                    this.save().then(() => {
-                        window.location = '/me/journal';
+                    this.save().then((data) => {
+                        if(this.form.status === "published") {
+                            window.location = `/journal/${this.user.username}/${data.slug}`;
+                        } else {
+                            window.location = '/me/journal';
+                        }
                     });
                 })
             },
