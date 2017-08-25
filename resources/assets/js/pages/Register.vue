@@ -36,10 +36,10 @@
                     <input type="text" name="city" v-model="form.city" class="o-input" placeholder="City">
                     <!--<span class="c-form-feedback" v-if="form.errors.has('city')" v-text="form.errors.get('city')"></span>-->
                 </div>
-                <div :class="['c-form-group', 'has-no-message', {'has-error' : form.errors.has('address')}]">
-                    <textarea name="address" rows="3" class="o-textarea" v-model="form.address" placeholder="Alamat"></textarea>
-                    <!--<span class="c-form-feedback" v-if="form.errors.has('address')" v-text="form.errors.get('address')"></span>-->
-                </div>
+                <!--<div :class="['c-form-group', 'has-no-message', {'has-error' : form.errors.has('address')}]">-->
+                    <!--<textarea name="address" rows="3" class="o-textarea" v-model="form.address" placeholder="Alamat"></textarea>-->
+                    <!--&lt;!&ndash;<span class="c-form-feedback" v-if="form.errors.has('address')" v-text="form.errors.get('address')"></span>&ndash;&gt;-->
+                <!--</div>-->
                 <div class="o-grid o-grid--middle">
                     <div class="o-grid__col u-4/12">
                         <div :class="['c-form-group', 'has-no-message', {'has-error' : form.errors.has('birthday.day')}]">
@@ -106,7 +106,7 @@
                     email: null,
                     gender: null,
                     city: null,
-                    address: null,
+                    //address: null,
                     birthday: {
                         day: '',
                         month: '',
