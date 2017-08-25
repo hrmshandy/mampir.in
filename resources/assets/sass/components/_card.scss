@@ -17,6 +17,10 @@
 .c-card__promo {
     background: #fff;
     border-radius: 10px;
+    transition: all 0.3s ease;
+    &:hover {
+        box-shadow: 5px 5px 15px 1px #dddddd;
+    }
     a {
         display: flex;
         @include until(641px) {

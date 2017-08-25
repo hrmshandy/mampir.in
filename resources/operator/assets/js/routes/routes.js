@@ -7,12 +7,10 @@ import Overview from '../components/Dashboard/Views/Overview.vue'
 import Bonus from '../components/Dashboard/Views/Bonus.vue'
 import Discount from '../components/Dashboard/Views/Discount.vue'
 
+import Login from '../pages/Login.vue'
+
 const routes = [
-  // {
-  //   path: '/',
-  //   component: DashboardLayout,
-  //   redirect: '/overview'
-  // },
+  { path: '/login', component: Login },
   {
     path: '/',
     component: DashboardLayout,
