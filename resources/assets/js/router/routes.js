@@ -23,7 +23,7 @@ export default [
     {path: '/search/:query', component: Search, meta: {hideFooter: true}},
     {path: '/place/:type/:slug', component: Detail},
     {path: '/login', component: Login, meta: {hideHeader: true, hideFooter: true}},
-    {path: '/register', component: Register},
+    {path: '/complete-profile', component: Register, meta: {hideHeader: true, hideFooter: true}},
     {path: '/journal/create', component: JournalForm, meta: {navbarPost: true}},
     {path: '/journal', component: Journal},
     {path: '/journal/:id/edit', component: JournalForm, meta: {navbarPost: true}},

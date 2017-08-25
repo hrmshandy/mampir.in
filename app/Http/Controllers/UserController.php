@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Validation\Rule;
 use JWTAuth;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -35,6 +36,21 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => [
+                'required',
+                Rule::unique('users')->ignore($user->id),
+            ],
+            'gender' => 'required',
+            'city' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+            'birthday.day' => 'required',
+            'birthday.month' => 'required',
+            'birthday.year' => 'required'
+        ]);
+
         $user->update($request->all());
 
         return response()->json(['status' => 'success', 'message' => 'user has been updated']);

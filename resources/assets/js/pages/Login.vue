@@ -33,8 +33,12 @@
                 this.loading = value
             })
 
-			Event.listen('oauth-connected', () => {
-			    router.push(this.$route.query.redirect);
+			Event.listen('oauth-connected', (data) => {
+			    if(!data.complete_profile) {
+                    router.push('/complete-profile?redirect='+this.$route.query.redirect);
+				} else {
+                    router.push(this.$route.query.redirect);
+				}
 			})
         },
         methods: {

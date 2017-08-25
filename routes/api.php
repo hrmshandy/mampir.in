@@ -13,9 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
 
 Route::get('/search/local', 'SearchController@localSearch');
 Route::get('/search/google-places/{type}', 'SearchController@googlePlacesSearch');
@@ -28,7 +28,12 @@ Route::post('review', 'ReviewController@store');
 Route::put('review/{review}', 'ReviewController@update');
 Route::post('review/upload', 'ReviewController@upload');
 Route::get('posts/me/{status?}', 'PostsController@user');
+Route::post('posts/image/upload', 'PostsController@imageUpload');
+Route::delete('posts/image/delete', 'PostsController@imageDelete');
 Route::get('posts/{post}/edit', 'PostsController@edit');
+Route::resource('user', 'UserController', ['only' => [
+    'index', 'update', 'destroy'
+]]);
 Route::apiResource('posts', 'PostsController');
 
 Route::get('city', function(Request $request){

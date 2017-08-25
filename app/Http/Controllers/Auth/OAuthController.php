@@ -14,8 +14,11 @@ class OAuthController extends Controller
     {
         $user = $service->createOrGetUser(new User($request->user), $provider);
 
-        $token = JWTAuth::fromUser($user);
+        $profile_fields = ['birthday', 'city', 'address', 'phone'];
+        $complete_profile = !empty(collect($user->toArray())->only($profile_fields)->filter()->all());
 
-        return response()->json(['access_token' => $token]);
+        $access_token = JWTAuth::fromUser($user);
+
+        return response()->json(compact('access_token', 'complete_profile'));
     }
 }

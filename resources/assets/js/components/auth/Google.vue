@@ -25,8 +25,8 @@ export default {
         login(successCallback, errorCallback) {
             window.gapi.auth2.getAuthInstance().signIn().then( (googleUser) => {
                 const profile = googleUser.getBasicProfile()
-                var provider = 'google'
-                var user = {
+                const provider = 'google'
+                const user = {
                     id: profile.getId(),
                     name: profile.getName(),
                     avatar: profile.getImageUrl(),

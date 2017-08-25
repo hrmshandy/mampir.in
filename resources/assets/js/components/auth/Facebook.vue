@@ -27,8 +27,8 @@ export default {
     methods: {
         getProfile () {
             FB.api('/me', (response) => {
-                var provider = 'facebook'
-                var user = response
+                const provider = 'facebook'
+                const user = response
                 user.avatar = 'https://graph.facebook.com/v2.9/'+user.id+'/picture?type=normal'
                 Event.fire('oauth-connect', { provider, user })
             })

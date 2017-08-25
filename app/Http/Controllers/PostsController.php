@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Illuminate\Http\File;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class PostsController extends Controller
@@ -89,6 +92,42 @@ class PostsController extends Controller
     {
         $post->delete();
 
+        return response()->json('success');
+    }
+
+    public function imageUpload(Request $request)
+    {
+        if(!Storage::exists('contents')) {
+            Storage::makeDirectory('contents');
+        }
+        $files = collect($request->files)->map(function($file){
+            $file = $file[0];
+            $img = Image::make($file);
+            $ext = $file->getClientOriginalExtension();
+            $filename = time().'-'.str_random().'.'.$ext;
+            $path = 'contents/'.$filename;
+            if($img->width() > 700){
+                $img->resize(700, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+
+            }
+            Storage::put($path, (string) $img->encode($ext));
+
+            return [["url" => '/storage/'.$path]];
+        });
+
+        return response()->json($files);
+    }
+
+    public function imageDelete(Request $request)
+    {
+        $file_url = $request->file;
+        $file = preg_replace("/(https?:\/\/([^\s]+))\/storage\//", "", $file_url);
+
+        if(Storage::exists($file)) {
+            Storage::delete($file);
+        }
         return response()->json('success');
     }
 }

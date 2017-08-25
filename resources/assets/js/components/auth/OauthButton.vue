@@ -27,9 +27,9 @@ export default {
     },
     mounted() {
         Event.listen('oauth-connect', ({ provider, user }) => {
-            this.connect({ provider, user }).then(() => {
+            this.connect({ provider, user }).then((data) => {
                 Event.fire('sign-loading', false)
-                Event.fire('oauth-connected')
+                Event.fire('oauth-connected', data)
             })
         })
     }

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-    import MediumEditor from 'medium-editor'
+//    import MediumEditor from 'medium-editor'
 
     export default {
         props: {
@@ -23,12 +23,36 @@
         },
         methods: {
             init() {
-                this.editor = new MediumEditor(this.$refs.content, {
+                const self = this;
+                const editor = this.editor = new MediumEditor(this.$refs.content, {
                     placeholder: {
                         text: 'Ceritakan kisahmu...',
                         hideOnClick: false
                     }
                 });
+
+                Vue.nextTick(() => {
+                    $('[data-attr="content"]').mediumInsert({
+                        editor: editor,
+                        addons: {
+                            images: {
+                                deleteScript: '/api/posts/image/delete', // (string) A relative path to a delete script
+                                deleteMethod: 'DELETE',
+                                fileUploadOptions: {
+                                    url: '/api/posts/image/upload',
+                                    acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
+                                },
+                                uploadCompleted: function ($el, data) {
+                                    self.$emit('input', self.$refs.content.innerHTML);
+                                    setTimeout(() => {
+                                        self.$emit('keyup');
+                                    })
+                                }
+                            }
+                        }
+                    });
+                });
+
 
                 this.editor.subscribe('editableInput', this.onInput);
                 this.editor.subscribe('editableKeyup', this.onKeyup);
@@ -46,7 +70,8 @@
                 });
             },
             onInput(e) {
-                this.$emit('input', e.target.innerHTML);
+                if(e)
+                    this.$emit('input', e.target.innerHTML);
             },
             onKeyup(e) {
                 this.$emit('keyup', e);
