@@ -6,11 +6,14 @@ import NotFound from '../components/GeneralViews/NotFoundPage.vue'
 import Overview from '../components/Dashboard/Views/Overview.vue'
 import Bonus from '../components/Dashboard/Views/Bonus.vue'
 import Discount from '../components/Dashboard/Views/Discount.vue'
-
-import Login from '../pages/Login.vue'
+import Edit from '../components/Dashboard/Views/Edit.vue'
 
 const routes = [
-  { path: '/login', component: Login },
+  // {
+  //   path: '/',
+  //   component: DashboardLayout,
+  //   redirect: '/overview'
+  // },
   {
     path: '/',
     component: DashboardLayout,
@@ -30,6 +33,11 @@ const routes = [
         path: 'discount',
         name: 'discount',
         component: Discount
+      },
+      {
+        path: 'edit',
+        name: 'edit',
+        component: Edit
       }
     ]
   },

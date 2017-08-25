@@ -1,0 +1,36 @@
+.check-group {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
+}
+.radio-group {
+	display: flex;
+	justify-content: flex-start;
+	margin-bottom: 20px;
+	label {
+		margin-right: 10px;
+	}
+}
+.timerange-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 20px;
+	.time {
+		display: flex;
+		align-items: center;
+	}
+	.o-input {
+		margin-bottom: 0px;
+		margin: 5px;
+		width: min-content;
+	}
+	.o-btn {
+		padding: 7px 15px;
+	}
+	.line {
+	    width: 30px;
+	    height: 1px;
+	    background: #808080;
+	}
+}

@@ -42,7 +42,7 @@
           </a>
         </router-link>
         <p class="title">Merchant</p>
-        <router-link to="/info" tag="li">
+        <router-link to="/edit" tag="li">
           <a>
             <i><edit></edit></i>
             <p>Edit Info/Gallery

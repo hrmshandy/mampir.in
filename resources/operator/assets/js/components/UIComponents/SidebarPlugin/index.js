@@ -20,7 +20,7 @@ const SidebarStore = {
     {
       name: 'Edit Info/Gallery',
       icon: 'ti-text',
-      path: '/info'
+      path: '/edit'
     },
     {
       name: 'Read Review/Photo',
