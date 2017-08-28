@@ -7,6 +7,7 @@ import Overview from '../components/Dashboard/Views/Overview.vue'
 import Bonus from '../components/Dashboard/Views/Bonus.vue'
 import Discount from '../components/Dashboard/Views/Discount.vue'
 import Edit from '../components/Dashboard/Views/Edit.vue'
+import Review from '../components/Dashboard/Views/Review.vue'
 
 const routes = [
   // {
@@ -38,6 +39,11 @@ const routes = [
         path: 'edit',
         name: 'edit',
         component: Edit
+      },
+      {
+        path: 'review',
+        name: 'review',
+        component: Review
       }
     ]
   },
