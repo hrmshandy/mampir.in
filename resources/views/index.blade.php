@@ -5,10 +5,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#854f28">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Bahagia Itu Dekat - Mampir.in</title>
 
-    {{-- Favicon --}}
+    <!-- Basic Meta -->
+    <meta name="title" content="Bahagia Itu Dekat - Mampir.in">
+    <meta name="description" content="Bahagia Itu Dekat. Yuk, Mampir.in!">
+
+    <!-- Facebook Meta -->
+    <meta property="og:title" content="Bahagia Itu Dekat - Mampir.in">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url('/') }}">
+    <meta property="og:image" content="http://rrssb.ml/media/facebook-share.jpg">
+    <meta property="og:description" content="Bahagia Itu Dekat. Yuk, Mampir.in!">
+
+    <!-- Twitter Meta-->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@mampirin">
+    <meta name="twitter:creator" content="@mampirin">
+    <meta name="twitter:title" content="Bahagia Itu Dekat - Mampir.in">
+    <meta name="twitter:description" content="Bahagia Itu Dekat. Yuk, Mampir.in!">
+    <meta name="twitter:image" content="http://rrssb.ml/media/rrssb-preview.png">
+
+    <!-- Disable tap highlight on IE -->
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- MANIFEST -->
+    {{-- <link rel="manifest" href="./manifest.json"> --}}
+
+    <!-- Main Favicon -->
+    <link rel="icon" type="image/png" sizes="192x192"  href="{{ url('/images/favicon/android-icon-192x192.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url('/images/favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ url('/images/favicon/favicon-96x96.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url('/images/favicon/favicon-16x16.png') }}">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Mampir.in">
+    <link rel="icon" sizes="192x192" href="../images/touch/chrome-touch-icon-192x192.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Web Starter Kit">
     <link rel="apple-touch-icon" sizes="57x57" href="{{ url('/images/favicon/apple-icon-57x57.png') }}">
     <link rel="apple-touch-icon" sizes="60x60" href="{{ url('/images/favicon/apple-icon-60x60.png') }}">
     <link rel="apple-touch-icon" sizes="72x72" href="{{ url('/images/favicon/apple-icon-72x72.png') }}">
@@ -18,24 +56,18 @@
     <link rel="apple-touch-icon" sizes="144x144" href="{{ url('/images/favicon/apple-icon-144x144.png') }}">
     <link rel="apple-touch-icon" sizes="152x152" href="{{ url('/images/favicon/apple-icon-152x152.png') }}">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ url('/images/favicon/apple-icon-180x180.png') }}">
-    <link rel="icon" type="image/png" sizes="192x192"  href="{{ url('/images/favicon/android-icon-192x192.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ url('/images/favicon/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{{ url('/images/favicon/favicon-96x96.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ url('/images/favicon/favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ url('/images/favicon/manifest.json') }}">
-    <meta name="msapplication-TileColor" content="#854f28">
-    <meta name="msapplication-TileImage" content="{{ url('/images/favicon/ms-icon-144x144.png') }}">
-    {{-- Favicon --}}
 
-    <!-- MANIFEST -->
-    {{-- <link rel="manifest" href="./manifest.json"> --}}
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="{{ url('/images/favicon/ms-icon-144x144.png') }}">
+    <meta name="msapplication-TileColor" content="#000000">
+
+    <!-- Color the status bar on mobile devices -->
+    <meta name="theme-color" content="#854f28">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-	<title>Bahagia Itu Dekat - Mampir.in</title>
-
-	 <!-- Fonts -->
+    <!-- Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
 
 	<!-- Styles -->

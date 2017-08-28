@@ -15,6 +15,9 @@ window.iconim = new Iconim();
 import {VueMasonryPlugin} from 'vue-masonry';
 Vue.use(VueMasonryPlugin);
 
+import SocialSharing from 'vue-social-sharing';
+Vue.use(SocialSharing);
+
 // import VeeValidate from 'vee-validate';
 // Vue.use(VeeValidate);
 
