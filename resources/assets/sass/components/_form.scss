@@ -38,6 +38,11 @@
   display: block;
   position: absolute;
   bottom: -27px;
+  &__merchant {
+    position: relative;
+    bottom: 0;
+    color: #d9534f;
+  }
 }
 
 .c-input-group {

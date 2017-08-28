@@ -17,12 +17,17 @@ import 'bootstrap/dist/css/bootstrap.css'
 import '../sass/paper-dashboard.scss'
 import 'es6-promise/auto'
 
+
 // plugin setup
 Vue.use(VueRouter)
 Vue.use(GlobalComponents)
 Vue.use(GlobalDirectives)
 Vue.use(Notifications)
 Vue.use(SideBar)
+
+Vue.component('masonry', require('./components/Masonry.vue'))
+
+
 
 // configure router
 const router = new VueRouter({
