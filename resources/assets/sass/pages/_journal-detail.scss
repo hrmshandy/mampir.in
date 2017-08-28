@@ -94,13 +94,26 @@
         border: 1px solid #000;
         background: transparent;
         font-size: 20px;
+        transition: all .3s ease;
         &--facebook {
             color: #3b559d;
             border-color: #3b559d;
+            &:hover {
+                color: #fff;
+                background: #3b559d;
+            }
         }
         &--twitter {
             color: #00abf0;
             border-color: #00abf0;
+            &:hover {
+                color: #fff;
+                background: #00abf0;
+            }
+        }
+
+        &:hover {
+            cursor: pointer;
         }
     }
 
