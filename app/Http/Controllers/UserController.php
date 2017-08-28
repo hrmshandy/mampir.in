@@ -44,7 +44,7 @@ class UserController extends Controller
             ],
             'gender' => 'required',
             'city' => 'required',
-            'address' => 'required',
+//            'address' => 'required',
             'phone' => 'required',
             'birthday.day' => 'required',
             'birthday.month' => 'required',
