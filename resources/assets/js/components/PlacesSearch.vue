@@ -31,7 +31,8 @@
     export default {
         props: {
             name: { type: String, required: true },
-            value: { type: Object, default() {
+            value: { type: String },
+            location: { type: Object, default() {
                 return { address: '', lat: '', lng: '' }
             }}
         },
@@ -47,23 +48,23 @@
         },
         computed: {
             hasVelue() {
-                return !_.isEmpty(this.value.address) && (typeof this.value.lat === 'number') && (typeof this.value.lng === 'number');
+                return !_.isEmpty(this.location.address) && (typeof this.location.lat === 'number') && (typeof this.location.lng === 'number');
             }
         },
         mounted() {
 
             //load('AIzaSyDxu7mv5mlPM9Aj2CiYKFWY9b6adizdC4c', '3', ['places']);
 
-            this.address = this.value.address;
-            this.lat = this.value.lat;
-            this.lng = this.value.lng;
+            this.address = this.location.address;
+            this.lat = this.location.lat;
+            this.lng = this.location.lng;
 
             loaded.then(() => {
-                const currentPosition = { lat: this.value.lat, lng: this.value.lng};
+                const currentPosition = { lat: this.location.lat, lng: this.location.lng};
                 this.initMap(currentPosition);
 
                 if(this.hasVelue) {
-                    this.createMarker(this.value.address, currentPosition);
+                    this.createMarker(this.location.address, currentPosition);
                 }
 
                 this.search();
@@ -161,6 +162,7 @@
                 this.address = address;
                 this.lat = position.lat();
                 this.lng = position.lng();
+                this.$emit('input',address);
             },
             geocodePosition(pos) {
                 const geocoder = new google.maps.Geocoder();

@@ -8,17 +8,34 @@
                     <h2 class="o-heading u-m-x3">
                         Akses Operator
                     </h2>
-                    <form action="">
+                    <form action="" @submit.prevent="submit">
                         <div class="c-form-group">
-                            <input type="text" class="o-input o-input--large" placeholder="Masukan Email Operator"/>
+                            <input 
+                                type="text"
+                                class="o-input"
+                                placeholder="Masukan Email Operator"
+                                name="email_operator"
+                                v-model="dataMerchant.email_operator" 
+                              />
+                            <span v-if="validator.errors.has('email_operator')" class="c-form-feedback c-form-feedback__merchant">Wajib diisi.</span>
+
                         </div>
 
                         <div class="c-form-group">
-                            <input type="password" class="o-input o-input--large" placeholder="Password"/>
+                            <input
+                                name="password_operator"
+                                v-model="dataMerchant.password_operator" 
+                                type="password"
+                                class="o-input"
+                                placeholder="Password"
+                            />
+                            <span v-if="validator.errors.has('password_operator')" class="c-form-feedback c-form-feedback__merchant">Wajib diisi.</span>
+
                         </div>
 
                         <div class="c-form-group">
-                            <router-link to="/merchant/registration/success" class="o-button o-button--primary o-button--block o-button--large"> Next </router-link>
+                            <!-- <router-link to="/merchant/registration/success" class="o-button o-button--primary o-button--block o-button--large"> Next </router-link> -->
+                            <button type="submit" class="o-button o-button--primary o-button--block o-button--large">Next</button>
                         </div>
 
                         <div class="c-form-group u-mt-x5">
@@ -34,7 +51,40 @@
 
 <script>
     import Step from '../../components/StepTab.vue'
+    import { Validator, ErrorBag } from 'vee-validate';
+
     export default {
-        components: { Step }
+        components: { Step },
+        data() {
+            return {
+                dataMerchant: {
+                    email_operator: '',
+                    password_operator: ''
+                },
+                validator: new Validator({
+                    email_operator: 'required',
+                    password_operator: 'required'
+                })
+            }
+        },
+        methods: {
+            validate(field, e) {
+                this.validator.validate(field, e.target.value);
+            },
+            submit() {
+                this.validator.validateAll({ email_operator: this.dataMerchant.email_operator, password_operator: this.dataMerchant.password_operator }).then(result => {
+                    if (!result) {
+                        return;
+                        // validation failed.
+                    }
+                    router.push('/merchant/registration/success');
+                    // window.location = '/merchant/registration/success';
+                    // success stuff.
+                }).catch(() => {
+                    console.log('error')
+                    // something went wrong (non-validation related).
+                });
+            },
+        }
     }
 </script>
