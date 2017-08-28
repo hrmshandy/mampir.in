@@ -120,7 +120,7 @@
                 validator: new Validator({
                     name: 'required',
                     address: 'required',
-                    email: 'required',
+                    email: 'required|email',
                     phone: 'required',
                     images: 'required'
                 })

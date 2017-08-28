@@ -62,7 +62,7 @@
                     password_operator: ''
                 },
                 validator: new Validator({
-                    email_operator: 'required',
+                    email_operator: 'required|email',
                     password_operator: 'required'
                 })
             }
