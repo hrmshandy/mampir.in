@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bahagia Itu Dekat - Mampir.in</title>
+    <title>{{ $post->title }} - Mampir.in</title>
 
     <!-- Basic Meta -->
-    <meta name="title" content="Bahagia Itu Dekat - Mampir.in">
-    <meta name="description" content="Bahagia Itu Dekat. Yuk, Mampir.in!">
+    <meta name="title" content="{{ $post->title }} - Mampir.in">
+    <meta name="description" content="{{ $post->excerpt }}">
 
     <!-- Facebook Meta -->
     <meta property="fb:app_id" content="1196580010452435">
-    <meta property="og:title" content="Bahagia Itu Dekat - Mampir.in">
+    <meta property="og:title" content="{{ $post->title }} - Mampir.in">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ request()->url() }}">
     <meta property="og:image" content="http://rrssb.ml/media/facebook-share.jpg">
-    <meta property="og:description" content="Bahagia Itu Dekat. Yuk, Mampir.in!">
+    <meta property="og:description" content="{{ $post->excerpt }}">
 
     <!-- Twitter Meta-->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@mampirin">
     <meta name="twitter:creator" content="@mampirin">
-    <meta name="twitter:title" content="Bahagia Itu Dekat - Mampir.in">
-    <meta name="twitter:description" content="Bahagia Itu Dekat. Yuk, Mampir.in!">
+    <meta name="twitter:title" content="{{ $post->title }} - Mampir.in">
+    <meta name="twitter:description" content="{{ $post->excerpt }}">
     <meta name="twitter:image" content="http://rrssb.ml/media/rrssb-preview.png">
 
     <!-- Disable tap highlight on IE -->
     <meta name="msapplication-tap-highlight" content="no">
 
     <!-- MANIFEST -->
-    {{-- <link rel="manifest" href="./manifest.json"> --}}
+{{-- <link rel="manifest" href="./manifest.json"> --}}
 
-    <!-- Main Favicon -->
+<!-- Main Favicon -->
     <link rel="icon" type="image/png" sizes="192x192"  href="{{ url('/images/favicon/android-icon-192x192.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ url('/images/favicon/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="96x96" href="{{ url('/images/favicon/favicon-96x96.png') }}">
@@ -69,10 +69,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
 
-	<!-- Styles -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
     {{--<link rel="stylesheet" href="{{ asset('css/leaflet.css') }}">--}}
     {{--<link rel="stylesheet" href="{{ asset('css/MarkerCluster.css') }}">--}}
@@ -82,7 +82,7 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
 
-	<!-- Scripts -->
+    <!-- Scripts -->
     <script>
         window.App = <?php echo json_encode([
             'csrfToken' => csrf_token(),
@@ -91,19 +91,19 @@
     </script>
 </head>
 <body>
-	<div id="app"></div>
-    {{--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAyXuLUPJEsAyBUaAEiGbXuIA4TaAbAudM&libraries=places&ver=3.22"></script>--}}
-    {{-- <script src="{{ asset('js/masonry.pkgd.min.js') }}"></script> --}}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.23.2/js/medium-editor.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.runtime.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sortable/0.9.13/jquery-sortable-min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.18.0/js/vendor/jquery.ui.widget.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.18.0/js/jquery.iframe-transport.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.18.0/js/jquery.fileupload.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-editor-insert-plugin/2.4.1/js/medium-editor-insert-plugin.min.js"></script>
-    <script src="{{ mix('js/manifest.js') }}"></script>
-    <script src="{{ mix('js/vendor.js') }}"></script>
-	<script src="{{ mix('js/app.js') }}"></script>
+<div id="app"></div>
+{{--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAyXuLUPJEsAyBUaAEiGbXuIA4TaAbAudM&libraries=places&ver=3.22"></script>--}}
+{{-- <script src="{{ asset('js/masonry.pkgd.min.js') }}"></script> --}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.23.2/js/medium-editor.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.runtime.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sortable/0.9.13/jquery-sortable-min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.18.0/js/vendor/jquery.ui.widget.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.18.0/js/jquery.iframe-transport.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.18.0/js/jquery.fileupload.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/medium-editor-insert-plugin/2.4.1/js/medium-editor-insert-plugin.min.js"></script>
+<script src="{{ mix('js/manifest.js') }}"></script>
+<script src="{{ mix('js/vendor.js') }}"></script>
+<script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>

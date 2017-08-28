@@ -57,7 +57,7 @@
 <body>
 	<div id="app"></div>
     {{--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAyXuLUPJEsAyBUaAEiGbXuIA4TaAbAudM&libraries=places&ver=3.22"></script>--}}
-    {{-- <script src="{{ asset('js/masonry.pkgd.min.js') }}"></script> --}}
+    <script src="{{ asset('js/masonry.pkgd.min.js') }}"></script>
     <script src="{{ mix('js/main.js', '_operator') }}"></script>
 </body>
 </html>
