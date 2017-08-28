@@ -25,4 +25,7 @@ Route::get('user', 'UserController@index');
 
 Route::get('/images/{filename}', 'ImageCacheController')->where('filename', '[ \w\\.\\/\\-\\@]+');
 // For vue route history mode
+Route::get('/journal/{user}/{slug}', 'JournalController')
+        ->where('user', '@[\w]+')
+        ->where('slug', '[\/\w\.-/+,\-]+');
 Route::get('/{vue?}', 'IndexController')->where('vue', '[\/\w\.-/+,\%@\-]+');
