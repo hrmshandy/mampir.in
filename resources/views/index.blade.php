@@ -15,7 +15,7 @@
     <meta property="fb:app_id" content="1196580010452435">
     <meta property="og:title" content="Bahagia Itu Dekat - Mampir.in">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ url('/') }}">
+    <meta property="og:url" content="{{ request()->url() }}">
     <meta property="og:image" content="http://rrssb.ml/media/facebook-share.jpg">
     <meta property="og:description" content="Bahagia Itu Dekat. Yuk, Mampir.in!">
 
