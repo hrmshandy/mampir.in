@@ -34,6 +34,7 @@ Route::get('posts/{post}/edit', 'PostsController@edit');
 Route::resource('user', 'UserController', ['only' => [
     'index', 'update', 'destroy'
 ]]);
+Route::apiResource('comments', 'CommentsController');
 Route::apiResource('posts', 'PostsController');
 
 Route::get('city', function(Request $request){

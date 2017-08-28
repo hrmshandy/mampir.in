@@ -26,10 +26,6 @@
         <div class="journal__body">
             <div class="o-container">
                 <div v-html="content" class="journal__content"></div>
-            </div>
-        </div>
-        <div class="journal__bottom">
-            <div class="o-container">
                 <social-sharing :url="base_url+$route.path" inline-template>
                     <div class="c-share">
                         <h4>Bagikan</h4>
@@ -43,24 +39,13 @@
                         </div>
                     </div>
                 </social-sharing>
-
+            </div>
+        </div>
+        <div class="journal__bottom">
+            <div class="o-container">
                 <div class="c-comment u-mb-x5">
                     <h2 class="o-heading">Komentar</h2>
-                    <!-- <input v-for="photo in uploadedPhotos"  type="hidden" v-model="photo.filename"/> -->
-                    <textarea rows="20" class="o-textarea" placeholder="Tulis Komentar...."></textarea>
-                    <div class="c-comment__item">
-                        <div class="o-user-block c-comment__item--child">
-                            <div class="o-user-block__pic">
-                                <img src="https://api.adorable.io/avatars/80/9ZMrVqklWD@mail.com.png" alt="">
-                            </div>
-                            <div class="o-user-block__info">
-                                <span class="o-user-block__name">Darwis Bokim</span>
-                            </div>
-                        </div>
-                        <div class="o-user-block__submit c-comment__item--child">
-                            <button class="o-button o-button--primary write-a-review__button">Kirim Review</button>
-                        </div>
-                    </div>
+                    <comments :post_id="id"></comments>
                 </div>
             </div>
         </div>
@@ -118,11 +103,17 @@
 </template>
 
 <script>
+
     import {mapActions} from 'vuex'
 
+
+    import Comments from '../components/Comments.vue'
+
     export default {
+        components: {Comments},
         data() {
             return {
+                id: '',
                 title: '',
                 content: '',
                 created_at: '',
@@ -143,6 +134,7 @@
         methods: {
             fetchData() {
                 axios.get(`/api/posts/${this.$route.params.slug}`).then(({data}) => {
+                    this.id = data.id;
                     this.title = data.title;
                     this.content = data.content;
                     this.created_at = data.created_at;

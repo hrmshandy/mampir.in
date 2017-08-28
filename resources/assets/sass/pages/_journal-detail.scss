@@ -10,6 +10,11 @@
     &__body {
         padding: 50px 0 25px;
     }
+    &__bottom {
+        background: #f1f0f0;
+        padding: 50px 0;
+        box-shadow: inset 0px 2px 2px -2px rgba(0, 0, 0, 0.15);
+    }
     &__title {
         margin-bottom: 0;
     }
@@ -76,8 +81,6 @@
         display: flex;
         align-items: center;
         padding-bottom: 2em;
-        border-bottom: 1px solid #d2d2d2;
-        margin-bottom: 2em;
         &__item {
             margin-left: 10px;
         }

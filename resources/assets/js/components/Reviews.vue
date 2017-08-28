@@ -231,7 +231,7 @@ export default {
     methods: {
         writeReview(e) {
             if(!this.authenticated) {
-                Event.fire('show-login-modal', e);
+                router.push(`/login?redirect=${this.$route.path}`);
             } else {
                 this.writingReview = true;
             }
