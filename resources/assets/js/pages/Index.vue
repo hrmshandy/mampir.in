@@ -39,7 +39,7 @@
 
         <section v-if="posts.length" class="o-section o-section--grey">
             <div class="o-container--fluid">
-                <h1 class="o-section__title">Journal</h1>
+                <h2 class="o-section__title">Journal</h2>
                 <div v-masonry
                      transition-duration="0.3s"
                      item-selector=".o-grid__col"
@@ -124,7 +124,7 @@
         <!--</section>-->
         <section class="o-section why">
             <div class="o-container">
-                <h1 class="o-section__title">Kenapa Harus Mampir.in</h1>
+                <h2 class="o-section__title">Kenapa Harus Mampir.in</h2>
                 <!-- <p class="section__subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pretium est at metus rutrum, at tincidunt sem maximus. Donec iaculis commodo ligula ut laoreet.</p> -->
                 <div class="o-grid u-text-center">
                     <div class="o-grid__col u-4/12@sm u-mb-x3@xs c-why-circle">
