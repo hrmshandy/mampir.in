@@ -58,6 +58,10 @@
     border-radius: 4px;
     z-index: 3;
     margin-top: 15px;
+    height: 350px;
+    max-height: calc(100vh - 60px);
+    overflow-x: hidden;
+    overflow-y: auto;
     &__arrow {
         position: absolute;
         top: -14px;
