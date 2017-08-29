@@ -36,6 +36,41 @@
                 </div>
             </div>
         </div> -->
+
+        <section v-if="posts.length" class="o-section o-section--grey">
+            <div class="o-container--fluid">
+                <h1 class="o-section__title">Journal</h1>
+                <div v-masonry
+                     transition-duration="0.3s"
+                     item-selector=".o-grid__col"
+                     column-width=".o-grid__sizer"
+                     class="o-grid">
+
+                    <div class="o-grid__sizer u-3/12@lg u-6/12@sm"></div>
+
+                    <div v-masonry-tile v-for="post in posts" class="o-grid__col u-3/12@lg u-6/12@sm c-card__wrapper">
+                        <div class="c-card c-card--dialog c-card--dialog__placeholder">
+                            <div class="o-user-block">
+                                <div class="o-user-block__pic">
+                                    <img :src="post.user.avatar" alt="">
+                                </div>
+                                <div class="o-user-block__info">
+                                    <span class="o-user-block__name">{{ post.user.name }}</span>
+                                    <span class="o-user-block__status">{{ post.created_at | dateFromNow }}</span>
+                                </div>
+                            </div>
+                            <div class="c-card__body">
+                                <img v-if="hasImage(post.image)" :src="post.image" class="o-img-content u-mb-x2">
+                                <a :href="`/journal/${post.user.username}/${post.slug}`">
+                                    <h3 class="u-color-primary u-mb-x2">{{ post.title }}</h3>
+                                </a>
+                                <div>{{ post.excerpt }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <!--<section v-if="reviews.length" class="o-section o-section&#45;&#45;grey">-->
             <!--<div class="o-container&#45;&#45;fluid">-->
                 <!--<h1 class="o-section__title">Yang Happening di {{ city }}</h1>-->
@@ -132,6 +167,7 @@
                     'kuliner', 'relaksasi', 'rekreasi', 'hiburan', 'kecantikan', 'barbershop', 'olahraga'
                 ],
                 reviews: [],
+                posts: []
             }
         },
         computed: {
@@ -149,6 +185,7 @@
         watch: {
             '$route': function () {
                 this.fetchReviews(this.city);
+                this.fetchPosts();
             },
             'query.location': function (value) {
                 this.fetchReviews(value);
@@ -176,24 +213,23 @@
                 axios.get('/api/reviews?location=' + city).then(({data}) => {
                     this.reviews = data;
                 });
+            },
+            fetchPosts() {
+                axios.get('/api/posts').then(({data}) => {
+                    this.posts = data.data;
+                });
+            },
+            hasImage(image) {
+                return !_.isEmpty(image);
             }
-            // initIory() {
-            // 	document.addEventListener('DOMContentLoaded', () => {
-            //         const slider = document.querySelector('.js_slider');
-
-            //         lory(slider, {
-            //             // options going here
-            //         });
-            //     });
-            // }
         },
         created() {
             window.document.title = "Bahagia Itu Dekat - Mampir.in"
         },
         mounted() {
             this.fetchReviews(this.city);
+            this.fetchPosts();
             //this.fitHeroUnitHeight();
-            // this.initIory();
         }
     }
 </script>

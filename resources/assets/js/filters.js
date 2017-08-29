@@ -19,3 +19,12 @@ Vue.filter('join', (value, sparator = ', ') => {
 Vue.filter('joinBy', (value, field = 'name', sparator = ', ') => {
     return value.map(item => item[field]).join(sparator);
 });
+
+Vue.filter('strLimit', (value, length = 100) => {
+    let result = value;
+    if(value.length > length) {
+        result = value.substring(0, length).trim()+'...';
+    }
+
+    return result;
+});

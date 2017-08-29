@@ -19,8 +19,8 @@ class PostsController extends Controller
      */
     public function index($user = null)
     {
-        $post = Post::with('user')->get();
-        return response()->json($post);
+        $posts = Post::with('user')->orderBy('created_at', 'desc')->paginate(12);
+        return response()->json($posts);
     }
 
     public function user($status = null)
@@ -56,7 +56,8 @@ class PostsController extends Controller
     public function show($slug)
     {
         $post = Post::with('user')->where('slug', $slug)->first();
-        return response()->json($post);
+        $other_posts = Post::with('user')->where('id', '!=', $post->id)->take(2)->get();
+        return response()->json(compact('post','other_posts'));
     }
 
     /**

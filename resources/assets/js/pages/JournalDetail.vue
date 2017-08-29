@@ -43,62 +43,37 @@
         </div>
         <div class="journal__bottom">
             <div class="o-container">
+                <div class="other-journal u-mb-x5">
+                    <h1 class="o-heading u-text-center u-mb-x5">Journal Lainnya</h1>
+                    <div class="o-grid">
+                        <div v-for="post in other_posts" class="o-grid__col u-6/12@lg">
+                            <div class="c-card c-card--dialog c-card--dialog__placeholder">
+                                <div class="o-user-block">
+                                    <div class="o-user-block__pic">
+                                        <img :src="post.user.avatar" alt="">
+                                    </div>
+                                    <div class="o-user-block__info">
+                                        <span class="o-user-block__name">{{ post.user.name }}</span>
+                                        <span class="o-user-block__status">{{ post.created_at | dateFromNow }}</span>
+                                    </div>
+                                </div>
+                                <div class="c-card__body">
+                                    <img v-if="hasImage(post.image)" :src="post.image" class="o-img-content u-mb-x2">
+                                    <a :href="`/journal/${post.user.username}/${post.slug}`">
+                                        <h3 class="u-color-primary u-mb-x2">{{ post.title }}</h3>
+                                    </a>
+                                    <div>{{ post.excerpt }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="c-comment u-mb-x5">
                     <h2 class="o-heading">Komentar</h2>
                     <comments :post_id="id"></comments>
                 </div>
             </div>
         </div>
-
-        <!-- Components -->
-        <!--<div class="o-section c-related-journal">-->
-        <!--<div class="o-container">-->
-        <!--<h1 class="o-heading u-text-center u-mb-x5">-->
-        <!--Journal Lainnya-->
-        <!--</h1>-->
-        <!--<div class="o-grid">-->
-        <!--<div class="o-grid__col u-4/12@lg">-->
-        <!--<div class="c-card c-card__related-journal">-->
-        <!--<a href="#">-->
-        <!--<img src="../../img/journal/related_search/1.jpg" class="o-img-content">-->
-        <!--<div class="c-card__related-journal__content">-->
-        <!--<h2 class="o-heading">-->
-        <!--7 Nasi Goreng Di Bandung yang-->
-        <!--Enaknya Selalu Terbayang-->
-        <!--</h2>-->
-        <!--</div>-->
-        <!--</a>-->
-        <!--</div>	-->
-        <!--</div>-->
-        <!--<div class="o-grid__col u-4/12@lg">-->
-        <!--<div class="c-card c-card__related-journal">-->
-        <!--<a href="#">-->
-        <!--<img src="../../img/journal/related_search/1.jpg" class="o-img-content">-->
-        <!--<div class="c-card__related-journal__content">-->
-        <!--<h2 class="o-heading">-->
-        <!--7 Nasi Goreng Di Bandung yang-->
-        <!--Enaknya Selalu Terbayang-->
-        <!--</h2>-->
-        <!--</div>-->
-        <!--</a>-->
-        <!--</div>	-->
-        <!--</div>-->
-        <!--<div class="o-grid__col u-4/12@lg">-->
-        <!--<div class="c-card c-card__related-journal">-->
-        <!--<a href="#">-->
-        <!--<img src="../../img/journal/related_search/1.jpg" class="o-img-content">-->
-        <!--<div class="c-card__related-journal__content">-->
-        <!--<h2 class="o-heading">-->
-        <!--7 Nasi Goreng Di Bandung yang-->
-        <!--Enaknya Selalu Terbayang-->
-        <!--</h2>-->
-        <!--</div>-->
-        <!--</a>-->
-        <!--</div>	-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>	-->
-        <!--</div>-->
     </div>
 </template>
 
@@ -120,7 +95,8 @@
                 user: {
                     name: '',
                     avatar: ''
-                }
+                },
+                other_posts: []
             }
         },
         computed: {
@@ -134,22 +110,30 @@
         methods: {
             fetchData() {
                 axios.get(`/api/posts/${this.$route.params.slug}`).then(({data}) => {
-                    this.id = data.id;
-                    this.title = data.title;
-                    this.content = data.content;
-                    this.created_at = data.created_at;
-                    this.user.name = data.user.name;
-                    this.user.avatar = data.user.avatar;
+                    const post = data.post;
 
-                    let title = `${data.title} - Mampir.in`;
+                    this.other_posts = data.other_posts;
+
+                    this.id = post.id;
+                    this.title = post.title;
+                    this.content = post.content;
+                    this.created_at = post.created_at;
+                    this.user.name = post.user.name;
+                    this.user.avatar = post.user.avatar;
+
+                    let title = `${post.title} - Mampir.in`;
                     let url = this.base_url+this.$route.path;
                     let image = '';
-                    let description = data.excerpt;
+                    let description = post.excerpt;
 
                     this.setBasicMeta({title, description});
                     this.setFacebookMeta({title, url, image, description});
                     this.setTwitterMeta({title, url, image, description});
                 });
+            },
+
+            hasImage(image) {
+                return !_.isEmpty(image);
             },
 
             ...mapActions([

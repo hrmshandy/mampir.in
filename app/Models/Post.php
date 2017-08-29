@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Support\Str;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Symfony\Component\DomCrawler\Crawler;
+use Symfony\Component\DomCrawler\Image;
 
 class Post extends Model
 {
     use HasSlug;
 
-    protected $appends = ['excerpt'];
+    protected $appends = ['image', 'excerpt'];
 
     /**
      * Get the options for generating the slug.
@@ -36,5 +38,13 @@ class Post extends Model
     {
         $plain = strip_tags($this->content);
         return Str::limit($plain, 120);
+    }
+
+    public function getImageAttribute()
+    {
+        $crawler = new Crawler($this->content);
+        $result = $crawler->filterXpath('//img')->extract(array('src'));
+
+        if(isset($result[0])) return $result[0];
     }
 }
