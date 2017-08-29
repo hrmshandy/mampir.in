@@ -13,9 +13,7 @@
           <image-upload></image-upload>
       </div>
       
-      <div class="form-group">
-          <input type="text" placeholder="Masukan Judul Discount" class="o-input">
-      </div>
+      <input type="text" placeholder="Masukan Judul Discount" class="o-input">
       
       <div class="daterange-wrapper">
         <select class="o-input" name="date-one" id="date-one">

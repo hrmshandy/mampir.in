@@ -12,12 +12,12 @@
           <image-upload></image-upload>
       </div>
       
-      <div class="form-group">
-        <input type="text" placeholder="Masukan Judul Bonus" class="o-input">
-      </div>
+      <input type="text" placeholder="Masukan Judul Bonus" class="o-input">
 
       <textarea name="ket" id="ket" cols="30" rows="10" class="o-input o-input--area" placeholder="Keterangan Bonus"></textarea>
+      
       <button class="o-btn o-btn-general" type="submit">Submit Bonus</button>
+
     </form>
   </div>
 </template>
