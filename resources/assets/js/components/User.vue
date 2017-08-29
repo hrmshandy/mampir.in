@@ -28,24 +28,24 @@
                     Add Journal
                 </router-link>
             </div>
-            <!--<div class="user-menu__divider"></div>-->
-            <!--<div class="user-menu__block">-->
-                <!--<div class="nav-mobile__menu-merchant">-->
-                    <!--<h3>Merchant</h3>-->
-                    <!--<ul class="merchant-list">-->
-                        <!--<li class="merchant-list__item">-->
-                            <!--<a class="" href="#">Salona</a>-->
-                        <!--</li>-->
-                        <!--<li class="merchant-list__item">-->
-                            <!--<a class="" href="#">Barbara</a>-->
-                        <!--</li>-->
-                    <!--</ul>-->
+            <div class="user-menu__divider"></div>
+            <div class="user-menu__block">
+                <div class="nav-mobile__menu-merchant">
+                    <h3>Merchant</h3>
+                    <ul class="merchant-list">
+                        <li class="merchant-list__item">
+                            <a class="" href="#">Salona</a>
+                        </li>
+                        <li class="merchant-list__item">
+                            <a class="" href="#">Barbara</a>
+                        </li>
+                    </ul>
 
-                    <!--<router-link class="o-button o-button&#45;&#45;primary o-button-custom o-button&#45;&#45;block" to="/merchant/registration/1">-->
-                        <!--Add Merchants-->
-                    <!--</router-link>-->
-                <!--</div>-->
-            <!--</div>-->
+                    <router-link class="o-button o-button--primary o-button-custom o-button--block" to="/merchant/claim">
+                        Add Merchants
+                    </router-link>
+                </div>
+            </div>
             <div class="user-menu__divider"></div>
             <div class="user-menu__block">
                 <a href="#" class="user-menu__link logout" @click.prevent="handleLogout"><span>Log out</span><icon name="power-off"></icon></a>
