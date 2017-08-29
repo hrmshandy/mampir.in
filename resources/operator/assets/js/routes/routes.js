@@ -1,5 +1,5 @@
 import DashboardLayout from '../components/Dashboard/Layout/DashboardLayout.vue'
-// GeneralViews
+// General Views
 import NotFound from '../components/GeneralViews/NotFoundPage.vue'
 
 // Admin pages
@@ -7,8 +7,10 @@ import Overview from '../components/Dashboard/Views/Overview.vue'
 import Bonus from '../components/Dashboard/Views/Bonus.vue'
 import Discount from '../components/Dashboard/Views/Discount.vue'
 import Edit from '../components/Dashboard/Views/Edit.vue'
-import Login from '../pages/Login.vue'
 import Review from '../components/Dashboard/Views/Review.vue'
+
+// Login
+import Login from '../pages/Login.vue'
 
 const routes = [
   // {
@@ -17,9 +19,13 @@ const routes = [
   //   redirect: '/overview'
   // },
   {
+    path: '/login',
+    component: Login
+  },
+  {
     path: '/',
-    component: Login,
-    redirect: '/login',
+    component: DashboardLayout,
+    redirect: '/overview',
     children: [
       {
         path: 'overview',
