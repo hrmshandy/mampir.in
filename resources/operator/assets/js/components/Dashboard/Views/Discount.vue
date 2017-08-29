@@ -2,11 +2,21 @@
   <div class="row">
     <form action="" class="col-xs-6 row">
       <h3>Discount Promotion</h3>
-      <dropzone id="myVueDropzone" url="https://httpbin.org/post" :dropzone-options="customOptionsObject" v-on:vdropzone-success="showSuccess">
-          <!-- Optional parameters if any! -->
-          <input type="hidden" name="token" value="xxx">
-      </dropzone>
-      <input type="text" placeholder="Masukan Judul Discount" class="o-input">
+
+    <!--   <dropzone id="myVueDropzone" url="https://httpbin.org/post" :dropzone-options="customOptionsObject" v-on:vdropzone-success="showSuccess">
+        Optional parameters if any!
+        <input type="hidden" name="token" value="xxx">
+    </dropzone>
+     -->
+
+      <div class="form-group">
+          <image-upload></image-upload>
+      </div>
+      
+      <div class="form-group">
+          <input type="text" placeholder="Masukan Judul Discount" class="o-input">
+      </div>
+      
       <div class="daterange-wrapper">
         <select class="o-input" name="date-one" id="date-one">
           <option value="">Tgl</option>
@@ -24,18 +34,20 @@
           <option v-for="(item, index) in monthName" :value="index">{{ item.month }}</option>
         </select>
       </div>
+
       <button class="o-btn o-btn-general" type="submit">Submit Bonus</button>
+    
     </form>
   </div>
 </template>
 
 <script>
-  import Dropzone from 'vue2-dropzone'
+  // import Dropzone from 'vue2-dropzone'
+  import ImageUpload from './ImageUpload.vue'
+
 
   export default {
-    components: {
-      Dropzone
-    },
+    components: { ImageUpload },
     methods: {
       'showSuccess': function (file) {
         console.log('A file was successfully uploaded')
