@@ -16,7 +16,7 @@
     <meta property="og:title" content="{{ $post->title }} - Mampir.in">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ request()->url() }}">
-    <meta property="og:image" content="http://rrssb.ml/media/facebook-share.jpg">
+    <meta property="og:image" content="{{ !empty($post->image) ? $post->image : asset('images/share/facebook.jpg') }}">
     <meta property="og:description" content="{{ $post->excerpt }}">
 
     <!-- Twitter Meta-->
@@ -25,7 +25,7 @@
     <meta name="twitter:creator" content="@mampirin">
     <meta name="twitter:title" content="{{ $post->title }} - Mampir.in">
     <meta name="twitter:description" content="{{ $post->excerpt }}">
-    <meta name="twitter:image" content="http://rrssb.ml/media/rrssb-preview.png">
+    <meta name="twitter:image" content="{{ !empty($post->image) ? $post->image : asset('images/share/facebook.jpg') }}">
 
     <!-- Disable tap highlight on IE -->
     <meta name="msapplication-tap-highlight" content="no">

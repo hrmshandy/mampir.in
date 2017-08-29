@@ -123,7 +123,7 @@
 
                     let title = `${post.title} - Mampir.in`;
                     let url = this.base_url+this.$route.path;
-                    let image = '';
+                    let image = post.image;
                     let description = post.excerpt;
 
                     this.setBasicMeta({title, description});
