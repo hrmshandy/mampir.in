@@ -60,6 +60,7 @@
 									</div>
 								</div>
 								<div class="c-card__body">
+									<img v-if="hasImage(post.image)" :src="post.image" class="o-img-content u-mb-x2">
 									<a :href="`/journal/${post.user.username}/${post.slug}`">
 										<h3 class="u-color-primary u-mb-x2">{{ post.title }}</h3>
 									</a>
@@ -94,9 +95,12 @@
 	    methods: {
 	        fetchData() {
 	            axios.get('/api/posts').then(({data}) => {
-					this.posts = data;
+					this.posts = data.data;
 				});
-			}
+			},
+            hasImage(image) {
+                return !_.isEmpty(image);
+            }
 		},
 		mounted() {
 	        this.fetchData();
