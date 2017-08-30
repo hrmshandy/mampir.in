@@ -1,0 +1,48 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+}
+
+.c-postArticle-content {
+  &:focus {
+    outline: none;
+  }
+}
+
+
+
+.l-section {
+  &__divider {
+    &:before {
+      content: '...';
+      letter-spacing: 0.6em;
+    }
+  }
+  &__content {
+
+  }
+}
+
+.l-section-inner {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  &--layoutNarrow {
+    max-width: 740px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  &--layoutWide {
+    max-width: 1000px;
+  }
+  &--layoutFullWidth {
+    width: 100%;
+  }
+}

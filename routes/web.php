@@ -12,9 +12,8 @@
 */
 
 Route::get('test', function(){
-    $computerId = $_SERVER;
-
-    return $computerId;
+    Carbon\Carbon::setLocale('id');
+    return (new Carbon\Carbon('15 02 1998'))->toDateString();
 });
 
 Route::get('/', 'IndexController');
@@ -24,6 +23,10 @@ Route::post('oauth/{provider}/connect', 'Auth\OAuthController');
 Route::get('user', 'UserController@index');
 
 Route::get('/images/{filename}', 'ImageCacheController')->where('filename', '[ \w\\.\\/\\-\\@]+');
+
+Route::get('editor', function(){
+    return view('editor');
+});
 // For vue route history mode
 Route::get('/journal/{user}/{slug}', 'JournalController')
         ->where('user', '@[\w]+')
