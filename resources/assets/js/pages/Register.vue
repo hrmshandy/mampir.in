@@ -54,7 +54,7 @@
                         <div :class="['c-form-group', 'has-no-message', {'has-error' : form.errors.has('birthday.month')}]">
                             <select name="birthday[month]" class="o-input" v-model="form.birthday.month">
                                 <option value="" disabled hidden>Month</option>
-                                <option v-for="month in months" :value="month">{{ month }}</option>
+                                <option v-for="(month, index) in months" :value="(index+1)">{{ month }}</option>
                             </select>
                             <!--<span class="c-form-feedback" v-if="form.errors.has('birthday.month')" v-text="form.errors.get('birthday.month')"></span>-->
                         </div>
