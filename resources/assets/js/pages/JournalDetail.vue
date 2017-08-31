@@ -26,19 +26,43 @@
         <div class="journal__body">
             <div class="o-container">
                 <div v-html="content" class="journal__content"></div>
-                <social-sharing :url="base_url+$route.path" inline-template>
-                    <div class="c-share">
-                        <h4>Bagikan</h4>
-                        <div class="c-share__item">
-                            <network network="facebook" class="o-button__share--facebook o-button__share">
-                                <i class="fa fa-facebook"></i>
-                            </network>
-                            <network network="twitter" class="o-button__share--twitter o-button__share">
-                                <i class="fa fa-twitter"></i>
-                            </network>
+
+                <div class="c-social-sharing">
+                    <social-sharing :url="base_url+$route.path" inline-template>
+                        <div class="c-share">
+                            <h4>Bagikan</h4>
+                            <div class="c-share__item">
+                                <network network="facebook" class="o-button__share--facebook o-button__share">
+                                    <i class="fa fa-facebook"></i>
+                                </network>
+                                <network network="twitter" class="o-button__share--twitter o-button__share">
+                                    <i class="fa fa-twitter"></i>
+                                </network>
+                            </div>
+                        </div>
+                    </social-sharing>
+                    
+                    <div class="c-social">
+                        <div class="like">
+                            <a href="#">
+                                <svg fill="#000000" height="52" viewBox="0 0 24 24" width="52" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 0h24v24H0z" fill="none"/>
+                                    <path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1.91l-.01-.01L23 10z"/>
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="comment">
+                            <a href="#comment-header" data-scroll>
+                                <svg fill="#000000" height="52" viewBox="0 0 24 24" width="52" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18z"/>
+                                    <path d="M0 0h24v24H0z" fill="none"/>
+                                </svg>
+                            </a>
                         </div>
                     </div>
-                </social-sharing>
+                </div>
+
+
             </div>
         </div>
         <div class="journal__bottom">
@@ -69,7 +93,7 @@
                     </div>
                 </div>
                 <div class="c-comment u-mb-x5">
-                    <h2 class="o-heading">Komentar</h2>
+                    <h2 class="o-heading" id="comment-header">Komentar</h2>
                     <comments :post_id="id"></comments>
                 </div>
             </div>
@@ -108,6 +132,9 @@
             '$route': 'fetchData'
         },
         methods: {
+            initSmoothScroll(){
+                var scroll = new SmoothScroll('a[href*="#"]');
+            },
             fetchData() {
                 axios.get(`/api/posts/${this.$route.params.slug}`).then(({data}) => {
                     const post = data.post;
@@ -144,6 +171,7 @@
         },
         mounted() {
             this.fetchData();
+            this.initSmoothScroll();
         }
     }
 

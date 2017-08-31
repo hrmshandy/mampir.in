@@ -166,9 +166,27 @@
         font-size: 1rem;
         color: #a9a9a9;
     }
-} // Related Journal Card
+}
 
+// Related Journal Card
 .post-title {
     min-height: 60px;
     display: block;
+}
+
+.c-social-sharing {
+    display: flex;
+    justify-content: space-between;
+}
+
+.c-social {
+    display: flex;
+    .like, 
+    .comment {
+        margin-right: 10px;
+    }
+    svg {
+        width: 2.5em;
+        height: 2.5em;
+    }
 }
