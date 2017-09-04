@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ mix('css/editor.css') }}">
 </head>
 <body>
-    <div class="c-postArticle-content js-postField is-editable" role="textbox" contenteditable="true">
+    <div class="c-postArticle-content js-postField is-editable">
         <section class="l-section">
             <div class="l-section__divider"></div>
             <div class="l-section__content">
@@ -17,6 +17,7 @@
                     <h3 class="c-post__title">Title</h3>
                     <figure class="c-post__image" contenteditable="false">
                         <img src="{{ asset('images/dummy-1.jpg') }}" alt="">
+                        <figcaption contenteditable="true"><span class="defaultValue">Caption (optional)</span></figcaption>
                     </figure>
                     <p class="c-post__content">Content</p>
                     <p>Content 2</p>
