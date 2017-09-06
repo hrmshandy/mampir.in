@@ -76,9 +76,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
     {{--<link rel="stylesheet" href="{{ asset('css/leaflet.css') }}">--}}
     {{--<link rel="stylesheet" href="{{ asset('css/MarkerCluster.css') }}">--}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/medium-editor/latest/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.23.2/css/themes/default.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/medium-editor-insert-plugin/2.4.1/css/medium-editor-insert-plugin.min.css" />
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
 
@@ -94,16 +91,24 @@
 	<div id="app"></div>
     {{--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAyXuLUPJEsAyBUaAEiGbXuIA4TaAbAudM&libraries=places&ver=3.22"></script>--}}
     {{-- <script src="{{ asset('js/masonry.pkgd.min.js') }}"></script> --}}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.23.2/js/medium-editor.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.runtime.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sortable/0.9.13/jquery-sortable-min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.18.0/js/vendor/jquery.ui.widget.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.18.0/js/jquery.iframe-transport.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.18.0/js/jquery.fileupload.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-editor-insert-plugin/2.4.1/js/medium-editor-insert-plugin.min.js"></script>
     <script src="{{ mix('js/manifest.js') }}"></script>
     <script src="{{ mix('js/vendor.js') }}"></script>
 	<script src="{{ mix('js/app.js') }}"></script>
+    <script>
+        Vue.nextTick(function(){
+            setTimeout(function() {
+                const frames = document.querySelectorAll('iframe');
+                for(let i = 0; i < frames.length; i++) {
+                    const regx = new RegExp('https?:\\/\\/(www\\.)?mampir');
+                    let iframe = frames[i];
+                    if(regx.test(iframe.src)) {
+                        iframe.onload = function() {
+                            iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 50 + 'px';
+                        }
+                    }
+                }
+            }, 1000);
+        });
+    </script>
 </body>
 </html>

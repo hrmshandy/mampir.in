@@ -27,14 +27,20 @@ const Embed = MediumEditor.Extension.extend({
             const selectedElement = this.base.getSelectedParentElement();
             const placeholder = this.placeholder = this.createPlaceHolder();
             let element;
-            if(selectedElement.innerHTML === '<br>') {
-                element = selectedElement;
-                element.classList.add('c-ig-embed');
-                element.insertBefore(placeholder.querySelector('span'), element.firstChild );
-            } else {
+            if(selectedElement.classList.contains('medium-editor-element')) {
                 element = placeholder;
                 element.classList.add('c-ig-embed');
-                selectedElement.parentNode.insertBefore(element, selectedElement.nextElementSibling);
+                selectedElement.appendChild(element);
+            } else {
+                if(selectedElement.innerHTML === '<br>') {
+                    element = selectedElement;
+                    element.classList.add('c-ig-embed');
+                    element.insertBefore(placeholder.querySelector('span'), element.firstChild );
+                } else {
+                    element = placeholder;
+                    element.classList.add('c-ig-embed');
+                    selectedElement.parentNode.insertBefore(element, selectedElement.nextElementSibling);
+                }
             }
 
             this.element = element;
