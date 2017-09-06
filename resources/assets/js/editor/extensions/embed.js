@@ -123,7 +123,7 @@ const Embed = MediumEditor.Extension.extend({
         const br = document.createElement('br');
 
         defaultValue.className += 'o-defaultValue o-defaultValue--prompt';
-        defaultValue.innerText = 'Paste a link or embed code from Instagram and press Enter';
+        defaultValue.innerText = 'Paste a link from Instagram and press Enter';
         wrapper.appendChild(defaultValue);
         wrapper.appendChild(br);
 
