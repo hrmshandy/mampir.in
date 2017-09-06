@@ -26,19 +26,29 @@
         <div class="journal__body">
             <div class="o-container">
                 <div v-html="content" class="journal__content"></div>
-                <social-sharing :url="base_url+$route.path" inline-template>
-                    <div class="c-share">
-                        <h4>Bagikan</h4>
-                        <div class="c-share__item">
-                            <network network="facebook" class="o-button__share--facebook o-button__share">
-                                <i class="fa fa-facebook"></i>
-                            </network>
-                            <network network="twitter" class="o-button__share--twitter o-button__share">
-                                <i class="fa fa-twitter"></i>
-                            </network>
+
+                <div class="c-social-sharing">
+
+                    <social-sharing :url="base_url+$route.path" inline-template>
+                        <div class="c-share">
+                            <h4>Bagikan</h4>
+                            <div class="c-share__item">
+                                <network network="facebook" class="o-button__share--facebook o-button__share">
+                                    <i class="fa fa-facebook"></i>
+                                </network>
+                                <network network="twitter" class="o-button__share--twitter o-button__share">
+                                    <i class="fa fa-twitter"></i>
+                                </network>
+                            </div>
                         </div>
-                    </div>
-                </social-sharing>
+                    </social-sharing>
+
+                    <like-button></like-button>
+                    
+
+                </div>
+
+
             </div>
         </div>
         <div class="journal__bottom">
@@ -69,7 +79,7 @@
                     </div>
                 </div>
                 <div class="c-comment u-mb-x5">
-                    <h2 class="o-heading">Komentar</h2>
+                    <h2 class="o-heading" id="comment-header">Komentar</h2>
                     <comments :post_id="id"></comments>
                 </div>
             </div>
@@ -83,12 +93,14 @@
 
 
     import Comments from '../components/Comments.vue'
+    import LikeButton from '../components/LikeButton.vue'
 
     export default {
-        components: {Comments},
+        components: { Comments, LikeButton },
         data() {
             return {
                 id: '',
+                counter: 0,
                 title: '',
                 content: '',
                 created_at: '',
@@ -108,6 +120,7 @@
             '$route': 'fetchData'
         },
         methods: {
+            
             fetchData() {
                 axios.get(`/api/posts/${this.$route.params.slug}`).then(({data}) => {
                     const post = data.post;

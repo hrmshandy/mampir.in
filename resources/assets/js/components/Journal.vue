@@ -87,6 +87,7 @@
 					</a>
 				</div>	
 			</div>
+			
 			<div v-masonry-tile class="o-grid__col u-3/12@lg u-6/12@sm">
 				<div class="c-card c-card__related-journal">
 					<a href="#">
@@ -100,6 +101,7 @@
 					</a>
 				</div>	
 			</div>
+
 			<div v-masonry-tile class="o-grid__col u-3/12@lg u-6/12@sm">
 				<div class="c-card c-card__related-journal">
 					<a href="#">

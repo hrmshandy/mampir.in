@@ -47,4 +47,9 @@ class Post extends Model
 
         if(isset($result[0])) return $result[0];
     }
+
+    public function scopePublished($query)
+    {
+        return $query->where('status', 'published');
+    }
 }
