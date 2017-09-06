@@ -1,12 +1,7 @@
 import MediumEditor from 'medium-editor'
-import DefaultOptions from './editor/default-options'
+import DefaultOptions from './default-options'
 
-import Toolbar from './editor/toolbar'
-import Insert from './editor/insert/index'
-
-import ToolbarExtensions from './editor/extensions/toolbar'
-
-import * as u from './editor/helpers'
+import * as u from './helpers'
 
 window.u = u;
 window.MediumEditor = MediumEditor;
@@ -22,10 +17,7 @@ class Editor
 
     init() {
         this.editor = new MediumEditor(this.element, this.options);
-        new ToolbarExtensions();
     }
-
-
 }
 
-new Editor('.js-postField');
+export default Editor;

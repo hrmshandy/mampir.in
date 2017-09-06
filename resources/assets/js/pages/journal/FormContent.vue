@@ -3,11 +3,16 @@
 </template>
 
 <script>
-//    import MediumEditor from 'medium-editor'
+    import MediumEditor from 'medium-editor'
+    import DefaultOptions from '../../editor/default-options'
 
     export default {
         props: {
-          value: String
+          value: String,
+          options: {
+              type: Object,
+              default() { return {}; }
+          }
         },
         data() {
             return {
@@ -24,35 +29,8 @@
         methods: {
             init() {
                 const self = this;
-                const editor = this.editor = new MediumEditor(this.$refs.content, {
-                    placeholder: {
-                        text: 'Ceritakan kisahmu...',
-                        hideOnClick: false
-                    }
-                });
-
-                Vue.nextTick(() => {
-                    $('[data-attr="content"]').mediumInsert({
-                        editor: editor,
-                        addons: {
-                            images: {
-                                deleteScript: '/api/posts/image/delete', // (string) A relative path to a delete script
-                                deleteMethod: 'DELETE',
-                                fileUploadOptions: {
-                                    url: '/api/posts/image/upload',
-                                    acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
-                                },
-                                uploadCompleted: function ($el, data) {
-                                    self.$emit('input', self.$refs.content.innerHTML);
-                                    setTimeout(() => {
-                                        self.$emit('keyup');
-                                    })
-                                }
-                            }
-                        }
-                    });
-                });
-
+                const options = Object.assign({}, DefaultOptions, this.options);
+                const editor = this.editor = new MediumEditor(this.$refs.content, options);
 
                 this.editor.subscribe('editableInput', this.onInput);
                 this.editor.subscribe('editableKeyup', this.onKeyup);

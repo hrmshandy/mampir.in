@@ -12,8 +12,16 @@
 */
 
 Route::get('test', function(){
-    Carbon\Carbon::setLocale('id');
-    return (new Carbon\Carbon('15 02 1998'))->toDateString();
+    $client = new \GuzzleHttp\Client();
+    try {
+        $res = $client->request('GET', 'https://api.instagram.com/oembed?url=https://www.instagram.com/p/BYA_iYLB0qI/');
+        dd(json_decode($res->getBody(), true));
+    } catch (\Exception $exception) {
+        dd("catch");
+    }
+
+//    dd($res->getStatusCode());
+    //return response()->json(json_decode($r, true));
 });
 
 Route::get('/', 'IndexController');
@@ -23,6 +31,7 @@ Route::post('oauth/{provider}/connect', 'Auth\OAuthController');
 Route::get('user', 'UserController@index');
 
 Route::get('/images/{filename}', 'ImageCacheController')->where('filename', '[ \w\\.\\/\\-\\@]+');
+Route::get('/media/{url}', 'MediaController')->where('url', '(.*)');
 
 Route::get('editor', function(){
     return view('editor');
@@ -31,4 +40,4 @@ Route::get('editor', function(){
 Route::get('/journal/{user}/{slug}', 'JournalController')
         ->where('user', '@[\w]+')
         ->where('slug', '[\/\w\.-/+,\-]+');
-Route::get('/{vue?}', 'IndexController')->where('vue', '[\/\w\.-/+,\%@\-]+');
+Route::get('/{vue?}', 'IndexController')->where('vue', '(.*)');
