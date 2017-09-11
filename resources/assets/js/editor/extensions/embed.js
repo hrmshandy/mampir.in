@@ -1,7 +1,7 @@
 import MediumEditor from 'medium-editor'
 import * as Icon from '../icons'
 import * as u from '../helpers'
-// import axios from 'axios'
+import axios from 'axios'
 
 const Embed = MediumEditor.Extension.extend({
     name: 'embed',
@@ -55,6 +55,9 @@ const Embed = MediumEditor.Extension.extend({
     handleEmbedded(url) {
         const regx = new RegExp('https?:\\/\\/(www\\.)?instagr(\\.am|am\\.com)\\/p\\/.*');
         if(regx.test(url)) {
+            axios.get(`/media/${url}`).then(({data}) => {
+                console.log(data);
+            })
             const iframe = this.buildIFrame(`/media/${url}`);
             this.element.parentNode.insertBefore(iframe, this.element);
             setTimeout(() => {
@@ -106,6 +109,7 @@ const Embed = MediumEditor.Extension.extend({
                 if(this.element
                     && this.element.querySelector('span')
                     && !(e.keyCode >= 16 && e.keyCode <= 18 )) {
+                    console.log(this.element);
                     this.element.querySelector('span').remove();
                 } else {
                     if (MediumEditor.util.isKey(e, [MediumEditor.util.keyCode.ENTER])) {

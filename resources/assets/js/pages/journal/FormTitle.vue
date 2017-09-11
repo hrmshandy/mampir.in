@@ -47,6 +47,11 @@
             onKeydown(e) {
                 this.$emit('keydown', e);
             }
+        },
+        mounted() {
+            Event.listen('title:focus', () => {
+                this.$refs.title.focus();
+            });
         }
     }
 </script>

@@ -1,0 +1,54 @@
+.o-ce--figure {
+  position: relative;
+  box-sizing: border-box;
+  -webkit-user-select: auto;
+  -moz-user-select: auto;
+  -ms-user-select: auto;
+  user-select: auto;
+  z-index: 100;
+  clear: both;
+  outline: 0;
+  margin: 0 auto 30px;
+  max-width: 700px;
+}
+
+%format {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  &:not([class*="--relative"]) {
+    height: 100%;
+  }
+}
+.o-iframe-container {
+  @extend %format;
+
+  &--relative {
+    position: relative;
+  }
+}
+
+.o-iframe {
+  @extend %format;
+
+  &--relative {
+    position: relative;
+  }
+}
+
+.is-editable {
+  .o-iframe-container:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 400;
+    content: '';
+  }
+}
+
+.o-aspect-ratio-fill {
+  display: block;
+}

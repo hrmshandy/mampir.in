@@ -28,9 +28,8 @@
         },
         methods: {
             init() {
-                const self = this;
                 const options = Object.assign({}, DefaultOptions, this.options);
-                const editor = this.editor = new MediumEditor(this.$refs.content, options);
+                this.editor = new MediumEditor(this.$refs.content, options);
 
                 this.editor.subscribe('editableInput', this.onInput);
                 this.editor.subscribe('editableKeyup', this.onKeyup);

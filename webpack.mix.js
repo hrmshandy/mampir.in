@@ -30,13 +30,11 @@ function site(mix) {
     ];
 
     mix.js(mix.src('js/app.js'), 'js')
-        .js(mix.src('js/locator.js'), 'js')
         .extract(plugins)
-        .sass(mix.src('sass/app.scss'), 'css')
-        .sass(mix.src('sass/locator.scss'), 'css');
+        .sass(mix.src('sass/app.scss'), 'css');
 
-    mix.js(mix.src('js/editor.js'), 'js')
-        .sass(mix.src('sass/editor.scss'), 'css');
+    // mix.js(mix.src('js/editor.js'), 'js')
+    //     .sass(mix.src('sass/editor.scss'), 'css');
 
     mix.webpackConfig({
         output: {

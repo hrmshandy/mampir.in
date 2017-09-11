@@ -31,7 +31,7 @@
         mounted() {
             Event.listen('sign-loading', (value) => {
                 this.loading = value
-            })
+            });
 
 			Event.listen('oauth-connected', (data) => {
 			    if(!data.complete_profile) {
@@ -39,10 +39,17 @@
 				} else {
                     router.push(this.$route.query.redirect);
 				}
-			})
+			});
+
+			this.setup();
         },
         methods: {
-
-        }
+			setup() {
+                document.body.classList.add('login-page');
+			}
+        },
+		watch: {
+            '$route': 'setup'
+		}
 	}
 </script>

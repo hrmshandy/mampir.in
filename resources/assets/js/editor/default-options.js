@@ -22,7 +22,7 @@ export default {
         }, {
             name: 'h3',
             contentDefault: Icon.text('font-size: 14px;margin-top: 8px;')
-        }, 'embed'],
+        }],
         static: true,
         //sticky: true
     },
@@ -31,7 +31,7 @@ export default {
     cleanPastedHTML: true,
     extensions: {
         'autolist': new AutoList(),
-        'embed': new Embed()
+        //'embed': new Embed()
     },
 
 }

@@ -18,14 +18,12 @@
             </div>
         </div>
         <div class="journal__body">
-            <div class="o-container">
-                <form-content
-                    v-model="form.content"
-                    @input="onInput"
-                    @keyup="onKeyup"
-                    @keydown="onKeydown">
-                </form-content>
-            </div>
+            <form-content
+                v-model="form.content"
+                @input="onInput"
+                @keyup="onKeyup"
+                @keydown="onKeydown">
+            </form-content>
         </div>
 
         <transition name="slide" enter-active-class="animated slideInDown" leave-active-class="animated slideOutUp">
@@ -41,7 +39,7 @@
     import Form from '../../utils/form.js'
 
     import FormTitle from './FormTitle.vue'
-    import FormContent from './FormContent.vue'
+    import FormContent from './FormContentAlt.vue'
 
     export default {
         components: {FormTitle, FormContent},
@@ -131,6 +129,10 @@
                         Event.fire('post:set-status', data.status)
                     });
                 }
+
+                if(document.body.classList.contains('login-page')) {
+                    document.body.classList.remove('login-page');
+                }
             },
             publish() {
                 this.form.status = "published";
@@ -163,6 +165,9 @@
         },
         mounted(e) {
             this.setup(e);
+            setTimeout(() => {
+                //Event.fire('title:focus');
+            }, 1500);
             Event.listen('post:publish', () => {
                this.publish();
             });
