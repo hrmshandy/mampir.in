@@ -206,23 +206,23 @@
                 this[target].listings = data.data;
                 this[target].next_page_url = data.next_page_url;
             },
-            makeRequest(url, query = '') {
-                let Q = serialize(query);
-                if(!_.isEmpty(query)) {
-                    url += (url.includes("?") ? '&' : '?') + Q;
-                }
-                return new Promise((resolve, reject) => {
-                    axios.get(url).then(({data}) => {
-                        setTimeout(() => {
-                            this.loading = false;
-                        }, 1000);
-
-                        resolve(data);
-                    }).catch(error => {
-                        reject(error);
-                    });
-                });
-            },
+//            makeRequest(url, query = '') {
+//                let Q = serialize(query);
+//                if(!_.isEmpty(query)) {
+//                    url += (url.includes("?") ? '&' : '?') + Q;
+//                }
+//                return new Promise((resolve, reject) => {
+//                    axios.get(url).then(({data}) => {
+//                        setTimeout(() => {
+//                            this.loading = false;
+//                        }, 1000);
+//
+//                        resolve(data);
+//                    }).catch(error => {
+//                        reject(error);
+//                    });
+//                });
+//            },
             clickViewMaps () {
                 this.viewMaps = true;
                 this.viewListing = false;

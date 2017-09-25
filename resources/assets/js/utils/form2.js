@@ -1,29 +1,28 @@
-import Errors from './errors.js'
+import { Validator, ErrorBag } from 'vee-validate';
 
 class Form {
     /**
      * Create a new Form instance.
      *
      * @param {object} data
+     * @param rules
      */
-    constructor(data) {
+    constructor(data, rules = {}) {
         this.originalData = data;
 
-        for (let field in data) {
-            this[field] = data[field];
-        }
+        setTimeout(() => {
+            for (let field in data) {
+                this[field] = data[field];
+            }
+        });
 
-        this.errors = new Errors();
+        this.rules = rules;
+
+        this.validator = new Validator(rules);
+
+        this.errors = this.validator.errors;
 
         this.isProcessed = false;
-    }
-
-    setData(data) {
-        this.originalData = data;
-
-        for (let field in data) {
-            this[field] = data[field];
-        }
     }
 
 
@@ -94,17 +93,34 @@ class Form {
     submit(requestType, url, reset = true) {
         this.isProcessed = true;
         return new Promise((resolve, reject) => {
-            axios.post(url, this.data(requestType))
-                .then(response => {
-                    this.onSuccess(response.data, reset);
+            this.validateAll(() => {
+                axios.post(url, this.data(requestType))
+                    .then(response => {
+                        this.onSuccess(response.data, reset);
 
-                    resolve(response.data);
-                })
-                .catch(error => {
-                    this.onFail(error.response.data);
+                        resolve(response.data);
+                    })
+                    .catch(error => {
+                        this.onFail(error.response.data);
 
-                    reject(error.response.data);
-                });
+                        reject(error.response.data);
+                    });
+            });
+        });
+    }
+
+    validateAll(onSuccess = () => {}, onFailed = () => {}, onError = () => {}) {
+        this.validator.validateAll(this.originalData).then(result => {
+            if (!result) {
+                onFailed();
+                return;
+                // validation failed.
+            }
+            // success stuff.
+            onSuccess(result);
+        }).catch(() => {
+            onError();
+            // something went wrong (non-validation related).
         });
     }
 
@@ -130,6 +146,16 @@ class Form {
     onFail(errors) {
         this.isProcessed = false;
         this.errors.record(errors);
+    }
+
+    /**
+     * validate the filed.
+     *
+     * @param field
+     * @param value
+     */
+    validate(field, value) {
+        this.validator.validate(field, value);
     }
 }
 

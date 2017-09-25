@@ -36,7 +36,7 @@
                     return;
                 this.createImage(files[0]);
 
-                //this.$emit('change');
+                this.$emit('change', files[0]);
                 this.$emit('input', files[0]);
             },
             createImage(file) {

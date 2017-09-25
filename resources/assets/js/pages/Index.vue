@@ -9,7 +9,13 @@
                     <div class="o-grid__col u-5/12@sm">
                         <h1 class="c-hero__title">Bahagia Itu Dekat</h1>
                         <h3 class="c-hero__subtitle">Yuk, Mampir.in!</h3>
-                        <search-form size="large" :inline="false"></search-form>
+                        <search-form size="large" :inline="false">
+                            <template scope="button">
+                                <button :class="button.classes" type="submit">
+                                    <span>Yuk, Cari!</span>
+                                </button>
+                            </template>
+                        </search-form>
                     </div>
                 </div>
                 <!-- <categories :city="city"></categories> -->

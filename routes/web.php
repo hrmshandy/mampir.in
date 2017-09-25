@@ -12,8 +12,9 @@
 */
 
 Route::get('test', function(){
-    $media = App\Models\Media::find('c29b25a4-9469-11e7-a121-5ce0c5bdb1ea')->toArray();
-    return view('test', $media);
+    $user = App\Models\User::find(546);
+
+    dd($user->point);
 });
 
 Route::get('/', 'IndexController');

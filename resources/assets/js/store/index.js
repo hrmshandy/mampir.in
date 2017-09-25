@@ -7,6 +7,7 @@ import * as mutations from './mutations'
 import auth from './modules/auth'
 import search from './modules/search'
 import map from './modules/map'
+import merchant from './modules/merchant'
 
 const debug = process.env.NODE_ENV !== 'production'
 
@@ -20,7 +21,8 @@ const store = new Vuex.Store({
   	modules: {
     	auth,
 		map,
-		search
+		search,
+		merchant
   	},
   	strict: debug,
 });

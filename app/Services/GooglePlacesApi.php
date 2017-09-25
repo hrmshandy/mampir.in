@@ -63,6 +63,8 @@ class GooglePlacesApi
 
         $detail = $response['result'];
 
+        //dd($detail);
+
         if(!empty($detail)) {
             $reviews = $this->reviews($detail);
             $myReview = $this->myReview($detail);
@@ -75,16 +77,16 @@ class GooglePlacesApi
                 "address" => $this->getAddress($detail['formatted_address']),
                 "lat" => $detail['geometry']['location']['lat'],
                 "lng" => $detail['geometry']['location']['lng'],
-                "detail" => [
-                    'phone_number' => $this->exists($detail, 'international_phone_number'),
-                    'email' => $this->exists($detail, 'email'),
-                    'website' => $this->exists($detail, 'website')
-                ],
+                'phone_number' => $this->exists($detail, 'international_phone_number'),
+                'email' => $this->exists($detail, 'email'),
+                'website' => $this->exists($detail, 'website'),
                 "photos" => $this->photos($detail),
                 "reviews" => $reviews['reviews'],
                 "ratings" => $reviews['ratings'],
                 "myReview" => $myReview,
                 "rating" => $detail['rating'],
+                "opening_hours" => implode("\n", $this->exists($detail, 'opening_hours')['weekday_text']),
+                "scope" => "GOOGLE",
                 'type' => 'google'
             ];
 

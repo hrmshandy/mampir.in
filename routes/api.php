@@ -16,6 +16,8 @@ use Illuminate\Http\Request;
 //Route::middleware('auth:api')->get('/user', function (Request $request) {
 //    return $request->user();
 //});
+Route::post('/check-in/generate-id', 'CheckinController@generateId');
+Route::post('/check-in/set-point', 'CheckinController@setPoint');
 Route::get('/media-resource/{url}', 'MediaController@getSource')->where('url', '(.*)');
 Route::get('/search/local', 'SearchController@localSearch');
 Route::get('/search/google-places/{type}', 'SearchController@googlePlacesSearch');

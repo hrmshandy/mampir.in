@@ -40,4 +40,21 @@ class User extends Authenticatable
         'age', 'mampirin_stamps', 'venue_stamps', 'username'
     ];
 
+
+    public function setPoint($id, $activity)
+    {
+        $rule = PointRule::whereSlug($activity)->first();
+
+        if(empty($this->point)) {
+            $this->point()->save(new Point());
+        }
+
+        $this->point->main_points += $rule->point;
+        if($activity == 'check-in') {
+            $this->point->purchase_points += 1;
+        }
+        $this->point->save();
+
+        return $this->point;
+    }
 }

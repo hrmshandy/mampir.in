@@ -81,7 +81,8 @@
                     zoom: 13,
                     mapTypeId: 'roadmap',
                     streetViewControl: false,
-                    mapTypeControl: false
+                    mapTypeControl: false,
+                    scrollwheel: false
                 });
             },
             createMarker(title, position) {
@@ -160,9 +161,9 @@
             },
             setValue(address, position) {
                 this.address = address;
-                this.lat = position.lat();
-                this.lng = position.lng();
-                this.$emit('input',address);
+                let lat = this.lat = position.lat();
+                let lng = this.lng = position.lng();
+                this.$emit('input', address, {lat, lng});
             },
             geocodePosition(pos) {
                 const geocoder = new google.maps.Geocoder();

@@ -1,7 +1,7 @@
+window.Vue = require('vue');
+
 require('./bootstrap');
 require('./helpers');
-
-window.Vue = require('vue');
 
 /**
  * Event Bus for non parent-child component

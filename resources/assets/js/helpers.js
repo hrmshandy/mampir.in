@@ -35,3 +35,21 @@ window.clean = (obj) => {
 
     return newObj;
 }
+
+Vue.prototype.makeRequest = (url, query = '') => {
+    let Q = serialize(query);
+    if(!_.isEmpty(query)) {
+        url += (url.includes("?") ? '&' : '?') + Q;
+    }
+    return new Promise((resolve, reject) => {
+        axios.get(url).then(({data}) => {
+            setTimeout(() => {
+                this.loading = false;
+            }, 1000);
+
+            resolve(data);
+        }).catch(error => {
+            reject(error);
+        });
+    });
+};

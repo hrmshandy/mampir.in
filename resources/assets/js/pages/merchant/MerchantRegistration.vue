@@ -9,79 +9,83 @@
                             Informasi Basic
                         </h2>
                         <form action="" @submit.prevent="submit">
-                            <div class="c-form-group c-form-group--mg2">
-                                <input 
-                                    v-model="dataMerchant.name"
+                            <div :class="['c-form-group', 'c-form-group--mg2', {'has-error': form.errors.has('name')}]">
+                                <label for="name" class="u-weight-bold u-mb-x1">Nama Tempat</label>
+                                <input
+                                    id="name"
+                                    :value="form.data.name"
+                                    @input="updateField('name', $event.target.value)"
+                                    @change="form.validate('name', $event.target.value)"
                                     type="text" 
-                                    name="name" 
-                                    id="" 
+                                    name="name"
                                     placeholder="Nama Tempat"
                                     autocomplete="off"
                                     class="o-input">
-                                <span v-if="validator.errors.has('name')" class="c-form-feedback c-form-feedback__merchant">Wajib diisi.</span>
+                                <span v-if="form.errors.has('name')" class="c-form-feedback">Nama Tempat harus diisi.</span>
                             </div>
-                            <div class="c-form-group">
-                                <!-- <dropzone
-                                    id="myVueDropzone"
-                                    ref="reviewUpload"
-                                    url="/api/merchant/upload"
-                                    >
-                                    Optional parameters if any!
-                                    <input type="hidden" name="token" value="xxx">
-                                </dropzone> -->
+                            <div :class="['c-form-group', {'has-error': form.errors.has('logo')}]">
+                                <label for="logo" class="u-weight-bold u-mb-x1">Upload Logo</label>
+                                <image-upload
+                                    id="logo"
+                                    :value="form.data.logo"
+                                    @input="(value) => updateField('logo', value)"
+                                    @change="(value) => form.validate('name', value)">
+                                </image-upload>
+                                <span v-if="form.errors.has('logo')" class="c-form-feedback">Logo harus diisi.</span>
+                            </div>
+                            <div>
+                                <places
+                                    name="address"
+                                    :location="location"
+                                    @input="(address, {lat, lng}) => updateFields({address, lat, lng})"
+                                    @change="(address, {lat, lng}) => form.validate('address', address)">
+                                </places>
+                                <span v-if="form.errors.has('address')" class="c-form-feedback">Alamat harus diisi.</span>
+                            </div>
 
-                                <label for="" class="u-weight-bold u-mb-x1">Upload Logo</label>
-                                <image-upload v-model="dataMerchant.images"></image-upload>
-                                <span v-if="validator.errors.has('images')" class="c-form-feedback c-form-feedback__merchant">Wajib diisi.</span>
-
-
-                            </div>
-                            <places name="address" v-model="dataMerchant.address">
-                            </places>
-                            <label for="" class="u-weight-bold u-mb-x1">Kontak </label>
-                            <div class="c-form-group">
-                                <input 
-                                    type="text" 
-                                    name="phone" 
-                                    v-model="dataMerchant.phone"
-                                    id="" 
-                                    placeholder="No Telp"
-                                    autocomplete="off"
-                                    class="o-input"
-                                >
-                                <span v-if="validator.errors.has('phone')" class="c-form-feedback c-form-feedback__merchant">Wajib diisi.</span>
-                            </div>
-                            <div class="c-form-group">
-                                <input 
-                                    type="text"
-                                    id=""
-                                    name="email"
-                                    v-model="dataMerchant.email"
-                                    placeholder="Alamat Email"
-                                    autocomplete="off"
-                                    class="o-input"
-                                >
-                                <span v-if="validator.errors.has('email')" class="c-form-feedback c-form-feedback__merchant">Wajib diisi.</span>
-                            </div>
-                            <div class="c-form-group">
-                                <input 
-                                    type="text"
-                                    id=""
-                                    v-model="dataMerchant.website"
-                                    name="website"
-                                    placeholder="Website"
-                                    autocomplete="off"
-                                    class="o-input"
-                                >
-                                <span v-if="validator.errors.has('website')" class="c-form-feedback c-form-feedback__merchant">Wajib diisi.</span>
+                            <label for="contact" class="u-weight-bold u-mb-x1">Kontak </label>
+                            <div id="contact">
+                                <div :class="['c-form-group', {'has-error': form.errors.has('phone_number')}]">
+                                    <input
+                                        type="text"
+                                        name="phone_number"
+                                        :value="form.data.phone_number"
+                                        @input="updateField('phone_number', $event.target.value)"
+                                        @change="form.validate('phone_number', $event.target.value)"
+                                        placeholder="No.Telephone"
+                                        autocomplete="off"
+                                        class="o-input">
+                                    <span v-if="form.errors.has('phone_number')" class="c-form-feedback">No.Telephone harus diisi.</span>
+                                </div>
+                                <div :class="['c-form-group', {'has-error': form.errors.has('email')}]">
+                                    <input
+                                        type="text"
+                                        name="email"
+                                        :value="form.data.email"
+                                        @input="updateField('email', $event.target.value)"
+                                        @change="form.validate('email', $event.target.value)"
+                                        placeholder="Alamat Email"
+                                        autocomplete="off"
+                                        class="o-input">
+                                    <span v-if="form.errors.has('email:required')" class="c-form-feedback">Email harus diisi.</span>
+                                    <span v-if="form.errors.has('email:email')" class="c-form-feedback">Email yang Anda masukan tidak valid.</span>
+                                </div>
+                                <div class="c-form-group">
+                                    <input
+                                        type="text"
+                                        :value="form.data.website"
+                                        @input="updateField('website', $event.target.value)"
+                                        @change="form.validate('website', $event.target.value)"
+                                        name="website"
+                                        placeholder="Website"
+                                        autocomplete="off"
+                                        class="o-input">
+                                </div>
                             </div>
                         
                             <div class="c-form-group u-mt-x5">
-                                <!-- <router-link @click="submit()" to="/merchant/registration/2" class="o-button o-button--primary o-button--block o-button--large"> Next </router-link> -->
-
                                 <button type="submit" class="o-button o-button--primary o-button--block o-button--large">Next</button>
                             </div>
-                        
                         </form>
 
 
@@ -98,69 +102,42 @@
 </template>
 
 <script>
-    import Dropzone from 'vue2-dropzone'
-    import Places from '../../components/PlacesSearch.vue'
-    import Step from '../../components/StepTab.vue'
-    import ImageUpload from '../../components/ImageUpload.vue'
-    import { Validator, ErrorBag } from 'vee-validate';
+    import MerchantRegistration from '../../merchant-registration'
 
-    export default {
-        components: { Places, Dropzone, Step, ImageUpload },
+    import ImageUpload from '../../components/ImageUpload.vue'
+
+    const Places = () => import('../../components/PlacesSearch.vue')
+
+    export default MerchantRegistration.extend({
+        components: { Places, ImageUpload },
         data() {
             return {
                 activeTab: 1,
-                dataMerchant: {
-                    name: '',
-                    address: '',
-                    email: '',
-                    website: '',
-                    images: '',
-                    phone: ''
-                },
-                validator: new Validator({
-                    name: 'required',
-                    address: 'required',
-                    email: 'required|email',
-                    phone: 'required',
-                    images: 'required'
-                })
+                form: {
+                    rules: {
+                        name: 'required',
+                        address: 'required',
+                        email: 'required|email',
+                        phone_number: 'required',
+                        logo: 'required'
+                    }
+                }
+            }
+        },
+        computed: {
+            location() {
+                return {
+                    address: this.form.data.address,
+                    lat: this.form.data.lat,
+                    lng: this.form.data.lng
+                };
             }
         },
         methods: {
-            template() {
-                return `
-                  <div class="dz-preview dz-file-preview">
-                      <div class="dz-image" style="width: 100px;height: 100px">
-                          <img data-dz-thumbnail /></div>
-                      <div class="dz-details">
-                        <div class="dz-size"><span data-dz-size></span></div>
-                        <div class="dz-filename"><span data-dz-name></span></div>
-                      </div>
-                      <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-                      <div class="dz-error-message"><span data-dz-errormessage></span></div>
-                      <div class="dz-success-mark"><i class="fa fa-check"></i></div>
-                      <div class="dz-error-mark"><i class="fa fa-close"></i></div>
-                  </div>
-              `;
-            },
-            validate(field, e) {
-                this.validator.validate(field, e.target.value);
-            },
-            submit() {
-                this.validator.validateAll({ name: this.dataMerchant.name, images: this.dataMerchant.images, address: this.dataMerchant.address, email: this.dataMerchant.email, phone: this.dataMerchant.phone }).then(result => {
-                    if (!result) {
-                        return;
-                        // validation failed.
-                    }
-                    // window.location = '/merchant/registration/2';
-                    router.push('/merchant/registration/2');
-                    // success stuff.
-                }).catch(() => {
-                    console.log('error')
-                    // something went wrong (non-validation related).
-                });
-            },
+            onSuccess() {
+                router.push('/merchant/registration/2');
+            }
         }
-    }
+    })
 
 </script>

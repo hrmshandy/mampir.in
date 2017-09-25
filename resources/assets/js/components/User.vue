@@ -9,7 +9,8 @@
             <div class="user-menu__arrow"></div>
             <div class="user-menu__greeting">Hi, {{ user.name }}</div>
             <div class="user-menu__block">
-                <a class="o-button o-button--primary o-button-custom o-button--block" href="#">Get Check-in ID</a>
+                {{ checkinId }}
+                <a class="o-button o-button--primary o-button-custom o-button--block" href="#" @click.prevent="showCheckinIdModal">Get Check-in ID</a>
                 <a class="o-button o-button--primary o-button-custom o-button--block" href="#">
                     Mampir.in Point <strong>({{ user.mampirin_stamps }})</strong>
                 </a>
@@ -61,7 +62,8 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
     data() {
         return {
-            menuIsShown: false
+            menuIsShown: false,
+            checkinId: null
         }
     },
     computed: {
@@ -90,6 +92,13 @@ export default {
             } else {
                 this.menuIsShown = true;
             }
+        },
+        showCheckinIdModal(e) {
+            e.stopPropagation();
+            axios.post('/api/check-in/generate-id').then(({data}) => {
+                console.log(data);
+                this.checkinId = data.id;
+            });
         }
     }
 }
