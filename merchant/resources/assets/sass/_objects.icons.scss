@@ -1,0 +1,15 @@
+.o-svg-icon {
+  width: 1em;
+  height: 1em;
+  display: inline-flex;
+  align-self: center;
+  position: relative;
+  svg {
+    width: 1em;
+    height: 1em;
+  }
+  &--baseline svg {
+    bottom: -0.125em;
+    position: absolute;
+  }
+}

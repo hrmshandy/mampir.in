@@ -1,0 +1,16 @@
+.l-header {
+  background: #fff;
+  width: 100%;
+  height: 50px;
+  padding: 10px 30px;
+  position: fixed;
+  top: 0;
+
+  &__user-block {
+    > .dropdown-toggle {
+      height: 30px;
+      display: inline-flex;
+      align-items: center;
+    }
+  }
+}

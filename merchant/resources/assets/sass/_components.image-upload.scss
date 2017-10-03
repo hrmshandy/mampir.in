@@ -14,6 +14,7 @@
   &__input {
     @extend %full-flex;
     flex-direction: column;
+    color: #aaa;
     > input[type="file"] {
       width: 100%;
       height: 100%;
@@ -38,8 +39,35 @@
   &__text {
   }
 
+  &__progress {
+    @extend %full-flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1010;
+    background: rgba(#fff, .5);
+    transition: all .3s ease;
+    opacity: 0;
+    visibility: hidden;
+    &.is-active {
+      //opacity: 1;
+      //visibility: visible;
+    }
+  }
+
+  &__progress-bar {
+    width: 50px;
+    height: 50px;
+    > svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
   &__preview {
     @extend %full-flex;
+    position: relative;
+    z-index: 2;
     > img {
       display: block;
       max-width: 100%;
@@ -49,8 +77,8 @@
   }
 
   &__remove-btn {
-    @extend .o-button;
-    @extend .o-button--danger;
+    @extend .btn;
+    @extend .btn-danger;
     z-index: 1001;
     position: absolute;
     top: 0;

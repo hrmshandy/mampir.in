@@ -2,16 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\TemporaryFile;
 use Illuminate\Http\Request;
 
 class ImageController extends Controller
 {
-    public function __invoke($image)
+    public function store(Request $request)
     {
-        if(!$image) {
-            abort(404);
-        }
+        $file = TemporaryFile::saveImage($request->image);
 
+        $response = [
+            'filename' => $file,
+            'web_url' => url('/storage/_temp/'.$file)
+        ];
 
+        return response()->json($response);
+    }
+
+    public function destroy($file)
+    {
+        TemporaryFile::removeImage($file);
+
+        return response()->json('success');
     }
 }

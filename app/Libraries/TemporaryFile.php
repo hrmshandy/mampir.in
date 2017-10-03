@@ -32,7 +32,14 @@ class TemporaryFile
 
     public static function moveImage($filename, $destination){
         if(Storage::exists("/_temp/".$filename)) {
-            return Storage::move("/_temp/".$filename, $destination.$filename);
+            return Storage::move("/_temp/".$filename, trim($destination, '/').'/'.$filename);
+        }
+    }
+
+    public static function removeImage($filename)
+    {
+        if(Storage::exists("/_temp/".$filename)) {
+            Storage::delete("/_temp/".$filename);
         }
     }
 }

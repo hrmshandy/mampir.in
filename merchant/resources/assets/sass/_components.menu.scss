@@ -1,0 +1,41 @@
+%format-text {
+  color: rgba(#fff, .7);
+  font-size: 14px;
+}
+
+.c-menu {
+  list-style: none;
+  padding-left: 0;
+  &__item {
+    &--heading {
+      padding: 0 30px;
+      margin-top: 30px;
+      @extend %format-text;
+    }
+  }
+  &__link {
+    display: flex;
+    align-items: center;
+    padding: 10px 30px;
+    @extend %format-text;
+    &:hover, &:focus {
+      color: #fff;
+      background: darken(theme-color('primary'), 5%);
+    }
+
+  }
+  &__icon {
+    font-size: 24px;
+    line-height: 1em;
+    height: 1em;
+    display: inline-block;
+    + .c-menu__text {
+      margin-left: 15px;
+    }
+  }
+  &__text {
+    display: inline-block;
+    position: relative;
+    top: 0.125em;
+  }
+}

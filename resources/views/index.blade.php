@@ -74,6 +74,7 @@
 	<!-- Styles -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.9.1/sweetalert2.min.css" />
     {{--<link rel="stylesheet" href="{{ asset('css/leaflet.css') }}">--}}
     {{--<link rel="stylesheet" href="{{ asset('css/MarkerCluster.css') }}">--}}
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
@@ -84,6 +85,7 @@
         window.App = <?php echo json_encode([
             'csrfToken' => csrf_token(),
             'baseUrl' => url('/'),
+            'domain' => env('APP_DOMAIN')
         ]); ?>
     </script>
 </head>

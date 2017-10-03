@@ -1,4 +1,5 @@
 /node_modules
+/merchant/node_modules
 /public/hot
 .vscode
 /public/admin/

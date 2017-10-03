@@ -37,10 +37,10 @@
                                 <input
                                     id="keywords"
                                     type="text"
-                                    placeholder="Keywords"
+                                    placeholder="Keywords (contoh: makan, kopi)"
                                     class="o-input"
                                     name="keywords"
-                                    :value="form.data.keyword"
+                                    :value="form.data.keywords"
                                     @input="updateField('keywords', $event.target.value)"
                                     @change="form.validate('keywords', $event.target.value)">
                                 <span v-if="form.errors.has('keywords')" class="c-form-feedback">Keyword harus diisi.</span>

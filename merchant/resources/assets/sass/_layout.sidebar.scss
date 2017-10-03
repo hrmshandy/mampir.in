@@ -1,0 +1,12 @@
+.l-sidebar {
+  background: theme-color("primary");
+  width: 250px;
+  height: calc(100vh - 50px);
+  position: fixed;
+  left: 0;
+  top: 50px;
+  transition: left .3s ease;
+  @media (max-width: 640px) {
+    left: -250px;
+  }
+}

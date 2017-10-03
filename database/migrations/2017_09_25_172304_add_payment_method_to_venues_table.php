@@ -14,7 +14,7 @@ class AddPaymentMethodToVenuesTable extends Migration
     public function up()
     {
         Schema::table('venues', function (Blueprint $table) {
-            $table->string("payment_methods")->nullable()->after('website');
+            $table->string("payment_method")->nullable()->after('website');
         });
     }
 

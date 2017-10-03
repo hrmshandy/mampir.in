@@ -63,10 +63,10 @@ class Handler extends ExceptionHandler
 
         $guard = array_get($exception->guards(), 0);
         $redirectPath = 'login';
-        if(!empty($guard)){
-            $guard = ($guard == 'admin') ? '_'.$guard : $guard;
-            $redirectPath = $guard.'/login';
-        }
+//        if(!empty($guard)){
+//            $guard = ($guard == 'admin') ? '_'.$guard : $guard;
+//            $redirectPath = $guard.'/login';
+//        }
 
         return redirect()->guest($redirectPath);
     }

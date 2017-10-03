@@ -28,11 +28,11 @@ class VenueForm extends FormRequest
     {
         return [
             'name' => 'required',
-            'city_id' => 'required',
+//            'city_id' => 'required',
             'address' => 'required',
             'lat' => 'required',
             'lng' => 'required',
-            'categories' => 'required',
+//            'categories' => 'required',
             //'photos' => 'required'
         ];
     }
@@ -57,11 +57,11 @@ class VenueForm extends FormRequest
     {
         $venue = Venue::create($this->data());
 
-        $venue->detail()->save(new VenueDetail($this->detail));
+        //$venue->detail()->save(new VenueDetail($this->detail));
 
-        $venue->categories()->attach($this->categories);
+        //$venue->categories()->attach($this->categories);
 
-        $this->photos($venue);
+        //$this->photos($venue);
 
         return $venue;
     }
@@ -87,23 +87,29 @@ class VenueForm extends FormRequest
     {
         $venue->update($this->data());
 
-        $venue->detail()->update($this->detail);
-
-        $venue->categories()->sync($this->categories);
+//        $venue->detail()->update($this->detail);
+//
+//        $venue->categories()->sync($this->categories);
 
         // delete existing photos
-        $venue->photos()->delete();
+//        $venue->photos()->delete();
 
         // save new photos
-        $this->photos($venue);
+//        $this->photos($venue);
 
         return $venue;
     }
 
     protected function data()
     {
-        return $this->except([
-            'categories', 'detail', 'opening_hours', 'photos', 'reviews', 'qqfile'
+//        return $this->except([
+//            'categories', 'detail', 'photos', 'reviews', 'qqfile', 'keywords',
+//            'operator_email', 'operator_password'
+//        ]);
+
+        return $this->only([
+            'name', 'logo', 'cover', 'address', 'lat', 'lng', 'phone_number',
+            'email', 'website', 'opening_hours', 'payment_method',
         ]);
     }
 

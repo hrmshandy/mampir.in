@@ -28,6 +28,7 @@
                                 <image-upload
                                     id="logo"
                                     :value="form.data.logo"
+                                    :auto-processed="true"
                                     @input="(value) => updateField('logo', value)"
                                     @change="(value) => form.validate('name', value)">
                                 </image-upload>
@@ -90,7 +91,7 @@
 
 
                         <div class="c-form-group u-mt-x5">
-                            <router-link to="/merchant/registration"> < Kembali</router-link>
+                            <router-link to="/merchant/claim"> < Kembali</router-link>
                         </div>
 
                     </div>
@@ -104,9 +105,8 @@
 <script>
     import MerchantRegistration from '../../merchant-registration'
 
-    import ImageUpload from '../../components/ImageUpload.vue'
-
     const Places = () => import('../../components/PlacesSearch.vue')
+    const ImageUpload = () => import('../../components/ImageUpload.vue')
 
     export default MerchantRegistration.extend({
         components: { Places, ImageUpload },

@@ -20,6 +20,11 @@ export default Vue.extend({
           return this.$store.state.merchant.merchant
         }
     },
+    watch: {
+        '$store.state.merchant.merchant': function (value) {
+            console.log(value);
+        }
+    },
     methods: {
         updateField(field, value) {
             this.$store.commit('UPDATE_MERCHANT_FIELD', {field, value});
@@ -33,8 +38,7 @@ export default Vue.extend({
             this.form.validate = (field, value) => form.validate(field, value);
 
             form.validateAll(() => {
-                localStorage.setItem("merchant", JSON.stringify(this.form.data));
-                this.onSuccess();
+                this.onSuccess(form);
             });
         },
     },

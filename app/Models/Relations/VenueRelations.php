@@ -3,6 +3,7 @@
 namespace App\Models\Relations;
 
 use App\Models\City;
+use App\Models\Operator;
 use App\Models\Photo;
 use App\Models\Review;
 use App\Models\Facility;
@@ -28,10 +29,10 @@ trait VenueRelations
         return $this->hasMany(Facility::class);
     }
 
-    public function opening_hours()
-    {
-        return $this->hasMany(OpeningHour::class);
-    }
+//    public function opening_hours()
+//    {
+//        return $this->hasMany(OpeningHour::class);
+//    }
 
     public function reviews()
     {
@@ -41,5 +42,10 @@ trait VenueRelations
     public function stamps()
     {
         return $this->hasMany(VenueStamp::class);
+    }
+
+    public function operator()
+    {
+        return $this->hasOne(Operator::class);
     }
 }

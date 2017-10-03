@@ -10,32 +10,58 @@
                     </h2>
                     <form action="" @submit.prevent="submit">
                         <div class="c-form-group">
+                            <label for="operator_name">Nama</label>
+                            <input
+                                    type="text"
+                                    id="operator_name"
+                                    class="o-input"
+                                    placeholder="Email"
+                                    name="operator_name"
+                                    :value="form.data.operator_name"
+                                    @input="updateField('operator_name', $event.target.value)"
+                                    @change="form.validate('operator_name', $event.target.value)"
+                            />
+                            <span v-if="form.errors.has('operator_name')" class="c-form-feedback c-form-feedback__merchant">Wajib diisi.</span>
+
+                        </div>
+
+                        <div class="c-form-group">
+                            <label for="operator_email">Email</label>
                             <input 
                                 type="text"
+                                id="operator_email"
                                 class="o-input"
-                                placeholder="Masukan Email Operator"
-                                name="email_operator"
-                                v-model="dataMerchant.email_operator" 
+                                placeholder="Email"
+                                name="operator_email"
+                                :value="form.data.operator_email"
+                                @input="updateField('operator_email', $event.target.value)"
+                                @change="form.validate('operator_email', $event.target.value)"
                               />
-                            <span v-if="validator.errors.has('email_operator')" class="c-form-feedback c-form-feedback__merchant">Wajib diisi.</span>
+                            <span v-if="form.errors.has('operator_email')" class="c-form-feedback c-form-feedback__merchant">Wajib diisi.</span>
 
                         </div>
 
                         <div class="c-form-group">
+                            <label for="operator_password">Email</label>
                             <input
-                                name="password_operator"
-                                v-model="dataMerchant.password_operator" 
+                                name="operator_password"
                                 type="password"
+                                id="operator_password"
                                 class="o-input"
                                 placeholder="Password"
+                                :value="form.data.operator_password"
+                                @input="updateField('operator_password', $event.target.value)"
+                                @change="form.validate('operator_password', $event.target.value)"
                             />
-                            <span v-if="validator.errors.has('password_operator')" class="c-form-feedback c-form-feedback__merchant">Wajib diisi.</span>
+                            <span v-if="form.errors.has('operator_password')" class="c-form-feedback c-form-feedback__merchant">Wajib diisi.</span>
 
                         </div>
 
                         <div class="c-form-group">
-                            <!-- <router-link to="/merchant/registration/success" class="o-button o-button--primary o-button--block o-button--large"> Next </router-link> -->
-                            <button type="submit" class="o-button o-button--primary o-button--block o-button--large">Next</button>
+                            <button type="submit" class="o-button o-button--primary o-button--block o-button--large" :disabled="loading">
+                                <span v-if="loading"><loading color="#fff"></loading> Loading...</span>
+                                <span v-else>Next</span>
+                            </button>
                         </div>
 
                         <div class="c-form-group u-mt-x5">
@@ -50,41 +76,33 @@
 </template>
 
 <script>
-    import Step from '../../components/StepTab.vue'
-    import { Validator, ErrorBag } from 'vee-validate';
+    import MerchantRegistration from '../../merchant-registration'
 
-    export default {
-        components: { Step },
+    export default MerchantRegistration.extend({
         data() {
             return {
-                dataMerchant: {
-                    email_operator: '',
-                    password_operator: ''
+                form: {
+                    rules: {
+                        operator_email: 'required',
+                        operator_password: 'required'
+                    }
                 },
-                validator: new Validator({
-                    email_operator: 'required|email',
-                    password_operator: 'required'
-                })
+                loading: false
             }
         },
         methods: {
-            validate(field, e) {
-                this.validator.validate(field, e.target.value);
-            },
-            submit() {
-                this.validator.validateAll({ email_operator: this.dataMerchant.email_operator, password_operator: this.dataMerchant.password_operator }).then(result => {
-                    if (!result) {
-                        return;
-                        // validation failed.
-                    }
-                    router.push('/merchant/registration/success');
-                    // window.location = '/merchant/registration/success';
-                    // success stuff.
-                }).catch(() => {
-                    console.log('error')
-                    // something went wrong (non-validation related).
+            onSuccess(form) {
+                this.loading = true;
+                axios.post('/api/venue', this.form.data).then(({data}) => {
+                    setTimeout(() => {
+                        this.loading = false;
+                        router.push('/merchant/registration/success');
+                    }, 1000);
+                }).catch( err => {
+                    this.loading = false;
+                    swal('Oops...', 'Something went wrong!', 'error');
                 });
-            },
+            }
         }
-    }
+    })
 </script>

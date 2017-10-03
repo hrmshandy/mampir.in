@@ -6,6 +6,7 @@ if (!window.Promise) {
 window._ = require('lodash');
 window.Cookies = require('js-cookie');
 window.moment = require('moment');
+window.swal = require('sweetalert2');
 
 moment.locale('id');
 

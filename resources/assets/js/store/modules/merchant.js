@@ -11,7 +11,10 @@ const state = {
         website: '',
         opening_hours: '',
         payment_method: '',
-        keywords: ''
+        keywords: '',
+        operator_name: '',
+        operator_email: '',
+        operator_password: ''
     }
 }
 
@@ -28,11 +31,13 @@ const actions = {
 const mutations = {
     UPDATE_MERCHANT(state, obj) {
         Object.assign(state.merchant, obj);
+
+        localStorage.setItem("merchant", JSON.stringify(state.merchant));
     },
     UPDATE_MERCHANT_FIELD(state, {field, value}) {
-        let obj = { [field]: value };
-        if()
-        Object.assign(state.merchant, obj);
+        _.set(state.merchant, field, value);
+
+        localStorage.setItem("merchant", JSON.stringify(state.merchant));
     }
 }
 

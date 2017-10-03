@@ -39,7 +39,8 @@
         ],
         "psr-4": {
             "App\\": "app/",
-            "Hrmsh\\Finder\\": "hrmsh/finder/src/"
+            "Hrmsh\\Finder\\": "hrmsh/finder/src/",
+            "Merchant\\": "merchant/src/"
         },
         "files": [
             "app/helpers.php"

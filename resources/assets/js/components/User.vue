@@ -33,14 +33,14 @@
             <div class="user-menu__block">
                 <div class="nav-mobile__menu-merchant">
                     <h3>Merchant</h3>
-                    <ul class="merchant-list">
-                        <li class="merchant-list__item">
-                            <a class="" href="#">Salona</a>
-                        </li>
-                        <li class="merchant-list__item">
-                            <a class="" href="#">Barbara</a>
-                        </li>
-                    </ul>
+                    <!--<ul class="merchant-list">-->
+                        <!--<li class="merchant-list__item">-->
+                            <!--<a class="" href="#">Salona</a>-->
+                        <!--</li>-->
+                        <!--<li class="merchant-list__item">-->
+                            <!--<a class="" href="#">Barbara</a>-->
+                        <!--</li>-->
+                    <!--</ul>-->
 
                     <router-link class="o-button o-button--primary o-button-custom o-button--block" to="/merchant/claim">
                         Add Merchants
