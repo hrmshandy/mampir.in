@@ -79,5 +79,6 @@ export default {
 	}
 	.o-logo {
 		font-size: 30px;
+		margin: auto;
 	}
 </style>
