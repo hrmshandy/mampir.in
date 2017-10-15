@@ -24,6 +24,13 @@
                 stroke: currentColor !important;
             }
         }
+
+        @media (max-width: 640px) {
+            display: inline-block;
+            line-height: 1;
+            position: relative;
+            top: 3px;
+        }
     }
     &__form {}
     &--inline {
@@ -36,7 +43,7 @@
             }
         }
         .c-search__form {
-            display: none;
+            // display: none;
             @include desktop {
                 display: flex;
                 // position: absolute;

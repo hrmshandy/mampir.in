@@ -8,6 +8,11 @@
     //@include elevation-transition();
     transition: all .3s ease;
     z-index: 999;
+
+    @media (max-width: 640px) {
+        display: none;
+    }
+    
     &__body {
         display: flex;
         align-items: center;

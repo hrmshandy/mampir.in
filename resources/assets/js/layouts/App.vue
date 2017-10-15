@@ -1,6 +1,7 @@
 <template>
 	<div class="app">
 		<l-header></l-header>
+		<mobile-navbar></mobile-navbar>
 		<main class="l-body">
 			<router-view></router-view>
 		</main>
@@ -21,13 +22,14 @@ import { mapGetters } from 'vuex'
 
 import Header from './Header.vue'
 import Login from '../components/auth/Login.vue'
+import MobileNavbar from './MobileNavbar.vue'
 import Register from '../components/auth/Register.vue'
 import Footer from './Footer.vue'
 import SelectCity from '../components/SelectCity.vue'
 import Preloader from '../components/Preloader.vue'
 
 export default {
-	components: { 'l-header': Header, 'l-footer': Footer, SelectCity, Preloader, Login, Register },
+	components: { 'l-header': Header, 'l-footer': Footer, MobileNavbar, SelectCity, Preloader, Login, Register },
 	computed: {
 		...mapGetters([
 		    'footer'
