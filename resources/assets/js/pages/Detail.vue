@@ -253,7 +253,7 @@
                     window.document.title = `${data.name} - Mampir.in`;
 
                 }).catch(() => {
-                    router.push('/404');
+                    //router.push('/404');
                 });
             },
             loadMap(destination) {

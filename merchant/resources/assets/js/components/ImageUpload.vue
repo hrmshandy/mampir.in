@@ -28,16 +28,15 @@
             preview: String,
             name: { type: String, default: 'image' }
         },
-        data() {
-          return {
-              image: '',
-              imageObject: {},
-              loading: false,
-              uploadProgress: 0,
-              progressBar: {},
-              dataURLRegex: /^\s*data:([a-z]+\/[a-z0-9-+.]+(;[a-z-]+=[a-z0-9-]+)?)?(;base64)?,([a-z0-9!$&',()*+;=\-._~:@\/?%\s]*)\s*$/i
-          }
-        },
+        data: () => ({
+            image: '',
+            imageObject: {},
+            loading: false,
+            uploadProgress: 0,
+            progressBar: {},
+            dataURLRegex: /^\s*data:([a-z]+\/[a-z0-9-+.]+(;[a-z-]+=[a-z0-9-]+)?)?(;base64)?,([a-z0-9!$&',()*+;=\-._~:@\/?%\s]*)\s*$/i,
+            previewChanged: false
+        }),
         watch: {
             value(value) {
                 if(value) this.image = value;
@@ -47,12 +46,14 @@
             imgPreview() {
                 let preview = this.image;
 
-                if(!_.isEmpty(this.preview)) {
-                    preview = this.preview;
-                }
+                if(!this.previewChanged) {
+                    if(!_.isEmpty(this.preview)) {
+                        preview = this.preview;
+                    }
 
-                if(!_.isEmpty(this.image) && !this.isDataURL(this.image) && !_.isEmpty(this.imageObject)) {
-                    preview = _.has(this.imageObject, 'web_url') ? this.imageObject.web_url : '/storage/_temp/'+this.image;
+                    if(!_.isEmpty(this.image) && !this.isDataURL(this.image) && !_.isEmpty(this.imageObject)) {
+                        preview = _.has(this.imageObject, 'web_url') ? this.imageObject.web_url : '/storage/_temp/'+this.image;
+                    }
                 }
 
                 return preview;
@@ -97,6 +98,7 @@
                 const vm = this;
 
                 reader.onload = (e) => {
+                    vm.previewChanged = true;
                     vm.image = e.target.result;
                 };
                 reader.readAsDataURL(file);

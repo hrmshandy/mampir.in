@@ -5,6 +5,8 @@
   padding: 10px 30px;
   position: fixed;
   top: 0;
+  z-index: 9999;
+  box-shadow: 0 1px 3px rgba(0,0,0, .11);
 
   &__user-block {
     > .dropdown-toggle {

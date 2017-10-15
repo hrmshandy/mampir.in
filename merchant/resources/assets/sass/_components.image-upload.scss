@@ -9,7 +9,7 @@
   border: 2px solid #ddd;
   border-radius: 5px;
   position: relative;
-  height: 200px;
+  height: 300px;
   overflow: hidden;
   &__input {
     @extend %full-flex;
@@ -68,11 +68,15 @@
     @extend %full-flex;
     position: relative;
     z-index: 2;
+    padding: 20px;
     > img {
       display: block;
       max-width: 100%;
-      max-height: 200px;
+      max-height: 100%;
       margin: auto;
+      border: 5px solid #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0,0,0, .15);
     }
   }
 

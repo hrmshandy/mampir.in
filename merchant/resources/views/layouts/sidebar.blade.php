@@ -46,7 +46,7 @@
                 <i class="c-menu__icon">
                     <svg class="o-svg-icon"><use xlink:href="#icon-edit"></use></svg>
                 </i>
-                <span class="c-menu__text">Edit Info/Gallery</span>
+                <span class="c-menu__text">Edit Merchant Info</span>
             </a>
         </li>
         <li class="c-menu__item">

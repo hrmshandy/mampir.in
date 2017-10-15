@@ -1,0 +1,9 @@
+.u-dividerH {
+  width: 30px;
+  height: 2px;
+  background: #ccc;
+  margin: auto;
+  &--small {
+    width: 20px;
+  }
+}

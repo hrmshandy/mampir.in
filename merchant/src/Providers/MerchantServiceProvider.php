@@ -19,6 +19,7 @@ class MerchantServiceProvider extends ServiceProvider
         $this->registerRoutes();
         $this->registerResources();
         $this->registerViewComposer();
+        $this->registerHelpers();
     }
 
     /**
@@ -66,5 +67,10 @@ class MerchantServiceProvider extends ServiceProvider
         View::composer(
             'merchant::*', 'Merchant\Http\ViewComposers\MerchantComposer'
         );
+    }
+
+    protected function registerHelpers()
+    {
+        require __DIR__.'/../../helpers.php';
     }
 }

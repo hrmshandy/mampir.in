@@ -27,7 +27,7 @@ import "daterangepicker"
 
 // const __svg__ = { path: './../images/svg/**/*.svg', name: 'images/svg/sprite.svg' }
 // require('webpack-svgstore-plugin/src/helpers/svgxhr')(__svg__)
-
+import "./utilities"
 import "./directives"
 import "./components"
 
