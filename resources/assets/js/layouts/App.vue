@@ -30,12 +30,19 @@ import Preloader from '../components/Preloader.vue'
 
 export default {
 	components: { 'l-header': Header, 'l-footer': Footer, MobileNavbar, SelectCity, Preloader, Login, Register },
+	data() {
+		return {
+			showPreloader: false
+		}
+	},
 	computed: {
 		...mapGetters([
 		    'footer'
-		]),
-		showPreloader() {
-			return this.$route.path === '/';
+		])
+	},
+	watch: {
+		'$route': function(value) {
+			this.showPreloader = (value.path === '/');
 		}
 	}
 }
