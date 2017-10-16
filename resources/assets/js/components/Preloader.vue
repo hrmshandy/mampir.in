@@ -3,16 +3,8 @@
 		leave-active-class="animated fadeOut"
    		name="preload-animation">
 		<div class="c-preloader" v-show="loading">
-	        <transition 
-	        	enter-active-class="animated slideInUp"
-	        	name="letter-animation">
-	        	<logo class="o-logo-preloader" v-if="loading1"></logo>
-	        </transition>
-	        <transition 
-				enter-active-class="animated fadeIn"
-	        	name="marker-animation">
-	        	<logo-marker class="o-logo-marker" v-if="loading2"></logo-marker>
-	        </transition>
+	        <logo class="o-logo-preloader"></logo>
+	        <logo-marker class="o-logo-marker"></logo-marker>
 		</div>
 	</transition>
 </template>

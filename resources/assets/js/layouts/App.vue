@@ -7,7 +7,7 @@
 		</main>
 		<l-footer v-show="footer"></l-footer>
 		<select-city></select-city>
-		<preloader></preloader>
+		<preloader v-show="showPreloader"></preloader>
 
 		<login></login>
 		<register></register>
@@ -33,7 +33,10 @@ export default {
 	computed: {
 		...mapGetters([
 		    'footer'
-		])
+		]),
+		showPreloader() {
+			return this.$route.path === '/';
+		}
 	}
 }
 </script>
